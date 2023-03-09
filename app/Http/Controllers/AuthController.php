@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\StoreUserRequest;
+
 use App\Traits\HttpResponses;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -67,4 +68,6 @@ class AuthController extends Controller
             'messsage' => "You have successfully logged out"
         ]);
     }
+
+
 }

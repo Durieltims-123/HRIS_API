@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('salary_grades', function (Blueprint $table) {
+        Schema::create('membership_associations', function (Blueprint $table) {
             $table->id();
-            $table->string('number');
-
+            $table->unsignedBigInteger('pds_id');
+            $table->string('membership_association');
             $table->timestamps();
+
+            // $table->foreign('pds_id')->references('id')->on('personal_data_sheets');
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('salary_grades');
+        Schema::dropIfExists('membership_associations');
     }
 };

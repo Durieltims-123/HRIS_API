@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('salary_grades', function (Blueprint $table) {
+        Schema::create('qualification_standards', function (Blueprint $table) {
             $table->id();
-            $table->string('number');
-
+            $table->string('education');
+            $table->string('training');
+            $table->string('experience');
+            $table->string('eligibility');
+            $table->string('competency');
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('salary_grades');
+        Schema::dropIfExists('qualification_standards');
     }
 };

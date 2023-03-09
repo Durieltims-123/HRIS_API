@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('salary_grades', function (Blueprint $table) {
+        Schema::create('psb_members', function (Blueprint $table) {
             $table->id();
-            $table->string('number');
-
+            $table->unsignedBigInteger('perselbo_id');
+            $table->foreign('perselbo_id')->references('id')->on('personnel_selection_boards');
+            $table->string('member_name');
+            $table->string('member_position');
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('salary_grades');
+        Schema::dropIfExists('psb_members');
     }
 };
