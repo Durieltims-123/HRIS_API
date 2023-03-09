@@ -18,4 +18,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::resource('/holidays', HolidaysController::class);
+    Route::resource('/Appicant', Applicant_Controller::class);
+    Route::resource('/Employee', Employee_Controller::class);
+    
 });
