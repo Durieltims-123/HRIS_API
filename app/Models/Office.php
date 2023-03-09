@@ -25,6 +25,6 @@ class Office extends Model
 
     protected $fillable = [
         'office_code',
-        'Office_name',
+        'office_name',
     ];
 }

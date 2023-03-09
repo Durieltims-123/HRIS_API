@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orientations', function (Blueprint $table) {
+        Schema::create('report_of_appointments', function (Blueprint $table) {
             $table->id();
-            $table->string('date_generated');
-            $table->string('start_date');
-            $table->string('end_date');
-            $table->string('venue');
+            $table->string("reports");
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orientations');
+        Schema::dropIfExists('report_of_appointments');
     }
 };

@@ -16,6 +16,7 @@ class Notice extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'notice_type',
         'date_send',
         'date_received'
     ];

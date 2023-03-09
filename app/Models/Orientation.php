@@ -14,6 +14,8 @@ class Orientation extends Model
         return $this->hasMany(EmployeeOrientation::class);
     }
 
+    protected $primaryKey = 'id';
+
     protected $fillable = 
     [
         'date_generated',
