@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\StoreUserRequest;
-use App\Models\Position;
-use App\Models\SalaryGrade;
+
 use App\Traits\HttpResponses;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -70,11 +69,5 @@ class AuthController extends Controller
         ]);
     }
 
-    public function test(){
-        $test = SalaryGrade::select('*')->join('positions','positions.salary_grade_id','salary_grades.id')->get();
-        $salaryGrade = SalaryGrade::all();
-        $position = Position::find(1)->salaryGrade;
 
-        dd($test, $salaryGrade, $position);
-    }
 }

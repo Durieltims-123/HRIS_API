@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-
-class SalaryGrade extends s
+class Interview extends Model
+{
     use HasFactory;
 
+    protected $primaryKey = 'id';
 
     protected $fillable = [
-        'number',
-        'amount',
+        'interview_date',
+        'venue'
     ];
-
 }

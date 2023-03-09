@@ -11,11 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('salary_grades', function (Blueprint $table) {
+        Schema::create('references', function (Blueprint $table) {
             $table->id();
-            $table->string('number');
-
+            $table->unsignedBigInteger('pds_id');
+            $table->string('name');
+            $table->string('address');
+            $table->string('telephone_number');
             $table->timestamps();
+
+            // $table->foreign('pds_id')->references('id')->on('personal_data_sheets');
         });
     }
 
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('salary_grades');
+        Schema::dropIfExists('references');
     }
 };

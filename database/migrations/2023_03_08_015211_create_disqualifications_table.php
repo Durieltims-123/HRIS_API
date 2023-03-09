@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('salary_grades', function (Blueprint $table) {
+        Schema::create('disqualifications', function (Blueprint $table) {
             $table->id();
-            $table->string('number');
-
+            $table->foreignId('application_id')->constrained();
+            $table->date('date_disqualified');
+            $table->string('reason');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('salary_grades');
+        Schema::dropIfExists('disqualifications');
     }
 };

@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('salary_grades', function (Blueprint $table) {
+        Schema::create('personnel_selection_boards', function (Blueprint $table) {
             $table->id();
-            $table->string('number');
-
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->string('chairman');
+            $table->string('position');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('salary_grades');
+        Schema::dropIfExists('personnel_selection_boards');
     }
 };
