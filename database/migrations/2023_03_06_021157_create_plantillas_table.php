@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('salary_grades', function (Blueprint $table) {
+        Schema::create('plantillas', function (Blueprint $table) {
             $table->id();
-            $table->string('number');
+           
+            $table->foreignId('office_id');
+            $table->foreignId('position_id');
 
+            $table->string('place_of_assignment');
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('salary_grades');
+        Schema::dropIfExists('plantillas');
     }
 };
