@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('plantillas', function (Blueprint $table) {
+        Schema::create('publications', function (Blueprint $table) {
             $table->id();
-           
-            $table->foreignId('office_id');
-            $table->foreignId('position_id');
-
-            $table->string('place_of_assignment');
+            $table->foreignId('vacancy_id')->constrained();
+            $table->date('opening_date');
+            $table->date('closing_date');
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('plantillas');
+        Schema::dropIfExists('publications');
     }
 };

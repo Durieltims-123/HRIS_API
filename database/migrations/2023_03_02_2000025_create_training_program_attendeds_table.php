@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('voluntary_works', function (Blueprint $table) {
+        Schema::create('training_program_attendeds', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('pds_id');
-            $table->string('organization_name');
-            $table->string('organization_address');
-            $table->string('position');
-            $table->string('number_hours');
+            $table->foreignId('pds_id')->constrained('personal_data_sheets');
+            $table->string('program_title');
+            $table->string('hours');
+            $table->string('type');
+            $table->string('conducted_by');
             $table->date('inclusive_dates_from');
             $table->date('inclusive_dates_to');
             $table->timestamps();
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('voluntary_works');
+        Schema::dropIfExists('training_program_attendeds');
     }
 };
