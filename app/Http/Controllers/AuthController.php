@@ -68,7 +68,4 @@ class AuthController extends Controller
         ]);
     }
 
-    public function hh()
-    {
-    }
 }
