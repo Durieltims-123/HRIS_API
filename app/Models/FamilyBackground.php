@@ -25,7 +25,7 @@ class FamilyBackground extends Model
         'father_middle_name',
         'father_extension_name',
         'mother_maiden_surname',
-        'motherfirst_name',
+        'mother_first_name',
         'mother_maiden_middle_name'
     ];
 }

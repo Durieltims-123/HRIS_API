@@ -28,6 +28,7 @@ class PersonalInformation extends Model
         'permanent_house_number',
         'permanent_subdivision_village',
         'permanent_street',
+        
         'permanent_zip_code_number',
         'residential_house_number',
         'residential_subdivision_village',

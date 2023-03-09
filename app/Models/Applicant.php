@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Applicant extends Model
 {
     use HasFactory;
+
      public function hasOneApplication()
      {
         return $this->hasOne(Application::class);
@@ -17,6 +18,8 @@ class Applicant extends Model
      {
         return $this->hasOne(PersonnalDataSheet::class);
      }
+
+     protected $primaryKey = 'id';
 
     protected $fillable = [
         'first_name',
