@@ -1,0 +1,43 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('applications', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('applicant_id');
+            $table->unsignedBigInteger('employee_id');
+            $table->unsignedBigInteger('publication_id');
+            $table->unsignedBigInteger('notice_id');
+            $table->date('submission_date');
+            $table->string('first_name');
+            $table->string('middle_name');
+            $table->string('last_name');
+            $table->string('suffix_name');
+            $table->string('application_type');
+            $table->string('status');
+            $table->timestamps();
+
+            // $table->foreign('applicant_id')->references('id')->on('applicants');
+            // $table->foreign('employee_id')->references('id')->on('employees');
+            // $table->foreign('publication_id')->references('id')->on('publications');
+            // $table->foreign('notice_id')->references('id')->on('notices');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('applications');
+    }
+};
