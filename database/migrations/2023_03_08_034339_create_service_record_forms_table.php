@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('service_record_forms', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('employee_id')->constrained();
             $table->date('date_from');
             $table->date('date_to');
             $table->string('appointment_records');

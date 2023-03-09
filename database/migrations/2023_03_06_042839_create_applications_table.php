@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('applicant_id');
-            $table->unsignedBigInteger('employee_id');
-            $table->unsignedBigInteger('publication_id');
-            $table->unsignedBigInteger('notice_id');
+            $table->foreignId('applicant_id')->constrained();
+            $table->foreignId('employee_id')->constrained();
+            $table->foreignId('publication_id')->constrained();
+           
             $table->date('submission_date');
             $table->string('first_name');
             $table->string('middle_name');

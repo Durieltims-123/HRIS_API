@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('other_information_answers', function (Blueprint $table) {
+        Schema::create('membership_associations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pds_id');
-            $table->string('answer');
-            $table->string('remarks');
+            $table->foreignId('pds_id')->constrained('personal_data_sheets');
+            $table->string('membership_association');
             $table->timestamps();
+
+            // $table->foreign('pds_id')->references('id')->on('personal_data_sheets');
         });
     }
 
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('other_information_answers');
+        Schema::dropIfExists('membership_associations');
     }
 };

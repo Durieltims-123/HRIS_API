@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('special_skill_hobbies', function (Blueprint $table) {
+        Schema::create('recognitions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('pds_id');
-            $table->string('special_skills');
-            $table->timestamps();
 
-            // $table->foreign('pds_id')->references('id')->on('personal_data_sheets');
+            $table->foreignId('pds_id')->constrained('personal_data_sheets');
+
+            $table->string('recognition_title');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('special_skill_hobbies');
+        Schema::dropIfExists('recognitions');
     }
 };

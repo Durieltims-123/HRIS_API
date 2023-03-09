@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('questions', function (Blueprint $table) {
+        Schema::create('special_skill_hobbies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pds_id');
-            $table->string('number');  
-            $table->string('questions');
-            $table->string('choices');  
+            $table->foreignId('pds_id')->constrained('personal_data_sheets');
+            $table->string('special_skills');
             $table->timestamps();
+
+            // $table->foreign('pds_id')->references('id')->on('personal_data_sheets');
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('questions');
+        Schema::dropIfExists('special_skill_hobbies');
     }
 };

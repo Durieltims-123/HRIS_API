@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('membership_associations', function (Blueprint $table) {
+        Schema::create('vacancies', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('pds_id');
-            $table->string('membership_association');
-            $table->timestamps();
 
-            // $table->foreign('pds_id')->references('id')->on('personal_data_sheets');
+            $table->foreignId('plantilla_id')->constrained();
+
+            $table->date('date_submitted');
+            $table->date('date_queued');
+            $table->date('date_approved');
+            $table->string('status');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('membership_associations');
+        Schema::dropIfExists('vacancies');
     }
 };

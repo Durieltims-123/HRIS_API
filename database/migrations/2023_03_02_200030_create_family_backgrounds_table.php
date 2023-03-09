@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('family_backgrounds', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pds_id');
+            $table->foreignId('pds_id')->constrained('personal_data_sheets');
             $table->string('spouse_surname');
             $table->string('spouse_first_name');
             $table->string('spouse_middle_name');
