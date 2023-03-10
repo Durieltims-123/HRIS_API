@@ -1,13 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-
-use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\HolidaysController;
 use App\Http\Controllers\OfficeController;
-use App\Http\Controllers\SalaryGradeController;
 use App\Http\Controllers\PersonnelSelectionBoardController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\PositionDescriptionController;
