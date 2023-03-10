@@ -1,14 +1,20 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+
+use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\HolidaysController;
 use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\SalaryGradeController;
+use App\Http\Controllers\PersonnelSelectionBoardController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\PositionDescriptionController;
 use App\Http\Controllers\QualificationStandardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -19,7 +25,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 
-
 // Protected Routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
@@ -28,6 +33,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/office', OfficeController::class);
 
     Route::resource('/salary-grade', SalaryGradeController::class);
+    Route::resource('/personnel-selection-board', PersonnelSelectionBoardController::class);
+    Route::resource('/psb-member', PersonnelSelectionBoardController::class);
+
 
     Route::resource('/position', PositionController::class);
 
