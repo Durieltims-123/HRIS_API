@@ -11,7 +11,7 @@ class StoreQualificationStandardRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class StoreQualificationStandardRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        return [ 
             'education' => ['required', 'string', 'max:255'],
             'training' => ['required', 'string', 'max:255'],
             'experience' => ['required', 'string', 'max:255'],

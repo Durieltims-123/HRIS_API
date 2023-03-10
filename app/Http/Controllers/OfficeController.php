@@ -24,7 +24,7 @@ class OfficeController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         //
     }
@@ -34,19 +34,22 @@ class OfficeController extends Controller
      */
     public function store(StoreOfficeRequest $request)
     {
+        // 
         $request->validated($request->all());
 
         $officeExist = Office::where([['office_code', $request->office_code], ['office_name', $request->office_name]])->exists();
         if ($officeExist) {
             return $this->error('', 'Duplicate Entry', 400);
         }
-
-        Office::create([
-            "office_code" => $request->office_code,
-            "office_name" => $request->office_name
-        ]);
-
-
+        // Office::create([
+        //     "office_code" => $request->office_code,
+        //     "office_name" => $request->office_name,
+        // ]);
+        $office=new Office();
+        $office-> office_code=$request->office_code;
+        $office-> office_name=$request->office_name;
+        $office->save();
+ 
         // return message
         return $this->success('', 'Successfull Saved', 200);
     }
