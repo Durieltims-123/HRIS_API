@@ -36,16 +36,15 @@ class PositionController extends Controller
     {
             // validate input fields
             $request->validated($request->all());
-//  dd($request);
-            // validate user from database
-            $positionExist = Position::where('title', $request->title);
-            dd($positionExist);
+
+            $positionExist = Position::where('title', $request->title)->exists();
+            // $positionExist;
             if ($positionExist) {
                 return $this->error('', 'Duplicate Entry', 400);
             }
     
             Position::create([
-                "title" => $request->title
+                "title" => $request->title,
             ]);
     
     

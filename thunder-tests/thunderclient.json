@@ -8,7 +8,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-10T00:26:31.509Z",
-    "modified": "2023-03-10T02:07:04.153Z",
+    "modified": "2023-03-10T03:06:47.019Z",
     "headers": [],
     "params": [],
     "body": {
@@ -17,17 +17,20 @@
       "form": [
         {
           "name": "amount",
-          "value": "87000"
+
+          "value": "31000"
         },
         {
           "name": "number",
-          "value": "4"
+          "value": "3"
+
         }
       ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "2|429L525I3aiob3FWTj9nScFxotYjSeO2eM8frrVv"
+      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
+
     },
     "tests": []
   },
@@ -114,6 +117,7 @@
     "tests": []
   },
   {
+
     "_id": "41f143b8-2eaa-40ee-aa92-0a463b36b042",
     "colId": "5a48b1f8-bc21-4449-8e80-a7bc6c2ee250",
     "containerId": "",
@@ -123,6 +127,81 @@
     "sortNum": 10000,
     "created": "2023-03-10T02:01:36.226Z",
     "modified": "2023-03-10T03:51:39.555Z",
+
+    "_id": "d9672f04-7467-4f2c-bd77-1986cdf3b25f",
+    "colId": "cb18b473-d52b-40e4-8df4-0f2b2758151e",
+    "containerId": "",
+    "name": "Index Salary Grade",
+    "url": "http://127.0.0.1:8000/api/salary-grade",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-03-10T01:05:52.017Z",
+    "modified": "2023-03-10T01:17:52.049Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
+    },
+    "tests": []
+  },
+  {
+    "_id": "96773733-a6b3-43c3-a95d-d15b916a3a33",
+    "colId": "cb18b473-d52b-40e4-8df4-0f2b2758151e",
+    "containerId": "",
+    "name": "Update Salary Grade",
+    "url": "http://127.0.0.1:8000/api/salary-grade/2",
+    "method": "PATCH",
+    "sortNum": 30000,
+    "created": "2023-03-10T01:18:42.261Z",
+    "modified": "2023-03-10T06:09:13.510Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "amount",
+          "value": "69000"
+        },
+        {
+          "name": "number",
+          "value": "69"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
+    },
+    "tests": []
+  },
+  {
+    "_id": "78b347a2-8e9a-4709-868d-746e86aa11e6",
+    "colId": "cb18b473-d52b-40e4-8df4-0f2b2758151e",
+    "containerId": "",
+    "name": "Delete Salary Grade",
+    "url": "http://127.0.0.1:8000/api/salary-grade",
+    "method": "DELETE",
+    "sortNum": 40000,
+    "created": "2023-03-10T01:24:08.572Z",
+    "modified": "2023-03-10T01:24:08.572Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "9a5901db-2e3d-4e41-9a68-9eace1f89372",
+    "colId": "c570c7f4-5264-44e1-8877-20974b1d70f0",
+    "containerId": "",
+    "name": "Add Qualification Standard",
+    "url": "http://127.0.0.1:8000/api/qualification-standard",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-10T03:38:58.790Z",
+    "modified": "2023-03-10T03:41:39.312Z",
+
     "headers": [],
     "params": [],
     "body": {
@@ -130,34 +209,39 @@
       "raw": "",
       "form": [
         {
-          "name": "start_date",
-          "value": "2023-02-08"
+
+          "name": "education",
+          "value": "yes"
         },
         {
-          "name": "end_date",
-          "value": "2023-02-16"
+          "name": "training",
+          "value": "yah2"
         },
         {
-          "name": "chairman",
-          "value": "John D. Korfish"
+          "name": "experience",
+          "value": "yah"
         },
         {
-          "name": "position",
-          "value": "Administrator V"
+          "name": "eligibility",
+          "value": "yah"
         },
         {
-          "name": "status",
-          "value": "Active"
+          "name": "competency",
+          "value": "yah"
+
         }
       ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "3|5Qfdr6zUdeabaE9QH452kGje0WNriOoc8dBpodwf"
+
+      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
+
     },
     "tests": []
   },
   {
+
     "_id": "742a6e96-886d-4b94-897f-0acb1125cc2d",
     "colId": "5a48b1f8-bc21-4449-8e80-a7bc6c2ee250",
     "containerId": "",
@@ -167,6 +251,35 @@
     "sortNum": 20000,
     "created": "2023-03-10T07:47:36.696Z",
     "modified": "2023-03-10T07:47:36.696Z",
+
+    "_id": "2553e9f7-1ba3-4fa4-8014-996ac862f352",
+    "colId": "c570c7f4-5264-44e1-8877-20974b1d70f0",
+    "containerId": "",
+    "name": "Index Qualification Standard",
+    "url": "http://127.0.0.1:8000/api/qualification-standard",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-03-10T04:00:21.129Z",
+    "modified": "2023-03-10T04:02:15.782Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
+    },
+    "tests": []
+  },
+  {
+    "_id": "69e8260e-6db2-4b6b-8fcd-b8225bfd023e",
+    "colId": "c570c7f4-5264-44e1-8877-20974b1d70f0",
+    "containerId": "",
+    "name": "Update Qualification Standard",
+    "url": "http://127.0.0.1:8000/api/qualification-standard/1",
+    "method": "PATCH",
+    "sortNum": 30000,
+    "created": "2023-03-10T04:03:09.735Z",
+    "modified": "2023-03-10T05:24:39.245Z",
+
     "headers": [],
     "params": [],
     "body": {
@@ -174,6 +287,7 @@
       "raw": "",
       "form": [
         {
+
           "name": "start_date",
           "value": "2023-05-05"
         },
@@ -192,16 +306,39 @@
         {
           "name": "status",
           "value": "Active"
+
+          "name": "competency",
+          "value": "aw"
+        },
+        {
+          "name": "eligibility",
+          "value": "maga"
+        },
+        {
+          "name": "experience",
+          "value": "maga"
+        },
+        {
+          "name": "training",
+          "value": "maga"
+        },
+        {
+          "name": "education",
+          "value": "maga"
+
         }
       ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "4|eCKfeFe8Rltw8zw6Zb3EpeMPRTRvfxj8JAnKMfrU"
+
+      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
+
     },
     "tests": []
   },
   {
+
     "_id": "523b4335-6e53-4507-8632-a8a296eddcdc",
     "colId": "5a48b1f8-bc21-4449-8e80-a7bc6c2ee250",
     "containerId": "",
@@ -211,15 +348,149 @@
     "sortNum": 30000,
     "created": "2023-03-10T07:52:43.088Z",
     "modified": "2023-03-10T07:52:43.088Z",
+
+    "_id": "00be080d-2244-4b9a-aa76-cdf0dc1091fc",
+    "colId": "c570c7f4-5264-44e1-8877-20974b1d70f0",
+    "containerId": "",
+    "name": "Delete Qualification Standard",
+    "url": "http://127.0.0.1:8000/api/qualification-standard/1",
+    "method": "DELETE",
+    "sortNum": 40000,
+    "created": "2023-03-10T05:32:28.100Z",
+    "modified": "2023-03-10T05:32:28.100Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "4|eCKfeFe8Rltw8zw6Zb3EpeMPRTRvfxj8JAnKMfrU"
+      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
     },
     "tests": []
   },
   {
+    "_id": "58211aca-f2ed-48eb-a4f7-452bae2921fc",
+    "colId": "c1ad8554-6389-4247-8be6-1f910708ba10",
+    "containerId": "",
+    "name": "Add Position Description",
+    "url": "http://127.0.0.1:8000/api/position-description",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-10T07:00:34.785Z",
+    "modified": "2023-03-10T07:01:19.361Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "description",
+          "value": "aboutabout"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
+    },
+    "tests": []
+  },
+  {
+    "_id": "ea03ff1e-3926-46e9-9d09-6452a324e1ee",
+    "colId": "c1ad8554-6389-4247-8be6-1f910708ba10",
+    "containerId": "",
+    "name": "Index Position Description",
+    "url": "http://127.0.0.1:8000/api/position-description",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-03-10T07:06:09.432Z",
+    "modified": "2023-03-10T07:06:09.432Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
+    },
+    "tests": []
+  },
+  {
+    "_id": "ccbd19e8-8109-4e48-9f13-c24342a307f5",
+    "colId": "c1ad8554-6389-4247-8be6-1f910708ba10",
+    "containerId": "",
+    "name": "Update Position Description",
+    "url": "http://127.0.0.1:8000/api/position-description/1",
+    "method": "PATCH",
+    "sortNum": 30000,
+    "created": "2023-03-10T07:07:24.214Z",
+    "modified": "2023-03-10T07:08:51.974Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "description",
+          "value": "awaw"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
+    },
+    "tests": []
+  },
+  {
+    "_id": "7e68e99b-9d48-4e23-9e0f-154c958454c9",
+    "colId": "c1ad8554-6389-4247-8be6-1f910708ba10",
+    "containerId": "",
+    "name": "Delete Position Description",
+    "url": "http://127.0.0.1:8000/api/position-description/1",
+    "method": "DELETE",
+    "sortNum": 40000,
+    "created": "2023-03-10T07:09:38.810Z",
+    "modified": "2023-03-10T07:10:14.404Z",
+
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+
+      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
+    },
+    "tests": []
+  },
+  {
+    "_id": "a6a30376-0e05-4283-89be-cf8bcf7dfeb8",
+    "colId": "d977aec1-81a1-4463-8756-0344f2c1ab13",
+    "containerId": "",
+    "name": "Add Position",
+    "url": "http://127.0.0.1:8000/api/position",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-10T07:14:57.607Z",
+    "modified": "2023-03-10T07:29:52.190Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "title",
+          "value": "qwerty"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
+
+    },
+    "tests": []
+  },
+  {
+
     "_id": "3f56d149-a28d-4c3b-9982-17f66aaabe9f",
     "colId": "05da2f96-8951-4578-b5b8-fdb5e20fedc6",
     "containerId": "",
@@ -229,6 +500,16 @@
     "sortNum": 10000,
     "created": "2023-03-10T08:31:08.204Z",
     "modified": "2023-03-10T08:31:53.918Z",
+
+    "_id": "36108f11-5c51-4827-8307-b3d2c4c52aa7",
+    "colId": "5b41dc28-5985-4b97-b9d0-810cea6937aa",
+    "containerId": "",
+    "name": "Add Office",
+    "url": "http://127.0.0.1:8000/api/office",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-10T07:56:53.833Z",
+    "modified": "2023-03-10T07:58:40.317Z",
     "headers": [],
     "params": [],
     "body": {
@@ -236,18 +517,90 @@
       "raw": "",
       "form": [
         {
-          "name": "member_name",
-          "value": "test"
+
+          "name": "office_code",
+          "value": "qwerty"
         },
         {
-          "name": "position",
-          "value": "test"
+          "name": "office_name",
+          "value": "fddvfdvf"
+
         }
       ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "4|eCKfeFe8Rltw8zw6Zb3EpeMPRTRvfxj8JAnKMfrU"
+
+      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
+    },
+    "tests": []
+  },
+  {
+    "_id": "70c61909-69fa-48ef-96bf-0612020790b1",
+    "colId": "5b41dc28-5985-4b97-b9d0-810cea6937aa",
+    "containerId": "",
+    "name": "Index Office",
+    "url": "http://127.0.0.1:8000/api/office",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-03-10T08:29:27.136Z",
+    "modified": "2023-03-10T08:29:27.136Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
+    },
+    "tests": []
+  },
+  {
+    "_id": "fa517082-7611-45c9-ae74-22ff1ac404ff",
+    "colId": "5b41dc28-5985-4b97-b9d0-810cea6937aa",
+    "containerId": "",
+    "name": "Update Office",
+    "url": "http://127.0.0.1:8000/api/office/1",
+    "method": "PATCH",
+    "sortNum": 30000,
+    "created": "2023-03-10T08:30:21.910Z",
+    "modified": "2023-03-10T08:31:12.097Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "office_code",
+          "value": "awaw"
+        },
+        {
+          "name": "office_name",
+          "value": "magamaga"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
+    },
+    "tests": []
+  },
+  {
+    "_id": "b1a53d81-a676-43b6-b76f-f8a90dc05bbd",
+    "colId": "5b41dc28-5985-4b97-b9d0-810cea6937aa",
+    "containerId": "",
+    "name": "Delete Office",
+    "url": "http://127.0.0.1:8000/api/office/1",
+    "method": "DELETE",
+    "sortNum": 40000,
+    "created": "2023-03-10T08:31:46.657Z",
+    "modified": "2023-03-10T08:32:03.293Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
+
     },
     "tests": []
   }
