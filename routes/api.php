@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\HolidaysController;
-use App\Http\Controllers\SalaryGradeController;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+
+use App\Http\Controllers\OfficeController;
+use App\Http\Controllers\HolidaysController;
+use App\Http\Controllers\SalaryGradeController;
+use App\Http\Controllers\PersonnelSelectionBoardController;
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -16,12 +18,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 
-
 // Protected Routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::resource('/holidays', HolidaysController::class);
 
     Route::resource('/salary-grade', SalaryGradeController::class);
+    Route::resource('/personnel-selection-board', PersonnelSelectionBoardController::class);
+    Route::resource('/psb-member', PersonnelSelectionBoardController::class);
+
 
 });
