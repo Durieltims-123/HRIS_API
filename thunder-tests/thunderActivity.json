@@ -12,5 +12,133 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "e285faac-b664-4397-bb45-944cc91f2195",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/salary-grade",
+    "url": "http://127.0.0.1:8000/api/salary-grade",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-03-10T00:26:02.889Z",
+    "modified": "2023-03-10T00:26:02.889Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "amount",
+          "value": "69000.00"
+        },
+        {
+          "name": "number",
+          "value": "69"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "d7525d01-b9ae-4a40-8086-c30bd9719e6a",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/register",
+    "url": "http://127.0.0.1:8000/api/register",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-03-10T00:38:32.104Z",
+    "modified": "2023-03-10T00:38:32.104Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "name",
+          "value": "Alfigy F. Fongafong"
+        },
+        {
+          "name": "email",
+          "value": "fongafong.alfigy@gmail.com"
+        },
+        {
+          "name": "password",
+          "value": "1234567890zz"
+        },
+        {
+          "name": "password_confirmation",
+          "value": "1234567890zz"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "b8dedb39-76b9-4d94-b2fa-382d24f3a923",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/login",
+    "url": "http://127.0.0.1:8000/api/login",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-03-10T00:40:19.546Z",
+    "modified": "2023-03-10T00:40:19.546Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "email",
+          "value": "fongafong.alfigy@gmail.com"
+        },
+        {
+          "name": "password",
+          "value": "1234567890zz"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "422c496b-a622-49b0-be41-c3dd614df8b2",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/logout",
+    "url": "http://127.0.0.1:8000/api/logout",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-03-10T00:42:09.067Z",
+    "modified": "2023-03-10T00:42:09.067Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "2|4D2NXKfP4jAKpO5mspVcAgb1zLpJtSJhzMsybJqQ"
+    },
+    "tests": []
+  },
+  {
+    "_id": "4fb68815-7a07-46c1-a0fc-074b1611188b",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/logout",
+    "url": "http://127.0.0.1:8000/api/logout",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-03-10T00:42:21.601Z",
+    "modified": "2023-03-10T00:42:21.601Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "2|4D2NXKfP4jAKpO5mspVcAgb1zLpJtSJhzMsybJqQ"
+    },
+    "tests": []
   }
 ]
