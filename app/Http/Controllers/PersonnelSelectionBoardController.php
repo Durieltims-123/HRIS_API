@@ -36,7 +36,6 @@ class PersonnelSelectionBoardController extends Controller
         // validate input fields
         $request->validated($request->all());
 
-        
 
         // validate user from database
         $PsbExists = PersonnelSelectionBoard::where([
