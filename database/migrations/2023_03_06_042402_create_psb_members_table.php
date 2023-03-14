@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('psb_members', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('perselbo_id')->constrained('personnel_selection_boards');
+            $table->foreignId('personnel_selection_board_id')->constrained()->onDelete('cascade');
+            $table->string('employee_id');
             $table->string('member_name');
             $table->string('member_position');
             $table->timestamps();
