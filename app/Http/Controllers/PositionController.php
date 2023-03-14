@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePositionRequest;
-use App\Http\Resources\PositionResource;
 use App\Models\Position;
-use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
+use App\Traits\HttpResponses;
+use App\Models\QualificationStandard;
+use App\Http\Resources\PositionResource;
+use App\Http\Requests\StorePositionRequest;
+use App\Http\Requests\StoreQualificationStandardRequest;
+use App\Http\Resources\QualificationStandardResource;
+use App\Http\Resources\SalaryGradeResource;
+use App\Models\SalaryGrade;
 
 class PositionController extends Controller
 {
@@ -16,9 +21,12 @@ class PositionController extends Controller
      */
     public function index()
     {
+        //  dd( Position::with ('hasManyQualificationStandard','belongsToSalaryGrade')->get());
+        // dd( Position::with ('belongsToSalaryGrade')->get());
         return PositionResource::collection(
-            Position::all()
+            Position::with ('hasManyQualificationStandard','belongsToSalaryGrade')->get()
         );
+       
     }
 
     /**
@@ -36,6 +44,7 @@ class PositionController extends Controller
     {
             // validate input fields
             $request->validated($request->all());
+<<<<<<< Updated upstream
 //  dd($request);
             // validate user from database
             $positionExist = Position::where('title', $request->title);
@@ -46,7 +55,40 @@ class PositionController extends Controller
     
             Position::create([
                 "title" => $request->title
+=======
+
+            // $positionExist = Position::where('title', $request->title)->exists();
+         
+            // if ($positionExist) {
+            //     return $this->error('', 'Duplicate Entry', 400);
+            // }
+            // $salaryG = SalaryGrade::create([
+            //     "number" => $request->number,
+            //     "amount" => $request->amount,
+            // ]);
+
+
+            $positionQS = Position::create([
+                // 'salary_grade_id' => $salaryG->id,
+                "title" => $request->title,
+                "salary_grade_id" => $request->salary_grade_id,
+>>>>>>> Stashed changes
             ]);
+            
+            QualificationStandard::create([
+                'position_id' => $positionQS->id,
+                "education" => $request->education,
+                "training" => $request->training,
+                "experience" => $request->experience,
+                "eligibility" => $request->eligibility,
+                "competency" => $request->competency,
+
+                
+            ]);
+            // $position=new Position();
+            // $position-> title=$request->title;
+            // $position->save();
+           
     
     
             // return message
@@ -72,15 +114,32 @@ class PositionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Position $position)
+    public function update(StorePositionRequest $positionRequest, Position $position)
     {
     
-            
-                $position->title = $request->title;
+            // dd($qualificationStandard);
+                $position->title = $positionRequest->title;
+                $position->salary_grade_id = $positionRequest->salary_grade_id;
+
+                $position->position_id = $positionRequest->position_id;
+                $position->education = $positionRequest->education;
+                $position->training = $positionRequest->training;
+                $position->experience = $positionRequest->experience;
+                $position->eligibility = $positionRequest->eligibility;
+                $position->competency = $positionRequest->competency;
                 $position->save();
         
-                // $holiday->update($request->all());
+
                 return new PositionResource($position);
+                // $holiday->update($request->all());
+                // return new PositionResource($position, $qualificationStandard);
+                // $resurce = new PositionResource($position);
+                // $resource2 = new QualificationStandardResource($qualificationStandard);
+                // return [
+                //     'resource' => $resurce,
+                //     'resource2' => $resource2,
+
+                // ];
 
      }
 
@@ -88,10 +147,11 @@ class PositionController extends Controller
      * Remove the specified resource from storage.
      */
 
-    public function destroy(Position $position)
+    public function destroy(Position $position, QualificationStandard $qualificationStandard)
     {
  
        $position->delete();
+    //    $qualificationStandard->delete();
         return $this->success('', 'Successfull Deleted', 200);
     
     }

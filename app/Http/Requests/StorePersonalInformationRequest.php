@@ -11,7 +11,7 @@ class StorePersonalInformationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,15 +22,23 @@ class StorePersonalInformationRequest extends FormRequest
     public function rules(): array
     {
         return [
+            //personal information
+            'pds_id' =>['required'],
             'mobile_number' => ['required', 'string', 'max:255'],
             'telephone_number' => ['required', 'string', 'max:255'],
             'permanent_house_number' => ['required', 'string', 'max:255'],
             'permanent_subdivision_village' => ['required', 'string', 'max:255'],
             'permanent_street' => ['required', 'string', 'max:255'],
+            'permanent_barangay_id' => ['required'],
+            'permanent_municipality_id' => ['required'],
+            'permanent_province_id' => ['required'],
             'permanent_zip_code_number' => ['required', 'string', 'max:255'],
             'residential_house_number' => ['required', 'string', 'max:255'],
             'residential_subdivision_village' => ['required', 'string', 'max:255'],
             'residential_street' => ['required', 'string', 'max:255'],
+            'residential_barangay_id' => ['required'],
+            'residential_municipality_id' => ['required'],
+            'residential_province_id' => ['required'],
             'residential_zip_code_number' => ['required', 'string', 'max:255'],
             'citizenship' => ['required', 'string', 'max:255'],
             'agency_employee' => ['required', 'string', 'max:255'],
@@ -46,6 +54,10 @@ class StorePersonalInformationRequest extends FormRequest
             'sex' => ['required', 'string', 'max:255'],
             'birthplace' => ['required', 'string', 'max:255'],
             'birthdate' => ['required', 'date'],
+
+            //Recognition
+            'pds_id' =>['required'],
+            'recognition_title' => ['required', 'string', 'max:255'],
         ];
     }
 }

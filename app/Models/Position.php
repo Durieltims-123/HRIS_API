@@ -26,9 +26,10 @@ class Position extends Model
     }
 
     protected $primaryKey = 'id';
-    protected $foreignKey = 'salary_grade_id';
+    // protected $foreignKey = 'salary_grade_id';
 
     protected $fillable = [
         'title',
+        'salary_grade_id'
     ];
 }

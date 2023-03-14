@@ -37,6 +37,7 @@ use HttpResponses;
        // validate input fields
         $request->validated($request->all());
 
+        // dd($request);
         // validate user from database
         $salaryGradeExist = SalaryGrade::where([['number', $request->number], ['amount', $request->amount]])->exists();
         if ($salaryGradeExist) {

@@ -22,7 +22,17 @@ class StorePositionRequest extends FormRequest
     public function rules(): array
     {
         return [
+            //position
             'title' => ['required', 'string', 'max:255'],
+            'salary_grade_id' =>['required'],
+            // 'position_id' =>['required'],
+
+            //qualification standard
+            'education' => ['required', 'string', 'max:255'],
+            'training' => ['required', 'string', 'max:255'],
+            'experience' => ['required', 'string', 'max:255'],
+            'eligibility' => ['required', 'string', 'max:255'],
+            'competency' => ['required', 'string', 'max:255']
         ];
     }
 }

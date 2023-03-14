@@ -11,14 +11,15 @@ class QualificationStandard extends Model
     use HasFactory;
 
 
-    //  public function belongsPosition (): BelongsTo
-    //  {
-    //      return $this->belongsTo(Position::class);
-    //  }
+     public function belongsPosition (): BelongsTo
+     {
+         return $this->belongsTo(Position::class);
+     }
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'position_id',
         'education',
         'training',
         'experience', 

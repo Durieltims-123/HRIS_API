@@ -2,6 +2,11 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HolidaysController;
+<<<<<<< Updated upstream
+=======
+use App\Http\Controllers\OfficeController;
+use App\Http\Controllers\PersonalDataSheetController;
+>>>>>>> Stashed changes
 use App\Http\Controllers\SalaryGradeController;
 
 use Illuminate\Http\Request;
@@ -24,4 +29,21 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::resource('/salary-grade', SalaryGradeController::class);
 
+<<<<<<< Updated upstream
+=======
+    Route::resource('/position', PositionController::class);
+
+    Route::resource('/position-description', PositionDescriptionController::class);
+
+    Route::resource('/qualification-standard', QualificationStandardController::class);
+
+    Route::resource('/personal-data-sheet', PersonalDataSheetController::class);
+
+   
+
+
+
+   
+
+>>>>>>> Stashed changes
 });

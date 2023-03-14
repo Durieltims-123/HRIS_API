@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('qualification_standards', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('position_id')->constrained()->onDelete('cascade');
             $table->string('education');
             $table->string('training');
             $table->string('experience');
