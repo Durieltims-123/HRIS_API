@@ -196,5 +196,33 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "e285faac-b664-4397-bb45-944cc91f2195",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/salary-grade",
+    "url": "http://127.0.0.1:8000/api/salary-grade",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-03-10T00:26:02.889Z",
+    "modified": "2023-03-10T00:26:02.889Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "amount",
+          "value": "69000.00"
+        },
+        {
+          "name": "number",
+          "value": "69"
+        }
+      ]
+    },
+    "tests": []
   }
 ]

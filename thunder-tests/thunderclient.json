@@ -805,4 +805,33 @@
     "tests": []
 >>>>>>> Stashed changes
   }
+
+  {
+    "_id": "22d20eee-5107-404c-8246-d749f8935732",
+    "colId": "cb18b473-d52b-40e4-8df4-0f2b2758151e",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/salary-grade",
+    "url": "http://127.0.0.1:8000/api/salary-grade",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-10T00:26:31.509Z",
+    "modified": "2023-03-10T00:26:31.509Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "amount",
+          "value": "69000.00"
+        },
+        {
+          "name": "number",
+          "value": "69"
+        }
+      ]
+    },
+    "tests": []
+  }
 ]
