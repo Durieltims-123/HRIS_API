@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePersonnelSelectionBoardRequest;
-use App\Http\Resources\PersonnelSelectionBoardResource;
-use App\Models\PersonnelSelectionBoard;
+use App\Models\PsbMember;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
-
+use App\Models\PersonnelSelectionBoard;
+use App\Http\Requests\StorePsbMemberRequest;
+use App\Http\Resources\PersonnelSelectionBoardResource;
+use App\Http\Requests\StorePersonnelSelectionBoardRequest;
+use App\Http\Resources\PsbMemberResource;
 
 class PersonnelSelectionBoardController extends Controller
 {
@@ -17,7 +19,9 @@ class PersonnelSelectionBoardController extends Controller
      */
     public function index()
     {
-        //
+        return PersonnelSelectionBoardResource::collection(
+            PersonnelSelectionBoard::with('hasManyMembers')->get()
+        );
     }
 
     /**
@@ -31,32 +35,47 @@ class PersonnelSelectionBoardController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePersonnelSelectionBoardRequest $request)
+    public function store(StorePersonnelSelectionBoardRequest $psbRequest)
     {
-        // validate input fields
-        $request->validated($request->all());
+        // dd($psbMemberRequest);
 
+        // validate input fields
+        $psbRequest->validated($psbRequest->all());
 
         // validate user from database
         $PsbExists = PersonnelSelectionBoard::where([
-            ['start_date', $request->start_date], 
-            ['end_date', $request->end_date],
-            ['chairman', $request->chairman],
-            ['position', $request->position],
-            ['status', $request->status],
-            ])->exists();
+            ['start_date', $psbRequest->start_date],
+            ['end_date', $psbRequest->end_date],
+            ['chairman', $psbRequest->chairman],
+            ['position', $psbRequest->position],
+            ['status', $psbRequest->status],
+        ])->exists();
         if ($PsbExists) {
             return $this->error('', 'Duplicate Entry', 400);
         }
 
-        PersonnelSelectionBoard::create([
-            "start_date" => $request->start_date,
-            "end_date" => $request->end_date,
-            "chairman" => $request->chairman,
-            "position" => $request->position,
-            "status" => $request->status
+        $personnelSelection = PersonnelSelectionBoard::create([
+            "start_date" => $psbRequest->start_date,
+            "end_date" => $psbRequest->end_date,
+            "chairman" => $psbRequest->chairman,
+            "position" => $psbRequest->position,
+            "status" => $psbRequest->status
         ]);
+        $id = $psbRequest->input('employee_id');
+        $name = $psbRequest->input('member_name');
+        $position = $psbRequest->input('member_position');
+        $names = (explode(",", $name));
+        $positions = (explode(",", $position));
+        $ids = (explode(",", $id));
 
+        foreach ($names as $i => $name) {
+            PsbMember::create([
+                "personnel_selection_board_id" => $personnelSelection->id,
+                "employee_id" => $ids[$i],
+                "member_name" => $name,
+                "member_position" => $positions[$i]
+            ]);
+        }
 
         // return message
         return $this->success('', 'Successfull Saved', 200);
@@ -75,23 +94,63 @@ class PersonnelSelectionBoardController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        //  
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PersonnelSelectionBoard $personnelSelectionBoard)
+    public function update(StorePersonnelSelectionBoardRequest $psbRequest, 
+    PersonnelSelectionBoard $personnelSelectionBoard)
     {
-        
-            $personnelSelectionBoard->start_date = $request->start_date;
-            $personnelSelectionBoard->end_date = $request->end_date;
-            $personnelSelectionBoard->chairman = $request->chairman;
-            $personnelSelectionBoard->position = $request->position;
-            $personnelSelectionBoard->status = $request->status;
-            $personnelSelectionBoard->save();
+        $psbRequest->validated($psbRequest->all());
+        // Update PSB
+        $personnelSelectionBoard->start_date = $psbRequest->start_date;
+        $personnelSelectionBoard->end_date = $psbRequest->end_date;
+        $personnelSelectionBoard->chairman = $psbRequest->chairman;
+        $personnelSelectionBoard->position = $psbRequest->position;
+        $personnelSelectionBoard->status = $psbRequest->status;
 
-            return new PersonnelSelectionBoardResource($personnelSelectionBoard);
+        $id = $psbRequest->input('employee_id');
+        $name = $psbRequest->input('member_name');
+        $position = $psbRequest->input('member_position');
+
+        // Turns the name position and id of psb member to Array
+        $names = (explode(",", $name));
+        $positions = (explode(",", $position));
+        $ids = (explode(",", $id));
+
+
+        foreach ($names as $i => $name) 
+        {
+            $memberExists = PsbMember::where([['member_name', $name], 
+            ['personnel_selection_board_id', $personnelSelectionBoard->id]])->exists();
+            //    check if member exist
+            if ($memberExists === true) {
+                PsbMember::where([['member_name', $name], ['personnel_selection_board_id', 
+                $personnelSelectionBoard->id]])
+                    ->update([
+                        "personnel_selection_board_id" => $personnelSelectionBoard->id,
+                        "employee_id" => $ids[$i],
+                        "member_position" => $positions[$i]
+                    ]);
+            } else {
+                PsbMember::create([
+                    "personnel_selection_board_id" => $personnelSelectionBoard->id,
+                    "employee_id" => $ids[$i],
+                    "member_name" => $name,
+                    "member_position" => $positions[$i]
+                ]);
+            }
+        }
+        // Delete members
+        $delete = PsbMember::where('personnel_selection_board_id', $personnelSelectionBoard->id)
+            ->whereNotIn('member_name', $names)
+            ->delete();
+
+        $personnelSelectionBoard->save();
+
+        return new PersonnelSelectionBoardResource($personnelSelectionBoard);
     }
 
     /**
