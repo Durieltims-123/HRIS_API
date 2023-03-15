@@ -37,7 +37,6 @@ class PersonnelSelectionBoardController extends Controller
      */
     public function store(StorePersonnelSelectionBoardRequest $psbRequest)
     {
-        // dd($psbMemberRequest);
 
         // validate input fields
         $psbRequest->validated($psbRequest->all());
@@ -84,9 +83,14 @@ class PersonnelSelectionBoardController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(PersonnelSelectionBoard $personnelSelectionBoard)
     {
-        //
+        
+        return PersonnelSelectionBoardResource::collection(
+            PersonnelSelectionBoard::with('hasManyMembers')
+            ->where('id',$personnelSelectionBoard->id)
+            ->get()
+        );
     }
 
     /**
