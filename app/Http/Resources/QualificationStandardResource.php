@@ -17,6 +17,7 @@ class QualificationStandardResource extends JsonResource
         return [
             "id" => (string)$this->id,
             "attributes"=>[
+                "position_id" => (string)$this->position_id,
                 "education" => (string)$this->education,
                 "training" => (string)$this->training,
                 "experience" => (string)$this->experience,

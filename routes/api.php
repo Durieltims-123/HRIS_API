@@ -31,20 +31,22 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/office', OfficeController::class);
 
     Route::resource('/salary-grade', SalaryGradeController::class);
-    Route::resource('/personnel-selection-board', PersonnelSelectionBoardController::class);
-    Route::resource('/psb-member', PsbMemberController::class);
 
-
+<<<<<<< Updated upstream
+=======
     Route::resource('/position', PositionController::class);
 
     Route::resource('/position-description', PositionDescriptionController::class);
 
     Route::resource('/qualification-standard', QualificationStandardController::class);
-     
-   
 
-
+    Route::resource('/personal-data-sheet', PersonalDataSheetController::class);
 
    
 
+
+
+   
+
+>>>>>>> Stashed changes
 });

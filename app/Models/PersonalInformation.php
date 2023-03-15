@@ -28,11 +28,18 @@ class PersonalInformation extends Model
         'permanent_house_number',
         'permanent_subdivision_village',
         'permanent_street',
-        
+        'permanent_barangay_id',
+        'permanent_municipality_id',
+        'permanent_province_id',
+
         'permanent_zip_code_number',
         'residential_house_number',
         'residential_subdivision_village',
         'residential_street',
+        'residential_barangay_id',
+        'residential_municipality_id',
+        'residential_province_id',
+
         'residential_zip_code_number',
         'citizenship',
         'agency_employee',
