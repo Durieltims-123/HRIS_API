@@ -8,11 +8,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-10T00:26:31.509Z",
-<<<<<<< Updated upstream
-    "modified": "2023-03-10T00:55:42.138Z",
-=======
-    "modified": "2023-03-14T07:44:19.656Z",
->>>>>>> Stashed changes
+    "modified": "2023-03-15T02:20:39.447Z",
     "headers": [],
     "params": [],
     "body": {
@@ -20,23 +16,18 @@
       "raw": "",
       "form": [
         {
-<<<<<<< Updated upstream
           "name": "amount",
-          "value": "69000"
+          "value": "1000"
         },
         {
           "name": "number",
-          "value": "3"
+          "value": "11"
         }
       ]
     },
     "auth": {
       "type": "bearer",
-<<<<<<< Updated upstream
-      "bearer": "3|ebkt7dIhIqDi7OGO35vtl1gN28Ce0r4GWcU1bfw8"
-=======
-      "bearer": "3|ISUi8gI77kazFQs7XhnxLCnbL9rZ8sSiHQIdCj9Z"
->>>>>>> Stashed changes
+      "bearer": "4|JdwOTfGqLtoKKyLGwT0tsNYZ0KyHLyVaTBOrN7UW"
     },
     "tests": []
   },
@@ -121,8 +112,6 @@
       "bearer": "2|4D2NXKfP4jAKpO5mspVcAgb1zLpJtSJhzMsybJqQ"
     },
     "tests": []
-<<<<<<< Updated upstream
-=======
   },
   {
     "_id": "d9672f04-7467-4f2c-bd77-1986cdf3b25f",
@@ -148,7 +137,6 @@
     "containerId": "",
     "name": "Update Salary Grade",
     "url": "http://127.0.0.1:8000/api/salary-grade/1",
-    "url": "http://127.0.0.1:8000/api/salary-grade/1",
     "method": "PATCH",
     "sortNum": 30000,
     "created": "2023-03-10T01:18:42.261Z",
@@ -165,7 +153,6 @@
         },
         {
           "name": "number",
-          "value": "1"
           "value": "1"
         }
       ]
@@ -419,7 +406,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-10T07:14:57.607Z",
-    "modified": "2023-03-14T07:44:37.139Z",
+    "modified": "2023-03-15T02:42:31.009Z",
     "headers": [],
     "params": [],
     "body": {
@@ -428,31 +415,31 @@
       "form": [
         {
           "name": "title",
-          "value": "maga"
+          "value": "Officer"
         },
         {
           "name": "salary_grade_id",
-          "value": "1"
+          "value": "3"
         },
         {
           "name": "education",
-          "value": "test"
+          "value": "testings"
         },
         {
           "name": "training",
-          "value": "test"
+          "value": "testings"
         },
         {
           "name": "experience",
-          "value": "test"
+          "value": "testings"
         },
         {
           "name": "eligibility",
-          "value": "test"
+          "value": "testings"
         },
         {
           "name": "competency",
-          "value": "test"
+          "value": "testings"
         }
       ]
     },
