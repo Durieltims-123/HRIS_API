@@ -28,7 +28,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::resource('/holidays', HolidaysController::class);
 
-
+//alfy
     Route::resource('/salary-grade', SalaryGradeController::class);
     Route::resource('/position', PositionController::class);
     Route::resource('/office', OfficeController::class);
