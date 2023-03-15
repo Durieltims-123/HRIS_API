@@ -28,13 +28,10 @@ class PersonalInformation extends Model
         'permanent_house_number',
         'permanent_subdivision_village',
         'permanent_street',
-<<<<<<< Updated upstream
-=======
         'permanent_barangay_id',
         'permanent_municipality_id',
         'permanent_province_id',
 
->>>>>>> Stashed changes
         'permanent_zip_code_number',
         'residential_house_number',
         'residential_subdivision_village',

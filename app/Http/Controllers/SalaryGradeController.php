@@ -60,7 +60,10 @@ use HttpResponses;
     public function show(SalaryGrade $salaryGrade)
     {
         
-        // return new SalaryGradeResource($salaryGrade);
+        return SalaryGradeResource::collection(
+        SalaryGrade::where('id',$salaryGrade->id)
+        ->get()
+        );
     }
 
     /**

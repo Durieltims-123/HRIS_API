@@ -26,15 +26,7 @@
         },
         {
           "name": "number",
-          "value": "7"
-=======
-          "name": "number",
           "value": "3"
-        },
-        {
-          "name": "amount",
-          "value": "50000"
->>>>>>> Stashed changes
         }
       ]
     },
@@ -146,7 +138,7 @@
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "2|A5q1nq02inkavvM75PN6XQvUjanNkNyCD4erBCLu"
+      "bearer": "3|ISUi8gI77kazFQs7XhnxLCnbL9rZ8sSiHQIdCj9Z"
     },
     "tests": []
   },
@@ -155,6 +147,7 @@
     "colId": "cb18b473-d52b-40e4-8df4-0f2b2758151e",
     "containerId": "",
     "name": "Update Salary Grade",
+    "url": "http://127.0.0.1:8000/api/salary-grade/1",
     "url": "http://127.0.0.1:8000/api/salary-grade/1",
     "method": "PATCH",
     "sortNum": 30000,
@@ -172,6 +165,7 @@
         },
         {
           "name": "number",
+          "value": "1"
           "value": "1"
         }
       ]
@@ -783,54 +777,6 @@
     "auth": {
       "type": "bearer",
       "bearer": "3|ISUi8gI77kazFQs7XhnxLCnbL9rZ8sSiHQIdCj9Z"
-    },
-    "tests": []
-  },
-  {
-    "_id": "778f7efc-35ed-41f9-b16a-a5380a9bf601",
-    "colId": "d977aec1-81a1-4463-8756-0344f2c1ab13",
-    "containerId": "",
-    "name": "Delete Position",
-    "url": "http://127.0.0.1:8000/api/position/2",
-    "method": "DELETE",
-    "sortNum": 40000,
-    "created": "2023-03-13T04:02:55.689Z",
-    "modified": "2023-03-14T07:45:56.096Z",
-    "headers": [],
-    "params": [],
-    "auth": {
-      "type": "bearer",
-      "bearer": "3|ISUi8gI77kazFQs7XhnxLCnbL9rZ8sSiHQIdCj9Z"
-    },
-    "tests": []
->>>>>>> Stashed changes
-  }
-
-  {
-    "_id": "22d20eee-5107-404c-8246-d749f8935732",
-    "colId": "cb18b473-d52b-40e4-8df4-0f2b2758151e",
-    "containerId": "",
-    "name": "http://127.0.0.1:8000/api/salary-grade",
-    "url": "http://127.0.0.1:8000/api/salary-grade",
-    "method": "POST",
-    "sortNum": 10000,
-    "created": "2023-03-10T00:26:31.509Z",
-    "modified": "2023-03-10T00:26:31.509Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "formdata",
-      "raw": "",
-      "form": [
-        {
-          "name": "amount",
-          "value": "69000.00"
-        },
-        {
-          "name": "number",
-          "value": "69"
-        }
-      ]
     },
     "tests": []
   }

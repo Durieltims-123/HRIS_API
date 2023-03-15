@@ -6,18 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class SalaryGrade extends s
+class SalaryGrade extends Model{
     use HasFactory;
 
-<<<<<<< Updated upstream
-=======
     public function hasManyPosition ():HasMany
     {
         return $this->hasMany(Position::class);
     }
 
     protected $primaryKey = 'id';
->>>>>>> Stashed changes
 
     protected $fillable = [
         'number',

@@ -44,18 +44,16 @@ class PositionController extends Controller
     {
             // validate input fields
             $request->validated($request->all());
-<<<<<<< Updated upstream
+
 //  dd($request);
             // validate user from database
             $positionExist = Position::where('title', $request->title);
-            dd($positionExist);
+            // dd($positionExist);
             if ($positionExist) {
                 return $this->error('', 'Duplicate Entry', 400);
             }
     
-            Position::create([
-                "title" => $request->title
-=======
+
 
             // $positionExist = Position::where('title', $request->title)->exists();
          
@@ -71,8 +69,8 @@ class PositionController extends Controller
             $positionQS = Position::create([
                 // 'salary_grade_id' => $salaryG->id,
                 "title" => $request->title,
-                "salary_grade_id" => $request->salary_grade_id,
->>>>>>> Stashed changes
+                "salary_grade_id" => $request->salary_grade_id
+
             ]);
             
             QualificationStandard::create([
