@@ -15,7 +15,6 @@ use App\Http\Controllers\QualificationStandardController;
 use App\Http\Controllers\PersonnelSelectionBoardController;
 
 
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -29,22 +28,19 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::resource('/holidays', HolidaysController::class);
 
-    Route::resource('/office', OfficeController::class);
-
+    //
     Route::resource('/salary-grade', SalaryGradeController::class);
-    Route::resource('/personnel-selection-board', PersonnelSelectionBoardController::class);
-    Route::resource('/psb-member', PsbMemberController::class);
-
-
     Route::resource('/position', PositionController::class);
-
+    Route::resource('/office', OfficeController::class);
     Route::resource('/position-description', PositionDescriptionController::class);
-
     Route::resource('/qualification-standard', QualificationStandardController::class);
-
     Route::resource('/personal-data-sheet', PersonalDataSheetController::class);
 
+    //
+    Route::resource('/personnel-selection-board', PersonnelSelectionBoardController::class);
+    Route::resource('/psb-member', PsbMemberController::class);
     Route::resource('/assessment', AssessmentController::class);
+    Route::resource('/application', ApplicationController::class);
    
 
 
