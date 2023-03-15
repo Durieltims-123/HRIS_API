@@ -8,6 +8,7 @@ use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\HolidaysController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\PsbMemberController;
+use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\SalaryGradeController;
 use App\Http\Controllers\PositionDescriptionController;
 use App\Http\Controllers\QualificationStandardController;
@@ -31,9 +32,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/office', OfficeController::class);
 
     Route::resource('/salary-grade', SalaryGradeController::class);
+    Route::resource('/personnel-selection-board', PersonnelSelectionBoardController::class);
+    Route::resource('/psb-member', PsbMemberController::class);
 
-<<<<<<< Updated upstream
-=======
+
     Route::resource('/position', PositionController::class);
 
     Route::resource('/position-description', PositionDescriptionController::class);
@@ -42,11 +44,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::resource('/personal-data-sheet', PersonalDataSheetController::class);
 
+    Route::resource('/assessment', AssessmentController::class);
    
 
 
 
-   
-
->>>>>>> Stashed changes
 });
