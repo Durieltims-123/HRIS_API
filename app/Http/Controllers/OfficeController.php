@@ -40,7 +40,6 @@ class OfficeController extends Controller
         if ($officeExist) {
             return $this->error('', 'Duplicate Entry', 400);
         }
-
         Office::create([
             "office_code" => $request->office_code,
             "office_name" => $request->office_name,
