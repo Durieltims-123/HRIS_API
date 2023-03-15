@@ -15,9 +15,7 @@
       "type": "formdata",
       "raw": "",
       "form": [
-        {
-          
-        }
+        {}
       ]
     },
     "auth": {
@@ -35,7 +33,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-10T00:38:52.513Z",
-    "modified": "2023-03-10T00:38:52.513Z",
+    "modified": "2023-03-15T03:39:18.257Z",
     "headers": [],
     "params": [],
     "body": {
@@ -44,11 +42,11 @@
       "form": [
         {
           "name": "name",
-          "value": "Alfigy F. Fongafong"
+          "value": "Admin"
         },
         {
           "name": "email",
-          "value": "fongafong.alfigy@gmail.com"
+          "value": "admin@gmail.com"
         },
         {
           "name": "password",
@@ -71,7 +69,7 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2023-03-10T00:40:34.110Z",
-    "modified": "2023-03-10T00:40:34.110Z",
+    "modified": "2023-03-15T03:42:31.538Z",
     "headers": [],
     "params": [],
     "body": {
@@ -587,7 +585,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-13T03:58:10.630Z",
-    "modified": "2023-03-14T12:50:34.526Z",
+    "modified": "2023-03-15T03:47:42.857Z",
     "headers": [],
     "params": [],
     "body": {
@@ -630,7 +628,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "2|EjEdlo3ohcc73dIQeqzdEwT7Ksj5s15FnRDZqHBU"
+      "bearer": "5|oz082MkXu974SLpMVfQ7wMeTwTmAbd89PAM91rEf"
     },
     "tests": []
   },
@@ -724,6 +722,34 @@
       "type": "bearer",
       "bearer": "2|xYp9sQYG2Ilb1ZRGwDwvCz2ZWfIZWy38Fd6eR3n1"
     },
+    "tests": []
+  },
+  {
+    "_id": "e0538707-e668-4a70-9a18-082df65d939e",
+    "colId": "4ac85501-255b-4653-8994-abc29622758f",
+    "containerId": "",
+    "name": "Add Assessment",
+    "url": "http://127.0.0.1:8000/api/assessment",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-15T04:27:41.065Z",
+    "modified": "2023-03-15T04:27:41.065Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "fb75db9c-bc1d-4823-9c0f-296c4b493270",
+    "colId": "4ac85501-255b-4653-8994-abc29622758f",
+    "containerId": "",
+    "name": "Edit Assessment",
+    "url": "http://127.0.0.1:8000/api/assessment/1",
+    "method": "PATCH",
+    "sortNum": 20000,
+    "created": "2023-03-15T04:27:55.616Z",
+    "modified": "2023-03-15T04:27:55.616Z",
+    "headers": [],
+    "params": [],
     "tests": []
   }
 ]
