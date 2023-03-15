@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -28,7 +29,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::resource('/holidays', HolidaysController::class);
 
-    //
+
+//alfy
     Route::resource('/salary-grade', SalaryGradeController::class);
     Route::resource('/position', PositionController::class);
     Route::resource('/office', OfficeController::class);
@@ -42,7 +44,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/assessment', AssessmentController::class);
     Route::resource('/application', ApplicationController::class);
    
-
-
 
 });
