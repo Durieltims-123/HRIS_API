@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/qualification-standard', QualificationStandardController::class);
     Route::resource('/personal-data-sheet', PersonalDataSheetController::class);
 
-    //
+    //Qnan
     Route::resource('/personnel-selection-board', PersonnelSelectionBoardController::class);
     Route::resource('/psb-member', PsbMemberController::class);
     Route::resource('/assessment', AssessmentController::class);
