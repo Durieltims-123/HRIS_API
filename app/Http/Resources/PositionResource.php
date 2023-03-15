@@ -18,8 +18,8 @@ class PositionResource extends JsonResource
             "id" => (string)$this->id,
             "attributes" => [
                 //salary grade
-                "number" => (string)$this->belongsToSalaryGrade,
-                "amount" => (string)$this->amount,
+                // "number" => (string)$this->belongsToSalaryGrade,
+                // "amount" => (string)$this->amount,
 
                 //position
                 "title" => (string)$this->title,

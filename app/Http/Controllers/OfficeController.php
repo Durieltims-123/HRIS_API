@@ -40,15 +40,7 @@ class OfficeController extends Controller
         if ($officeExist) {
             return $this->error('', 'Duplicate Entry', 400);
         }
-<<<<<<< Updated upstream
 
-        Office::create([
-            "office_code" => $request->office_code,
-            "office_name" => $request->office_name
-        ]);
-
-
-=======
         Office::create([
             "office_code" => $request->office_code,
             "office_name" => $request->office_name,
@@ -58,7 +50,6 @@ class OfficeController extends Controller
         // $office-> office_name=$request->office_name;
         // $office->save();
  
->>>>>>> Stashed changes
         // return message
         return $this->success('', 'Successfull Saved', 200);
     }

@@ -79,8 +79,6 @@ use HttpResponses;
      */
     public function update(Request $request, SalaryGrade $salaryGrade)
     {
-        //  dd($request->number);
-        //  dd($salaryGrade);
         
             $salaryGrade->amount = $request->amount;
             $salaryGrade->number = $request->number;

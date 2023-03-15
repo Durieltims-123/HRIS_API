@@ -8,7 +8,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-10T00:26:31.509Z",
-    "modified": "2023-03-15T02:20:39.447Z",
+    "modified": "2023-03-15T04:07:56.894Z",
     "headers": [],
     "params": [],
     "body": {
@@ -16,18 +16,18 @@
       "raw": "",
       "form": [
         {
-          "name": "amount",
-          "value": "1000"
-        },
-        {
           "name": "number",
           "value": "11"
+        },
+        {
+          "name": "amount",
+          "value": "80000"
         }
       ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "4|JdwOTfGqLtoKKyLGwT0tsNYZ0KyHLyVaTBOrN7UW"
+      "bearer": "6|GPgTSQQ23tXneG1rI0t4ED5FDGucgDKfUlUwp1zS"
     },
     "tests": []
   },
@@ -122,12 +122,12 @@
     "method": "GET",
     "sortNum": 20000,
     "created": "2023-03-10T01:05:52.017Z",
-    "modified": "2023-03-14T06:49:46.708Z",
+    "modified": "2023-03-15T04:08:29.105Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "3|ISUi8gI77kazFQs7XhnxLCnbL9rZ8sSiHQIdCj9Z"
+      "bearer": "6|GPgTSQQ23tXneG1rI0t4ED5FDGucgDKfUlUwp1zS"
     },
     "tests": []
   },
@@ -140,7 +140,7 @@
     "method": "PATCH",
     "sortNum": 30000,
     "created": "2023-03-10T01:18:42.261Z",
-    "modified": "2023-03-14T03:46:39.179Z",
+    "modified": "2023-03-15T04:08:48.583Z",
     "headers": [],
     "params": [],
     "body": {
@@ -149,17 +149,17 @@
       "form": [
         {
           "name": "amount",
-          "value": "30"
+          "value": "69000"
         },
         {
           "name": "number",
-          "value": "1"
+          "value": "69"
         }
       ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "1|bbV4XKrX6lGX6R7umJ2uwmbiuKEVdXNaVhZKYEVw"
+      "bearer": "6|GPgTSQQ23tXneG1rI0t4ED5FDGucgDKfUlUwp1zS"
     },
     "tests": []
   },
@@ -168,16 +168,16 @@
     "colId": "cb18b473-d52b-40e4-8df4-0f2b2758151e",
     "containerId": "",
     "name": "Delete Salary Grade",
-    "url": "http://127.0.0.1:8000/api/salary-grade/1",
+    "url": "http://127.0.0.1:8000/api/salary-grade/4",
     "method": "DELETE",
     "sortNum": 40000,
     "created": "2023-03-10T01:24:08.572Z",
-    "modified": "2023-03-14T06:50:09.077Z",
+    "modified": "2023-03-15T04:09:06.041Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "2|A5q1nq02inkavvM75PN6XQvUjanNkNyCD4erBCLu"
+      "bearer": "6|GPgTSQQ23tXneG1rI0t4ED5FDGucgDKfUlUwp1zS"
     },
     "tests": []
   },
@@ -234,12 +234,12 @@
     "method": "GET",
     "sortNum": 20000,
     "created": "2023-03-10T04:00:21.129Z",
-    "modified": "2023-03-13T08:26:58.069Z",
+    "modified": "2023-03-10T04:02:15.782Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "1|bbV4XKrX6lGX6R7umJ2uwmbiuKEVdXNaVhZKYEVw"
+      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
     },
     "tests": []
   },
@@ -259,6 +259,26 @@
       "type": "formencoded",
       "raw": "",
       "form": [
+        {
+          "name": "start_date",
+          "value": "2023-05-05"
+        },
+        {
+          "name": "end_date",
+          "value": "2023-06-06"
+        },
+        {
+          "name": "chairman",
+          "value": "Tankie White"
+        },
+        {
+          "name": "position",
+          "value": "Administrative"
+        },
+        {
+          "name": "status",
+          "value": "Active"
+        },
         {
           "name": "competency",
           "value": "aw"
@@ -406,7 +426,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-10T07:14:57.607Z",
-    "modified": "2023-03-15T02:42:31.009Z",
+    "modified": "2023-03-15T04:32:21.450Z",
     "headers": [],
     "params": [],
     "body": {
@@ -415,7 +435,7 @@
       "form": [
         {
           "name": "title",
-          "value": "Officer"
+          "value": "maga"
         },
         {
           "name": "salary_grade_id",
@@ -423,23 +443,23 @@
         },
         {
           "name": "education",
-          "value": "testings"
+          "value": "magas"
         },
         {
           "name": "training",
-          "value": "testings"
+          "value": "magas"
         },
         {
           "name": "experience",
-          "value": "testings"
+          "value": "magas"
         },
         {
           "name": "eligibility",
-          "value": "testings"
+          "value": "magas"
         },
         {
           "name": "competency",
-          "value": "testings"
+          "value": "magas"
         }
       ]
     },
@@ -458,7 +478,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-10T07:56:53.833Z",
-    "modified": "2023-03-13T02:02:00.387Z",
+    "modified": "2023-03-10T07:58:40.317Z",
     "headers": [],
     "params": [],
     "body": {
@@ -467,11 +487,11 @@
       "form": [
         {
           "name": "office_code",
-          "value": "ert"
+          "value": "qwerty"
         },
         {
           "name": "office_name",
-          "value": "erte"
+          "value": "fddvfdvf"
         }
       ]
     },
@@ -550,15 +570,29 @@
     "tests": []
   },
   {
-    "_id": "e3de9448-6f8e-4212-b2f7-d15ffa6b79f2",
-    "colId": "a71ae969-0c27-494a-9a21-6457e1d1602f",
+    "_id": "ec4b5aa3-5e9d-4575-856a-785a2500284e",
+    "colId": "05da2f96-8951-4578-b5b8-fdb5e20fedc6",
     "containerId": "",
-    "name": "Add Personal Data Sheet",
-    "url": "http://127.0.0.1:8000/api/personal-data-sheet",
-    "method": "POST",
+    "name": "Get PSB Member",
+    "url": "http://127.0.0.1:8000/api/psb-member",
+    "method": "GET",
     "sortNum": 10000,
-    "created": "2023-03-13T03:50:38.954Z",
-    "modified": "2023-03-14T07:06:54.400Z",
+    "created": "2023-03-13T03:56:35.519Z",
+    "modified": "2023-03-13T03:56:35.519Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "af884512-7f0c-4156-970c-a8b7f4823412",
+    "colId": "05da2f96-8951-4578-b5b8-fdb5e20fedc6",
+    "containerId": "",
+    "name": "Add PSB Member",
+    "url": "http://127.0.0.1:8000/api/psb-member",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2023-03-13T03:56:44.958Z",
+    "modified": "2023-03-13T03:56:44.958Z",
     "headers": [],
     "params": [],
     "body": {
@@ -566,161 +600,229 @@
       "raw": "",
       "form": [
         {
-          "name": "mobile_number",
-          "value": "1234"
+          "name": "member_name",
+          "value": "test"
         },
         {
-          "name": "telephone_number",
-          "value": "12345"
+          "name": "position",
+          "value": "test"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "8daeb914-48ee-4aaa-8a4d-be2f790a8d26",
+    "colId": "5a48b1f8-bc21-4449-8e80-a7bc6c2ee250",
+    "containerId": "",
+    "name": "Add PSB",
+    "url": "http://127.0.0.1:8000/api/personnel-selection-board",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-13T03:58:10.630Z",
+    "modified": "2023-03-14T12:50:34.526Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "start_date",
+          "value": "2023-02-11"
         },
         {
-          "name": "permanent_house_number",
-          "value": "1234"
+          "name": "end_date",
+          "value": "2023-02-13"
         },
         {
-          "name": "permanent_subdivision_village",
-          "value": "1234"
+          "name": "chairman",
+          "value": "Muscle D. Man"
         },
         {
-          "name": "permanent_street",
-          "value": "1234"
+          "name": "position",
+          "value": "Administrator VI"
         },
         {
-          "name": "permanent_barangay_id",
-          "value": "123"
+          "name": "status",
+          "value": "Active"
         },
         {
-          "name": "permanent_municipality_id",
-          "value": "123"
+          "name": "member_name",
+          "value": "brawny,sett"
         },
         {
-          "name": "permanent_province_id",
-          "value": "123"
+          "name": "member_position",
+          "value": "admin, vice president"
         },
         {
-          "name": "permanent_zip_code_number",
-          "value": "123"
-        },
-        {
-          "name": "residential_house_number",
-          "value": "23"
-        },
-        {
-          "name": "residential_subdivision_village",
-          "value": "balilis"
-        },
-        {
-          "name": "residential_street",
-          "value": "2345"
-        },
-        {
-          "name": "residential_barangay_id",
-          "value": "345"
-        },
-        {
-          "name": "residential_municipality_id",
-          "value": "234"
-        },
-        {
-          "name": "residential_province_id",
-          "value": "852"
-        },
-        {
-          "name": "residential_zip_code_number",
-          "value": "206"
-        },
-        {
-          "name": "citizenship",
-          "value": "filipino"
-        },
-        {
-          "name": "agency_employee",
-          "value": "secret"
-        },
-        {
-          "name": "tin_number",
-          "value": "9874"
-        },
-        {
-          "name": "sss_number",
-          "value": "789465"
-        },
-        {
-          "name": "philhealth_number",
-          "value": "8956"
-        },
-        {
-          "name": "pag_ibig_number",
-          "value": "89452"
-        },
-        {
-          "name": "gsis_number",
-          "value": "784521"
-        },
-        {
-          "name": "blood_type",
-          "value": "o"
-        },
-        {
-          "name": "weight",
-          "value": "80"
-        },
-        {
-          "name": "height",
-          "value": "411"
-        },
-        {
-          "name": "civil_status",
-          "value": "maried"
-        },
-        {
-          "name": "sex",
-          "value": "womale"
-        },
-        {
-          "name": "birthplace",
-          "value": "aw"
-        },
-        {
-          "name": "birthdate",
-          "value": "2023-02-10"
+          "name": "employee_id",
+          "value": "5,6"
         }
       ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "2|A5q1nq02inkavvM75PN6XQvUjanNkNyCD4erBCLu"
+      "bearer": "2|EjEdlo3ohcc73dIQeqzdEwT7Ksj5s15FnRDZqHBU"
     },
     "tests": []
   },
   {
-    "_id": "854b1f7c-9042-4068-9266-dfce9738ba30",
-    "colId": "d977aec1-81a1-4463-8756-0344f2c1ab13",
+    "_id": "bfe8ba3c-29b2-48b3-a7d9-dda24412403e",
+    "colId": "5a48b1f8-bc21-4449-8e80-a7bc6c2ee250",
     "containerId": "",
-    "name": "Index Position",
-    "url": "http://127.0.0.1:8000/api/position",
+    "name": "Get PSB",
+    "url": "http://127.0.0.1:8000/api/personnel-selection-board",
     "method": "GET",
     "sortNum": 20000,
-    "created": "2023-03-13T03:58:42.654Z",
-    "modified": "2023-03-14T07:46:23.460Z",
+    "created": "2023-03-13T03:58:26.046Z",
+    "modified": "2023-03-14T07:21:16.807Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "3|ISUi8gI77kazFQs7XhnxLCnbL9rZ8sSiHQIdCj9Z"
+      "bearer": "2|EjEdlo3ohcc73dIQeqzdEwT7Ksj5s15FnRDZqHBU"
     },
     "tests": []
   },
   {
-    "_id": "dd0c2ba8-60b3-4d22-9583-1083ba2c3123",
+    "_id": "3e10bf09-8921-4bf0-9a24-7476d166c193",
+    "colId": "5a48b1f8-bc21-4449-8e80-a7bc6c2ee250",
+    "containerId": "",
+    "name": "Delete PSB",
+    "url": "http://127.0.0.1:8000/api/personnel-selection-board/2",
+    "method": "DELETE",
+    "sortNum": 30000,
+    "created": "2023-03-13T03:58:31.857Z",
+    "modified": "2023-03-14T06:52:09.611Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "2|xYp9sQYG2Ilb1ZRGwDwvCz2ZWfIZWy38Fd6eR3n1"
+    },
+    "tests": []
+  },
+  {
+    "_id": "e3f4c9e0-8c36-4d65-96ef-f308022b08ce",
+    "colId": "5a48b1f8-bc21-4449-8e80-a7bc6c2ee250",
+    "containerId": "",
+    "name": "Edit PSB",
+    "url": "http://127.0.0.1:8000/api/personnel-selection-board/2",
+    "method": "PATCH",
+    "sortNum": 40000,
+    "created": "2023-03-13T03:59:37.966Z",
+    "modified": "2023-03-14T06:49:21.297Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "start_date",
+          "value": "2023-05-06"
+        },
+        {
+          "name": "end_date",
+          "value": "2023-06-06"
+        },
+        {
+          "name": "chairman",
+          "value": "Tankie White"
+        },
+        {
+          "name": "position",
+          "value": "Administrative"
+        },
+        {
+          "name": "status",
+          "value": "Active"
+        },
+        {
+          "name": "member_name",
+          "value": "alfy, Maria, Jose"
+        },
+        {
+          "name": "member_position",
+          "value": "admin,security,admin"
+        },
+        {
+          "name": "employee_id",
+          "value": "10,11,12"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "2|xYp9sQYG2Ilb1ZRGwDwvCz2ZWfIZWy38Fd6eR3n1"
+    },
+    "tests": []
+  },
+  {
+    "_id": "aad648af-0ceb-4ef8-8df2-bb89d3fc1d42",
+    "colId": "cb18b473-d52b-40e4-8df4-0f2b2758151e",
+    "containerId": "",
+    "name": "Show Salary Grade",
+    "url": "http://127.0.0.1:8000/api/salary-grade/3",
+    "method": "GET",
+    "sortNum": 25000,
+    "created": "2023-03-15T04:28:44.398Z",
+    "modified": "2023-03-15T04:29:12.370Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "6|GPgTSQQ23tXneG1rI0t4ED5FDGucgDKfUlUwp1zS"
+    },
+    "tests": []
+  },
+  {
+    "_id": "b8ff78bf-5de5-4388-9836-41d306d2e558",
     "colId": "d977aec1-81a1-4463-8756-0344f2c1ab13",
     "containerId": "",
-    "name": "Update Position",
-    "url": "http://127.0.0.1:8000/api/position/2",
-    "method": "PATCH",
+    "name": "Index Position & Qualification Standard",
+    "url": "http://127.0.0.1:8000/api/position",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-03-15T04:31:12.185Z",
+    "modified": "2023-03-15T05:19:20.729Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "6|GPgTSQQ23tXneG1rI0t4ED5FDGucgDKfUlUwp1zS"
+    },
+    "tests": []
+  },
+  {
+    "_id": "1f6f0ef1-408b-4d0c-9783-462c4bda8dec",
+    "colId": "d977aec1-81a1-4463-8756-0344f2c1ab13",
+    "containerId": "",
+    "name": "Show Position & Qualification Standard",
+    "url": "http://127.0.0.1:8000/api/position/4",
+    "method": "GET",
     "sortNum": 30000,
-    "created": "2023-03-13T04:01:07.151Z",
-    "modified": "2023-03-14T08:42:50.277Z",
+    "created": "2023-03-15T05:21:05.028Z",
+    "modified": "2023-03-15T05:23:07.910Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "6|GPgTSQQ23tXneG1rI0t4ED5FDGucgDKfUlUwp1zS"
+    },
+    "tests": []
+  },
+  {
+    "_id": "8c4687be-db2f-4e3e-b8cb-a02491248a5d",
+    "colId": "d977aec1-81a1-4463-8756-0344f2c1ab13",
+    "containerId": "",
+    "name": "Update",
+    "url": "http://127.0.0.1:8000/api/position/4",
+    "method": "PATCH",
+    "sortNum": 40000,
+    "created": "2023-03-15T05:22:35.532Z",
+    "modified": "2023-03-15T05:43:24.341Z",
     "headers": [],
     "params": [],
     "body": {
@@ -729,41 +831,347 @@
       "form": [
         {
           "name": "title",
-          "value": "qwerty"
+          "value": "updateTry"
         },
         {
           "name": "salary_grade_id",
-          "value": "2"
+          "value": "3"
         },
         {
           "name": "education",
-          "value": "qwertyyu"
+          "value": "update"
         },
         {
           "name": "training",
-          "value": "qwertyyyu"
+          "value": "update"
         },
         {
           "name": "experience",
-          "value": "qwertyui"
+          "value": "update"
         },
         {
           "name": "eligibility",
-          "value": "qwertyyui"
+          "value": "update"
         },
         {
           "name": "competency",
-          "value": "qwertyyu"
-        },
-        {
-          "name": "position_id",
-          "value": "2"
+          "value": "update"
         }
       ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "3|ISUi8gI77kazFQs7XhnxLCnbL9rZ8sSiHQIdCj9Z"
+      "bearer": "6|GPgTSQQ23tXneG1rI0t4ED5FDGucgDKfUlUwp1zS"
+    },
+    "tests": []
+  },
+  {
+    "_id": "59adcef8-5437-48e2-a4f0-f954347c10a5",
+    "colId": "d977aec1-81a1-4463-8756-0344f2c1ab13",
+    "containerId": "",
+    "name": "Delete",
+    "url": "http://127.0.0.1:8000/api/position/3",
+    "method": "DELETE",
+    "sortNum": 50000,
+    "created": "2023-03-15T05:23:28.280Z",
+    "modified": "2023-03-15T05:23:53.599Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "6|GPgTSQQ23tXneG1rI0t4ED5FDGucgDKfUlUwp1zS"
+    },
+    "tests": []
+  },
+  {
+    "_id": "2699a101-64a8-4a29-b026-dec6de36a9c2",
+    "colId": "8a686a09-4f64-4b37-90e4-08dd4673be85",
+    "containerId": "",
+    "name": "Add PDS",
+    "url": "http://127.0.0.1:8000/api/personal-data-sheet",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-15T05:57:09.207Z",
+    "modified": "2023-03-15T07:17:15.546Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "mobile_number",
+          "value": "0909"
+        },
+        {
+          "name": "telephone_number",
+          "value": "369"
+        },
+        {
+          "name": "permanent_house_number",
+          "value": "45"
+        },
+        {
+          "name": "permanent_subdivision_village",
+          "value": "idono"
+        },
+        {
+          "name": "permanent_street",
+          "value": "idono"
+        },
+        {
+          "name": "permanent_barangay_id",
+          "value": "1"
+        },
+        {
+          "name": "permanent_municipality_id",
+          "value": "1"
+        },
+        {
+          "name": "permanent_province_id",
+          "value": "1"
+        },
+        {
+          "name": "permanent_zip_code_number",
+          "value": "206"
+        },
+        {
+          "name": "residential_house_number",
+          "value": "456"
+        },
+        {
+          "name": "residential_subdivision_village",
+          "value": "PinkHouse"
+        },
+        {
+          "name": "residential_street",
+          "value": "Tebteb"
+        },
+        {
+          "name": "residential_barangay_id",
+          "value": "1"
+        },
+        {
+          "name": "residential_municipality_id",
+          "value": "1"
+        },
+        {
+          "name": "residential_province_id",
+          "value": "1"
+        },
+        {
+          "name": "residential_zip_code_number",
+          "value": "206"
+        },
+        {
+          "name": "citizenship",
+          "value": "Filipino"
+        },
+        {
+          "name": "agency_employee",
+          "value": "Lebron"
+        },
+        {
+          "name": "tin_number",
+          "value": "123"
+        },
+        {
+          "name": "sss_number",
+          "value": "123"
+        },
+        {
+          "name": "philhealth_number",
+          "value": "123"
+        },
+        {
+          "name": "pag_ibig_number",
+          "value": "123"
+        },
+        {
+          "name": "gsis_number",
+          "value": "123"
+        },
+        {
+          "name": "blood_type",
+          "value": "O"
+        },
+        {
+          "name": "weight",
+          "value": "89"
+        },
+        {
+          "name": "height",
+          "value": "411"
+        },
+        {
+          "name": "civil_status",
+          "value": "married"
+        },
+        {
+          "name": "sex",
+          "value": "male"
+        },
+        {
+          "name": "birthplace",
+          "value": "Atok"
+        },
+        {
+          "name": "birthdate",
+          "value": "2023-10-10"
+        },
+        {
+          "name": "pds_id",
+          "value": "1"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "7|QNjYRa1HA36qPq1viMu3J1EuaNECkMu06UZan8Sf"
+    },
+    "tests": []
+  },
+  {
+    "_id": "91de8081-7341-49ca-9064-b11948b41935",
+    "colId": "45d6bd35-3914-4441-85b1-e6dac5cc8813",
+    "containerId": "",
+    "name": "Add PDS Copy",
+    "url": "http://127.0.0.1:8000/api/personal-data-sheet",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-15T06:43:42.744Z",
+    "modified": "2023-03-15T06:43:50.834Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "mobile_number",
+          "value": "0909"
+        },
+        {
+          "name": "telephone_number",
+          "value": "369"
+        },
+        {
+          "name": "permanent_house_number",
+          "value": "45"
+        },
+        {
+          "name": "permanent_subdivision_village",
+          "value": "idono"
+        },
+        {
+          "name": "permanent_street",
+          "value": "idono"
+        },
+        {
+          "name": "permanent_barangay_id",
+          "value": "Paoay"
+        },
+        {
+          "name": "permanent_municipality_id",
+          "value": "Atok"
+        },
+        {
+          "name": "permanent_province_id",
+          "value": "Benguet"
+        },
+        {
+          "name": "permanent_zip_code_number",
+          "value": "206"
+        },
+        {
+          "name": "residential_house_number",
+          "value": "456"
+        },
+        {
+          "name": "residential_subdivision_village",
+          "value": "PinkHouse"
+        },
+        {
+          "name": "residential_street",
+          "value": "Tebteb"
+        },
+        {
+          "name": "residential_barangay_id",
+          "value": "Balili"
+        },
+        {
+          "name": "residential_municipality_id",
+          "value": "LaTrinidad"
+        },
+        {
+          "name": "residential_province_id",
+          "value": "Benguet"
+        },
+        {
+          "name": "residential_zip_code_number",
+          "value": "206"
+        },
+        {
+          "name": "citizenship",
+          "value": "Filipino"
+        },
+        {
+          "name": "agency_employee",
+          "value": "Lebron"
+        },
+        {
+          "name": "tin_number",
+          "value": "123"
+        },
+        {
+          "name": "sss_number",
+          "value": "123"
+        },
+        {
+          "name": "philhealth_number",
+          "value": "123"
+        },
+        {
+          "name": "pag_ibig_number",
+          "value": "123"
+        },
+        {
+          "name": "gsis_number",
+          "value": "123"
+        },
+        {
+          "name": "blood_type",
+          "value": "O"
+        },
+        {
+          "name": "weight",
+          "value": "89"
+        },
+        {
+          "name": "height",
+          "value": "411"
+        },
+        {
+          "name": "civil_status",
+          "value": "married"
+        },
+        {
+          "name": "sex",
+          "value": "male"
+        },
+        {
+          "name": "birthplace",
+          "value": "Atok"
+        },
+        {
+          "name": "birthdate",
+          "value": "2023-10-10"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "7|QNjYRa1HA36qPq1viMu3J1EuaNECkMu06UZan8Sf"
     },
     "tests": []
   }
