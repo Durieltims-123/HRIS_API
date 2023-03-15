@@ -9,26 +9,24 @@ class SalaryGrades extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function hasOneServiceRecordForm ()
     {
-        //
+            return $this->hasOne(ServiceRecordForm::class);
     }
+    
+    protected $fillable = 
+    [
+        'date_from',
+        'date_to',
+        'appointment_records',
+        'leave_without_pay',
+        'remarks',
+        'civil_status',
+        'designation',
+        'salary_annum',
+        'office_department',
+    ];
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.

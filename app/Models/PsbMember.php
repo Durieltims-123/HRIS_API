@@ -26,8 +26,18 @@ class PsbMember extends Model
 
     protected $primaryKey = 'id';
 
+    // protected $casts = [
+    //     'employee_id'=> 'array',
+    //     'member_name' => 'array',
+    //     'member_position'=> 'array'
+    // ];
+
     protected $fillable = [
-        'member_name',
+        'personnel_selection_board_id',
+        'employee_id',
+        'member_name' ,
         'member_position'
     ];
+
+    
 }

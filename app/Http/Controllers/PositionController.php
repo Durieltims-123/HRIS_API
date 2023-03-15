@@ -45,6 +45,9 @@ class PositionController extends Controller
             // validate input fields
             $request->validated($request->all());
 
+            $positionExist = Position::where('title', $request->title)->exists();
+            // $positionExist;
+
 //  dd($request);
             // validate user from database
             $positionExist = Position::where('title', $request->title);

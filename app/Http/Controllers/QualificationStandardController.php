@@ -16,6 +16,7 @@ class QualificationStandardController extends Controller
      */
     public function index()
     {
+        // return 'yes';
         return QualificationStandardResource::collection(
             QualificationStandard::all()
         );
@@ -24,9 +25,9 @@ class QualificationStandardController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        return $request;
     }
 
     /**
@@ -44,7 +45,7 @@ class QualificationStandardController extends Controller
         if ($qualificationStandardExist) {
             return $this->error('', 'Duplicate Entry', 400);
         }
-
+        // dd($request);
         QualificationStandard::create([
             "education" => $request->education,
             "training" => $request->training,
