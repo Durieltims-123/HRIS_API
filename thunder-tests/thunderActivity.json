@@ -668,5 +668,36 @@
     "headers": [],
     "params": [],
     "tests": []
+<<<<<<< Updated upstream
+=======
+  },
+  {
+    "_id": "efc3f796-a52c-4955-badd-c19e56e86c40",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://www.thunderclient.com/welcome",
+    "url": "https://www.thunderclient.com/welcome",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-03-15T01:53:23.686Z",
+    "modified": "2023-03-15T01:53:23.686Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "e98371ea-3058-46e9-91bd-fe997cef35dc",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/register",
+    "url": "http://127.0.0.1:8000/api/register",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-03-15T01:54:17.203Z",
+    "modified": "2023-03-15T01:54:17.203Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+>>>>>>> Stashed changes
   }
 ]
