@@ -11,7 +11,7 @@ class StoreOfficeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,7 @@ class StoreOfficeRequest extends FormRequest
     {
         return [
             'office_code' => ['required', 'string', 'max:255'],
-            'office_name' => ['required', 'string', 'max:255']
+            'office_name' => ['required', 'string', 'max:255'],
         ];
     }
 }

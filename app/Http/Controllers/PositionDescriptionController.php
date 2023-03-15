@@ -36,7 +36,7 @@ class PositionDescriptionController extends Controller
     {
         $request->validated($request->all());
 
-        $positionDescriptionExist = positionDescription::where(['description', $request->description])->exists();
+        $positionDescriptionExist = positionDescription::where('description', $request->description)->exists();
         if ($positionDescriptionExist) {
             return $this->error('', 'Duplicate Entry', 400);
         }

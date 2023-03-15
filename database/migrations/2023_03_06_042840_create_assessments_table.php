@@ -13,12 +13,9 @@ return new class extends Migration
     {
         Schema::create('assessments', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('application_id');
-            // $table->foreignId('member_id');
-            $table->unsignedBigInteger('application_id');
-            $table->unsignedBigInteger('member_id');
-            $table->foreign('application_id')->references('id')->on('applications');
-            // $table->foreign('member_id')->references('id')->on('members');
+            
+            $table->foreignId('application_id')->constrained();
+            $table->foreignId('member_id')->constrained('psb_members');
             $table->integer('psychological_attribute');
             $table->integer('potential');
             $table->integer('awards');
