@@ -66,6 +66,7 @@ class PersonnelSelectionBoardController extends Controller
         $names = (explode(",", $name));
         $positions = (explode(",", $position));
         $ids = (explode(",", $id));
+        
 
         foreach ($names as $i => $name) {
             PsbMember::create([

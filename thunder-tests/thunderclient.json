@@ -8,19 +8,26 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-10T00:26:31.509Z",
-    "modified": "2023-03-10T03:06:47.019Z",
+    "modified": "2023-03-20T04:17:31.732Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "formdata",
       "raw": "",
       "form": [
-        {}
+        {
+          "name": "number",
+          "value": "11"
+        },
+        {
+          "name": "amount",
+          "value": "22000"
+        }
       ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
+      "bearer": "8|77VlG1jrlQAyctjPqqWSMhRbNMf2AcbEfqn8RYjr"
     },
     "tests": []
   },
@@ -750,6 +757,134 @@
     "modified": "2023-03-15T04:27:55.616Z",
     "headers": [],
     "params": [],
+    "tests": []
+  },
+  {
+    "_id": "5d8acd4c-6729-44a2-831e-155dd64a3391",
+    "colId": "d9a7eabb-45ca-433d-a4c4-6cbb5f331775",
+    "containerId": "",
+    "name": "Add Vacancy",
+    "url": "http://127.0.0.1:8000/api/vacancy",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-20T02:58:53.487Z",
+    "modified": "2023-03-20T06:28:12.795Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "position_title",
+          "value": "Administrative"
+        },
+        {
+          "name": "job_description",
+          "value": "asdf"
+        },
+        {
+          "name": "plantilla_item_number",
+          "value": "123"
+        },
+        {
+          "name": "status",
+          "value": "Pending"
+        },
+        {
+          "name": "date_submitted",
+          "value": "2023-02-02"
+        },
+        {
+          "name": "office_name",
+          "value": "IT Office"
+        },
+        {
+          "name": "date_queued",
+          "value": ""
+        },
+        {
+          "name": "date_approved",
+          "value": ""
+        },
+        {
+          "name": "office_code",
+          "value": "123"
+        },
+        {
+          "name": "place_of_assignment",
+          "value": "asdf"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "8|77VlG1jrlQAyctjPqqWSMhRbNMf2AcbEfqn8RYjr"
+    },
+    "tests": []
+  },
+  {
+    "_id": "cdfe91e7-8c99-4165-b253-411205a054c8",
+    "colId": "d9a7eabb-45ca-433d-a4c4-6cbb5f331775",
+    "containerId": "",
+    "name": "Update Vacancy",
+    "url": "http://127.0.0.1:8000/api/vacancy/1",
+    "method": "PATCH",
+    "sortNum": 20000,
+    "created": "2023-03-20T06:45:37.728Z",
+    "modified": "2023-03-20T08:40:10.030Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "position_title",
+          "value": "Administrative"
+        },
+        {
+          "name": "job_description",
+          "value": "qwerty"
+        },
+        {
+          "name": "plantilla_item_number",
+          "value": "234"
+        },
+        {
+          "name": "status",
+          "value": "Pending"
+        },
+        {
+          "name": "date_submitted",
+          "value": "2023-02-03"
+        },
+        {
+          "name": "office_name",
+          "value": "Benro"
+        },
+        {
+          "name": "date_queued",
+          "value": "2023-03-04"
+        },
+        {
+          "name": "date_approved",
+          "value": "2023-03-04"
+        },
+        {
+          "name": "office_code",
+          "value": "456"
+        },
+        {
+          "name": "place_of_assignment",
+          "value": "qwerty"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "8|77VlG1jrlQAyctjPqqWSMhRbNMf2AcbEfqn8RYjr"
+    },
     "tests": []
   }
 ]
