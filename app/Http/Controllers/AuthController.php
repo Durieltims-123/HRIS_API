@@ -18,6 +18,7 @@ class AuthController extends Controller
 
     public function login(LoginUserRequest $request)
     {
+       
         // validate input fields
         $request->validated($request->all());
 
