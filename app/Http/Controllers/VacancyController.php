@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 use App\Http\Resources\VacancyResource;
 use App\Http\Requests\StoreVacancyRequest;
+use App\Models\Department;
 use App\Models\PositionDescription;
 
 class VacancyController extends Controller
@@ -43,14 +44,22 @@ class VacancyController extends Controller
         $request->validated($request->all());
 
         $positionId =  Position::where('title', $request->position_title)->pluck('id')->first();
-       
+
         $office = Office::create([
+            // 'department_id' => $department->id,
             'office_code' => $request->office_code,
             'office_name' => $request->office_name
         ]);
-
-        $plantilla = Plantilla::create([
+       
+        $department = Department::create([
             'office_id' => $office->id,
+            'department_code' => $request->department_code,
+            'department_name' => $request->department_name
+        ]);
+        
+       
+        $plantilla = Plantilla::create([
+            'department_id' => $department->id,
             'position_id' => $positionId,
             'place_of_assignment' => $request->place_of_assignment,
         ]); 
@@ -102,11 +111,19 @@ class VacancyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreVacancyRequest $request, Vacancy $vacancy, Office $office, Plantilla $plantilla)
+    public function update(StoreVacancyRequest $request, Vacancy $vacancy, Office $office, Plantilla $plantilla, Department $department)
     {
-
+        
+        //Get id of position base from the request from edit form
         $positionId =  Position::where('title', $request->position_title)->pluck('id')->first();
         
+        //HOe can we get the department ID that is connected to the office
+        //to be stored in the office table when updating
+        dd($department->id);
+        $department->department_code = $request->department_code;
+        $department->department_name = $request->department_name;
+        
+        //AM I GETTING THE RIGHT ID TO BE EDITEDDDD???????????????
         $office = Office::where('id', $positionId)->first();
         $office->office_code = $request->office_code;
         $office->office_name = $request->office_name;

@@ -4,15 +4,11 @@
     "colId": "cb18b473-d52b-40e4-8df4-0f2b2758151e",
     "containerId": "",
     "name": "Add Salary Grade",
-    "url": "http://127.0.0.1:8000/api/province",
+    "url": "http://127.0.0.1:8000/api/salary-grade",
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-10T00:26:31.509Z",
-
-    "modified": "2023-03-16T08:04:34.126Z",
-
-
-
+    "modified": "2023-03-21T03:36:03.232Z",
     "headers": [],
     "params": [],
     "body": {
@@ -20,24 +16,18 @@
       "raw": "",
       "form": [
         {
-
-
           "name": "number",
           "value": "11"
         },
         {
           "name": "amount",
           "value": "22000"
-
-
         }
       ]
     },
     "auth": {
       "type": "bearer",
-
-      "bearer": "6|GPgTSQQ23tXneG1rI0t4ED5FDGucgDKfUlUwp1zS"
-
+      "bearer": "2|6wVOWiNTYoaaNIbgOqGpbO4bf6Gil1k7pS0I7oIw"
     },
     "tests": []
   },
@@ -86,7 +76,7 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2023-03-10T00:40:34.110Z",
-    "modified": "2023-03-15T03:42:31.538Z",
+    "modified": "2023-03-21T03:00:26.761Z",
     "headers": [],
     "params": [],
     "body": {
@@ -95,7 +85,7 @@
       "form": [
         {
           "name": "email",
-          "value": "fongafong.alfigy@gmail.com"
+          "value": "admin@gmail.com"
         },
         {
           "name": "password",
@@ -436,7 +426,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-10T07:14:57.607Z",
-    "modified": "2023-03-15T04:32:21.450Z",
+    "modified": "2023-03-21T03:36:25.395Z",
     "headers": [],
     "params": [],
     "body": {
@@ -449,7 +439,7 @@
         },
         {
           "name": "salary_grade_id",
-          "value": "3"
+          "value": "1"
         },
         {
           "name": "education",
@@ -475,7 +465,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
+      "bearer": "2|6wVOWiNTYoaaNIbgOqGpbO4bf6Gil1k7pS0I7oIw"
     },
     "tests": []
   },
@@ -770,7 +760,34 @@
     "tests": []
   },
   {
-
+    "_id": "e0538707-e668-4a70-9a18-082df65d939e",
+    "colId": "4ac85501-255b-4653-8994-abc29622758f",
+    "containerId": "",
+    "name": "Add Assessment",
+    "url": "http://127.0.0.1:8000/api/assessment",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-15T04:27:41.065Z",
+    "modified": "2023-03-15T04:27:41.065Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "fb75db9c-bc1d-4823-9c0f-296c4b493270",
+    "colId": "4ac85501-255b-4653-8994-abc29622758f",
+    "containerId": "",
+    "name": "Edit Assessment",
+    "url": "http://127.0.0.1:8000/api/assessment/1",
+    "method": "PATCH",
+    "sortNum": 20000,
+    "created": "2023-03-15T04:27:55.616Z",
+    "modified": "2023-03-15T04:27:55.616Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
     "_id": "aad648af-0ceb-4ef8-8df2-bb89d3fc1d42",
     "colId": "cb18b473-d52b-40e4-8df4-0f2b2758151e",
     "containerId": "",
@@ -1219,102 +1236,6 @@
     "tests": []
   },
   {
-    "_id": "e0538707-e668-4a70-9a18-082df65d939e",
-    "colId": "4ac85501-255b-4653-8994-abc29622758f",
-    "containerId": "",
-    "name": "Add Assessment",
-    "url": "http://127.0.0.1:8000/api/assessment",
-    "method": "POST",
-    "sortNum": 10000,
-    "created": "2023-03-15T04:27:41.065Z",
-    "modified": "2023-03-15T04:27:41.065Z",
-    "headers": [],
-    "params": [],
-    "tests": []
-  },
-  {
-    "_id": "fb75db9c-bc1d-4823-9c0f-296c4b493270",
-    "colId": "4ac85501-255b-4653-8994-abc29622758f",
-    "containerId": "",
-    "name": "Edit Assessment",
-    "url": "http://127.0.0.1:8000/api/assessment/1",
-    "method": "PATCH",
-    "sortNum": 20000,
-    "created": "2023-03-15T04:27:55.616Z",
-    "modified": "2023-03-15T04:27:55.616Z",
-    "headers": [],
-    "params": [],
-    "tests": []
-  },
-  {
-    "_id": "5d8acd4c-6729-44a2-831e-155dd64a3391",
-    "colId": "d9a7eabb-45ca-433d-a4c4-6cbb5f331775",
-    "containerId": "",
-    "name": "Add Vacancy",
-    "url": "http://127.0.0.1:8000/api/vacancy",
-    "method": "POST",
-    "sortNum": 10000,
-    "created": "2023-03-20T02:58:53.487Z",
-    "modified": "2023-03-20T06:28:12.795Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "formdata",
-      "raw": "",
-      "form": [
-        {
-
-          "name": "position_title",
-          "value": "Administrative"
-        },
-        {
-          "name": "job_description",
-          "value": "asdf"
-        },
-        {
-          "name": "plantilla_item_number",
-          "value": "123"
-        },
-        {
-          "name": "status",
-          "value": "Pending"
-        },
-        {
-          "name": "date_submitted",
-          "value": "2023-02-02"
-        },
-        {
-          "name": "office_name",
-          "value": "IT Office"
-        },
-        {
-          "name": "date_queued",
-          "value": ""
-        },
-        {
-          "name": "date_approved",
-          "value": ""
-        },
-        {
-          "name": "office_code",
-          "value": "123"
-        },
-        {
-          "name": "place_of_assignment",
-          "value": "asdf"
-
-        }
-      ]
-    },
-    "auth": {
-      "type": "bearer",
-      "bearer": "8|77VlG1jrlQAyctjPqqWSMhRbNMf2AcbEfqn8RYjr"
-
-    },
-    "tests": []
-  },
-  {
-
     "_id": "91de8081-7341-49ca-9064-b11948b41935",
     "colId": "45d6bd35-3914-4441-85b1-e6dac5cc8813",
     "containerId": "",
@@ -1458,7 +1379,7 @@
     },
     "tests": []
   },
- {
+  {
     "_id": "2ccad4e2-f89f-4056-9f2f-ab2cc9530c8f",
     "colId": "66b9c9ed-e491-4231-92e6-fbd92f2fd7f5",
     "containerId": "",
@@ -1507,6 +1428,96 @@
     "tests": []
   },
   {
+    "_id": "4b762dc1-4c07-4552-b57a-571f4740cd63",
+    "colId": "66b9c9ed-e491-4231-92e6-fbd92f2fd7f5",
+    "containerId": "",
+    "name": "Index Province",
+    "url": "http://127.0.0.1:8000/api/position",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2023-03-18T14:04:38.914Z",
+    "modified": "2023-03-18T14:04:43.874Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "6|GPgTSQQ23tXneG1rI0t4ED5FDGucgDKfUlUwp1zS"
+    },
+    "tests": []
+  },
+  {
+    "_id": "5d8acd4c-6729-44a2-831e-155dd64a3391",
+    "colId": "d9a7eabb-45ca-433d-a4c4-6cbb5f331775",
+    "containerId": "",
+    "name": "Add Vacancy",
+    "url": "http://127.0.0.1:8000/api/vacancy",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-20T02:58:53.487Z",
+    "modified": "2023-03-21T08:45:34.188Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "position_title",
+          "value": "maga"
+        },
+        {
+          "name": "job_description",
+          "value": "asdf"
+        },
+        {
+          "name": "plantilla_item_number",
+          "value": "123"
+        },
+        {
+          "name": "status",
+          "value": "Pending"
+        },
+        {
+          "name": "date_submitted",
+          "value": "2023-02-02"
+        },
+        {
+          "name": "office_name",
+          "value": "IT Office"
+        },
+        {
+          "name": "date_queued",
+          "value": "2023-02-02"
+        },
+        {
+          "name": "date_approved",
+          "value": "2023-02-02"
+        },
+        {
+          "name": "office_code",
+          "value": "123"
+        },
+        {
+          "name": "place_of_assignment",
+          "value": "asdf"
+        },
+        {
+          "name": "department_code",
+          "value": "234"
+        },
+        {
+          "name": "department_name",
+          "value": "Governor Office"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "2|3fHPXPI7KwGNUB5M7W5Wz21iM4GpPyWNpd6jlJRa"
+    },
+    "tests": []
+  },
+  {
     "_id": "cdfe91e7-8c99-4165-b253-411205a054c8",
     "colId": "d9a7eabb-45ca-433d-a4c4-6cbb5f331775",
     "containerId": "",
@@ -1515,7 +1526,7 @@
     "method": "PATCH",
     "sortNum": 20000,
     "created": "2023-03-20T06:45:37.728Z",
-    "modified": "2023-03-20T08:40:10.030Z",
+    "modified": "2023-03-21T06:38:08.837Z",
     "headers": [],
     "params": [],
     "body": {
@@ -1524,7 +1535,7 @@
       "form": [
         {
           "name": "position_title",
-          "value": "Administrative"
+          "value": "maga"
         },
         {
           "name": "job_description",
@@ -1561,32 +1572,20 @@
         {
           "name": "place_of_assignment",
           "value": "qwerty"
-
+        },
+        {
+          "name": "department_code",
+          "value": "678"
+        },
+        {
+          "name": "department_name",
+          "value": "qwerty"
         }
       ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "1|ZqkE2cf8vKP5SQPVyhZwFG4lFZm0GVrgDET0JJ77"
-    },
-    "tests": []
-  },
-  {
-    "_id": "4b762dc1-4c07-4552-b57a-571f4740cd63",
-    "colId": "66b9c9ed-e491-4231-92e6-fbd92f2fd7f5",
-    "containerId": "",
-    "name": "Index Province",
-    "url": "http://127.0.0.1:8000/api/position",
-    "method": "GET",
-    "sortNum": 30000,
-    "created": "2023-03-18T14:04:38.914Z",
-    "modified": "2023-03-18T14:04:43.874Z",
-    "headers": [],
-    "params": [],
-    "auth": {
-      "type": "bearer",
-      "bearer": "6|GPgTSQQ23tXneG1rI0t4ED5FDGucgDKfUlUwp1zS"
-
+      "bearer": "2|6wVOWiNTYoaaNIbgOqGpbO4bf6Gil1k7pS0I7oIw"
     },
     "tests": []
   }

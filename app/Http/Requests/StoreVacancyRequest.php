@@ -22,7 +22,6 @@ class StoreVacancyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            
             'position_title' => ['required', 'string', 'max:255'],
             'job_description' => ['required', 'string', 'max:255'],
             'plantilla_item_number' => ['required','string', 'max:255'],
@@ -30,7 +29,11 @@ class StoreVacancyRequest extends FormRequest
             'date_submitted' => ['required', 'date'],
             'date_queued' => ['required', 'date'],
             'date_approved' => ['required', 'date'],
+            'office_code' => ['required', 'string', 'max:255'],
             'office_name' => ['required', 'string', 'max:255'],
+            'place_of_assignment' => ['required', 'string', 'max:255'],
+            'department_code' => ['required', 'string', 'max:255'],
+            'department_name' => ['required', 'string', 'max:255'],
         ];
     }
 }

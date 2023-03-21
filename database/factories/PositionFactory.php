@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\SalaryGrade>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Position>
  */
-class SalaryGradeFactory extends Factory
+class PositionFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,8 +18,8 @@ class SalaryGradeFactory extends Factory
     {
         static $number = 1;
         return [
-            'number' => $number++,
-            'amount' => rand(20000, 100000),
+            'salary_grade_id' => $number++,
+            'title' => $this->faker->unique()->text(),
         ];
     }
 }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('plantillas', function (Blueprint $table) {
             $table->id();
            
-            $table->foreignId('office_id')->constrained();
+            $table->foreignId('department_id')->constrained();
             $table->foreignId('position_id')->constrained();
 
             $table->string('place_of_assignment');
