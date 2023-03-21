@@ -21,12 +21,20 @@ class Vacancy extends Model
     }
 
     protected $primaryKey = 'id';
-    // protected $foreignKey = 'plantilla_id';
+    
 
     protected $fillable = [
+        'position_title',
+        'job_description',
+        'plantilla_item_number',
+        'status',
+        'plantilla_id',
         'date_submitted',
+        'office_name',
         'date_queued',
-        'data_approved',
+        'date_approved',
+        'office_code',
+        'place_of_assignment',
         'status',
     ];
 }

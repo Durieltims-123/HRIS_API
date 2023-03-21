@@ -46,8 +46,9 @@ class PositionController extends Controller
             $request->validated($request->all());
 
             // validate user from database
+
             // $positionExist = Position::where('title', $request->title);
-          
+
             // if ($positionExist) {
             //     return $this->error('', 'Duplicate Entry', 400);
             // }
