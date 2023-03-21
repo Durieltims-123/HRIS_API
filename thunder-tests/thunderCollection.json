@@ -61,6 +61,7 @@
     "folders": []
   },
   {
+
     "_id": "8a686a09-4f64-4b37-90e4-08dd4673be85",
     "colName": "Personal Data Sheet",
     "created": "2023-03-15T05:44:25.952Z",
@@ -78,7 +79,14 @@
     "_id": "66b9c9ed-e491-4231-92e6-fbd92f2fd7f5",
     "colName": "Province",
     "created": "2023-03-16T07:35:15.687Z",
-    "sortNum": 100000,
+    "sortNum": 100000
+  },
+  {
+    "_id": "d9a7eabb-45ca-433d-a4c4-6cbb5f331775",
+    "colName": "Vacancy",
+    "created": "2023-03-20T02:58:35.911Z",
+    "sortNum": 80000,
+
     "folders": []
   }
 ]
