@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('oath_takings', function (Blueprint $table) {
             $table->id();
-            $table->date("date_generated");
+            $table->string('venue');
             $table->date("oath_date");
+            $table->date("date_generated");
             $table->timestamps();
         });
     }

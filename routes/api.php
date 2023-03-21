@@ -5,9 +5,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OfficeController;
+use App\Http\Controllers\VacancyController;
 use App\Http\Controllers\HolidaysController;
 use App\Http\Controllers\PositionController;
-use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\PsbMemberController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\SalaryGradeController;
@@ -16,6 +16,7 @@ use App\Http\Controllers\PositionDescriptionController;
 use App\Http\Controllers\QualificationStandardController;
 use App\Http\Controllers\PersonnelSelectionBoardController;
 use App\Http\Controllers\ProvinceController;
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -44,7 +45,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/personnel-selection-board', PersonnelSelectionBoardController::class);
     Route::resource('/psb-member', PsbMemberController::class);
     Route::resource('/assessment', AssessmentController::class);
-    Route::resource('/applicant', ApplicantController::class);
+    Route::resource('/vacancy', VacancyController::class);
+
    
 
 });
