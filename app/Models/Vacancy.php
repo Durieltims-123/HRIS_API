@@ -24,17 +24,19 @@ class Vacancy extends Model
     
 
     protected $fillable = [
+        'plantilla_id',
+        
         'position_title',
         'job_description',
         'plantilla_item_number',
         'status',
-        'plantilla_id',
         'date_submitted',
+        'office_code',
         'office_name',
         'date_queued',
         'date_approved',
-        'office_code',
         'place_of_assignment',
-        'status',
+        'department_code',
+        'department_name'
     ];
 }

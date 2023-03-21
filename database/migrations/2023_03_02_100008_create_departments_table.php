@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vacancies', function (Blueprint $table) {
+        Schema::create('departments', function (Blueprint $table) {
             $table->id();
-
-            $table->foreignId('plantilla_id')->constrained();
-
-            $table->date('date_submitted');
-            $table->date('date_queued')->nullable();
-            $table->date('date_approved')->nullable();
-            $table->string('status');
+            $table->foreignId('office_id')->constrained();
+            $table->string('department_code');
+            $table->string('department_name');
             $table->timestamps();
         });
     }
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vacancies');
+        Schema::dropIfExists('departments');
     }
 };

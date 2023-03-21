@@ -36,7 +36,7 @@ class Plantilla extends Model
     // protected $foreignKey = 'position_id';
 
     protected $fillable = [
-        'office_id',
+        'department_id',
         'position_id',
         'place_of_assignment',
     ];

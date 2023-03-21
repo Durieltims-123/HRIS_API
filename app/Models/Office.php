@@ -24,6 +24,7 @@ class Office extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'department_id',
         'office_code',
         'office_name',
     ];
