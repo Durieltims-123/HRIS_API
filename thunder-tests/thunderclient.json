@@ -4,11 +4,11 @@
     "colId": "cb18b473-d52b-40e4-8df4-0f2b2758151e",
     "containerId": "",
     "name": "Add Salary Grade",
-    "url": "http://127.0.0.1:8000/api/salary-grade",
+    "url": "http://127.0.0.1:8000/api/province",
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-10T00:26:31.509Z",
-    "modified": "2023-03-15T04:07:56.894Z",
+    "modified": "2023-03-16T08:04:34.126Z",
     "headers": [],
     "params": [],
     "body": {
@@ -16,12 +16,12 @@
       "raw": "",
       "form": [
         {
-          "name": "number",
-          "value": "11"
+          "name": "permanent_province_name",
+          "value": "Atok"
         },
         {
-          "name": "amount",
-          "value": "80000"
+          "name": "residential_province_name",
+          "value": "Atok"
         }
       ]
     },
@@ -136,9 +136,7 @@
     "colId": "cb18b473-d52b-40e4-8df4-0f2b2758151e",
     "containerId": "",
     "name": "Update Salary Grade",
-
     "url": "http://127.0.0.1:8000/api/salary-grade/1",
-
     "method": "PATCH",
     "sortNum": 30000,
     "created": "2023-03-10T01:18:42.261Z",
@@ -894,7 +892,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-15T05:57:09.207Z",
-    "modified": "2023-03-15T07:17:15.546Z",
+    "modified": "2023-03-20T08:34:33.428Z",
     "headers": [],
     "params": [],
     "body": {
@@ -902,24 +900,56 @@
       "raw": "",
       "form": [
         {
+          "name": "first_name",
+          "value": "First"
+        },
+        {
+          "name": "middle_name",
+          "value": "Middle"
+        },
+        {
+          "name": "last_name",
+          "value": "Last"
+        },
+        {
+          "name": "suffix_name",
+          "value": "Sr."
+        },
+        {
+          "name": "contact_number",
+          "value": "090202711"
+        },
+        {
+          "name": "email_address",
+          "value": "ewan@gmail.com"
+        },
+        {
+          "name": "applicant_id",
+          "value": "1"
+        },
+        {
+          "name": "pds_id",
+          "value": "1"
+        },
+        {
           "name": "mobile_number",
-          "value": "0909"
+          "value": "0987654321"
         },
         {
           "name": "telephone_number",
-          "value": "369"
+          "value": "09876"
         },
         {
           "name": "permanent_house_number",
-          "value": "45"
+          "value": "8765"
         },
         {
           "name": "permanent_subdivision_village",
-          "value": "idono"
+          "value": "Village"
         },
         {
           "name": "permanent_street",
-          "value": "idono"
+          "value": "12345"
         },
         {
           "name": "permanent_barangay_id",
@@ -935,19 +965,19 @@
         },
         {
           "name": "permanent_zip_code_number",
-          "value": "206"
+          "value": "234"
         },
         {
           "name": "residential_house_number",
-          "value": "456"
+          "value": "654"
         },
         {
           "name": "residential_subdivision_village",
-          "value": "PinkHouse"
+          "value": "Village"
         },
         {
           "name": "residential_street",
-          "value": "Tebteb"
+          "value": "12345"
         },
         {
           "name": "residential_barangay_id",
@@ -963,7 +993,7 @@
         },
         {
           "name": "residential_zip_code_number",
-          "value": "206"
+          "value": "2"
         },
         {
           "name": "citizenship",
@@ -971,7 +1001,7 @@
         },
         {
           "name": "agency_employee",
-          "value": "Lebron"
+          "value": "Secret"
         },
         {
           "name": "tin_number",
@@ -995,11 +1025,11 @@
         },
         {
           "name": "blood_type",
-          "value": "O"
+          "value": "o"
         },
         {
           "name": "weight",
-          "value": "89"
+          "value": "55"
         },
         {
           "name": "height",
@@ -1007,15 +1037,15 @@
         },
         {
           "name": "civil_status",
-          "value": "married"
+          "value": "Single"
         },
         {
           "name": "sex",
-          "value": "male"
+          "value": "Male"
         },
         {
           "name": "birthplace",
-          "value": "Atok"
+          "value": "Buguias"
         },
         {
           "name": "birthdate",
@@ -1024,12 +1054,156 @@
         {
           "name": "pds_id",
           "value": "1"
+        },
+        {
+          "name": "recognition_title",
+          "value": "masterIn Master"
+        },
+        {
+          "name": "pds_id",
+          "value": "1"
+        },
+        {
+          "name": "spouse_surname",
+          "value": "qdwf"
+        },
+        {
+          "name": "spouse_first_name",
+          "value": "qdwfe"
+        },
+        {
+          "name": "spouse_middle_name",
+          "value": "dwfe"
+        },
+        {
+          "name": "name_extension",
+          "value": "dwfeg"
+        },
+        {
+          "name": "occupation",
+          "value": "qdwfe"
+        },
+        {
+          "name": "employee_business_name",
+          "value": "dwfegr"
+        },
+        {
+          "name": "business_address",
+          "value": "wdfe"
+        },
+        {
+          "name": "telephone_number",
+          "value": "wdfeg"
+        },
+        {
+          "name": "father_surname",
+          "value": "dwfegr"
+        },
+        {
+          "name": "father_first_name",
+          "value": "wdfeg"
+        },
+        {
+          "name": "father_middle_name",
+          "value": "wdefgr"
+        },
+        {
+          "name": "father_extension_name",
+          "value": "dwefrg"
+        },
+        {
+          "name": "mother_maiden_surname",
+          "value": "qswdefrg"
+        },
+        {
+          "name": "mother_first_name",
+          "value": "wert"
+        },
+        {
+          "name": "mother_maiden_middle_name",
+          "value": "qwerty"
+        },
+        {
+          "name": "pds_id",
+          "value": "1"
+        },
+        {
+          "name": "level",
+          "value": "12"
+        },
+        {
+          "name": "school_name",
+          "value": "SPASI"
+        },
+        {
+          "name": "basic_education",
+          "value": "aw"
+        },
+        {
+          "name": "scholarship_honor",
+          "value": "3rd"
+        },
+        {
+          "name": "highest_level",
+          "value": "college"
+        },
+        {
+          "name": "year_graduated",
+          "value": "2020"
+        },
+        {
+          "name": "inclusive_dates_from",
+          "value": "2010-10-10"
+        },
+        {
+          "name": "inclusive_dates_to",
+          "value": "2020-11-11"
+        },
+        {
+          "name": "pds_id",
+          "value": "1"
+        },
+        {
+          "name": "name",
+          "value": "Kenen1"
+        },
+        {
+          "name": "address",
+          "value": "Kenen1"
+        },
+        {
+          "name": "telephone_number",
+          "value": "Kenen1"
+        },
+        {
+          "name": "name2",
+          "value": "Kenen2"
+        },
+        {
+          "name": "address2",
+          "value": "Kenen2"
+        },
+        {
+          "name": "telephone_number2",
+          "value": "Kenen2"
+        },
+        {
+          "name": "name3",
+          "value": "Kenen3"
+        },
+        {
+          "name": "address3",
+          "value": "Kenen3"
+        },
+        {
+          "name": "telephone_number3",
+          "value": "Kenen3"
         }
       ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "7|QNjYRa1HA36qPq1viMu3J1EuaNECkMu06UZan8Sf"
+      "bearer": "1|ZqkE2cf8vKP5SQPVyhZwFG4lFZm0GVrgDET0JJ77"
     },
     "tests": []
   },
@@ -1174,6 +1348,72 @@
     "auth": {
       "type": "bearer",
       "bearer": "7|QNjYRa1HA36qPq1viMu3J1EuaNECkMu06UZan8Sf"
+    },
+    "tests": []
+  },
+  {
+    "_id": "2ccad4e2-f89f-4056-9f2f-ab2cc9530c8f",
+    "colId": "66b9c9ed-e491-4231-92e6-fbd92f2fd7f5",
+    "containerId": "",
+    "name": "Add Province",
+    "url": "http://127.0.0.1:8000/api/province",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2023-03-16T08:04:23.185Z",
+    "modified": "2023-03-20T08:34:26.808Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "permanent_province_name",
+          "value": "Atok"
+        },
+        {
+          "name": "residential_province_name",
+          "value": "Atok"
+        },
+        {
+          "name": "permanent_municipality_name",
+          "value": "Atok"
+        },
+        {
+          "name": "residential_municipality_name",
+          "value": "Atok"
+        },
+        {
+          "name": "permanent_barangay_name",
+          "value": "Atok"
+        },
+        {
+          "name": "residential_barangay_name",
+          "value": "Atok"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|ZqkE2cf8vKP5SQPVyhZwFG4lFZm0GVrgDET0JJ77"
+    },
+    "tests": []
+  },
+  {
+    "_id": "4b762dc1-4c07-4552-b57a-571f4740cd63",
+    "colId": "66b9c9ed-e491-4231-92e6-fbd92f2fd7f5",
+    "containerId": "",
+    "name": "Index Province",
+    "url": "http://127.0.0.1:8000/api/position",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2023-03-18T14:04:38.914Z",
+    "modified": "2023-03-18T14:04:43.874Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "6|GPgTSQQ23tXneG1rI0t4ED5FDGucgDKfUlUwp1zS"
     },
     "tests": []
   }

@@ -11,7 +11,7 @@ class StoreRecognitionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,6 +22,7 @@ class StoreRecognitionRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'pds_id' =>['required'],
             'recognition_title' => ['required', 'string', 'max:255']
         ];
     }

@@ -2,16 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class FamilyBackground extends Model
 {
     use HasFactory;
 
+    public function hasManyChildrenInformation (): HasMany
+    {
+        return $this->hasMany(ChildrenInformation::class);
+    }
+
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'pds_id',
         'spouse_surname',
         'spouse_first_name',
         'spouse_middle_name',

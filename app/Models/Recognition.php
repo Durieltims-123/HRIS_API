@@ -18,6 +18,7 @@ class Recognition extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'pds_id',
         'recognition_title',
     ];
 }

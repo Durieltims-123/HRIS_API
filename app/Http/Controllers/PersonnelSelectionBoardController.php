@@ -53,6 +53,7 @@ class PersonnelSelectionBoardController extends Controller
             return $this->error('', 'Duplicate Entry', 400);
         }
 
+        
         $personnelSelection = PersonnelSelectionBoard::create([
             "start_date" => $psbRequest->start_date,
             "end_date" => $psbRequest->end_date,
@@ -60,9 +61,13 @@ class PersonnelSelectionBoardController extends Controller
             "position" => $psbRequest->position,
             "status" => $psbRequest->status
         ]);
+
+        
         $id = $psbRequest->input('employee_id');
         $name = $psbRequest->input('member_name');
         $position = $psbRequest->input('member_position');
+        
+        //to convert to array
         $names = (explode(",", $name));
         $positions = (explode(",", $position));
         $ids = (explode(",", $id));

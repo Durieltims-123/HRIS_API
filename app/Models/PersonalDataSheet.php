@@ -10,4 +10,9 @@ class PersonalDataSheet extends Model
     use HasFactory;
     
     protected $primaryKey = 'id';
+
+    protected $fillable = [
+        'applicant_id'
+    ];
+
 }
