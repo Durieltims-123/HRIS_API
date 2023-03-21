@@ -15,6 +15,10 @@ class Province extends Model
     {
         return $this->hasOne(Municipality::class);
     }
+    public function hasOneBarangay ():HasOne
+    {
+        return $this->hasOne(Barangay::class);
+    }
     public function belongsToPersonalInformation ():BelongsTo
     {
         return $this->belongsTo(PersonalInformation::class);

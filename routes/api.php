@@ -15,6 +15,7 @@ use App\Http\Controllers\PersonalDataSheetController;
 use App\Http\Controllers\PositionDescriptionController;
 use App\Http\Controllers\QualificationStandardController;
 use App\Http\Controllers\PersonnelSelectionBoardController;
+use App\Http\Controllers\ProvinceController;
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -38,12 +39,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/position-description', PositionDescriptionController::class);
     Route::resource('/qualification-standard', QualificationStandardController::class);
     Route::resource('/personal-data-sheet', PersonalDataSheetController::class);
+    Route::resource('/province', ProvinceController::class);
 
     //Qnan
     Route::resource('/personnel-selection-board', PersonnelSelectionBoardController::class);
     Route::resource('/psb-member', PsbMemberController::class);
     Route::resource('/assessment', AssessmentController::class);
     Route::resource('/vacancy', VacancyController::class);
+
    
 
 });

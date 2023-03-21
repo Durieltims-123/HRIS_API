@@ -23,6 +23,7 @@ class PersonalInformation extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'pds_id',
         'mobile_number',
         'telephone_number',
         'permanent_house_number',

@@ -11,7 +11,7 @@ class StoreProvinceRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,8 +22,17 @@ class StoreProvinceRequest extends FormRequest
     public function rules(): array
     {
         return [
+            //province
             'permanent_province_name' => ['required', 'string', 'max:255'],
-            'residential_province_name' => ['required', 'string', 'max:255']
+            'residential_province_name' => ['required', 'string', 'max:255'],
+
+            //municipality
+            'residential_municipality_name' => ['required', 'string', 'max:255'],
+            'residential_municipality_name' => ['required', 'string', 'max:255'],
+
+            //barangay
+            'residential_barangay_name' => ['required', 'string', 'max:255'],
+            'residential_barangay_name' => ['required', 'string', 'max:255']
         ];
     }
 }

@@ -12,8 +12,15 @@ class Reference extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'pds_id',
         'name',
         'address',
-        'telephone_number'
+        'telephone_number',
+        'name2',
+        'address2',
+        'telephone_number2',
+        'name3',
+        'address3',
+        'telephone_number3'
     ];
 }

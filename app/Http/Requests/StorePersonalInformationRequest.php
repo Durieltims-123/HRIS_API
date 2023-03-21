@@ -56,8 +56,8 @@ class StorePersonalInformationRequest extends FormRequest
             'birthdate' => ['required', 'date'],
 
             //Recognition
-            'pds_id' =>['required'],
-            'recognition_title' => ['required', 'string', 'max:255'],
+            // 'pds_id' =>['required'],
+            // 'recognition_title' => ['required', 'string', 'max:255'],
         ];
     }
 }

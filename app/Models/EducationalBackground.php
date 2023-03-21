@@ -12,6 +12,7 @@ class EducationalBackground extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'pds_id',
         'level',
         'school_name',
         'basic_education',

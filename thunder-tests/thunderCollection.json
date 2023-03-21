@@ -5,7 +5,6 @@
     "created": "2023-03-10T00:23:00.709Z",
     "sortNum": 10000,
     "folders": []
-
   },
   {
     "_id": "5c7a2f47-4c9c-4e64-ad04-1f9a16e0fb80",
@@ -16,7 +15,7 @@
   },
   {
     "_id": "d977aec1-81a1-4463-8756-0344f2c1ab13",
-    "colName": "Position",
+    "colName": "Position & Qualification Standard.",
     "created": "2023-03-10T01:26:58.489Z",
     "sortNum": 30000,
     "folders": []
@@ -62,10 +61,31 @@
     "folders": []
   },
   {
+
+    "_id": "8a686a09-4f64-4b37-90e4-08dd4673be85",
+    "colName": "Personal Data Sheet",
+    "created": "2023-03-15T05:44:25.952Z",
+    "sortNum": 20000,
+    "folders": []
+  },
+  {
+    "_id": "45d6bd35-3914-4441-85b1-e6dac5cc8813",
+    "colName": "PersonalInformation PDS",
+    "created": "2023-03-15T06:42:57.233Z",
+    "sortNum": 90000,
+    "folders": []
+  },
+  {
+    "_id": "66b9c9ed-e491-4231-92e6-fbd92f2fd7f5",
+    "colName": "Province",
+    "created": "2023-03-16T07:35:15.687Z",
+    "sortNum": 100000,
+
     "_id": "d9a7eabb-45ca-433d-a4c4-6cbb5f331775",
     "colName": "Vacancy",
     "created": "2023-03-20T02:58:35.911Z",
     "sortNum": 80000,
+
     "folders": []
   }
 ]

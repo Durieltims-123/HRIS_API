@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('personal_data_sheets', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('applicant_id')->constrained();
             $table->timestamps();
         });
     }
