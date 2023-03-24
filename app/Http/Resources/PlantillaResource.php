@@ -14,12 +14,22 @@ class PlantillaResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        // $this->hasManyMembers->map(
         return [
             "id" => (string)$this->id,
             "attributes"=>[
+                "office_id" => (string)$this->office_id,
+                "position_id" => (string)$this->position_id,
+                "item_number" => (string)$this->item_number,
                 "place_of_assignment" => (string)$this->place_of_assignment,
-            ]
-            
+                "year" => (string)$this->year,
+            ],
+             "vacancy" => new VacancyResource($this->whenLoaded('hasOneVacancy')),
+            // "vacancy" => $this->whenLoaded('hasOneVacancy', function () {
+            //     return $this->hasOneVacancy->map(function ($vacancy) {
+            //         return new VacancyResource($vacancy);
+            //     });
+            // }),
         ];
     }
 }

@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class SalaryGrade extends Model{
+
     use HasFactory;
 
-    public function hasManyPosition ():HasMany
+    public function hasManyPosition (): HasMany
     {
         return $this->hasMany(Position::class);
     }

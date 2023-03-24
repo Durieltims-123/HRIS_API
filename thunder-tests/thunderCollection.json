@@ -61,7 +61,6 @@
     "folders": []
   },
   {
-
     "_id": "8a686a09-4f64-4b37-90e4-08dd4673be85",
     "colName": "Personal Data Sheet",
     "created": "2023-03-15T05:44:25.952Z",
@@ -86,7 +85,27 @@
     "colName": "Vacancy",
     "created": "2023-03-20T02:58:35.911Z",
     "sortNum": 80000,
-
+    "folders": []
+  },
+  {
+    "_id": "34261b3d-5f99-4369-8af2-e71585f03775",
+    "colName": "Autofill/AutoSuggest",
+    "created": "2023-03-22T07:16:31.996Z",
+    "sortNum": 115000,
+    "folders": []
+  },
+  {
+    "_id": "24751377-77f2-486c-bc16-f3219ce6304e",
+    "colName": "Plantilla",
+    "created": "2023-03-23T07:14:31.505Z",
+    "sortNum": 120000,
+    "folders": []
+  },
+  {
+    "_id": "97cdb4bf-4035-46bf-be5f-0bf3a2b63aa9",
+    "colName": "Department",
+    "created": "2023-03-23T08:03:16.671Z",
+    "sortNum": 130000,
     "folders": []
   }
 ]

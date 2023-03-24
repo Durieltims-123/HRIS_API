@@ -28,16 +28,16 @@ class Plantilla extends Model
     }
     public function hasOneVacancy (): HasOne
     {
-        return $this->hasOne(Vacancy::class);
+        return $this->hasOne(Vacancy::class, 'plantilla_id');
     }
 
     protected $primaryKey = 'id';
-    // protected $foreignKey = 'office_id';
-    // protected $foreignKey = 'position_id';
 
     protected $fillable = [
-        'department_id',
+        'office_id',
         'position_id',
+        'item_number',
         'place_of_assignment',
+        'year'
     ];
 }
