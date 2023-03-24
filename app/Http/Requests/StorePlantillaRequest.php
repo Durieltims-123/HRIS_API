@@ -11,7 +11,7 @@ class StorePlantillaRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class StorePlantillaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'place_of_assignment' => ['required', 'string', 'max:255']
+            'office_id' => ['required'],
+            'position_id' => ['required'],
+            'item_number' => ['required', 'string', 'max:255'],
+            'place_of_assignment' => ['nullable', 'string', 'max:255'],
+            'year' => ['required', 'string']
         ];
     }
 }

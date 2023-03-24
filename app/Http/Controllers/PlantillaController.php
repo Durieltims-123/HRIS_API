@@ -16,9 +16,11 @@ class PlantillaController extends Controller
      */
     public function index()
     {
-        return PlantillaResource::collection(
-            Plantilla::all()
-        );
+        
+        $plantilla = Plantilla::with(['hasOneVacancy'])->get();
+      
+        return PlantillaResource::collection($plantilla);
+    //    return $plantilla->mapInto(VacancyResource::class);
     }
 
     /**
@@ -36,13 +38,17 @@ class PlantillaController extends Controller
     {
         $request->validated($request->all());
 
-        $plantillaExist = Plantilla::where(['place_of_assignment', $request->place_of_assignment])->exists();
+        $plantillaExist = Plantilla::where('item_number', $request->item_number)->exists();
         if ($plantillaExist) {
             return $this->error('', 'Duplicate Entry', 400);
         }
 
         Plantilla::create([
-            "place_of_assignment" => $request->place_of_assignment
+            'office_id' => $request->office_id,
+            'position_id' => $request->position_id,
+            'item_number' => $request->item_number, 
+            "place_of_assignment" => $request->place_of_assignment,
+            "year" => $request->year
         ]);
 
 
@@ -70,8 +76,10 @@ class PlantillaController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Plantilla $plantilla)
-    {
+    {   
+        $plantilla->item_number = $request->item_number;
         $plantilla->place_of_assignment = $request->place_of_assignment;
+        $plantilla->year = $request->year;
         $plantilla->save();
 
         return new PlantillaResource($plantilla);

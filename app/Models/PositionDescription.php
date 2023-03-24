@@ -18,6 +18,7 @@ class PositionDescription extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'plantilla_id',
         'description',
     ];
 }

@@ -90,4 +90,13 @@ class OfficeController extends Controller
         $office->delete();
         return $this->success('', 'Successfull Deleted', 200);
     }
+
+    public function search(Request $request){
+        return OfficeResource::collection(
+            Office::where('office_name', 'like', '%'.$request->keyword.'%')
+            ->orWhere('office_code', 'like', '%'.$request->keyword.'%')
+            ->limit(10)
+            ->get()
+        );
+    }
 }

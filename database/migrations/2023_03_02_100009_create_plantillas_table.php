@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('plantillas', function (Blueprint $table) {
             $table->id();
-           
-            $table->foreignId('department_id')->constrained();
+            $table->foreignId('office_id')->constrained();
             $table->foreignId('position_id')->constrained();
-
-            $table->string('place_of_assignment');
+            $table->string('item_number');
+            $table->unique('item_number');
+            $table->string('place_of_assignment')->nullable();
+            $table->string('year');
             $table->timestamps();
         });
     }

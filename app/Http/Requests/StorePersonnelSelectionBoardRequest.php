@@ -27,8 +27,8 @@ class StorePersonnelSelectionBoardRequest extends FormRequest
             'chairman' => ['required', 'string', 'max:255'],
             'position' => ['required', 'string', 'max:255'],
             'status' => ['required', 'string', 'max:255'],
-            'member_name' => ['required', 'string', 'max:255'],
-            'member_position' => ['required', 'string', 'max:255'],
+            'member_name' => ['required', 'max:255'],
+            'member_position' => ['required', 'max:255'],
             
         ];
     }

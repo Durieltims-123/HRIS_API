@@ -24,7 +24,7 @@ class PersonnelSelectionBoardResource extends JsonResource
                 "chairman" => (string)$this->chairman,
                 "position" => (string)$this->position,
                 "status" => (string)$this->status,
-                'member_name' => $this->hasManyMembers->map(function ($member_name) {
+                'members' => $this->hasManyMembers->map(function ($member_name) {
                     return [
                         'employee_id' => $member_name->employee_id,
                         'member_name' => $member_name->member_name,
