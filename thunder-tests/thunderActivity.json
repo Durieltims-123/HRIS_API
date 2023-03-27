@@ -1878,5 +1878,19 @@
       "bearer": "1|l5IC27mYC8d1a4s7BVoLxIgdvyPqxiBbneUvSqxX"
     },
     "tests": []
+  },
+  {
+    "_id": "fa48acbb-4248-471d-a45b-786fb79e26b9",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/personal-data-sheet/2",
+    "url": "http://127.0.0.1:8000/api/personal-data-sheet/2",
+    "method": "DELETE",
+    "sortNum": 0,
+    "created": "2023-03-27T06:28:07.150Z",
+    "modified": "2023-03-27T06:28:07.150Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]
