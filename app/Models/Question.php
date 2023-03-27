@@ -12,7 +12,7 @@ class Question extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-
+        'personal_data_sheet_id',
         'number',
         'questions',
         'choices',

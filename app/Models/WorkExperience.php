@@ -12,6 +12,7 @@ class WorkExperience extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'personal_data_sheet_id',
         'position_title',
         'department',
         'monthly_salary',

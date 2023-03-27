@@ -12,6 +12,7 @@ class SpecialSkillHobby extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'personal_data_sheet_id',
         'special_skills'
     ];
 }

@@ -12,6 +12,7 @@ class CivilServiceEligibility extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'personal_data_sheet_id',
         'career_service',
         'rating',
         'examination_date',

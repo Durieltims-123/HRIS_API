@@ -11,9 +11,9 @@ class PersonalInformation extends Model
 {
     use HasFactory;
 
-    public function belongsToPersonalDataSheet ():BelongsTo
+    public function belongsPersonalDataSheet ():BelongsTo
     {
-        return $this->belongsTo(PersonalDataSheet::class);
+        return $this->belongsTo(PersonalDataSheet::class, 'pds_id');
     }
     public function hasOneProvince ():HasOne
     {
@@ -23,7 +23,7 @@ class PersonalInformation extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'pds_id',
+        'personal_data_sheet_id',
         'mobile_number',
         'telephone_number',
         'permanent_house_number',
