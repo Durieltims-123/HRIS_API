@@ -12,7 +12,7 @@ class Answer extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'pds_id',
+        'personal_data_sheet_id',
         'choice'
     ];
 

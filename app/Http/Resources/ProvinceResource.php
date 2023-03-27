@@ -23,9 +23,12 @@ class ProvinceResource extends JsonResource
                 "residential_province_name" => (string)$this->residential_province_name,
 
             //municipality
-                "province_id" => (string)$this->hasOneMunicipality[0]->province_id,
+                // "province_id" => (string)$this->hasOneMunicipality[0]->province_id,
                 "permanent_municipality_name" => (string)$this->hasOneMunicipality[0]->permanent_municipality_name,
                 "residential_municipality_name" => (string)$this->hasOneMunicipality[0]->residential_municipality_name,
+
+            //barangay
+
             ]
             
         ];

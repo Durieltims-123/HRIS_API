@@ -18,7 +18,7 @@ class Recognition extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'pds_id',
+        'personal_data_sheet_id',
         'recognition_title',
     ];
 }

@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('civil_service_eligibilities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pds_id')->constrained('personal_data_sheets');
-            $table->string('license_id')->unique();
+            // $table->foreignId('personal_data_sheet_id')->constrained('personal_data_sheets');
+            $table->foreignId('personal_data_sheet_id')->constrained()->onDelete('cascade');
+            // $table->string('license_id')->unique();
 
             $table->string('career_service');
             $table->string('rating');

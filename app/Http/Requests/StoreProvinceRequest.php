@@ -27,6 +27,7 @@ class StoreProvinceRequest extends FormRequest
             'residential_province_name' => ['required', 'string', 'max:255'],
 
             //municipality
+            // 'province_id' => ['required'],
             'residential_municipality_name' => ['required', 'string', 'max:255'],
             'residential_municipality_name' => ['required', 'string', 'max:255'],
 

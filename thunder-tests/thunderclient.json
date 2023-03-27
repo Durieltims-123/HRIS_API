@@ -8,7 +8,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-10T00:26:31.509Z",
-    "modified": "2023-03-21T03:36:03.232Z",
+    "modified": "2023-03-24T04:29:06.768Z",
     "headers": [],
     "params": [],
     "body": {
@@ -27,7 +27,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "2|6wVOWiNTYoaaNIbgOqGpbO4bf6Gil1k7pS0I7oIw"
+      "bearer": "1|PrDnoNSyNOASihxNjEtmtEufR524jNZZ2zHzwkAf"
     },
     "tests": []
   },
@@ -122,12 +122,12 @@
     "method": "GET",
     "sortNum": 20000,
     "created": "2023-03-10T01:05:52.017Z",
-    "modified": "2023-03-15T04:08:29.105Z",
+    "modified": "2023-03-24T04:29:14.291Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "6|GPgTSQQ23tXneG1rI0t4ED5FDGucgDKfUlUwp1zS"
+      "bearer": "1|PrDnoNSyNOASihxNjEtmtEufR524jNZZ2zHzwkAf"
     },
     "tests": []
   },
@@ -140,7 +140,7 @@
     "method": "PATCH",
     "sortNum": 30000,
     "created": "2023-03-10T01:18:42.261Z",
-    "modified": "2023-03-15T04:08:48.583Z",
+    "modified": "2023-03-23T03:14:42.679Z",
     "headers": [],
     "params": [],
     "body": {
@@ -153,13 +153,13 @@
         },
         {
           "name": "number",
-          "value": "69"
+          "value": "22"
         }
       ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "6|GPgTSQQ23tXneG1rI0t4ED5FDGucgDKfUlUwp1zS"
+      "bearer": "1|LYgRZqctyqa2SPmWcRJ9LsShOGzJHVjx72cBsRkN"
     },
     "tests": []
   },
@@ -426,7 +426,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-10T07:14:57.607Z",
-    "modified": "2023-03-21T03:36:25.395Z",
+    "modified": "2023-03-24T04:42:09.046Z",
     "headers": [],
     "params": [],
     "body": {
@@ -460,12 +460,16 @@
         {
           "name": "competency",
           "value": "magas"
+        },
+        {
+          "name": "position_id",
+          "value": "2"
         }
       ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "2|6wVOWiNTYoaaNIbgOqGpbO4bf6Gil1k7pS0I7oIw"
+      "bearer": "1|PrDnoNSyNOASihxNjEtmtEufR524jNZZ2zHzwkAf"
     },
     "tests": []
   },
@@ -478,7 +482,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-10T07:56:53.833Z",
-    "modified": "2023-03-10T07:58:40.317Z",
+    "modified": "2023-03-21T03:05:49.031Z",
     "headers": [],
     "params": [],
     "body": {
@@ -497,7 +501,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
+      "bearer": "1|C7twzZQjH8ROV6eEhiDuUY2Z1lpD36YX5Dp1Z3nv"
     },
     "tests": []
   },
@@ -592,7 +596,7 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2023-03-13T03:56:44.958Z",
-    "modified": "2023-03-13T03:56:44.958Z",
+    "modified": "2023-03-22T06:30:27.482Z",
     "headers": [],
     "params": [],
     "body": {
@@ -601,13 +605,21 @@
       "form": [
         {
           "name": "member_name",
-          "value": "test"
+          "value": "test,test"
         },
         {
           "name": "position",
-          "value": "test"
+          "value": "test,test"
+        },
+        {
+          "name": "employee_id",
+          "value": ""
         }
       ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|nuKxWVzU7hh2RoKRjJd8sasRh56XIyGobD4SI5rA"
     },
     "tests": []
   },
@@ -620,7 +632,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-13T03:58:10.630Z",
-    "modified": "2023-03-24T01:43:36.212Z",
+    "modified": "2023-03-27T01:29:22.437Z",
     "headers": [],
     "params": [],
     "body": {
@@ -675,7 +687,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "1|l5IC27mYC8d1a4s7BVoLxIgdvyPqxiBbneUvSqxX"
+      "bearer": "1|kZXTZMsGnqcTFRtwSScZ4D2szOLjQYsBPSvFEF55"
     },
     "tests": []
   },
@@ -688,12 +700,12 @@
     "method": "GET",
     "sortNum": 20000,
     "created": "2023-03-13T03:58:26.046Z",
-    "modified": "2023-03-24T01:43:08.007Z",
+    "modified": "2023-03-24T06:42:26.966Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "1|l5IC27mYC8d1a4s7BVoLxIgdvyPqxiBbneUvSqxX"
+      "bearer": "1|PrDnoNSyNOASihxNjEtmtEufR524jNZZ2zHzwkAf"
     },
     "tests": []
   },
@@ -702,16 +714,16 @@
     "colId": "5a48b1f8-bc21-4449-8e80-a7bc6c2ee250",
     "containerId": "",
     "name": "Delete PSB",
-    "url": "http://127.0.0.1:8000/api/personnel-selection-board/2",
+    "url": "http://127.0.0.1:8000/api/personnel-selection-board/1",
     "method": "DELETE",
     "sortNum": 30000,
     "created": "2023-03-13T03:58:31.857Z",
-    "modified": "2023-03-14T06:52:09.611Z",
+    "modified": "2023-03-27T01:29:38.917Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "2|xYp9sQYG2Ilb1ZRGwDwvCz2ZWfIZWy38Fd6eR3n1"
+      "bearer": "1|kZXTZMsGnqcTFRtwSScZ4D2szOLjQYsBPSvFEF55"
     },
     "tests": []
   },
@@ -724,7 +736,7 @@
     "method": "PATCH",
     "sortNum": 40000,
     "created": "2023-03-13T03:59:37.966Z",
-    "modified": "2023-03-24T00:24:40.887Z",
+    "modified": "2023-03-22T06:23:02.689Z",
     "headers": [],
     "params": [],
     "body": {
@@ -779,7 +791,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "1|2xKv0SDLAKmHiWYrWlOOq2P7JL0ZEi9rPDIg2N3t"
+      "bearer": "1|hP16uKLvnQQlkaLMQxeycKc9ucDyt5DEPL7bIrPp"
     },
     "tests": []
   },
@@ -838,12 +850,12 @@
     "method": "GET",
     "sortNum": 20000,
     "created": "2023-03-15T04:31:12.185Z",
-    "modified": "2023-03-24T03:17:39.600Z",
+    "modified": "2023-03-24T04:42:16.062Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "1|l5IC27mYC8d1a4s7BVoLxIgdvyPqxiBbneUvSqxX"
+      "bearer": "1|PrDnoNSyNOASihxNjEtmtEufR524jNZZ2zHzwkAf"
     },
     "tests": []
   },
@@ -870,11 +882,11 @@
     "colId": "d977aec1-81a1-4463-8756-0344f2c1ab13",
     "containerId": "",
     "name": "Update",
-    "url": "http://127.0.0.1:8000/api/position/4",
+    "url": "http://127.0.0.1:8000/api/position/2",
     "method": "PATCH",
     "sortNum": 40000,
     "created": "2023-03-15T05:22:35.532Z",
-    "modified": "2023-03-15T05:43:24.341Z",
+    "modified": "2023-03-23T03:13:16.337Z",
     "headers": [],
     "params": [],
     "body": {
@@ -883,37 +895,33 @@
       "form": [
         {
           "name": "title",
-          "value": "updateTry"
-        },
-        {
-          "name": "salary_grade_id",
-          "value": "3"
+          "value": "working"
         },
         {
           "name": "education",
-          "value": "update"
+          "value": "working"
         },
         {
           "name": "training",
-          "value": "update"
+          "value": "working"
         },
         {
           "name": "experience",
-          "value": "update"
+          "value": "working"
         },
         {
           "name": "eligibility",
-          "value": "update"
+          "value": "working"
         },
         {
           "name": "competency",
-          "value": "update"
+          "value": "working"
         }
       ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "6|GPgTSQQ23tXneG1rI0t4ED5FDGucgDKfUlUwp1zS"
+      "bearer": "1|LYgRZqctyqa2SPmWcRJ9LsShOGzJHVjx72cBsRkN"
     },
     "tests": []
   },
@@ -944,7 +952,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-15T05:57:09.207Z",
-    "modified": "2023-03-20T08:34:33.428Z",
+    "modified": "2023-03-27T02:05:43.975Z",
     "headers": [],
     "params": [],
     "body": {
@@ -953,7 +961,7 @@
       "form": [
         {
           "name": "first_name",
-          "value": "First"
+          "value": "yesyesyes"
         },
         {
           "name": "middle_name",
@@ -980,7 +988,7 @@
           "value": "1"
         },
         {
-          "name": "pds_id",
+          "name": "personal_data_sheet_id",
           "value": "1"
         },
         {
@@ -1101,155 +1109,391 @@
         },
         {
           "name": "birthdate",
-          "value": "2023-10-10"
+          "value": "10/10/2020"
         },
         {
-          "name": "pds_id",
-          "value": "1"
-        },
-        {
-          "name": "recognition_title",
-          "value": "masterIn Master"
-        },
-        {
-          "name": "pds_id",
+          "name": "personal_data_sheet_id",
           "value": "1"
         },
         {
           "name": "spouse_surname",
-          "value": "qdwf"
+          "value": "SpSurname"
         },
         {
           "name": "spouse_first_name",
-          "value": "qdwfe"
+          "value": "SpFirstname"
         },
         {
           "name": "spouse_middle_name",
-          "value": "dwfe"
+          "value": "SpMiddlename"
         },
         {
           "name": "name_extension",
-          "value": "dwfeg"
+          "value": "Jr."
         },
         {
           "name": "occupation",
-          "value": "qdwfe"
+          "value": "Teacher"
         },
         {
           "name": "employee_business_name",
-          "value": "dwfegr"
+          "value": "secrets"
         },
         {
           "name": "business_address",
-          "value": "wdfe"
+          "value": "La Trinidad"
         },
         {
           "name": "telephone_number",
-          "value": "wdfeg"
+          "value": "567890"
         },
         {
           "name": "father_surname",
-          "value": "dwfegr"
+          "value": "FaSurname"
         },
         {
           "name": "father_first_name",
-          "value": "wdfeg"
+          "value": "FaFirstname"
         },
         {
           "name": "father_middle_name",
-          "value": "wdefgr"
+          "value": "FaMiddlename"
         },
         {
           "name": "father_extension_name",
-          "value": "dwefrg"
+          "value": "Sr."
         },
         {
           "name": "mother_maiden_surname",
-          "value": "qswdefrg"
+          "value": "MoMaiden"
         },
         {
           "name": "mother_first_name",
-          "value": "wert"
+          "value": "MoFirstname"
         },
         {
           "name": "mother_maiden_middle_name",
-          "value": "qwerty"
+          "value": "MoMaidenMiddle"
         },
         {
-          "name": "pds_id",
+          "name": "personal_data_sheet_id",
+          "value": "1"
+        },
+        {
+          "name": "family_background_id",
+          "value": "1"
+        },
+        {
+          "name": "children_name[]",
+          "value": "ChildNameFirst"
+        },
+        {
+          "name": "children_name[]",
+          "value": "ChildNameSecond"
+        },
+        {
+          "name": "children_birthdate[]",
+          "value": "10/10/2000"
+        },
+        {
+          "name": "children_birthdate[]",
+          "value": "11/11/2010"
+        },
+        {
+          "name": "personal_data_sheet_id",
           "value": "1"
         },
         {
           "name": "level",
-          "value": "12"
-        },
-        {
-          "name": "school_name",
-          "value": "SPASI"
-        },
-        {
-          "name": "basic_education",
-          "value": "aw"
-        },
-        {
-          "name": "scholarship_honor",
-          "value": "3rd"
-        },
-        {
-          "name": "highest_level",
           "value": "college"
         },
         {
+          "name": "school_name",
+          "value": "BSU"
+        },
+        {
+          "name": "basic_education",
+          "value": "IT"
+        },
+        {
+          "name": "scholarship_honor",
+          "value": "secret"
+        },
+        {
+          "name": "highest_level",
+          "value": "amin"
+        },
+        {
           "name": "year_graduated",
-          "value": "2020"
+          "value": "2023"
         },
         {
-          "name": "inclusive_dates_from",
-          "value": "2010-10-10"
+          "name": "eb_inclusive_dates_from",
+          "value": "10/10/2016"
         },
         {
-          "name": "inclusive_dates_to",
-          "value": "2020-11-11"
+          "name": "eb_inclusive_dates_to",
+          "value": "12/12/2023"
         },
         {
-          "name": "pds_id",
+          "name": "personal_data_sheet_id",
           "value": "1"
         },
         {
-          "name": "name",
+          "name": "career_service[]",
+          "value": "barangay"
+        },
+        {
+          "name": "career_service[]",
+          "value": "driverLicense"
+        },
+        {
+          "name": "rating[]",
+          "value": "1st"
+        },
+        {
+          "name": "rating[]",
+          "value": "2nd"
+        },
+        {
+          "name": "examination_date[]",
+          "value": "10/10/2010"
+        },
+        {
+          "name": "examination_date[]",
+          "value": "11/11/2011"
+        },
+        {
+          "name": "place_examination[]",
+          "value": "Baguio"
+        },
+        {
+          "name": "place_examination[]",
+          "value": "LaTrinidad"
+        },
+        {
+          "name": "license_number[]",
+          "value": "1234567890"
+        },
+        {
+          "name": "license_number[]",
+          "value": "0987654321"
+        },
+        {
+          "name": "date_validity[]",
+          "value": "12/12/2050"
+        },
+        {
+          "name": "date_validity[]",
+          "value": "12/12/2060"
+        },
+        {
+          "name": "personal_data_sheet_id",
+          "value": "1"
+        },
+        {
+          "name": "position_title[]",
+          "value": "Supervisor"
+        },
+        {
+          "name": "position_title[]",
+          "value": "Supervisor2"
+        },
+        {
+          "name": "department[]",
+          "value": "PGO"
+        },
+        {
+          "name": "department[]",
+          "value": "BENRO"
+        },
+        {
+          "name": "monthly_salary[]",
+          "value": "20000"
+        },
+        {
+          "name": "monthly_salary[]",
+          "value": "40000"
+        },
+         {
+          "name": "salary[]",
+          "value": "monthly"
+        },
+        {
+          "name": "salary[]",
+          "value": "fifteenDays"
+        },
+        {
+          "name": "status_appointment[]",
+          "value": "permanent"
+        },
+        {
+          "name": "status_appointment[]",
+          "value": "casual"
+        },
+        {
+          "name": "government_service[]",
+          "value": "yes"
+        },
+        {
+          "name": "government_service[]",
+          "value": "no"
+        },
+        {
+          "name": "inclusive_dates_from[]",
+          "value": "10/10/2010"
+        },
+        {
+          "name": "inclusive_dates_from[]",
+          "value": "10/10/2011"
+        },
+        {
+          "name": "inclusive_dates_to[]",
+          "value": "11/11/2020"
+        },
+        {
+          "name": "inclusive_dates_to[]",
+          "value": "11/11/2021"
+        },
+        {
+          "name": "personal_data_sheet_id",
+          "value": "1"
+        },
+        {
+          "name": "organization_address[]",
+          "value": "Bakun"
+        },
+        {
+          "name": "organization_address[]",
+          "value": "Buguias"
+        },
+        {
+          "name": "organization_name[]",
+          "value": "OrganizationName"
+        },
+        {
+          "name": "organization_name[]",
+          "value": "OrganizationName2"
+        },
+        {
+          "name": "position[]",
+          "value": "secretary"
+        },
+        {
+          "name": "position[]",
+          "value": "president"
+        },
+        {
+          "name": "number_hours[]",
+          "value": "200"
+        },
+        {
+          "name": "number_hours[]",
+          "value": "400"
+        },
+        {
+          "name": "vw_inclusive_dates_from[]",
+          "value": "11/11/2020"
+        },
+        {
+          "name": "vw_inclusive_dates_from[]",
+          "value": "10/10/2020"
+        },
+        {
+          "name": "vw_inclusive_dates_to",
+          "value": "11/11/2030"
+        },
+        {
+          "name": "vw_inclusive_dates_to",
+          "value": "10/10/2030"
+        },
+        {
+          "name": "personal_data_sheet_id",
+          "value": "1"
+        },
+        {
+          "name": "hours[]",
+          "value": "100"
+        },
+        {
+          "name": "hours[]",
+          "value": "200"
+        },
+        {
+          "name": "program_title[]",
+          "value": "traningProgram"
+        },
+        {
+          "name": "program_title[]",
+          "value": "traningProgram2"
+        },
+        {
+          "name": "type[]",
+          "value": "programing"
+        },
+        {
+          "name": "type[]",
+          "value": "hardware"
+        },
+        {
+          "name": "conducted_by[]",
           "value": "Kenen1"
         },
         {
-          "name": "address",
-          "value": "Kenen1"
-        },
-        {
-          "name": "telephone_number",
-          "value": "Kenen1"
-        },
-        {
-          "name": "name2",
+          "name": "conducted_by[]",
           "value": "Kenen2"
         },
         {
-          "name": "address2",
-          "value": "Kenen2"
+          "name": "tp_inclusive_dates_from[]",
+          "value": "10/10/2020"
         },
         {
-          "name": "telephone_number2",
-          "value": "Kenen2"
+          "name": "tp_inclusive_dates_from[]",
+          "value": "10/10/2021"
         },
         {
-          "name": "name3",
-          "value": "Kenen3"
+          "name": "tp_inclusive_dates_to[]",
+          "value": "11/11/2030"
         },
         {
-          "name": "address3",
-          "value": "Kenen3"
+          "name": "tp_inclusive_dates_to[]",
+          "value": "11/11/2031"
         },
         {
-          "name": "telephone_number3",
-          "value": "Kenen3"
+          "name": "personal_data_sheet_id",
+          "value": "1"
+        },
+        {
+          "name": "special_skills[]",
+          "value": "Basketball"
+        },
+        {
+          "name": "special_skills[]",
+          "value": "Chess"
+        },
+        {
+          "name": "personal_data_sheet_id",
+          "value": "1"
+        },
+        {
+          "name": "recognition_title[]",
+          "value": "1st"
+        },
+        {
+          "name": "recognition_title[]",
+          "value": "2nd"
+        },
+        {
+          "name": "personal_data_sheet_id",
+          "value": "1"
+        },
+        {
+          "name": "membership_association[]",
+          "value": "SSG"
+        },
+        {
+          "name": "membership_association[]",
+          "value": "Assoc"
         }
       ]
     },
@@ -1412,7 +1656,7 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2023-03-16T08:04:23.185Z",
-    "modified": "2023-03-20T08:34:26.808Z",
+    "modified": "2023-03-27T02:05:34.764Z",
     "headers": [],
     "params": [],
     "body": {
@@ -1421,33 +1665,33 @@
       "form": [
         {
           "name": "permanent_province_name",
-          "value": "Atok"
+          "value": "Trinidad"
         },
         {
           "name": "residential_province_name",
-          "value": "Atok"
+          "value": "Trinidad"
         },
         {
           "name": "permanent_municipality_name",
-          "value": "Atok"
+          "value": "Trinidad"
         },
         {
           "name": "residential_municipality_name",
-          "value": "Atok"
+          "value": "Trinidad"
         },
         {
           "name": "permanent_barangay_name",
-          "value": "Atok"
+          "value": "Trinidad"
         },
         {
           "name": "residential_barangay_name",
-          "value": "Atok"
+          "value": "Trinidad"
         }
       ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "1|ZqkE2cf8vKP5SQPVyhZwFG4lFZm0GVrgDET0JJ77"
+      "bearer": "1|Lh2v63JFLHs9jQ3GSAWOZ5tEG9AXWnRNl2TiA5zR"
     },
     "tests": []
   },
@@ -1456,16 +1700,16 @@
     "colId": "66b9c9ed-e491-4231-92e6-fbd92f2fd7f5",
     "containerId": "",
     "name": "Index Province",
-    "url": "http://127.0.0.1:8000/api/position",
+    "url": "http://127.0.0.1:8000/api/province",
     "method": "GET",
     "sortNum": 30000,
     "created": "2023-03-18T14:04:38.914Z",
-    "modified": "2023-03-18T14:04:43.874Z",
+    "modified": "2023-03-22T01:51:43.416Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "6|GPgTSQQ23tXneG1rI0t4ED5FDGucgDKfUlUwp1zS"
+      "bearer": "1|AhAEX5uSk2LUrbb02pqK2hyKXQDGAXgpuVwZCsKs"
     },
     "tests": []
   },
@@ -1478,7 +1722,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-20T02:58:53.487Z",
-    "modified": "2023-03-24T04:26:58.279Z",
+    "modified": "2023-03-27T02:40:37.480Z",
     "headers": [],
     "params": [],
     "body": {
@@ -1526,7 +1770,7 @@
     "headers": [],
     "params": [],
     "body": {
-      "type": "formencoded",
+      "type": "formdata",
       "raw": "",
       "form": [
         {
@@ -1685,7 +1929,125 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "1|2xKv0SDLAKmHiWYrWlOOq2P7JL0ZEi9rPDIg2N3t"
+      "bearer": "1|Lh2v63JFLHs9jQ3GSAWOZ5tEG9AXWnRNl2TiA5zR"
+    },
+    "tests": []
+  },
+  {
+    "_id": "cdfe91e7-8c99-4165-b253-411205a054c8",
+    "colId": "d9a7eabb-45ca-433d-a4c4-6cbb5f331775",
+    "containerId": "",
+    "name": "Update Vacancy",
+    "url": "http://127.0.0.1:8000/api/vacancy/1",
+    "method": "PATCH",
+    "sortNum": 20000,
+    "created": "2023-03-20T06:45:37.728Z",
+    "modified": "2023-03-20T08:40:10.030Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "position_title",
+          "value": "Administrative"
+        },
+        {
+          "name": "job_description",
+          "value": "qwerty"
+        },
+        {
+          "name": "plantilla_item_number",
+          "value": "234"
+        },
+        {
+          "name": "status",
+          "value": "Pending"
+        },
+        {
+          "name": "date_submitted",
+          "value": "2023-02-03"
+        },
+        {
+          "name": "office_name",
+          "value": "Benro"
+        },
+        {
+          "name": "date_queued",
+          "value": "2023-03-04"
+        },
+        {
+          "name": "date_approved",
+          "value": "2023-03-04"
+        },
+        {
+          "name": "office_code",
+          "value": "456"
+        },
+        {
+          "name": "place_of_assignment",
+          "value": "qwerty"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|ZqkE2cf8vKP5SQPVyhZwFG4lFZm0GVrgDET0JJ77"
+    },
+    "tests": []
+  },
+  {
+    "_id": "f13fe4b1-6960-4f92-ba7c-2a270d5852d4",
+    "colId": "8a686a09-4f64-4b37-90e4-08dd4673be85",
+    "containerId": "",
+    "name": "Index PDS",
+    "url": "http://127.0.0.1:8000/api/personal-data-sheet",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-03-24T02:39:57.804Z",
+    "modified": "2023-03-27T02:07:27.018Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|Lh2v63JFLHs9jQ3GSAWOZ5tEG9AXWnRNl2TiA5zR"
+    },
+    "tests": []
+  },
+  {
+    "_id": "bd43b3cd-d146-4425-b3a3-6d56ba0d1337",
+    "colId": "8a686a09-4f64-4b37-90e4-08dd4673be85",
+    "containerId": "",
+    "name": "Show PDS",
+    "url": "http://127.0.0.1:8000/api/personal-data-sheet/3",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2023-03-24T07:20:56.223Z",
+    "modified": "2023-03-27T02:13:15.289Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|Lh2v63JFLHs9jQ3GSAWOZ5tEG9AXWnRNl2TiA5zR"
+    },
+    "tests": []
+  },
+  {
+    "_id": "415101aa-7fed-4112-bd88-ab9621fc567e",
+    "colId": "8a686a09-4f64-4b37-90e4-08dd4673be85",
+    "containerId": "",
+    "name": "Delete PDS",
+    "url": "http://127.0.0.1:8000/api/salary-grade/4",
+    "method": "DELETE",
+    "sortNum": 40000,
+    "created": "2023-03-27T01:26:55.005Z",
+    "modified": "2023-03-27T01:26:58.528Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "6|GPgTSQQ23tXneG1rI0t4ED5FDGucgDKfUlUwp1zS"
     },
     "tests": []
   },
@@ -1717,7 +2079,7 @@
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "1|2xKv0SDLAKmHiWYrWlOOq2P7JL0ZEi9rPDIg2N3t"
+      "bearer": "6|GPgTSQQ23tXneG1rI0t4ED5FDGucgDKfUlUwp1zS"
     },
     "tests": []
   },
@@ -1731,7 +2093,7 @@
     "sortNum": 10000,
     "created": "2023-03-23T08:03:29.638Z",
     "modified": "2023-03-24T01:08:23.341Z",
-    "headers": [],
+     "headers": [],
     "params": [],
     "body": {
       "type": "formdata",
@@ -1769,6 +2131,567 @@
     },
     "tests": []
   },
+   
+  {
+    "_id": "e44096b6-27ed-4328-b334-8ee1bd83a90d",
+    "colId": "8a686a09-4f64-4b37-90e4-08dd4673be85",
+    "containerId": "",
+    "name": "Update PDS",
+    "url": "http://127.0.0.1:8000/api/personal-data-sheet/3",
+    "method": "PATCH",
+    "sortNum": 10000,
+    "created": "2023-03-27T02:22:46.647Z",
+    "modified": "2023-03-27T02:23:04.309Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "first_name",
+          "value": "yesyesyes"
+        },
+        {
+          "name": "middle_name",
+          "value": "Middle"
+        },
+        {
+          "name": "last_name",
+          "value": "Last"
+        },
+        {
+          "name": "suffix_name",
+          "value": "Sr."
+        },
+        {
+          "name": "contact_number",
+          "value": "090202711"
+        },
+        {
+          "name": "email_address",
+          "value": "ewan@gmail.com"
+        },
+        {
+          "name": "applicant_id",
+          "value": "1"
+        },
+        {
+          "name": "personal_data_sheet_id",
+          "value": "1"
+        },
+        {
+          "name": "mobile_number",
+          "value": "0987654321"
+        },
+        {
+          "name": "telephone_number",
+          "value": "09876"
+        },
+        {
+          "name": "permanent_house_number",
+          "value": "8765"
+        },
+        {
+          "name": "permanent_subdivision_village",
+          "value": "Village"
+        },
+        {
+          "name": "permanent_street",
+          "value": "12345"
+        },
+        {
+          "name": "permanent_barangay_id",
+          "value": "1"
+        },
+        {
+          "name": "permanent_municipality_id",
+          "value": "1"
+        },
+        {
+          "name": "permanent_province_id",
+          "value": "1"
+        },
+        {
+          "name": "permanent_zip_code_number",
+          "value": "234"
+        },
+        {
+          "name": "residential_house_number",
+          "value": "654"
+        },
+        {
+          "name": "residential_subdivision_village",
+          "value": "Village"
+        },
+        {
+          "name": "residential_street",
+          "value": "12345"
+        },
+        {
+          "name": "residential_barangay_id",
+          "value": "1"
+        },
+        {
+          "name": "residential_municipality_id",
+          "value": "1"
+        },
+        {
+          "name": "residential_province_id",
+          "value": "1"
+        },
+        {
+          "name": "residential_zip_code_number",
+          "value": "2"
+        },
+        {
+          "name": "citizenship",
+          "value": "Filipino"
+        },
+        {
+          "name": "agency_employee",
+          "value": "Secret"
+        },
+        {
+          "name": "tin_number",
+          "value": "123"
+        },
+        {
+          "name": "sss_number",
+          "value": "123"
+        },
+        {
+          "name": "philhealth_number",
+          "value": "123"
+        },
+        {
+          "name": "pag_ibig_number",
+          "value": "123"
+        },
+        {
+          "name": "gsis_number",
+          "value": "123"
+        },
+        {
+          "name": "blood_type",
+          "value": "o"
+        },
+        {
+          "name": "weight",
+          "value": "55"
+        },
+        {
+          "name": "height",
+          "value": "411"
+        },
+        {
+          "name": "civil_status",
+          "value": "Single"
+        },
+        {
+          "name": "sex",
+          "value": "Male"
+        },
+        {
+          "name": "birthplace",
+          "value": "Buguias"
+        },
+        {
+          "name": "birthdate",
+          "value": "10/10/2020"
+        },
+        {
+          "name": "personal_data_sheet_id",
+          "value": "1"
+        },
+        {
+          "name": "spouse_surname",
+          "value": "SpSurname"
+        },
+        {
+          "name": "spouse_first_name",
+          "value": "SpFirstname"
+        },
+        {
+          "name": "spouse_middle_name",
+          "value": "SpMiddlename"
+        },
+        {
+          "name": "name_extension",
+          "value": "Jr."
+        },
+        {
+          "name": "occupation",
+          "value": "Teacher"
+        },
+        {
+          "name": "employee_business_name",
+          "value": "secrets"
+        },
+        {
+          "name": "business_address",
+          "value": "La Trinidad"
+        },
+        {
+          "name": "telephone_number",
+          "value": "567890"
+        },
+        {
+          "name": "father_surname",
+          "value": "FaSurname"
+        },
+        {
+          "name": "father_first_name",
+          "value": "FaFirstname"
+        },
+        {
+          "name": "father_middle_name",
+          "value": "FaMiddlename"
+        },
+        {
+          "name": "father_extension_name",
+          "value": "Sr."
+        },
+        {
+          "name": "mother_maiden_surname",
+          "value": "MoMaiden"
+        },
+        {
+          "name": "mother_first_name",
+          "value": "MoFirstname"
+        },
+        {
+          "name": "mother_maiden_middle_name",
+          "value": "MoMaidenMiddle"
+        },
+        {
+          "name": "personal_data_sheet_id",
+          "value": "1"
+        },
+        {
+          "name": "family_background_id",
+          "value": "1"
+        },
+        {
+          "name": "children_name[]",
+          "value": "ChildNameFirst"
+        },
+        {
+          "name": "children_name[]",
+          "value": "ChildNameSecond"
+        },
+        {
+          "name": "children_birthdate[]",
+          "value": "10/10/2000"
+        },
+        {
+          "name": "children_birthdate[]",
+          "value": "11/11/2010"
+        },
+        {
+          "name": "personal_data_sheet_id",
+          "value": "1"
+        },
+        {
+          "name": "level",
+          "value": "college"
+        },
+        {
+          "name": "school_name",
+          "value": "BSU"
+        },
+        {
+          "name": "basic_education",
+          "value": "IT"
+        },
+        {
+          "name": "scholarship_honor",
+          "value": "secret"
+        },
+        {
+          "name": "highest_level",
+          "value": "amin"
+        },
+        {
+          "name": "year_graduated",
+          "value": "2023"
+        },
+        {
+          "name": "eb_inclusive_dates_from",
+          "value": "10/10/2016"
+        },
+        {
+          "name": "eb_inclusive_dates_to",
+          "value": "12/12/2023"
+        },
+        {
+          "name": "personal_data_sheet_id",
+          "value": "1"
+        },
+        {
+          "name": "career_service[]",
+          "value": "barangay"
+        },
+        {
+          "name": "career_service[]",
+          "value": "driverLicense"
+        },
+        {
+          "name": "rating[]",
+          "value": "1st"
+        },
+        {
+          "name": "rating[]",
+          "value": "2nd"
+        },
+        {
+          "name": "examination_date[]",
+          "value": "10/10/2010"
+        },
+        {
+          "name": "examination_date[]",
+          "value": "11/11/2011"
+        },
+        {
+          "name": "place_examination[]",
+          "value": "Baguio"
+        },
+        {
+          "name": "place_examination[]",
+          "value": "LaTrinidad"
+        },
+        {
+          "name": "license_number[]",
+          "value": "1234567890"
+        },
+        {
+          "name": "license_number[]",
+          "value": "0987654321"
+        },
+        {
+          "name": "date_validity[]",
+          "value": "12/12/2050"
+        },
+        {
+          "name": "date_validity[]",
+          "value": "12/12/2060"
+        },
+        {
+          "name": "personal_data_sheet_id",
+          "value": "1"
+        },
+        {
+          "name": "position_title[]",
+          "value": "Supervisor"
+        },
+        {
+          "name": "position_title[]",
+          "value": "Supervisor2"
+        },
+        {
+          "name": "department[]",
+          "value": "PGO"
+        },
+        {
+          "name": "department[]",
+          "value": "BENRO"
+        },
+        {
+          "name": "monthly_salary[]",
+          "value": "20000"
+        },
+        {
+          "name": "monthly_salary[]",
+          "value": "40000"
+        },
+        {
+          "name": "salary[]",
+          "value": "monthly"
+        },
+        {
+          "name": "salary[]",
+          "value": "fifteenDays"
+        },
+        {
+          "name": "status_appointment[]",
+          "value": "permanent"
+        },
+        {
+          "name": "status_appointment[]",
+          "value": "casual"
+        },
+        {
+          "name": "government_service[]",
+          "value": "yes"
+        },
+        {
+          "name": "government_service[]",
+          "value": "no"
+        },
+        {
+          "name": "inclusive_dates_from[]",
+          "value": "10/10/2010"
+        },
+        {
+          "name": "inclusive_dates_from[]",
+          "value": "10/10/2011"
+        },
+        {
+          "name": "inclusive_dates_to[]",
+          "value": "11/11/2020"
+        },
+        {
+          "name": "inclusive_dates_to[]",
+          "value": "11/11/2021"
+        },
+        {
+          "name": "personal_data_sheet_id",
+          "value": "1"
+        },
+        {
+          "name": "organization_address[]",
+          "value": "Bakun"
+        },
+        {
+          "name": "organization_address[]",
+          "value": "Buguias"
+        },
+        {
+          "name": "organization_name[]",
+          "value": "OrganizationName"
+        },
+        {
+          "name": "organization_name[]",
+          "value": "OrganizationName2"
+        },
+        {
+          "name": "position[]",
+          "value": "secretary"
+        },
+        {
+          "name": "position[]",
+          "value": "president"
+        },
+        {
+          "name": "number_hours[]",
+          "value": "200"
+        },
+        {
+          "name": "number_hours[]",
+          "value": "400"
+        },
+        {
+          "name": "vw_inclusive_dates_from[]",
+          "value": "11/11/2020"
+        },
+        {
+          "name": "vw_inclusive_dates_from[]",
+          "value": "10/10/2020"
+        },
+        {
+          "name": "vw_inclusive_dates_to",
+          "value": "11/11/2030"
+        },
+        {
+          "name": "vw_inclusive_dates_to",
+          "value": "10/10/2030"
+        },
+        {
+          "name": "personal_data_sheet_id",
+          "value": "1"
+        },
+        {
+          "name": "hours[]",
+          "value": "100"
+        },
+        {
+          "name": "hours[]",
+          "value": "200"
+        },
+        {
+          "name": "program_title[]",
+          "value": "traningProgram"
+        },
+        {
+          "name": "program_title[]",
+          "value": "traningProgram2"
+        },
+        {
+          "name": "type[]",
+          "value": "programing"
+        },
+        {
+          "name": "type[]",
+          "value": "hardware"
+        },
+        {
+          "name": "conducted_by[]",
+          "value": "Kenen1"
+        },
+        {
+          "name": "conducted_by[]",
+          "value": "Kenen2"
+        },
+        {
+          "name": "tp_inclusive_dates_from[]",
+          "value": "10/10/2020"
+        },
+        {
+          "name": "tp_inclusive_dates_from[]",
+          "value": "10/10/2021"
+        },
+        {
+          "name": "tp_inclusive_dates_to[]",
+          "value": "11/11/2030"
+        },
+        {
+          "name": "tp_inclusive_dates_to[]",
+          "value": "11/11/2031"
+        },
+        {
+          "name": "personal_data_sheet_id",
+          "value": "1"
+        },
+        {
+          "name": "special_skills[]",
+          "value": "Basketball"
+        },
+        {
+          "name": "special_skills[]",
+          "value": "Chess"
+        },
+        {
+          "name": "personal_data_sheet_id",
+          "value": "1"
+        },
+        {
+          "name": "recognition_title[]",
+          "value": "1st"
+        },
+        {
+          "name": "recognition_title[]",
+          "value": "2nd"
+        },
+        {
+          "name": "personal_data_sheet_id",
+          "value": "1"
+        },
+        {
+          "name": "membership_association[]",
+          "value": "SSG"
+        },
+        {
+          "name": "membership_association[]",
+          "value": "Assoc"
+          }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|Lh2v63JFLHs9jQ3GSAWOZ5tEG9AXWnRNl2TiA5zR"
+    },
+    "tests": []
+  },  
   {
     "_id": "ac7dddab-2397-4434-9927-29a61cbbb2ff",
     "colId": "97cdb4bf-4035-46bf-be5f-0bf3a2b63aa9",
@@ -1813,7 +2736,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "1|2xKv0SDLAKmHiWYrWlOOq2P7JL0ZEi9rPDIg2N3t"
+      "bearer": "1|Lh2v63JFLHs9jQ3GSAWOZ5tEG9AXWnRNl2TiA5zR"
     },
     "tests": []
   },

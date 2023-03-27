@@ -17,6 +17,7 @@ class PositionResource extends JsonResource
         return [
             "id" => (string)$this->id,
             "attributes" => [
+
                 //salary grade
                 "number" => (string)$this->belongsToSalaryGrade->number,
                 "amount" => (string)$this->belongsToSalaryGrade->amount,
@@ -33,7 +34,7 @@ class PositionResource extends JsonResource
                 "eligibility" => (string)$this->hasManyQualificationStandard[0]->eligibility,
                 "competency" => (string)$this->hasManyQualificationStandard[0]->competency,
             ]
-
+    
         ];
     }
 }
