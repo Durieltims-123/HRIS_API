@@ -20,11 +20,11 @@ class Plantilla extends Model
     }
     public function belongsToPosition ():BelongsTo
     {
-        return $this->belongsTo(Position::class);
+        return $this->belongsTo(Position::class, 'position_id');
     }
     public function hasManyPositionDescription (): HasMany
     {
-        return $this->hasMany(PositionDescription::class);
+        return $this->hasMany(PositionDescription::class, 'plantilla_id');
     }
     public function hasOneVacancy (): HasOne
     {

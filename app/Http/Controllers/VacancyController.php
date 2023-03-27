@@ -2,16 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Office;
 use App\Models\Vacancy;
-use App\Models\Position;
-use App\Models\Plantilla;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 use App\Http\Resources\VacancyResource;
 use App\Http\Requests\StoreVacancyRequest;
-use App\Models\Department;
-use App\Models\PositionDescription;
 
 class VacancyController extends Controller
 {
@@ -24,8 +19,17 @@ class VacancyController extends Controller
 
         //Position, QS, Plantilla, Department, Vacancy 
 
+        // return VacancyResource::collection(
+        //     Vacancy::with(['belongsToPlantilla.belongsToPosition'])->get()
+        // );
+
         return VacancyResource::collection(
-            Vacancy::with(['belongsToPlantilla'])->get()
+            Vacancy::with([
+                'belongsToPlantilla.belongsToPosition',
+                
+                //  'belongsToPlantilla.belongsToPosition.belongsToSalaryGrade',
+                // 'belongsToPlantilla.belongsToPosition.hasManyQualificationStandard',
+            ])->get()
         );
     }
 
@@ -40,7 +44,6 @@ class VacancyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    //Vacancy Plantilla and Position Description create at the same time
     public function store(StoreVacancyRequest $request)
     {
 
@@ -64,7 +67,6 @@ class VacancyController extends Controller
             'status' => $request->status
         ]);
 
-
         // return message
         return $this->success('', 'Successfull Saved', 200);
     }
@@ -72,9 +74,9 @@ class VacancyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Vacancy $vacancy)
     {
-        //
+        return (new VacancyResource($vacancy->loadMissing(['belongsToPlantilla.belongsToPosition'])));
     }
 
     /**
@@ -98,7 +100,6 @@ class VacancyController extends Controller
         $vacancy->date_approved = Date('Y-m-d', strtotime($request->date_approved));
         $vacancy->status = $request->status;
        
-
         $vacancy->save();
 
         return new VacancyResource($vacancy);

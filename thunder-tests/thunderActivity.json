@@ -1878,5 +1878,33 @@
       "bearer": "1|l5IC27mYC8d1a4s7BVoLxIgdvyPqxiBbneUvSqxX"
     },
     "tests": []
+  },
+  {
+    "_id": "5c8ed674-7b08-4a9e-9027-bda6bd62a4eb",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/vacancy/1",
+    "url": "http://127.0.0.1:8000/api/vacancy/1",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-03-27T06:21:48.140Z",
+    "modified": "2023-03-27T06:21:48.140Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "3b043e68-a02c-4b78-b8ff-446663fa19f2",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/publication",
+    "url": "http://127.0.0.1:8000/api/publication",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-03-27T06:46:19.398Z",
+    "modified": "2023-03-27T06:46:19.398Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]

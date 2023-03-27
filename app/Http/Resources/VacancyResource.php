@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Plantilla;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -15,8 +14,8 @@ class VacancyResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $plantilla = $this->whenLoaded('belongsToPlantilla');
-
+        // $plantilla = $this->whenLoaded('belongsToPlantilla');
+        // $position = $this->whenLoaded('belongsToPosition');
         return [
             "id" => (string)$this->id,
             "attributes"=>[
@@ -26,10 +25,11 @@ class VacancyResource extends JsonResource
                 "status" => (string)$this->status,
 
                 // "item_number" => (string)$this->belongsToPlantilla->item_number,
-                
-            ],
-            "plantilla" => new PlantillaResource($plantilla),
 
+            ],
+            "plantilla" => new PlantillaResource($this->belongsToPlantilla),
+            // "position" => new PositionResource($position),
+            // "position_description" => new PlantillaResource($plantilla),
             
         ];
     }

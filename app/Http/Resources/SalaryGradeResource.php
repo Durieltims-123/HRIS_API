@@ -14,12 +14,14 @@ class SalaryGradeResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $position =  $this->whenLoaded('hasManyPosition');
         return [
             "id" => (string)$this->id,
             "attributes"=>[
                 "number" => (string)$this->number,
                 "amount" => (string)$this->amount,
-            ]
+            ],
+            "positions" => new PositionResource($position),
             
         ];
     }
