@@ -19,7 +19,8 @@ class Publication extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillables = [
+    protected $fillable = [
+        'vacancy_id',
         'opening_date',
         'closing_date'
     ];

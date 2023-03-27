@@ -13,6 +13,7 @@ use App\Http\Controllers\PlantillaController;
 use App\Http\Controllers\PsbMemberController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\SalaryGradeController;
 use App\Http\Controllers\PersonalDataSheetController;
 use App\Http\Controllers\PositionDescriptionController;
@@ -50,8 +51,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/psb-member', PsbMemberController::class);
     Route::resource('/assessment', AssessmentController::class);
     Route::resource('/vacancy', VacancyController::class);
+    Route::post('/search-closing-date', [PublicationController::class, 'searchClosingDate']);
     Route::resource('/plantilla', PlantillaController::class);
     Route::resource('/department', DepartmentController::class);
+    Route::resource('/publication', PublicationController::class);
    
 
 });
