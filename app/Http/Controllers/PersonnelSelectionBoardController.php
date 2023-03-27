@@ -153,6 +153,7 @@ class PersonnelSelectionBoardController extends Controller
                 ]);
             }
         }
+        
         // Delete members
         $delete = PsbMember::where('personnel_selection_board_id', $personnelSelectionBoard->id)
             ->whereNotIn('member_name', $names)

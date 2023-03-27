@@ -21,7 +21,7 @@ class PositionController extends Controller
      */
     public function index()
     {
-        //  dd( Position::with ('hasManyQualificationStandard','belongsToSalaryGrade')->get());
+        //  dd( Position::with ('hasManyQualificationStandard')->get());
         // dd( Position::with ('belongsToSalaryGrade')->get());
         return PositionResource::collection(
             Position::with ('hasManyQualificationStandard','belongsToSalaryGrade')->get()
@@ -102,23 +102,37 @@ class PositionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StorePositionRequest $positionRequest, Position $position)
+    public function update(StorePositionRequest $request, Position $position, QualificationStandard $qualificationStandard)
     {
     
-            // // dd($qualificationStandard);
-            //     $position->title = $positionRequest->title;
-            //     $position->salary_grade_id = $positionRequest->salary_grade_id;
+        // // $positionId =  Position::where('title', $request->position_title)->pluck('id')->first();
+        //     //     $position->title = $positionRequest->title;
+        //     //     $position->salary_grade_id = $positionRequest->salary_grade_id;
 
-            //     // $position->position_id = $positionRequest->position_id;
-            //     $position->education = $positionRequest->education;
-            //     $position->training = $positionRequest->training;
-            //     $position->experience = $positionRequest->experience;
-            //     $position->eligibility = $positionRequest->eligibility;
-            //     $position->competency = $positionRequest->competency;
-            //     $position->save();
-        
+        //     //     // $position->position_id = $positionRequest->position_id;
+        //     //     $position->education = $positionRequest->education;
+        //     //     $position->training = $positionRequest->training;
+        //     //     $position->experience = $positionRequest->experience;
+        //     //     $position->eligibility = $positionRequest->eligibility;
+        //     //     $position->competency = $positionRequest->competency;
+        //     $position->title = $request->title;
+        //     // $positionId =  Position::where('title', $request->position_title)->pluck('id')->first();
 
-            //     return new PositionResource($position);
+        //     // $qualificationStandard = QualificationStandard::where('id', $positionId)->first();
+
+            
+        //     // $position->position_id = $positionId;
+
+        //     $position->education = $request->education;
+        //     $position->training = $request->training;
+        //     $position->experience = $request->experience;
+        //     $position->eligibility = $request->eligibility;
+        //     $position->competency = $request->competency   ;
+
+        //     $position->save();
+        //     // $qualificationStandard->save();
+
+        //     return new PositionResource($position);
 
      }
 

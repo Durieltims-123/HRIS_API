@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('special_skill_hobbies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pds_id')->constrained('personal_data_sheets');
+            // $table->foreignId('personal_data_sheet_id')->constrained('personal_data_sheets');
+            $table->foreignId('personal_data_sheet_id')->constrained()->onDelete('cascade');
             $table->string('special_skills');
             $table->timestamps();
 

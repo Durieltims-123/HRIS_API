@@ -28,6 +28,7 @@ class StorePositionRequest extends FormRequest
             // 'position_id' =>['required'],
 
             //qualification standard
+        
             'education' => ['required', 'string', 'max:255'],
             'training' => ['required', 'string', 'max:255'],
             'experience' => ['required', 'string', 'max:255'],

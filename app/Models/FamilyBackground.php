@@ -4,11 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class FamilyBackground extends Model
 {
     use HasFactory;
+    public function belongsToPersonalDataSheet ():BelongsTo
+    {
+        return $this->belongsTo(PersonalDataSheet::class);
+    }
 
     public function hasManyChildrenInformation (): HasMany
     {
@@ -18,7 +23,7 @@ class FamilyBackground extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'pds_id',
+        'personal_data_sheet_id',
         'spouse_surname',
         'spouse_first_name',
         'spouse_middle_name',

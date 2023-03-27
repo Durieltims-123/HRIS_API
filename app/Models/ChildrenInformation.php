@@ -14,11 +14,15 @@ class ChildrenInformation extends Model
     {
         return $this->belongsTo(FamilyBackground::class);
     }
+    public function belongsToPersonalDataSheet ():BelongsTo
+    {
+        return $this->belongsTo(PersonalDataSheet::class);
+    }
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        // 'pds_id',
+        'personal_data_sheet_id',
         'family_background_id',
         'children_name',
         'children_birthdate'

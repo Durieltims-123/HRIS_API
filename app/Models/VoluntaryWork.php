@@ -12,11 +12,12 @@ class VoluntaryWork extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'personal_data_sheet_id',
         'organization_name',
         'organization_address',
         'position',
         'number_hours',
-        'inclusive_dates_from',
-        'inclusive_dates_to'
+        'vw_inclusive_dates_from',
+        'vw_inclusive_dates_to'
     ];
 }
