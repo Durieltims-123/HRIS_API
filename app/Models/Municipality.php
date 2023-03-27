@@ -23,6 +23,7 @@ class Municipality extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        // 'province_id',
         'permanent_municipality_name',
         'residential_municipality_name',
     ];

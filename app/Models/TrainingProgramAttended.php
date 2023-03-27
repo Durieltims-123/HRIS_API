@@ -12,11 +12,12 @@ class TrainingProgramAttended extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'personal_data_sheet_id',
         'program_title',
         'hours',
         'type',
         'conducted_by',
-        'inclusive_dates_from',
-        'inclusive_dates_to'
+        'tp_inclusive_dates_from',
+        'tp_inclusive_dates_to'
     ];
 }

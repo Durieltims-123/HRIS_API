@@ -87,7 +87,7 @@ class VacancyController extends Controller
             Vacancy::all()
         );
     }
-
+    
     /**
      * Update the specified resource in storage.
      */

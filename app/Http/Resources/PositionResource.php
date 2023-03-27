@@ -17,6 +17,7 @@ class PositionResource extends JsonResource
         return [
             "id" => (string)$this->id,
             "attributes" => [
+
                 //salary grade
                 // "number" => (string)$this->belongsToSalaryGrade->number,
                 // "amount" => (string)$this->belongsToSalaryGrade->amount,
@@ -39,6 +40,8 @@ class PositionResource extends JsonResource
                 // "competency" => (string)$this->hasManyQualificationStandard[0]->competency,
             ],
             // "plantilla" => new VacancyResource($this->whenLoaded('hasManyPlantilla')),
+            'salary_grade' => new SalaryGradeResource($this->whenLoaded('belongsToSalaryGrade')),
+            'qualification_standards' => QualificationStandardResource::collection($this->whenLoaded('hasManyQualificationStandard') ),
             
             
 

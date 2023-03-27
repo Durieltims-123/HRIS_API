@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('work_experiences', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pds_id')->constrained('personal_data_sheets');
+
+            // $table->foreignId('personal_data_sheet_id')->constrained('personal_data_sheets');
+            $table->foreignId('personal_data_sheet_id')->constrained()->onDelete('cascade');
+            // $table->foreignId('pds_id')->constrained();
             $table->string('position_title');
             $table->string('department');
             $table->string('monthly_salary');
@@ -23,8 +26,6 @@ return new class extends Migration
             $table->date('inclusive_dates_from');
             $table->date('inclusive_dates_to');
             $table->timestamps();
-
-            // $table->foreign('pds_id')->references('id')->on('personal_data_sheets');
         });
     }
 
