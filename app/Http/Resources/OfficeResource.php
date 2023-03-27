@@ -19,6 +19,7 @@ class OfficeResource extends JsonResource
             "attributes"=>[
                 "office_code" => (string)$this->office_code,
                 "office_name" => (string)$this->office_name,
+                "department" => new OfficeResource($this->whenLoaded('belongsToDepartment'))
             ]
             
         ];

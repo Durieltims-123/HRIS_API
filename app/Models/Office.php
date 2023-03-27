@@ -22,7 +22,7 @@ class Office extends Model
     }
     public function belongsToDepartment():BelongsTo
     {
-        return $this->belongsTo(Department::class);
+        return $this->belongsTo(Department::class, 'department_id');
     }
 
     protected $primaryKey = 'id';

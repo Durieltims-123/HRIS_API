@@ -32,7 +32,10 @@ class PositionResource extends JsonResource
                 "experience" => (string)$this->hasManyQualificationStandard[0]->experience,
                 "eligibility" => (string)$this->hasManyQualificationStandard[0]->eligibility,
                 "competency" => (string)$this->hasManyQualificationStandard[0]->competency,
-            ]
+            ],
+            // "plantilla" => new VacancyResource($this->whenLoaded('hasManyPlantilla')),
+            'salary_grade' => new SalaryGradeResource($this->whenLoaded('belongsToSalaryGrade')),
+            'qualification_standards' => QualificationStandardResource::collection($this->whenLoaded('hasManyQualificationStandard') ),
 
         ];
     }

@@ -12,7 +12,7 @@ class SalaryGrade extends Model{
 
     public function hasManyPosition (): HasMany
     {
-        return $this->hasMany(Position::class);
+        return $this->hasMany(Position::class, 'salary_grade_id');
     }
 
     protected $primaryKey = 'id';

@@ -1478,7 +1478,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-20T02:58:53.487Z",
-    "modified": "2023-03-24T04:26:58.279Z",
+    "modified": "2023-03-27T00:51:03.552Z",
     "headers": [],
     "params": [],
     "body": {
@@ -1487,7 +1487,7 @@
       "form": [
         {
           "name": "date_submitted",
-          "value": "2023-03-05"
+          "value": "2023-03-07"
         },
         {
           "name": "status",
@@ -1503,7 +1503,7 @@
         },
         {
           "name": "plantilla_id",
-          "value": "1"
+          "value": "4"
         }
       ]
     },
@@ -1618,7 +1618,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-23T07:17:46.573Z",
-    "modified": "2023-03-23T07:45:03.610Z",
+    "modified": "2023-03-27T00:49:44.385Z",
     "headers": [],
     "params": [],
     "body": {
@@ -1627,11 +1627,11 @@
       "form": [
         {
           "name": "office_id",
-          "value": "3"
+          "value": "2"
         },
         {
           "name": "position_id",
-          "value": "3"
+          "value": "2"
         },
         {
           "name": "item_number",
@@ -1639,7 +1639,7 @@
         },
         {
           "name": "place_of_assignment",
-          "value": "HR Office"
+          "value": "IT Office"
         },
         {
           "name": "year",
@@ -1649,7 +1649,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "1|2xKv0SDLAKmHiWYrWlOOq2P7JL0ZEi9rPDIg2N3t"
+      "bearer": "1|l5IC27mYC8d1a4s7BVoLxIgdvyPqxiBbneUvSqxX"
     },
     "tests": []
   },
@@ -1869,6 +1869,38 @@
       "type": "bearer",
       "bearer": "1|l5IC27mYC8d1a4s7BVoLxIgdvyPqxiBbneUvSqxX"
     },
+    "tests": []
+  },
+  {
+    "_id": "12ab7a57-709d-4124-a8b1-4a63c187fb3f",
+    "colId": "d9a7eabb-45ca-433d-a4c4-6cbb5f331775",
+    "containerId": "",
+    "name": "Show Vacancy",
+    "url": "http://127.0.0.1:8000/api/vacancy/1",
+    "method": "GET",
+    "sortNum": 50000,
+    "created": "2023-03-27T06:22:06.110Z",
+    "modified": "2023-03-27T06:22:49.122Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|l5IC27mYC8d1a4s7BVoLxIgdvyPqxiBbneUvSqxX"
+    },
+    "tests": []
+  },
+  {
+    "_id": "1ec41439-fa3d-4bcf-974a-bc8ac1bdbf10",
+    "colId": "66cf3448-de93-41cb-9414-6f382804cce9",
+    "containerId": "",
+    "name": "Add Publication",
+    "url": "http://127.0.0.1:8000/api/publication",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-27T06:46:33.279Z",
+    "modified": "2023-03-27T06:46:33.279Z",
+    "headers": [],
+    "params": [],
     "tests": []
   }
 ]
