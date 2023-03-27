@@ -26,9 +26,8 @@ class VacancyController extends Controller
         return VacancyResource::collection(
             Vacancy::with([
                 'belongsToPlantilla.belongsToPosition',
-                
-                //  'belongsToPlantilla.belongsToPosition.belongsToSalaryGrade',
-                // 'belongsToPlantilla.belongsToPosition.hasManyQualificationStandard',
+                 'belongsToPlantilla.belongsToPosition.belongsToSalaryGrade',
+                'belongsToPlantilla.belongsToPosition.hasManyQualificationStandard',
             ])->get()
         );
     }
