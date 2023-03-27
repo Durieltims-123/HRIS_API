@@ -8,14 +8,16 @@ use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\VacancyController;
 use App\Http\Controllers\HolidaysController;
 use App\Http\Controllers\PositionController;
+use App\Http\Controllers\ProvinceController;
+use App\Http\Controllers\PlantillaController;
 use App\Http\Controllers\PsbMemberController;
 use App\Http\Controllers\AssessmentController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\SalaryGradeController;
 use App\Http\Controllers\PersonalDataSheetController;
 use App\Http\Controllers\PositionDescriptionController;
 use App\Http\Controllers\QualificationStandardController;
 use App\Http\Controllers\PersonnelSelectionBoardController;
-use App\Http\Controllers\ProvinceController;
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -35,6 +37,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 //alfy
     Route::resource('/salary-grade', SalaryGradeController::class);
     Route::resource('/position', PositionController::class);
+    Route::post('/search-position', [PositionController::class, 'search']);
+    Route::post('/search-office', [OfficeController::class, 'search']);
     Route::resource('/office', OfficeController::class);
     Route::resource('/position-description', PositionDescriptionController::class);
     Route::resource('/qualification-standard', QualificationStandardController::class);
@@ -46,7 +50,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/psb-member', PsbMemberController::class);
     Route::resource('/assessment', AssessmentController::class);
     Route::resource('/vacancy', VacancyController::class);
-
+    Route::resource('/plantilla', PlantillaController::class);
+    Route::resource('/department', DepartmentController::class);
    
 
 });

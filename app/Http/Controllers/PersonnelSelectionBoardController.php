@@ -63,14 +63,14 @@ class PersonnelSelectionBoardController extends Controller
         ]);
 
         
-        $id = $psbRequest->input('employee_id');
-        $name = $psbRequest->input('member_name');
-        $position = $psbRequest->input('member_position');
-        
+        $ids = $psbRequest->input('employee_id');
+        $names = $psbRequest->input('member_name');
+        $positions = $psbRequest->input('member_position');
+       
         //to convert to array
-        $names = (explode(",", $name));
-        $positions = (explode(",", $position));
-        $ids = (explode(",", $id));
+        // $names = (explode(",", $name));
+        // $positions = (explode(",", $position));
+        // $ids = (explode(",", $id));
         
 
         foreach ($names as $i => $name) {
@@ -121,14 +121,12 @@ class PersonnelSelectionBoardController extends Controller
         $personnelSelectionBoard->position = $psbRequest->position;
         $personnelSelectionBoard->status = $psbRequest->status;
 
-        $id = $psbRequest->input('employee_id');
-        $name = $psbRequest->input('member_name');
-        $position = $psbRequest->input('member_position');
+        $ids = $psbRequest->input('employee_id');
+        $names = $psbRequest->input('member_name');
+        $positions = $psbRequest->input('member_position');
 
         // Turns the name position and id of psb member to Array
-        $names = (explode(",", $name));
-        $positions = (explode(",", $position));
-        $ids = (explode(",", $id));
+        
 
 
         foreach ($names as $i => $name) 

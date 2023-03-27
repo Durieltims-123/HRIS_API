@@ -21,10 +21,9 @@ class PositionController extends Controller
      */
     public function index()
     {
-        //  dd( Position::with ('hasManyQualificationStandard')->get());
-        // dd( Position::with ('belongsToSalaryGrade')->get());
+
         return PositionResource::collection(
-            Position::with ('hasManyQualificationStandard','belongsToSalaryGrade')->get()
+            Position::with('hasManyQualificationStandard','belongsToSalaryGrade')->get()
         );
        
     }
@@ -147,5 +146,21 @@ class PositionController extends Controller
     //    $qualificationStandard->delete();
         return $this->success('', 'Successfull Deleted', 200);
     
+    }
+
+    public function search(Request $request){
+       
+        // dd(Position::where('title', 'like', '%'.$request->keyword.'%')
+        // ->with(['hasManyQualificationStandard','belongsToSalaryGrade'])
+        // ->limit(10)
+        // ->get());
+        return PositionResource::collection(
+            Position::where('title', 'like', '%'.$request->keyword.'%')
+            ->with(['hasManyQualificationStandard','belongsToSalaryGrade'])
+            ->limit(10)
+            ->get()
+        );
+       
+
     }
 }

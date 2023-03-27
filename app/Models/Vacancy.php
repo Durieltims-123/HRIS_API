@@ -11,9 +11,10 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Vacancy extends Model
 {
     use HasFactory;
+
     public function belongsToPlantilla (): BelongsTo
     {
-        return $this->belongsTo(Plantilla::class);
+        return $this->belongsTo(Plantilla::class, 'plantilla_id');
     }
     public function hasManyPublication (): HasMany
     {
@@ -24,17 +25,17 @@ class Vacancy extends Model
     
 
     protected $fillable = [
-        'position_title',
-        'job_description',
-        'plantilla_item_number',
-        'status',
-        'plantilla_id',
+
         'date_submitted',
-        'office_name',
         'date_queued',
         'date_approved',
-        'office_code',
-        'place_of_assignment',
         'status',
+        'plantilla_id',
+
+        'office_id',
+        'position_id',
+        'item_number',
+        'place_of_assignment',
+        'year'
     ];
 }

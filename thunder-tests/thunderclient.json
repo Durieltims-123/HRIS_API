@@ -76,7 +76,7 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2023-03-10T00:40:34.110Z",
-    "modified": "2023-03-15T03:42:31.538Z",
+    "modified": "2023-03-21T03:00:26.761Z",
     "headers": [],
     "params": [],
     "body": {
@@ -85,7 +85,7 @@
       "form": [
         {
           "name": "email",
-          "value": "fongafong.alfigy@gmail.com"
+          "value": "admin@gmail.com"
         },
         {
           "name": "password",
@@ -641,7 +641,7 @@
       "form": [
         {
           "name": "start_date",
-          "value": "2023-02-11"
+          "value": "2023-02-13"
         },
         {
           "name": "end_date",
@@ -660,16 +660,28 @@
           "value": "Active"
         },
         {
-          "name": "member_name",
-          "value": "brawny,sett,awaw"
+          "name": "member_name[]",
+          "value": "brawny"
         },
         {
-          "name": "member_position",
-          "value": "admin, vice president,tuan"
+          "name": "member_position[]",
+          "value": "admin"
         },
         {
-          "name": "employee_id",
-          "value": "5,6,7"
+          "name": "employee_id[]",
+          "value": "5"
+        },
+        {
+          "name": "member_name[]",
+          "value": "sett"
+        },
+        {
+          "name": "member_position[]",
+          "value": "vice president"
+        },
+        {
+          "name": "employee_id[]",
+          "value": "6"
         }
       ]
     },
@@ -741,7 +753,7 @@
         },
         {
           "name": "chairman",
-          "value": "Browny"
+          "value": "Tankie blue"
         },
         {
           "name": "position",
@@ -752,16 +764,28 @@
           "value": "Active"
         },
         {
-          "name": "member_name",
-          "value": "alfy, Maria, Jose"
+          "name": "member_name[]",
+          "value": "alfy"
         },
         {
-          "name": "member_position",
-          "value": "admin,security,admin"
+          "name": "member_position[]",
+          "value": "admin"
         },
         {
-          "name": "employee_id",
-          "value": "10,11,12"
+          "name": "employee_id[]",
+          "value": "10"
+        },
+        {
+          "name": "member_name[]",
+          "value": "maria"
+        },
+        {
+          "name": "member_position[]",
+          "value": "security"
+        },
+        {
+          "name": "employee_id[]",
+          "value": "11 "
         }
       ]
     },
@@ -1291,7 +1315,7 @@
           "name": "monthly_salary[]",
           "value": "40000"
         },
-        {
+         {
           "name": "salary[]",
           "value": "monthly"
         },
@@ -1475,7 +1499,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "1|Lh2v63JFLHs9jQ3GSAWOZ5tEG9AXWnRNl2TiA5zR"
+      "bearer": "1|ZqkE2cf8vKP5SQPVyhZwFG4lFZm0GVrgDET0JJ77"
     },
     "tests": []
   },
@@ -1706,44 +1730,200 @@
       "raw": "",
       "form": [
         {
-          "name": "position_title",
-          "value": "maga"
-        },
-        {
-          "name": "job_description",
-          "value": "asdf"
-        },
-        {
-          "name": "plantilla_item_number",
-          "value": "123"
+          "name": "date_submitted",
+          "value": "2023-03-05"
         },
         {
           "name": "status",
           "value": "Pending"
         },
         {
-          "name": "date_submitted",
-          "value": "2023-02-02"
-        },
-        {
-          "name": "office_name",
-          "value": "IT Office"
-        },
-        {
           "name": "date_queued",
-          "value": "2023-02-02"
+          "value": ""
         },
         {
           "name": "date_approved",
-          "value": "2023-02-02"
+          "value": ""
         },
         {
-          "name": "office_code",
-          "value": "123"
+          "name": "plantilla_id",
+          "value": "1"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|l5IC27mYC8d1a4s7BVoLxIgdvyPqxiBbneUvSqxX"
+    },
+    "tests": []
+  },
+  {
+    "_id": "cdfe91e7-8c99-4165-b253-411205a054c8",
+    "colId": "d9a7eabb-45ca-433d-a4c4-6cbb5f331775",
+    "containerId": "",
+    "name": "Update Vacancy",
+    "url": "http://127.0.0.1:8000/api/vacancy/1",
+    "method": "PATCH",
+    "sortNum": 20000,
+    "created": "2023-03-20T06:45:37.728Z",
+    "modified": "2023-03-23T07:59:22.934Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "date_submitted",
+          "value": "2023-03-07"
+        },
+        {
+          "name": "status",
+          "value": "Pending"
+        },
+        {
+          "name": "date_queued",
+          "value": ""
+        },
+        {
+          "name": "date_approved",
+          "value": ""
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|2xKv0SDLAKmHiWYrWlOOq2P7JL0ZEi9rPDIg2N3t"
+    },
+    "tests": []
+  },
+  {
+    "_id": "59de27fa-694b-4946-8e14-3711589211ac",
+    "colId": "34261b3d-5f99-4369-8af2-e71585f03775",
+    "containerId": "",
+    "name": "Search Office",
+    "url": "http://127.0.0.1:8000/api/search-office",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-22T07:16:59.283Z",
+    "modified": "2023-03-22T07:16:59.283Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "keyword",
+          "value": "3"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "2|agTZjgOvOvKkuaUhhossRONsSSYlB2GcodeAXQXW"
+    },
+    "tests": []
+  },
+  {
+    "_id": "b89e64c8-e2a1-4758-83e8-7003df5f8f29",
+    "colId": "34261b3d-5f99-4369-8af2-e71585f03775",
+    "containerId": "",
+    "name": "Search Position",
+    "url": "http://127.0.0.1:8000/api/search-position",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2023-03-22T07:17:14.185Z",
+    "modified": "2023-03-22T08:18:07.184Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "keyword",
+          "value": "q"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "2|VrF93FTm7sHwTV7CcTXl3yly9lz62L9D7fsVxzJC"
+    },
+    "tests": []
+  },
+  {
+    "_id": "a1e6f98a-4d61-410e-bb71-92d877ead361",
+    "colId": "24751377-77f2-486c-bc16-f3219ce6304e",
+    "containerId": "",
+    "name": "Add Plantilla",
+    "url": "http://127.0.0.1:8000/api/plantilla",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-23T07:17:46.573Z",
+    "modified": "2023-03-23T07:45:03.610Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "office_id",
+          "value": "3"
+        },
+        {
+          "name": "position_id",
+          "value": "3"
+        },
+        {
+          "name": "item_number",
+          "value": "47468"
         },
         {
           "name": "place_of_assignment",
-          "value": "asdf"
+          "value": "HR Office"
+        },
+        {
+          "name": "year",
+          "value": "2023"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|2xKv0SDLAKmHiWYrWlOOq2P7JL0ZEi9rPDIg2N3t"
+    },
+    "tests": []
+  },
+  {
+    "_id": "784883a4-493c-445d-b740-fe9391240eb1",
+    "colId": "24751377-77f2-486c-bc16-f3219ce6304e",
+    "containerId": "",
+    "name": "Update Plantilla",
+    "url": "http://127.0.0.1:8000/api/plantilla/3",
+    "method": "PATCH",
+    "sortNum": 20000,
+    "created": "2023-03-23T07:30:01.179Z",
+    "modified": "2023-03-23T07:50:35.101Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "item_number",
+          "value": "0000"
+        },
+        {
+          "name": "place_of_assignment",
+          "value": "EditedPlace"
+        },
+        {
+          "name": "year",
+          "value": "2024"
         }
       ]
     },
@@ -1871,6 +2051,87 @@
     },
     "tests": []
   },
+  {
+    "_id": "56ae5ab1-5ca6-48a2-acaf-9aa559b20357",
+    "colId": "24751377-77f2-486c-bc16-f3219ce6304e",
+    "containerId": "",
+    "name": "Delete Plantilla",
+    "url": "http://127.0.0.1:8000/api/plantilla/3",
+    "method": "DELETE",
+    "sortNum": 30000,
+    "created": "2023-03-23T07:52:14.007Z",
+    "modified": "2023-03-23T07:52:14.007Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "7c2e8867-cd62-422d-b34b-c364e1563d12",
+    "colId": "d9a7eabb-45ca-433d-a4c4-6cbb5f331775",
+    "containerId": "",
+    "name": "Delete Vacancy",
+    "url": "http://127.0.0.1:8000/api/vacancy/1",
+    "method": "DELETE",
+    "sortNum": 30000,
+    "created": "2023-03-23T08:00:48.670Z",
+    "modified": "2023-03-23T08:01:13.974Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "6|GPgTSQQ23tXneG1rI0t4ED5FDGucgDKfUlUwp1zS"
+    },
+    "tests": []
+  },
+  {
+    "_id": "ad31f3f4-def8-4614-8692-f048692dc82b",
+    "colId": "97cdb4bf-4035-46bf-be5f-0bf3a2b63aa9",
+    "containerId": "",
+    "name": "Add Department",
+    "url": "http://127.0.0.1:8000/api/department",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-23T08:03:29.638Z",
+    "modified": "2023-03-24T01:08:23.341Z",
+     "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "department_code",
+          "value": "0869"
+        },
+        {
+          "name": "department_name",
+          "value": "PPP"
+        },
+        {
+          "name": "office_code[]",
+          "value": "7686"
+        },
+        {
+          "name": "office_name[]",
+          "value": "Development Office"
+        },
+        {
+          "name": "office_code[]",
+          "value": "0449"
+        },
+        {
+          "name": "office_name[]",
+          "value": "Luosj Office"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|l5IC27mYC8d1a4s7BVoLxIgdvyPqxiBbneUvSqxX"
+    },
+    "tests": []
+  },
+   
   {
     "_id": "e44096b6-27ed-4328-b334-8ee1bd83a90d",
     "colId": "8a686a09-4f64-4b37-90e4-08dd4673be85",
@@ -2422,12 +2683,114 @@
         {
           "name": "membership_association[]",
           "value": "Assoc"
+          }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|Lh2v63JFLHs9jQ3GSAWOZ5tEG9AXWnRNl2TiA5zR"
+    },
+    "tests": []
+  },  
+  {
+    "_id": "ac7dddab-2397-4434-9927-29a61cbbb2ff",
+    "colId": "97cdb4bf-4035-46bf-be5f-0bf3a2b63aa9",
+    "containerId": "",
+    "name": "Update Department",
+    "url": "http://127.0.0.1:8000/api/department/1",
+    "method": "PATCH",
+    "sortNum": 20000,
+    "created": "2023-03-23T08:47:24.722Z",
+    "modified": "2023-03-24T00:47:47.607Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "department_code",
+          "value": "0001"
+        },
+        {
+          "name": "department_name",
+          "value": "EditedDept"
+        },
+        {
+          "name": "office_code[]",
+          "value": "9999"
+        },
+        {
+          "name": "office_name[]",
+          "value": "EditedOffOne"
+        },
+        {
+          "name": "office_code[]",
+          "value": "8888"
+        },
+        {
+          "name": "office_name[]",
+          "value": "EditedOffTwo"
         }
       ]
     },
     "auth": {
       "type": "bearer",
       "bearer": "1|Lh2v63JFLHs9jQ3GSAWOZ5tEG9AXWnRNl2TiA5zR"
+    },
+    "tests": []
+  },
+  {
+    "_id": "ea30cb0b-a889-494a-aa74-091e82549e8d",
+    "colId": "97cdb4bf-4035-46bf-be5f-0bf3a2b63aa9",
+    "containerId": "",
+    "name": "Delete Department",
+    "url": "http://127.0.0.1:8000/api/department/4",
+    "method": "DELETE",
+    "sortNum": 30000,
+    "created": "2023-03-24T01:10:30.028Z",
+    "modified": "2023-03-24T01:10:30.028Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|l5IC27mYC8d1a4s7BVoLxIgdvyPqxiBbneUvSqxX"
+    },
+    "tests": []
+  },
+  {
+    "_id": "770a3690-f86e-4726-9c46-292e9c8d00a4",
+    "colId": "24751377-77f2-486c-bc16-f3219ce6304e",
+    "containerId": "",
+    "name": "Index Plantilla",
+    "url": "http://127.0.0.1:8000/api/plantilla",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2023-03-24T01:18:27.150Z",
+    "modified": "2023-03-24T01:18:27.150Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|l5IC27mYC8d1a4s7BVoLxIgdvyPqxiBbneUvSqxX"
+    },
+    "tests": []
+  },
+  {
+    "_id": "a5caf8e5-ff7c-4df2-9a8e-5cc2fcc3dced",
+    "colId": "d9a7eabb-45ca-433d-a4c4-6cbb5f331775",
+    "containerId": "",
+    "name": "Index Vacancy",
+    "url": "http://127.0.0.1:8000/api/vacancy",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2023-03-24T01:20:01.544Z",
+    "modified": "2023-03-24T01:20:01.544Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|l5IC27mYC8d1a4s7BVoLxIgdvyPqxiBbneUvSqxX"
     },
     "tests": []
   }

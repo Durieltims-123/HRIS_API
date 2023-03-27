@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreVacancyRequest extends FormRequest
+class StoreDepartmentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,11 +22,10 @@ class StoreVacancyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'plantilla_id' => ['required'],
-            'date_submitted' => ['required', 'date'],
-            'date_queued' => ['nullable','date'],
-            'date_approved' => ['nullable','date'],
-            'status' => ['required', 'string', 'max:255'],
+            'department_code' => ['required','string', 'max:255'],
+            'department_name' => ['required','string', 'max:255'],
+            'office_code' => ['required', 'max:255'],
+            'office_name' => ['required', 'max:255'],
         ];
     }
 }

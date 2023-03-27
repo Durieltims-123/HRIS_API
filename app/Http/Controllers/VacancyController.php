@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 use App\Http\Resources\VacancyResource;
 use App\Http\Requests\StoreVacancyRequest;
+use App\Models\Department;
 use App\Models\PositionDescription;
 
 class VacancyController extends Controller
@@ -20,8 +21,11 @@ class VacancyController extends Controller
      */
     public function index()
     {
+
+        //Position, QS, Plantilla, Department, Vacancy 
+
         return VacancyResource::collection(
-            Vacancy::all()
+            Vacancy::with(['belongsToPlantilla'])->get()
         );
     }
 
@@ -36,42 +40,24 @@ class VacancyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    //Vacancy Plantilla and Position Description create at the same time
     public function store(StoreVacancyRequest $request)
     {
-        // dd($request->date_approved);
 
         $request->validated($request->all());
 
-        $positionId =  Position::where('title', $request->position_title)->pluck('id')->first();
-       
-        $office = Office::create([
-            'office_code' => $request->office_code,
-            'office_name' => $request->office_name
-        ]);
-
-        $plantilla = Plantilla::create([
-            'office_id' => $office->id,
-            'position_id' => $positionId,
-            'place_of_assignment' => $request->place_of_assignment,
-        ]); 
-
-        PositionDescription::create([
-            'description' => $request->job_description,
-        ]);
-
-
-        // $vacancyExist = Vacancy::where([
-        //     ['date_submitted', Date('Y-m-d', strtotime($request->date_submitted))],
-        //     ['date_queued', Date('Y-m-d', strtotime($request->date_queued))],
-        //     ['date_approved', Date('Y-m-d', strtotime($request->date_approved))],
-        //     ['status', $request->status]
-        //     ])->exists();
-        // if ($vacancyExist) {
-        //     return $this->error('', 'Duplicate Entry', 400);
-        // }
-            
+        $vacancyExist = Vacancy::where([
+            ['date_submitted', Date('Y-m-d', strtotime($request->date_submitted))],
+            ['date_queued', Date('Y-m-d', strtotime($request->date_queued))],
+            ['date_approved', Date('Y-m-d', strtotime($request->date_approved))],
+            ['status', $request->status]
+            ])->exists();
+        if ($vacancyExist) {
+            return $this->error('', 'Duplicate Entry', 400);
+        }
+        
         Vacancy::create([
-            'plantilla_id' => $plantilla->id,
+            'plantilla_id' => $request->plantilla_id,
             'date_submitted' => Date('Y-m-d', strtotime($request->date_submitted)),
             'date_queued' => Date('Y-m-d', strtotime($request->date_queued)),
             'date_approved' => Date('Y-m-d', strtotime($request->date_approved)),
@@ -96,32 +82,23 @@ class VacancyController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return VacancyResource::collection(
+            Vacancy::all()
+        );
     }
     
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreVacancyRequest $request, Vacancy $vacancy, Office $office, Plantilla $plantilla)
+    public function update(Request $request, Vacancy $vacancy)
     {
-
-        $positionId =  Position::where('title', $request->position_title)->pluck('id')->first();
-        
-        $office = Office::where('id', $positionId)->first();
-        $office->office_code = $request->office_code;
-        $office->office_name = $request->office_name;
-
-        $plantilla->office_id = $office->id;
-        $plantilla->position_id = $positionId;
-        $plantilla->place_of_assignment = $request->place_of_assignment;
-
+  
         $vacancy->date_submitted = Date('Y-m-d', strtotime($request->date_submitted));
         $vacancy->date_queued = Date('Y-m-d', strtotime($request->date_queued));
         $vacancy->date_approved = Date('Y-m-d', strtotime($request->date_approved));
         $vacancy->status = $request->status;
+       
 
-        $plantilla->save();
-        $office->save();
         $vacancy->save();
 
         return new VacancyResource($vacancy);
