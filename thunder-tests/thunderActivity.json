@@ -1880,6 +1880,20 @@
     "tests": []
   },
   {
+    "_id": "fa48acbb-4248-471d-a45b-786fb79e26b9",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/personal-data-sheet/2",
+    "url": "http://127.0.0.1:8000/api/personal-data-sheet/2",
+    "method": "DELETE",
+    "sortNum": 0,
+    "created": "2023-03-27T06:28:07.150Z",
+    "modified": "2023-03-27T06:28:07.150Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
     "_id": "5c8ed674-7b08-4a9e-9027-bda6bd62a4eb",
     "colId": "history",
     "containerId": "",
