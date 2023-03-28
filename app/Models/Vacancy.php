@@ -18,7 +18,7 @@ class Vacancy extends Model
     }
     public function hasManyPublication (): HasMany
     {
-        return $this->hasMany(Publication::class);
+        return $this->hasMany(Publication::class, 'vacancy_id');
     }
 
     protected $primaryKey = 'id';

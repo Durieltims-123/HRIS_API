@@ -19,7 +19,7 @@ use App\Http\Controllers\PersonalDataSheetController;
 use App\Http\Controllers\PositionDescriptionController;
 use App\Http\Controllers\QualificationStandardController;
 use App\Http\Controllers\PersonnelSelectionBoardController;
-
+use App\Models\Vacancy;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -51,6 +51,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/psb-member', PsbMemberController::class);
     Route::resource('/assessment', AssessmentController::class);
     Route::resource('/vacancy', VacancyController::class);
+    Route::get('/vacancy-queue/{vacancy}', [VacancyController::class, 'vacancyQueue']);
+    Route::get('/vacancy-all-approved', [VacancyController::class, 'allApproved']);
+    Route::get('/vacancy-all-queued', [VacancyController::class, 'allQueued']);
+    
     Route::post('/search-closing-date', [PublicationController::class, 'searchClosingDate']);
     Route::resource('/plantilla', PlantillaController::class);
     Route::resource('/department', DepartmentController::class);

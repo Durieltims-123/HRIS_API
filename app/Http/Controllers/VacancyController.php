@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
@@ -26,7 +27,7 @@ class VacancyController extends Controller
         return VacancyResource::collection(
             Vacancy::with([
                 'belongsToPlantilla.belongsToPosition',
-                 'belongsToPlantilla.belongsToPosition.belongsToSalaryGrade',
+                'belongsToPlantilla.belongsToPosition.belongsToSalaryGrade',
                 'belongsToPlantilla.belongsToPosition.hasManyQualificationStandard',
             ])->get()
         );
@@ -53,11 +54,11 @@ class VacancyController extends Controller
             ['date_queued', Date('Y-m-d', strtotime($request->date_queued))],
             ['date_approved', Date('Y-m-d', strtotime($request->date_approved))],
             ['status', $request->status]
-            ])->exists();
+        ])->exists();
         if ($vacancyExist) {
             return $this->error('', 'Duplicate Entry', 400);
         }
-        
+
         Vacancy::create([
             'plantilla_id' => $request->plantilla_id,
             'date_submitted' => Date('Y-m-d', strtotime($request->date_submitted)),
@@ -87,18 +88,18 @@ class VacancyController extends Controller
             Vacancy::all()
         );
     }
-    
+
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Vacancy $vacancy)
     {
-  
+
         $vacancy->date_submitted = Date('Y-m-d', strtotime($request->date_submitted));
         $vacancy->date_queued = Date('Y-m-d', strtotime($request->date_queued));
         $vacancy->date_approved = Date('Y-m-d', strtotime($request->date_approved));
         $vacancy->status = $request->status;
-       
+
         $vacancy->save();
 
         return new VacancyResource($vacancy);
@@ -111,5 +112,47 @@ class VacancyController extends Controller
     {
         $vacancy->delete();
         return $this->success('', 'Successfull Deleted', 200);
+    }
+
+    public function vacancyQueue(Vacancy $vacancy)
+    {
+
+        $today = Carbon::today()->toDateString();
+
+        Vacancy::where('id', $vacancy->id)
+            ->update([
+                "date_queued" => $today,
+                "status" => "Queued"
+            ]);
+
+        return $this->success('', 'Successfully Queued Vacancy', 200);
+    }
+
+    public function allApproved()
+    {
+        return VacancyResource::collection(
+            Vacancy::with([
+                'belongsToPlantilla.belongsToPosition',
+                'belongsToPlantilla.belongsToPosition.belongsToSalaryGrade',
+                'belongsToPlantilla.belongsToPosition.hasManyQualificationStandard',
+                'hasManyPublication',
+            ])
+                ->where('status', 'Approved')
+                ->get()
+        );
+    }
+
+    public function allQueued()
+    {
+        return VacancyResource::collection(
+            Vacancy::with([
+                'belongsToPlantilla.belongsToPosition',
+                'belongsToPlantilla.belongsToPosition.belongsToSalaryGrade',
+                'belongsToPlantilla.belongsToPosition.hasManyQualificationStandard',
+                'hasManyPublication',
+            ])
+            ->where('status', 'Queued')
+            ->get()
+        );
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PublicationResource;
+use App\Http\Resources\VacancyResource;
 use App\Models\Publication;
 use App\Models\Vacancy;
 use App\Traits\HttpResponses;
@@ -16,7 +18,9 @@ class PublicationController extends Controller
      */
     public function index()
     {
-        //
+        return PublicationResource::collection(
+            Publication::with('belongsToVacancy')->get()
+        );
     }
 
     /**
@@ -67,9 +71,15 @@ class PublicationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Publication $publication)
     {
-        //
+        $publication->opening_date = $request->opening_date;
+        $publication->closing_date = $request->closing_date;
+        $publication->vacancy_id = $request->vacancy_id;
+
+        $publication->save();
+
+        return new PublicationResource($publication);
     }
 
     /**
@@ -88,4 +98,5 @@ class PublicationController extends Controller
 
        return $closingDate->toDateString();
     }
+
 }
