@@ -17,8 +17,8 @@ class DepartmentResource extends JsonResource
         return [
             "id" => (string)$this->id,
             "attributes"=>[
-                "department_code" => (string)$this->start_date,
-                "department_name" => (string)$this->end_date,
+                "department_code" => (string)$this->department_code,
+                "department_name" => (string)$this->department_name,
                 'offices' => $this->hasManyOffices->map(function ($offices) {
                     return [
                         'office_code' => $offices->office_code,

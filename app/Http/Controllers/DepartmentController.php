@@ -90,6 +90,8 @@ class DepartmentController extends Controller
             ]);
         }
 
+        $department->save();
+
         return new DepartmentResource($department);
     }
 

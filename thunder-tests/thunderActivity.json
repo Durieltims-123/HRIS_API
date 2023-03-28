@@ -1920,5 +1920,169 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "4b64ff30-10ee-4c40-a156-4f3d569b174d",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/auto-fill-closing",
+    "url": "http://127.0.0.1:8000/api/auto-fill-closing",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-03-27T07:44:54.214Z",
+    "modified": "2023-03-27T07:44:54.214Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "676e3488-9652-4938-9c91-4045d9b44873",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/auto-fill-closing-date",
+    "url": "http://127.0.0.1:8000/api/auto-fill-closing-date",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-03-27T07:45:10.296Z",
+    "modified": "2023-03-27T07:45:10.296Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "8c845a9f-3a7f-49a3-bbcb-72d44a8bd979",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/vacancy/3",
+    "url": "http://127.0.0.1:8000/api/vacancy/3",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2023-03-28T01:14:51.938Z",
+    "modified": "2023-03-28T01:14:51.938Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "1d2c3e0e-25d8-4d7b-bb99-63b3cf212e23",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/vacancy-all-approved",
+    "url": "http://127.0.0.1:8000/api/vacancy-all-approved",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-03-28T03:09:11.981Z",
+    "modified": "2023-03-28T04:28:40.881Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "d5ee95e3-d5a6-4901-964a-767c9b05dc91",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/vacancy-all-queued",
+    "url": "http://127.0.0.1:8000/api/vacancy-all-queued",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-03-28T07:07:36.997Z",
+    "modified": "2023-03-28T07:07:49.701Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "2|TpAE34PRO7io4CQq5nqrzciM8IQxjCzbGiRfcmhv"
+    },
+    "tests": []
+  },
+  {
+    "_id": "d0486d36-1773-4345-b8e9-c0b778a9235c",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/publication",
+    "url": "http://127.0.0.1:8000/api/publication",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2023-03-28T07:34:40.101Z",
+    "modified": "2023-03-28T07:34:46.874Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "2|TpAE34PRO7io4CQq5nqrzciM8IQxjCzbGiRfcmhv"
+    },
+    "tests": []
+  },
+  {
+    "_id": "68ce9ea3-abcc-442e-9b96-2aea93fff90e",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/publication/1",
+    "url": "http://127.0.0.1:8000/api/publication/1",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2023-03-28T07:35:43.996Z",
+    "modified": "2023-03-28T07:35:43.996Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "opening_date",
+          "value": ""
+        },
+        {
+          "name": "closing_date",
+          "value": ""
+        },
+        {
+          "name": "vacancy_id",
+          "value": ""
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "2|TpAE34PRO7io4CQq5nqrzciM8IQxjCzbGiRfcmhv"
+    },
+    "tests": []
+  },
+  {
+    "_id": "8b2721ad-ec4d-47c0-8f94-d41448406e31",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/publication/4",
+    "url": "http://127.0.0.1:8000/api/publication/4",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2023-03-28T07:36:35.491Z",
+    "modified": "2023-03-28T07:36:35.491Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "opening_date",
+          "value": "2023-04-05"
+        },
+        {
+          "name": "closing_date",
+          "value": "2023-04-15"
+        },
+        {
+          "name": "vacancy_id",
+          "value": "1"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "2|TpAE34PRO7io4CQq5nqrzciM8IQxjCzbGiRfcmhv"
+    },
+    "tests": []
   }
 ]
