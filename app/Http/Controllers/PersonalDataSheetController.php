@@ -344,6 +344,38 @@ class PersonalDataSheetController extends Controller
     {
         $pdsRequest->validated($pdsRequest->all());
 
+        $personalInformation->mobile_number = $pdsRequest->mobile_number;
+        $personalInformation->telephone_number = $pdsRequest->telephone_number;
+        $personalInformation->permanent_house_number = $pdsRequest->permanent_house_number;
+        $personalInformation->permanent_subdivision_village = $pdsRequest->permanent_subdivision_village;
+        $personalInformation->permanent_street = $pdsRequest->permanent_street;
+        $personalInformation->permanent_barangay_id = $pdsRequest->permanent_barangay_id;
+        $personalInformation->permanent_municipality_id = $pdsRequest->permanent_municipality_id;
+        $personalInformation->permanent_province_id = $pdsRequest->permanent_province_id;
+        $personalInformation->permanent_zip_code_number = $pdsRequest->permanent_zip_code_number;
+        $personalInformation->residential_house_number = $pdsRequest->residential_house_number;
+
+        $personalInformation->residential_subdivision_village = $pdsRequest->residential_subdivision_village;
+        $personalInformation->residential_street = $pdsRequest->residential_street;
+        $personalInformation->residential_barangay_id = $pdsRequest->residential_barangay_id;
+        $personalInformation->residential_municipality_id = $pdsRequest->residential_municipality_id;
+        $personalInformation->residential_province_id = $pdsRequest->residential_province_id;
+        $personalInformation->residential_zip_code_number = $pdsRequest->residential_zip_code_number;
+        $personalInformation->citizenship = $pdsRequest->citizenship;
+        $personalInformation->agency_employee = $pdsRequest->agency_employee;
+        $personalInformation->tin_number = $pdsRequest->tin_number;
+        $personalInformation->sss_number = $pdsRequest->sss_number;
+
+        $personalInformation->philhealth_number = $pdsRequest->philhealth_number;
+        $personalInformation->pag_ibig_number = $pdsRequest->pag_ibig_number;
+        $personalInformation->gsis_number = $pdsRequest->gsis_number;
+        $personalInformation->blood_type = $pdsRequest->blood_type;
+        $personalInformation->weight = $pdsRequest->weight;
+        $personalInformation->height = $pdsRequest->height;
+        $personalInformation->civil_status = $pdsRequest->civil_status;
+        $personalInformation->sex = $pdsRequest->sex;
+        $personalInformation->birthplace = $pdsRequest->birthplace;
+        $personalInformation->birthdate = $pdsRequest->birthdate;
 
         $personalInformation->save();
 

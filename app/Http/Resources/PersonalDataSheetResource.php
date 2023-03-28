@@ -65,7 +65,6 @@ class PersonalDataSheetResource extends JsonResource
                 "mother_maiden_middle_name" => (string)$this->hasManyFamilyBackground[0]->mother_maiden_middle_name,
                 'children' => $this->hasManyChildrenInformation->map(function ($children_info) {
                     return [
-                        'personal_data_sheet_id' => $children_info->personal_data_sheet_id,
                         'family_background_id' => $children_info->family_background_id,
                         'children_name' => $children_info->children_name,
                         'children_birthdate' => $children_info->children_birthdate,
