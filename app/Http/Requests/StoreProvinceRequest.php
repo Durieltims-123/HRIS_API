@@ -23,17 +23,18 @@ class StoreProvinceRequest extends FormRequest
     {
         return [
             //province
-            'permanent_province_name' => ['required', 'string', 'max:255'],
-            'residential_province_name' => ['required', 'string', 'max:255'],
-
+            'province_name' => ['required', 'string', 'max:255'],
+            'province_code' => ['nullable', 'string', 'max:255'],
+            
             //municipality
-            // 'province_id' => ['required'],
-            'residential_municipality_name' => ['required', 'string', 'max:255'],
-            'residential_municipality_name' => ['required', 'string', 'max:255'],
+            'province_id' => ['required'],
+            'municipality_name' => ['required', 'string', 'max:255'],
+            'municipality_code' => ['nullable', 'string', 'max:255'],
 
             //barangay
-            'residential_barangay_name' => ['required', 'string', 'max:255'],
-            'residential_barangay_name' => ['required', 'string', 'max:255']
+            'municipality_id' => ['required'],
+            'barangay_name' => ['required', 'string', 'max:255'],
+            'barangay_code' => ['nullable', 'string', 'max:255'],
         ];
     }
 }

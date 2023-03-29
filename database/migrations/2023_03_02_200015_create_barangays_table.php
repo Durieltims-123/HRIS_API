@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
 
             // $table->foreignId('salary_grade_id')->constrained();
-            $table->string('permanent_barangay_name');
-            $table->string('residential_barangay_name');
+            $table->foreignId('municipality_id')->constrained()->onDelete('cascade');
+            $table->string('barangay_name');
+            $table->string('barangay_code')->nullable();
             $table->timestamps();
         });
     }

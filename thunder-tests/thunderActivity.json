@@ -1880,20 +1880,6 @@
     "tests": []
   },
   {
-    "_id": "fa48acbb-4248-471d-a45b-786fb79e26b9",
-    "colId": "history",
-    "containerId": "",
-    "name": "http://127.0.0.1:8000/api/personal-data-sheet/2",
-    "url": "http://127.0.0.1:8000/api/personal-data-sheet/2",
-    "method": "DELETE",
-    "sortNum": 0,
-    "created": "2023-03-27T06:28:07.150Z",
-    "modified": "2023-03-27T06:28:07.150Z",
-    "headers": [],
-    "params": [],
-    "tests": []
-  },
-  {
     "_id": "5c8ed674-7b08-4a9e-9027-bda6bd62a4eb",
     "colId": "history",
     "containerId": "",
@@ -1908,6 +1894,20 @@
     "tests": []
   },
   {
+    "_id": "fa48acbb-4248-471d-a45b-786fb79e26b9",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/personal-data-sheet/2",
+    "url": "http://127.0.0.1:8000/api/personal-data-sheet/2",
+    "method": "DELETE",
+    "sortNum": 0,
+    "created": "2023-03-27T06:28:07.150Z",
+    "modified": "2023-03-27T06:28:07.150Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
     "_id": "3b043e68-a02c-4b78-b8ff-446663fa19f2",
     "colId": "history",
     "containerId": "",
@@ -1917,6 +1917,20 @@
     "sortNum": 0,
     "created": "2023-03-27T06:46:19.398Z",
     "modified": "2023-03-27T06:46:19.398Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "15f0772a-d91a-4a6f-9f54-5860be13bd88",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/province/1",
+    "url": "http://127.0.0.1:8000/api/province/1",
+    "method": "DELETE",
+    "sortNum": 0,
+    "created": "2023-03-29T01:10:01.621Z",
+    "modified": "2023-03-29T01:10:01.621Z",
     "headers": [],
     "params": [],
     "tests": []

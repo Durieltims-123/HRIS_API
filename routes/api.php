@@ -34,7 +34,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/holidays', HolidaysController::class);
 
 
-//alfy
+    //alfy
     Route::resource('/salary-grade', SalaryGradeController::class);
     Route::resource('/position', PositionController::class);
     Route::post('/search-position', [PositionController::class, 'search']);
@@ -52,6 +52,4 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/vacancy', VacancyController::class);
     Route::resource('/plantilla', PlantillaController::class);
     Route::resource('/department', DepartmentController::class);
-   
-
 });

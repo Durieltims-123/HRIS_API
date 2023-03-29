@@ -13,7 +13,7 @@ class PersonalDataSheet extends Model
 
     public function belongsToApplicant(): BelongsTo
     {
-        return $this->belongsTo(Applicant::class);
+        return $this->belongsTo(Applicant::class,'applicant_id');
     }
     public function hasManyPersonalInformation(): HasMany
     {

@@ -5,29 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Province extends Model
 {
     use HasFactory;
 
-    public function hasOneMunicipality ():HasOne
+    public function hasManyMunicipality ():HasMany 
     {
-        return $this->hasOne(Municipality::class);
+        return $this->hasMany(Municipality::class);
     }
-    public function hasOneBarangay ():HasOne
+    public function hasManyPersonalInformation ():HasMany
     {
-        return $this->hasOne(Barangay::class);
+        return $this->hasMany(PersonalInformation::class);
     }
-    public function belongsToPersonalInformation ():BelongsTo
-    {
-        return $this->belongsTo(PersonalInformation::class);
-    }
-
+            
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'permanent_province_name',
-        'residential_province_name',
+        'province_name',
+        'province_code',
     ];
 }

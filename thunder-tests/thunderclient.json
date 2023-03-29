@@ -426,7 +426,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-10T07:14:57.607Z",
-    "modified": "2023-03-24T04:42:09.046Z",
+    "modified": "2023-03-28T00:47:42.207Z",
     "headers": [],
     "params": [],
     "body": {
@@ -469,7 +469,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "1|PrDnoNSyNOASihxNjEtmtEufR524jNZZ2zHzwkAf"
+      "bearer": "1|KsegompYZzJW9ebsB4e5fnembJA7ZdJXdCIY0aUl"
     },
     "tests": []
   },
@@ -632,7 +632,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-13T03:58:10.630Z",
-    "modified": "2023-03-27T04:29:38.512Z",
+    "modified": "2023-03-28T00:48:59.990Z",
     "headers": [],
     "params": [],
     "body": {
@@ -687,7 +687,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "2|boaNk3QNKXdaNFZUcBPDhDTTTOsYeDUQLDnhgNCp"
+      "bearer": "1|KsegompYZzJW9ebsB4e5fnembJA7ZdJXdCIY0aUl"
     },
     "tests": []
   },
@@ -736,7 +736,7 @@
     "method": "PATCH",
     "sortNum": 40000,
     "created": "2023-03-13T03:59:37.966Z",
-    "modified": "2023-03-27T04:30:24.059Z",
+    "modified": "2023-03-28T00:49:15.546Z",
     "headers": [],
     "params": [],
     "body": {
@@ -753,7 +753,7 @@
         },
         {
           "name": "chairman",
-          "value": "browny"
+          "value": "wadawada"
         },
         {
           "name": "position",
@@ -791,7 +791,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "2|boaNk3QNKXdaNFZUcBPDhDTTTOsYeDUQLDnhgNCp"
+      "bearer": "1|KsegompYZzJW9ebsB4e5fnembJA7ZdJXdCIY0aUl"
     },
     "tests": []
   },
@@ -882,11 +882,11 @@
     "colId": "d977aec1-81a1-4463-8756-0344f2c1ab13",
     "containerId": "",
     "name": "Update",
-    "url": "http://127.0.0.1:8000/api/position/2",
+    "url": "http://127.0.0.1:8000/api/position/1",
     "method": "PATCH",
     "sortNum": 40000,
     "created": "2023-03-15T05:22:35.532Z",
-    "modified": "2023-03-27T06:49:18.054Z",
+    "modified": "2023-03-28T00:48:16.722Z",
     "headers": [],
     "params": [],
     "body": {
@@ -952,7 +952,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-15T05:57:09.207Z",
-    "modified": "2023-03-27T06:26:01.427Z",
+    "modified": "2023-03-29T01:47:59.756Z",
     "headers": [],
     "params": [],
     "body": {
@@ -1012,20 +1012,20 @@
           "value": "12345"
         },
         {
-          "name": "permanent_barangay_id",
+          "name": "barangay_id",
           "value": "1"
         },
         {
-          "name": "permanent_municipality_id",
+          "name": "municipality_id",
           "value": "1"
         },
         {
-          "name": "permanent_province_id",
+          "name": "province_id",
           "value": "1"
         },
         {
-          "name": "permanent_zip_code_number",
-          "value": "234"
+          "name": "permanent_zip_code",
+          "value": "111"
         },
         {
           "name": "residential_house_number",
@@ -1040,20 +1040,20 @@
           "value": "12345"
         },
         {
-          "name": "residential_barangay_id",
+          "name": "r_barangay_id",
           "value": "1"
         },
         {
-          "name": "residential_municipality_id",
+          "name": "r_municipality_id",
           "value": "1"
         },
         {
-          "name": "residential_province_id",
+          "name": "r_province_id",
           "value": "1"
         },
         {
-          "name": "residential_zip_code_number",
-          "value": "2"
+          "name": "residential_zip_code",
+          "value": "222222"
         },
         {
           "name": "citizenship",
@@ -1499,7 +1499,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "1|KsegompYZzJW9ebsB4e5fnembJA7ZdJXdCIY0aUl"
+      "bearer": "1|OGKVVCxB1zB8U3H8K6Xtr36QHX8fVx7ObLuaWrP8"
     },
     "tests": []
   },
@@ -1656,7 +1656,7 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2023-03-16T08:04:23.185Z",
-    "modified": "2023-03-27T06:25:50.876Z",
+    "modified": "2023-03-29T01:47:46.372Z",
     "headers": [],
     "params": [],
     "body": {
@@ -1664,34 +1664,42 @@
       "raw": "",
       "form": [
         {
-          "name": "permanent_province_name",
-          "value": "Trinidad"
+          "name": "province_name",
+          "value": "Kalingga"
         },
         {
-          "name": "residential_province_name",
-          "value": "Trinidad"
+          "name": "province_code",
+          "value": "12345"
         },
         {
-          "name": "permanent_municipality_name",
-          "value": "Trinidad"
+          "name": "province_id",
+          "value": "1"
         },
         {
-          "name": "residential_municipality_name",
-          "value": "Trinidad"
+          "name": "municipality_name",
+          "value": "Tabuk"
         },
         {
-          "name": "permanent_barangay_name",
-          "value": "Trinidad"
+          "name": "municipality_code",
+          "value": "46"
         },
         {
-          "name": "residential_barangay_name",
-          "value": "Trinidad"
+          "name": "municipality_id",
+          "value": "1"
+        },
+        {
+          "name": "barangay_name",
+          "value": "Adono"
+        },
+        {
+          "name": "barangay_code",
+          "value": "54321"
         }
       ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "1|KsegompYZzJW9ebsB4e5fnembJA7ZdJXdCIY0aUl"
+      "bearer": "1|OGKVVCxB1zB8U3H8K6Xtr36QHX8fVx7ObLuaWrP8"
     },
     "tests": []
   },
@@ -1704,12 +1712,12 @@
     "method": "GET",
     "sortNum": 30000,
     "created": "2023-03-18T14:04:38.914Z",
-    "modified": "2023-03-22T01:51:43.416Z",
+    "modified": "2023-03-29T01:01:26.515Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "1|AhAEX5uSk2LUrbb02pqK2hyKXQDGAXgpuVwZCsKs"
+      "bearer": "1|ZAZEIREgilfAYIGT87zOac9gcsse0mALByyB6T6K"
     },
     "tests": []
   },
@@ -1722,7 +1730,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-20T02:58:53.487Z",
-    "modified": "2023-03-27T04:49:49.526Z",
+    "modified": "2023-03-27T07:30:28.889Z",
     "headers": [],
     "params": [],
     "body": {
@@ -1731,7 +1739,7 @@
       "form": [
         {
           "name": "date_submitted",
-          "value": "2023-03-07"
+          "value": "2023-03-05"
         },
         {
           "name": "status",
@@ -1747,13 +1755,13 @@
         },
         {
           "name": "plantilla_id",
-          "value": "4"
+          "value": "1"
         }
       ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "1|tuCQqtsX1Px7TBeDahcTL2umCAW1ZHPIJELVOKwg"
+      "bearer": "1|KsegompYZzJW9ebsB4e5fnembJA7ZdJXdCIY0aUl"
     },
     "tests": []
   },
@@ -1926,7 +1934,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-23T07:17:46.573Z",
-    "modified": "2023-03-27T00:49:44.385Z",
+    "modified": "2023-03-23T07:45:03.610Z",
     "headers": [],
     "params": [],
     "body": {
@@ -1935,11 +1943,11 @@
       "form": [
         {
           "name": "office_id",
-          "value": "2"
+          "value": "3"
         },
         {
           "name": "position_id",
-          "value": "2"
+          "value": "3"
         },
         {
           "name": "item_number",
@@ -1947,7 +1955,7 @@
         },
         {
           "name": "place_of_assignment",
-          "value": "IT Office"
+          "value": "HR Office"
         },
         {
           "name": "year",
@@ -1957,7 +1965,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "1|l5IC27mYC8d1a4s7BVoLxIgdvyPqxiBbneUvSqxX"
+      "bearer": "1|2xKv0SDLAKmHiWYrWlOOq2P7JL0ZEi9rPDIg2N3t"
     },
     "tests": []
   },
@@ -2086,7 +2094,7 @@
     "method": "PATCH",
     "sortNum": 20000,
     "created": "2023-03-23T08:47:24.722Z",
-    "modified": "2023-03-24T00:47:47.607Z",
+    "modified": "2023-03-28T02:46:45.011Z",
     "headers": [],
     "params": [],
     "body": {
@@ -2095,7 +2103,7 @@
       "form": [
         {
           "name": "department_code",
-          "value": "0001"
+          "value": "10000000"
         },
         {
           "name": "department_name",
@@ -2121,7 +2129,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "1|Lh2v63JFLHs9jQ3GSAWOZ5tEG9AXWnRNl2TiA5zR"
+      "bearer": "1|KsegompYZzJW9ebsB4e5fnembJA7ZdJXdCIY0aUl"
     },
     "tests": []
   },
@@ -2170,12 +2178,12 @@
     "method": "GET",
     "sortNum": 40000,
     "created": "2023-03-24T01:20:01.544Z",
-    "modified": "2023-03-24T01:20:01.544Z",
+    "modified": "2023-03-27T07:30:06.370Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "1|l5IC27mYC8d1a4s7BVoLxIgdvyPqxiBbneUvSqxX"
+      "bearer": "1|KsegompYZzJW9ebsB4e5fnembJA7ZdJXdCIY0aUl"
     },
     "tests": []
   },
@@ -2188,12 +2196,12 @@
     "method": "GET",
     "sortNum": 20000,
     "created": "2023-03-24T02:39:57.804Z",
-    "modified": "2023-03-27T06:26:16.193Z",
+    "modified": "2023-03-29T02:00:46.296Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "1|KsegompYZzJW9ebsB4e5fnembJA7ZdJXdCIY0aUl"
+      "bearer": "1|OGKVVCxB1zB8U3H8K6Xtr36QHX8fVx7ObLuaWrP8"
     },
     "tests": []
   },
@@ -2202,11 +2210,11 @@
     "colId": "8a686a09-4f64-4b37-90e4-08dd4673be85",
     "containerId": "",
     "name": "Show PDS",
-    "url": "http://127.0.0.1:8000/api/personal-data-sheet/1",
+    "url": "http://127.0.0.1:8000/api/personal-data-sheet/8",
     "method": "GET",
     "sortNum": 30000,
     "created": "2023-03-24T07:20:56.223Z",
-    "modified": "2023-03-27T06:59:33.021Z",
+    "modified": "2023-03-28T00:03:03.307Z",
     "headers": [],
     "params": [],
     "auth": {
@@ -2220,11 +2228,11 @@
     "colId": "8a686a09-4f64-4b37-90e4-08dd4673be85",
     "containerId": "",
     "name": "Update PDS",
-    "url": "http://127.0.0.1:8000/api/personal-data-sheet/1",
+    "url": "http://127.0.0.1:8000/api/personal-data-sheet/8",
     "method": "PATCH",
     "sortNum": 32500,
     "created": "2023-03-27T06:16:40.450Z",
-    "modified": "2023-03-27T06:37:19.896Z",
+    "modified": "2023-03-28T00:09:39.255Z",
     "headers": [],
     "params": [],
     "body": {
@@ -2780,11 +2788,11 @@
     "colId": "8a686a09-4f64-4b37-90e4-08dd4673be85",
     "containerId": "",
     "name": "Delete PDS",
-    "url": "http://127.0.0.1:8000/api/personal-data-sheet/4",
+    "url": "http://127.0.0.1:8000/api/personal-data-sheet/7",
     "method": "DELETE",
     "sortNum": 50000,
     "created": "2023-03-27T06:28:17.937Z",
-    "modified": "2023-03-27T06:32:23.006Z",
+    "modified": "2023-03-28T00:02:31.881Z",
     "headers": [],
     "params": [],
     "auth": {
@@ -2794,35 +2802,169 @@
     "tests": []
   },
   {
-    "_id": "12ab7a57-709d-4124-a8b1-4a63c187fb3f",
-    "colId": "d9a7eabb-45ca-433d-a4c4-6cbb5f331775",
+    "_id": "ccd075e0-d05d-4690-a9af-01bcae28d82a",
+    "colId": "8a686a09-4f64-4b37-90e4-08dd4673be85",
     "containerId": "",
-    "name": "Show Vacancy",
-    "url": "http://127.0.0.1:8000/api/vacancy/1",
-    "method": "GET",
-    "sortNum": 50000,
-    "created": "2023-03-27T06:22:06.110Z",
-    "modified": "2023-03-27T06:22:49.122Z",
+    "name": "Update PDS Copy",
+    "url": "http://127.0.0.1:8000/api/personal-data-sheet/1",
+    "method": "PATCH",
+    "sortNum": 41250,
+    "created": "2023-03-28T00:09:44.253Z",
+    "modified": "2023-03-28T03:26:15.530Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "mobile_number",
+          "value": "0987654321"
+        },
+        {
+          "name": "telephone_number",
+          "value": "09876"
+        },
+        {
+          "name": "permanent_house_number",
+          "value": "8765"
+        },
+        {
+          "name": "permanent_subdivision_village",
+          "value": "Village"
+        },
+        {
+          "name": "permanent_street",
+          "value": "12345"
+        },
+        {
+          "name": "permanent_barangay_id",
+          "value": "1"
+        },
+        {
+          "name": "permanent_municipality_id",
+          "value": "1"
+        },
+        {
+          "name": "permanent_province_id",
+          "value": "1"
+        },
+        {
+          "name": "permanent_zip_code_number",
+          "value": "234"
+        },
+        {
+          "name": "residential_house_number",
+          "value": "654"
+        },
+        {
+          "name": "residential_subdivision_village",
+          "value": "Village"
+        },
+        {
+          "name": "residential_street",
+          "value": "12345"
+        },
+        {
+          "name": "residential_barangay_id",
+          "value": "1"
+        },
+        {
+          "name": "residential_municipality_id",
+          "value": "1"
+        },
+        {
+          "name": "residential_province_id",
+          "value": "12"
+        },
+        {
+          "name": "residential_zip_code_number",
+          "value": "1"
+        },
+        {
+          "name": "citizenship",
+          "value": "Filipino"
+        },
+        {
+          "name": "agency_employee",
+          "value": "Secret"
+        },
+        {
+          "name": "tin_number",
+          "value": "123"
+        },
+        {
+          "name": "sss_number",
+          "value": "321"
+        },
+        {
+          "name": "philhealth_number",
+          "value": "312"
+        },
+        {
+          "name": "pag_ibig_number",
+          "value": "312"
+        },
+        {
+          "name": "gsis_number",
+          "value": "312"
+        },
+        {
+          "name": "blood_type",
+          "value": "z"
+        },
+        {
+          "name": "weight",
+          "value": "2000"
+        },
+        {
+          "name": "height",
+          "value": "85"
+        },
+        {
+          "name": "civil_status",
+          "value": "married"
+        },
+        {
+          "name": "sex",
+          "value": "f "
+        },
+        {
+          "name": "birthplace",
+          "value": "aw"
+        },
+        {
+          "name": "birthdate",
+          "value": "2020-10-10"
+        },
+        {
+          "name": "personal_data_sheet_id",
+          "value": "8"
+        }
+      ]
+    },
     "auth": {
       "type": "bearer",
-      "bearer": "1|l5IC27mYC8d1a4s7BVoLxIgdvyPqxiBbneUvSqxX"
+      "bearer": "1|UP0Altx2Acvhk7C03uCDkjY1DHMhVuqx9mPs2T44"
     },
     "tests": []
   },
   {
-    "_id": "1ec41439-fa3d-4bcf-974a-bc8ac1bdbf10",
-    "colId": "66cf3448-de93-41cb-9414-6f382804cce9",
+    "_id": "845e82d0-d8fa-4bb7-9811-9d6bfa0af66d",
+    "colId": "66b9c9ed-e491-4231-92e6-fbd92f2fd7f5",
     "containerId": "",
-    "name": "Add Publication",
-    "url": "http://127.0.0.1:8000/api/publication",
-    "method": "POST",
-    "sortNum": 10000,
-    "created": "2023-03-27T06:46:33.279Z",
-    "modified": "2023-03-27T06:46:33.279Z",
+    "name": "Delete Province",
+    "url": "http://127.0.0.1:8000/api/province/1",
+    "method": "DELETE",
+    "sortNum": 40000,
+    "created": "2023-03-29T01:10:11.584Z",
+    "modified": "2023-03-29T01:14:49.003Z",
     "headers": [],
     "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|ZAZEIREgilfAYIGT87zOac9gcsse0mALByyB6T6K"
+    },
     "tests": []
   }
 ]
