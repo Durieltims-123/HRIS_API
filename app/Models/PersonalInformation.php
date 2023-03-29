@@ -13,11 +13,11 @@ class PersonalInformation extends Model
 
     public function belongsPersonalDataSheet ():BelongsTo
     {
-        return $this->belongsTo(PersonalDataSheet::class, 'pds_id');
+        return $this->belongsTo(PersonalDataSheet::class, 'personal_data_sheet_id');
     }
-    public function hasOneProvince ():HasOne
+    public function belongsToProvince ():BelongsTo
     {
-        return $this->hasOne(Province::class);
+        return $this->belongsTo(Province::class, 'province_id');
     }
 
     protected $primaryKey = 'id';
@@ -29,19 +29,19 @@ class PersonalInformation extends Model
         'permanent_house_number',
         'permanent_subdivision_village',
         'permanent_street',
-        'permanent_barangay_id',
-        'permanent_municipality_id',
-        'permanent_province_id',
+        'barangay_id',
+        'municipality_id',
+        'province_id',
 
-        'permanent_zip_code_number',
+        'permanent_zip_code',
         'residential_house_number',
         'residential_subdivision_village',
         'residential_street',
-        'residential_barangay_id',
-        'residential_municipality_id',
-        'residential_province_id',
+        'r_barangay_id',
+        'r_municipality_id',
+        'r_province_id',
 
-        'residential_zip_code_number',
+        'residential_zip_code',
         'citizenship',
         'agency_employee',
         'tin_number',

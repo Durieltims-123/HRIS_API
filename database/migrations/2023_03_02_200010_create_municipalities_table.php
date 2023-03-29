@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('municipalities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('province_id')->contrained('provinces')->onDelete('cascade');
+            $table->foreignId('province_id')->constrained()->onDelete('cascade');
             $table->string('municipality_name');
             $table->string('municipality_code')->unique()->nullable();
             $table->timestamps();

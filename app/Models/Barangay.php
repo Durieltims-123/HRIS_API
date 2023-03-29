@@ -12,7 +12,7 @@ class Barangay extends Model
 
     public function belongsToMunicipality ():BelongsTo
     {
-        return $this->belongsTo(Municipality::class);
+        return $this->belongsTo(Municipality::class, 'municipality_id');
     }
 
     protected $primaryKey = 'id';
