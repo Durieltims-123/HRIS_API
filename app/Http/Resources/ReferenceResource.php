@@ -19,7 +19,7 @@ class ReferenceResource extends JsonResource
             "attributes"=>[
                 "name" => (string)$this->name,
                 "address" => (string)$this->address,
-                "telephone_number" => (string)$this->address,
+                "telephone_number" => (string)$this->telephone_number,
             ]
         ];
     }

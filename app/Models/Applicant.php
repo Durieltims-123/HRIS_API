@@ -9,17 +9,17 @@ class Applicant extends Model
 {
     use HasFactory;
 
-     public function hasOneApplication()
-     {
+    public function hasOneApplication()
+    {
         return $this->hasOne(Application::class);
-     }
+    }
 
-     public function hasOnePersonnalDataSheet()
-     {
+    public function hasOnePersonnalDataSheet()
+    {
         return $this->hasOne(PersonnalDataSheet::class);
-     }
+    }
 
-     protected $primaryKey = 'id';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'first_name',

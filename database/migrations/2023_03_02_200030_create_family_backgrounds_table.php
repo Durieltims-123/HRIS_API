@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('spouse_surname');
             $table->string('spouse_first_name');
             $table->string('spouse_middle_name');
-            $table->string('name_extension');
+            $table->string('suffix_name');
             $table->string('occupation');
             $table->string('employee_business_name');
             $table->string('business_address');

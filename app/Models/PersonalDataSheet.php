@@ -15,6 +15,10 @@ class PersonalDataSheet extends Model
     {
         return $this->belongsTo(Applicant::class,'applicant_id');
     }
+    public function belongsToEmployee(): BelongsTo
+    {
+        return $this->belongsTo(Employee::class,'employee_id');
+    }
     public function hasManyPersonalInformation(): HasMany
     {
         return $this->hasMany(PersonalInformation::class);
@@ -63,10 +67,6 @@ class PersonalDataSheet extends Model
     {
         return $this->hasMany(Answer::class);
     }
-    public function hasManyOtherInformationAnswer(): HasMany
-    {
-        return $this->hasMany(OtherInformationAnswer::class);
-    }
     public function hasManyReference(): HasMany
     {
         return $this->hasMany(Reference::class);
@@ -75,6 +75,7 @@ class PersonalDataSheet extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'applicant_id'
+        'applicant_id',
+        'employee_id'
     ];
 }

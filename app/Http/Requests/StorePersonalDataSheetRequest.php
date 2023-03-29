@@ -22,16 +22,10 @@ class StorePersonalDataSheetRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //applicant
-            'first_name' => ['required', 'string', 'max:255'],
-            'middle_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'suffix_name' => ['required', 'string', 'max:255'],
-            'contact_number' => ['required', 'string', 'max:255'],
-            'email_address' => ['required', 'string', 'max:255'],
 
             //pds
-            'applicant_id' => ['required'],
+            'applicant_id' => ['nullable'],
+            'employee_id' => ['nullable'],
 
             //personal information
             'personal_data_sheet_id' => ['required'],
@@ -72,7 +66,7 @@ class StorePersonalDataSheetRequest extends FormRequest
             'spouse_surname' => ['required', 'string', 'max:255'],
             'spouse_first_name' => ['required', 'string', 'max:255'],
             'spouse_middle_name' => ['required', 'string', 'max:255'],
-            'name_extension' => ['required', 'string', 'max:255'],
+            'suffix_name' => ['required', 'string', 'max:255'],
             'occupation' => ['required', 'string', 'max:255'],
             'employee_business_name' => ['required', 'string', 'max:255'],
             'business_address' => ['required', 'string', 'max:255'],
@@ -152,25 +146,26 @@ class StorePersonalDataSheetRequest extends FormRequest
             'personal_data_sheet_id' => ['required'],
             'membership_association' => ['required','max:255'],
 
-            // //references
-            // 'pds_id' =>['required'],
-            // 'name' => ['required', 'string', 'max:255'],
-            // 'address' => ['required', 'string', 'max:255'],
-            // 'telephone_number' => ['required', 'string', 'max:255'],
-
-            // //employee
-            // 'first_name' => ['required', 'string'],
-            // 'middle_name' => ['required', 'string'],
-            // 'last_name' => ['required', 'string'],
-            // 'suffix_name' => ['required', 'string'],
-            // 'contact_number' => ['required', 'string'],
-            // 'email_address' => ['required', 'string'],
-            // 'current_position' => ['required', 'string', 'max:255'],
-            // 'employment_status' => ['required', 'string', 'max:255'],
-            // 'employee_status' => ['required', 'string', 'max:255'],
-            // 'orientation_status' => ['required', 'string', 'max:255']
+            //answer
+            'personal_data_sheet_id' => ['required'],
+            'question_id' => ['required'],
+            'choice' => ['required', 'string', 'max:255'],
+            'details' => ['nullable'],
+            'date_filed' => ['nullable'],
+            'case_status' => ['nullable'],
 
 
+            //references
+            'personal_data_sheet_id' =>['required'],
+            'name' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+            'telephone_number' => ['required', 'string', 'max:255'],
+            'name2' => ['required', 'string', 'max:255'],
+            'address2' => ['required', 'string', 'max:255'],
+            'telephone_number2' => ['required', 'string', 'max:255'],
+            'name3' => ['required', 'string', 'max:255'],
+            'address3' => ['required', 'string', 'max:255'],
+            'telephone_number3' => ['required', 'string', 'max:255'],
 
         ];
     }

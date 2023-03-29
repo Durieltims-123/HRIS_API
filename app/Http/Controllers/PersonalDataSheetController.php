@@ -15,6 +15,7 @@ use App\Http\Requests\StorePersonalInformationRequest;
 use App\Http\Resources\ApplicantResource;
 use App\Http\Resources\PersonalDataSheetResource;
 use App\Http\Resources\PersonalInformationResource;
+use App\Models\Answer;
 use App\Models\CivilServiceEligibility;
 use App\Models\EducationalBackground;
 use App\Models\MembershipAssociation;
@@ -38,8 +39,6 @@ class PersonalDataSheetController extends Controller
         // dd(PersonalDataSheet::with('hasManyPersonalInformation')->get());
         return PersonalDataSheetResource::collection(
             PersonalDataSheet::with(
-                // 'belongsToApplicant.hasManyPersonalInformation',
-                // 'belongsToApplicant',
                 'hasManyPersonalInformation',
                 'hasManyFamilyBackground',
                 'hasManyChildrenInformation',
@@ -52,7 +51,6 @@ class PersonalDataSheetController extends Controller
                 'hasManyRecognition',
                 'hasManyMembershipAssociation',
                 'hasManyAnswer',
-                'hasManyOtherInformationAnswer',
                 'hasManyReference',
             )->get()
         );
@@ -71,23 +69,16 @@ class PersonalDataSheetController extends Controller
      */
     public function store(StorePersonalDataSheetRequest $request)
     {
+
+        
         // validate input fields
         $request->validated($request->all());
 
-        //applicant
-        $applicant = Applicant::create([
-            "first_name" => $request->first_name,
-            "middle_name" => $request->middle_name,
-            "last_name" => $request->last_name,
-            "suffix_name" => $request->suffix_name,
-            "contact_number" => $request->contact_number,
-            "email_address" => $request->email_address
-        ]);
-        // dd($request->email_address);
-
         //pds
         $pds = PersonalDataSheet::create([
-            'applicant_id' => $applicant->id,
+            'applicant_id' => $request->id,
+            'employee_id' => $request->id,
+
         ]);
 
         //personal information
@@ -132,7 +123,7 @@ class PersonalDataSheetController extends Controller
             "spouse_surname" => $request->spouse_surname,
             "spouse_first_name" => $request->spouse_first_name,
             "spouse_middle_name" => $request->spouse_middle_name,
-            "name_extension" => $request->name_extension,
+            "suffix_name" => $request->suffix_name,
             "occupation" => $request->occupation,
             "employee_business_name" => $request->employee_business_name,
             "business_address" => $request->business_address,
@@ -286,24 +277,29 @@ class PersonalDataSheetController extends Controller
             ]);
         }
 
+        //answer
+        Answer::create([
+            "personal_data_sheet_id" => $pds->id,
+            "question_id" => $request->question_id,
+            "choice" => $request->choice,
+            "details" => $request->details,
+            "date_filed" => $request->date_filed,
+            "case_status" => $request->case_status,
+        ]);
 
-        // Recognition::create([
-        //     "pds_id" => $pds->id,
-        //     "recognition_title" => $request->recognition_title,
-        // ]);
-
-        // Reference::create([
-        //     "pds_id" => $pds->id,
-        //     "name" => $request->name,
-        //     "address" => $request->address,
-        //     "telephone_number" => $request->telephone_number,
-        //     "name2" => $request->name2,
-        //     "address2" => $request->address2,
-        //     "telephone_number2" => $request->telephone_number2,
-        //     "name3" => $request->name3,
-        //     "address3" => $request->address3,
-        //     "telephone_number3" => $request->telephone_number3
-        // ]);
+        //references
+        Reference::create([
+            "personal_data_sheet_id" => $pds->id,
+            "name" => $request->name,
+            "address" => $request->address,
+            "telephone_number" => $request->telephone_number,
+            "name2" => $request->name2,
+            "address2" => $request->address2,
+            "telephone_number2" => $request->telephone_number2,
+            "name3" => $request->name3,
+            "address3" => $request->address3,
+            "telephone_number3" => $request->telephone_number3,
+        ]);
 
         return $this->success('', 'Successfull Saved', 200);
     }
@@ -348,7 +344,7 @@ class PersonalDataSheetController extends Controller
      */
     public function update(Request $pdsRequest, PersonalInformation $personalInformation)
     {
-        
+
         // $pdsRequest->validated($pdsRequest->all());
         // $validataData = $request->validated();
         // dd($pdsRequest->mobile_number); 

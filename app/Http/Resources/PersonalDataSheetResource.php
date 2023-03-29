@@ -17,17 +17,10 @@ class PersonalDataSheetResource extends JsonResource
         return [
             "id" => (string)$this->id,
             "attributes" => [
-                
-                //  "first_name" => (string)$this->belongsToApplicant[0]->first_name,
-                // "first_name" => (string)$this->belongsToApplicant[0]->first_name,
-                // "middle_name" => (string)$this->belongsToApplicant[0]->middle_name,
-                // "last_name" => (string)$this->belongsToApplicant[0]->last_name,
-                // "suffix_name" => (string)$this->belongsToApplicant[0]->suffix_name,
-                // "contact_number" => (string)$this->belongsToApplicant[0]->contact_number,
-                // "email_address" =>(string)$this->belongsToApplicant[0]->email_address,
                
-                // "applicant" => new ApplicantResource($this->whenLoaded('belongsToApplicant')),
+                // pds
                 "applicant_id" => (string)$this->applicant_id,
+                "employee_id" => (string)$this->employee_id,
 
                 // personal information
                 "mobile_number" => (string)$this->hasManyPersonalInformation[0]->mobile_number,
@@ -59,7 +52,7 @@ class PersonalDataSheetResource extends JsonResource
                 "spouse_surname" => (string)$this->hasManyFamilyBackground[0]->spouse_surname,
                 "spouse_first_name" => (string)$this->hasManyFamilyBackground[0]->spouse_first_name,
                 "spouse_middle_name" => (string)$this->hasManyFamilyBackground[0]->spouse_middle_name,
-                "name_extension" => (string)$this->hasManyFamilyBackground[0]->name_extension,
+                "suffix_name" => (string)$this->hasManyFamilyBackground[0]->suffix_name,
                 "occupation" => (string)$this->hasManyFamilyBackground[0]->occupation,
                 "employee_business_name" => (string)$this->hasManyFamilyBackground[0]->employee_business_name,
                 "business_address" => (string)$this->hasManyFamilyBackground[0]->business_address,
@@ -157,6 +150,32 @@ class PersonalDataSheetResource extends JsonResource
                 'membershipAssociation' => $this->hasManyMembershipAssociation->map(function ($membershipAssociation) {
                     return [
                         'membership_association' => $membershipAssociation->membership_association,
+                    ];
+                }),
+
+                //answer
+                'answer' => $this->hasManyAnswer->map(function ($answer) {
+                    return [
+                        'choice' => $answer->choice,
+                        'details' => $answer->details,
+                        'date_filed' => $answer->date_filed,
+                        'case_status' => $answer->case_status,
+                    ];
+                }),
+
+                //reference
+                'reference' => $this->hasManyReference->map(function ($reference) {
+                    return [
+                        'name' => $reference->name,
+                        'address' => $reference->address,
+                        'telephone_number' => $reference->telephone_number,
+                        'name2' => $reference->name2,
+                        'address2' => $reference->address2,
+                        'telephone_number2' => $reference->telephone_number2,
+                        'name3' => $reference->name3,
+                        'address3' => $reference->address3,
+                        'telephone_number3' => $reference->telephone_number3,
+                        
                     ];
                 }),
 
