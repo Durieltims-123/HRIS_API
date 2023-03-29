@@ -12,7 +12,7 @@ class FamilyBackground extends Model
     use HasFactory;
     public function belongsToPersonalDataSheet ():BelongsTo
     {
-        return $this->belongsTo(PersonalDataSheet::class);
+        return $this->belongsTo(PersonalDataSheet::class, 'personal_data_sheet_id');
     }
 
     public function hasManyChildrenInformation (): HasMany
@@ -27,7 +27,7 @@ class FamilyBackground extends Model
         'spouse_surname',
         'spouse_first_name',
         'spouse_middle_name',
-        'name_extension',
+        'suffix_name',
         'occupation',
         'employee_business_name',
         'business_address',

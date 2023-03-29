@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreQuestionRequest;
+use App\Models\Question;
+use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
+    use HttpResponses;
     /**
      * Display a listing of the resource.
      */
@@ -25,9 +29,20 @@ class QuestionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreQuestionRequest $request)
     {
-        //
+        // validate input fields
+        $request->validated($request->all());
+
+        Question::create([
+            "number" => $request->number,
+            "questions" => $request->questions,
+
+        ]);
+
+
+        // return message
+        return $this->success('', 'Successfull Saved', 200);
     }
 
     /**

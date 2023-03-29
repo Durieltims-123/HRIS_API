@@ -19,7 +19,6 @@ class QuestionResource extends JsonResource
             "attributes"=>[
                 "number" => (string)$this->number,
                 "questions" => (string)$this->questions,
-                "choices" => (string)$this->choices,
             ]
             
         ];

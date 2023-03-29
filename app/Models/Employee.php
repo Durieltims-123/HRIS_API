@@ -28,9 +28,14 @@ class Employee extends Model
      {
         return $this->hasMany(EmployeeOrientation::class);
      }
+     public function belongsToOffice()
+     {
+        return $this->belongsTo(Office::class, 'office_id');
+     }
 
 protected $fillable = 
     [
+        'office_id',
         'first_name',
         'middle_name',
         'last_name',
