@@ -18,7 +18,8 @@ class Barangay extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'permanent_barangay_name',
-        'residential_barangay_name',
+        'municipality_id',
+        'barangay_name',
+        'barangay_code',
     ];
 }

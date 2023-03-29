@@ -27,7 +27,7 @@ class Province extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'permanent_province_name',
-        'residential_province_name',
+        'province_name',
+        'province_code',
     ];
 }
