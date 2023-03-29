@@ -31,7 +31,10 @@ class DatabaseSeeder extends Seeder
             DepartmentSeeder::class,
             OfficeSeeder::class,
             PlantillaSeeder::class,
-            PositionDescriptionSeeder::class
+            PositionDescriptionSeeder::class,
+            ProvinceSeeder::class,
+            MunicipalitySeeder::class,
+            BarangaySeeder::class
         ]);
     }
 }
