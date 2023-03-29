@@ -19,7 +19,7 @@ class ProvinceController extends Controller
     public function index()
     {
         return ProvinceResource::collection(
-            Province::with ('hasOneMunicipality')->get()
+            Province::with('hasOneMunicipality')->get()
         );
     }
 
@@ -30,7 +30,7 @@ class ProvinceController extends Controller
     {
         //
     }
- 
+
     /**
      * Store a newly created resource in storage.
      */
@@ -41,21 +41,21 @@ class ProvinceController extends Controller
         // validate input fields
         $request->validated($request->all());
 
-     $province = Province::create([
-            "permanent_province_name" => $request->permanent_province_name,
-            "residential_province_name" => $request->residential_province_name
+        $province = Province::create([
+            "province_name" => $request->province_name,
+            "province_code" => $request->province_code
         ]);
 
         $municipality = Municipality::create([
             'province_id' => $province->id,
-            "permanent_municipality_name" => $request->permanent_municipality_name,
-            "residential_municipality_name" => $request->residential_municipality_name
+            "municipality_name" => $request->municipality_name,
+            "municipality_code" => $request->municipality_code,
         ]);
 
         Barangay::create([
             'municipality_id' => $municipality->id,
-            "permanent_barangay_name" => $request->permanent_barangay_name,
-            "residential_barangay_name" => $request->residential_barangay_name
+            "barangay_name" => $request->barangay_name,
+            "barangay_code" => $request->barangay_code,
         ]);
 
         return $this->success('', 'Successfull Saved', 200);
@@ -88,8 +88,9 @@ class ProvinceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Province $province)
     {
-        //
+        $province->delete();
+        return $this->success('', 'Successfull Deleted', 200);
     }
 }

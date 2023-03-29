@@ -40,17 +40,17 @@ class StorePersonalDataSheetRequest extends FormRequest
             'permanent_house_number' => ['required', 'string', 'max:255'],
             'permanent_subdivision_village' => ['required', 'string', 'max:255'],
             'permanent_street' => ['required', 'string', 'max:255'],
-            'permanent_barangay_id' => ['required'],
-            'permanent_municipality_id' => ['required'],
-            'permanent_province_id' => ['required'],
-            'permanent_zip_code_number' => ['required', 'string', 'max:255'],
+            'barangay_id' => ['required'],
+            'municipality_id' => ['required'],
+            'province_id' => ['required'],
+            'permanent_zip_code' => ['required', 'string', 'max:255'],
             'residential_house_number' => ['required', 'string', 'max:255'],
             'residential_subdivision_village' => ['required', 'string', 'max:255'],
             'residential_street' => ['required', 'string', 'max:255'],
-            'residential_barangay_id' => ['required'],
-            'residential_municipality_id' => ['required'],
-            'residential_province_id' => ['required'],
-            'residential_zip_code_number' => ['required', 'string', 'max:255'],
+            'r_barangay_id' => ['required'],
+            'r_municipality_id' => ['required'],
+            'r_province_id' => ['required'],
+            'residential_zip_code' => ['required', 'string', 'max:255'],
             'citizenship' => ['required', 'string', 'max:255'],
             'agency_employee' => ['required', 'string', 'max:255'],
             'tin_number' => ['required', 'string', 'max:255'],
@@ -65,7 +65,6 @@ class StorePersonalDataSheetRequest extends FormRequest
             'sex' => ['required', 'string', 'max:255'],
             'birthplace' => ['required', 'string', 'max:255'],
             'birthdate' => ['required', 'date'],
-
 
 
             //family background

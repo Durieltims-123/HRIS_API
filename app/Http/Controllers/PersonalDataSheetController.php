@@ -12,6 +12,7 @@ use App\Models\ChildrenInformation;
 use App\Models\PersonalInformation;
 use App\Http\Requests\StorePersonalDataSheetRequest;
 use App\Http\Requests\StorePersonalInformationRequest;
+use App\Http\Resources\ApplicantResource;
 use App\Http\Resources\PersonalDataSheetResource;
 use App\Http\Resources\PersonalInformationResource;
 use App\Models\CivilServiceEligibility;
@@ -31,9 +32,14 @@ class PersonalDataSheetController extends Controller
      */
     public function index()
     {
+        // return ApplicantResource::collection(
+        //     Applicant::with('belongsToApplicant')->get()
+        // );
         // dd(PersonalDataSheet::with('hasManyPersonalInformation')->get());
         return PersonalDataSheetResource::collection(
             PersonalDataSheet::with(
+                // 'belongsToApplicant.hasManyPersonalInformation',
+                // 'belongsToApplicant',
                 'hasManyPersonalInformation',
                 'hasManyFamilyBackground',
                 'hasManyChildrenInformation',
@@ -92,17 +98,17 @@ class PersonalDataSheetController extends Controller
             "permanent_house_number" => $request->permanent_house_number,
             "permanent_subdivision_village" => $request->permanent_subdivision_village,
             "permanent_street" => $request->permanent_street,
-            "permanent_barangay_id" => $request->permanent_barangay_id,
-            "permanent_municipality_id" => $request->permanent_municipality_id,
-            "permanent_province_id" => $request->permanent_province_id,
-            "permanent_zip_code_number" => $request->permanent_zip_code_number,
+            "barangay_id" => $request->barangay_id,
+            "municipality_id" => $request->municipality_id,
+            "province_id" => $request->province_id,
+            "permanent_zip_code" => $request->permanent_zip_code,
             "residential_house_number" => $request->residential_house_number,
             "residential_subdivision_village" => $request->residential_subdivision_village,
             "residential_street" => $request->residential_street,
-            "residential_barangay_id" => $request->residential_barangay_id,
-            "residential_municipality_id" => $request->residential_municipality_id,
-            "residential_province_id" => $request->residential_province_id,
-            "residential_zip_code_number" => $request->residential_zip_code_number,
+            "r_barangay_id" => $request->r_barangay_id,
+            "r_municipality_id" => $request->r_municipality_id,
+            "r_province_id" => $request->r_province_id,
+            "residential_zip_code" => $request->residential_zip_code,
             "citizenship" => $request->citizenship,
             "agency_employee" => $request->agency_employee,
             "tin_number" => $request->tin_number,
@@ -340,10 +346,13 @@ class PersonalDataSheetController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StorePersonalDataSheetRequest $pdsRequest, PersonalInformation $personalInformation)
+    public function update(Request $pdsRequest, PersonalInformation $personalInformation)
     {
-        $pdsRequest->validated($pdsRequest->all());
-
+        
+        // $pdsRequest->validated($pdsRequest->all());
+        // $validataData = $request->validated();
+        // dd($pdsRequest->mobile_number); 
+        $personalInformation->personal_data_sheet_id = $pdsRequest->personal_data_sheet_id;
         $personalInformation->mobile_number = $pdsRequest->mobile_number;
         $personalInformation->telephone_number = $pdsRequest->telephone_number;
         $personalInformation->permanent_house_number = $pdsRequest->permanent_house_number;
@@ -385,9 +394,10 @@ class PersonalDataSheetController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PersonalDataSheet $personalDataSheet)
+    public function destroy(PersonalDataSheet $personalDataSheet, Applicant $applicant)
     {
         $personalDataSheet->delete();
+        $applicant->delete();
         return $this->success('', 'Successfull Deleted', 200);
     }
 }
