@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('barangays', function (Blueprint $table) {
             $table->id();
-
-            // $table->foreignId('salary_grade_id')->constrained();
             $table->foreignId('municipality_id')->constrained()->onDelete('cascade');
             $table->string('barangay_name');
             $table->string('barangay_code')->nullable();

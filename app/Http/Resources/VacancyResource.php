@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Publication;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -28,6 +29,7 @@ class VacancyResource extends JsonResource
 
             ],
             "plantilla" => new PlantillaResource($this->belongsToPlantilla),
+            "publication" => PublicationResource::collection($this->whenLoaded('hasManyPublication')),
             // "position" => new PositionResource($position),
             // "position_description" => new PlantillaResource($plantilla),
             
