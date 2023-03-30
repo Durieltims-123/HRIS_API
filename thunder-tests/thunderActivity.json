@@ -1,47 +1,5 @@
 [
   {
-    "_id": "2147c931-ed47-4977-897e-e4cc5aa30d96",
-    "colId": "history",
-    "containerId": "",
-    "name": "https://www.thunderclient.com/welcome",
-    "url": "https://www.thunderclient.com/welcome",
-    "method": "POST",
-    "sortNum": 0,
-    "created": "2023-03-09T02:55:48.807Z",
-    "modified": "2023-03-09T02:55:48.807Z",
-    "headers": [],
-    "params": [],
-    "tests": []
-  },
-  {
-    "_id": "e285faac-b664-4397-bb45-944cc91f2195",
-    "colId": "history",
-    "containerId": "",
-    "name": "http://127.0.0.1:8000/api/salary-grade",
-    "url": "http://127.0.0.1:8000/api/salary-grade",
-    "method": "POST",
-    "sortNum": 0,
-    "created": "2023-03-10T00:26:02.889Z",
-    "modified": "2023-03-10T00:26:02.889Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "formdata",
-      "raw": "",
-      "form": [
-        {
-          "name": "amount",
-          "value": "69000.00"
-        },
-        {
-          "name": "number",
-          "value": "69"
-        }
-      ]
-    },
-    "tests": []
-  },
-  {
     "_id": "d7525d01-b9ae-4a40-8086-c30bd9719e6a",
     "colId": "history",
     "containerId": "",
@@ -821,24 +779,6 @@
     "containerId": "",
     "name": "http://127.0.0.1:8000/api/position-description",
     "url": "http://127.0.0.1:8000/api/position-description",
-    "method": "POST",
-    "sortNum": 0,
-    "created": "2023-03-10T07:00:21.698Z",
-    "modified": "2023-03-10T07:00:21.698Z",
-    "headers": [],
-    "params": [],
-    "auth": {
-      "type": "bearer",
-      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
-    },
-    "tests": []
-  },
-  {
-    "_id": "e285faac-b664-4397-bb45-944cc91f2195",
-    "colId": "history",
-    "containerId": "",
-    "name": "http://127.0.0.1:8000/api/salary-grade",
-    "url": "http://127.0.0.1:8000/api/salary-grade",
     "method": "POST",
     "sortNum": 0,
     "created": "2023-03-10T07:00:21.698Z",
