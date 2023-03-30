@@ -16,9 +16,8 @@ class ApplicantFactory extends Factory
      */
     public function definition(): array
     {
-        $number = 1;
+        
         return [
-             'applicant_id' => $number++,
              'first_name' => $this->faker->name(),
              'middle_name' => $this->faker->name(),
              'last_name' => $this->faker->name(),

@@ -17,6 +17,7 @@ use App\Models\SalaryGrade;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\QualificationStandard;
+use App\Models\Question;
 use App\Models\Recognition;
 use App\Models\Reference;
 use App\Models\SpecialSkillHobby;
@@ -41,7 +42,22 @@ class DatabaseSeeder extends Seeder
         SalaryGrade::factory(33)->create();
         Position::factory(33)->create();
         QualificationStandard::factory(33)->create();
-        Applicant::factory(5)->create();
+        // Applicant::factory(5)->create();
+        
+        
+        // Reference::factory(10)
+
+        $this->call([
+            DepartmentSeeder::class,
+            OfficeSeeder::class,
+            PlantillaSeeder::class,
+            PositionDescriptionSeeder::class,
+            ProvinceSeeder::class,
+            MunicipalitySeeder::class,
+            BarangaySeeder::class,
+            Question::class
+        ]);
+
         Employee::factory(5)->create();
         PersonalDataSheet::factory(5)->create();
         PersonalInformation::factory(5)->create();
@@ -55,17 +71,5 @@ class DatabaseSeeder extends Seeder
         SpecialSkillHobby::factory(10)->create();
         Recognition ::factory(10)->create();
         MembershipAssociation::factory(10)->create();
-        // Reference::factory(10)
-
-        $this->call([
-            DepartmentSeeder::class,
-            OfficeSeeder::class,
-            PlantillaSeeder::class,
-            PositionDescriptionSeeder::class,
-            ProvinceSeeder::class,
-            MunicipalitySeeder::class,
-            BarangaySeeder::class,
-
-        ]);
     }
 }

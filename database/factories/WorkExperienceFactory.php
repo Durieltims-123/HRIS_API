@@ -20,14 +20,14 @@ class WorkExperienceFactory extends Factory
         $personal_data_sheets = PersonalDataSheet::all();
         return [
             'personal_data_sheet_id' => $personal_data_sheets->random()->id,
-            'position_title' => $this->faker->text(1),
-            'department' => $this->faker->text(1),
-            'monthly_salary' => $this->faker->number(1),
-            'salary' => $this->faker->number(1),
-            'status_appointment' => $this->faker->text(1),
-            'government_service' => $this->faker->text(1),
-            'inclusive_dates_from' => $this->faker->date(),
-            'inclusive_dates_to' => $this->faker->date(),
+            'position_title' => $this->faker->sentence(),
+            'department' => $this->faker->sentence(),
+            'monthly_salary' => $this->faker->randomNumber(),
+            'salary' => $this->faker->randomNumber(),
+            'status_appointment' => $this->faker->sentence(),
+            'government_service' => $this->faker->sentence(),
+            'inclusive_dates_from' => $this->faker->date('Y-m-d'),
+            'inclusive_dates_to' => $this->faker->date('Y-m-d'),
         ];
     }
 }

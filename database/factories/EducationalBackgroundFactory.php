@@ -18,17 +18,17 @@ class EducationalBackgroundFactory extends Factory
     public function definition(): array
     {
         $personal_data_sheets = PersonalDataSheet::all();
-        $number = 1;
+        
         return [
             'personal_data_sheet_id' => $personal_data_sheets->random()->id,
             'level' => $this->faker->randomElement(['Elementary','Highschool','College']),
-            'school_name' => $this->faker->text(1),
-            'basic_education' => $this->faker->text(1),
-            'scholarship_honor' => $this->faker->text(1),
-            'highest_level' => $this->faker->text(1),
+            'school_name' => $this->faker->sentence(),
+            'basic_education' => $this->faker->sentence(),
+            'scholarship_honor' => $this->faker->sentence(),
+            'highest_level' => $this->faker->sentence(),
             'year_graduated' => $this->faker->year(),
-            'eb_inclusive_dates_from' => $this->faker->date(),
-            'eb_inclusive_dates_to' => $this->faker->date(),
+            'eb_inclusive_dates_from' => $this->faker->date('Y-m-d'),
+            'eb_inclusive_dates_to' => $this->faker->date('Y-m-d'),
         ];
     }
 }
