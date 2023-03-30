@@ -11,7 +11,7 @@ class StoreAnswerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class StoreAnswerRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'personal_data_sheet_id' => ['required'],
+            'question_id' => ['required'],
             'choice' => ['required', 'string', 'max:255'],
+            'details' => ['nullable'],
+            'date_filed' => ['nullable'],
+            'case_status' => ['nullable']
         ];
     }
 }

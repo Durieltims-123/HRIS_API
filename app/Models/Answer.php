@@ -4,16 +4,30 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Answer extends Model
 {
     use HasFactory;
 
+    public function belongsPersonalDataSheet ():BelongsTo
+    {
+        return $this->belongsTo(PersonalDataSheet::class, 'personal_data_sheet_id');
+    }
+    public function belongsQuestion ():BelongsTo
+    {
+        return $this->belongsTo(Question::class, 'question_id');
+    }
+
     protected $primaryKey = 'id';
 
     protected $fillable = [
         'personal_data_sheet_id',
-        'choice'
+        'question_id',
+        'choice',
+        'details',
+        'date_filed',
+        'case_status'
     ];
 
 }

@@ -960,31 +960,11 @@
       "raw": "",
       "form": [
         {
-          "name": "first_name",
-          "value": "yesyesyes"
-        },
-        {
-          "name": "middle_name",
-          "value": "Middle"
-        },
-        {
-          "name": "last_name",
-          "value": "Last"
-        },
-        {
-          "name": "suffix_name",
-          "value": "Sr."
-        },
-        {
-          "name": "contact_number",
-          "value": "090202711"
-        },
-        {
-          "name": "email_address",
-          "value": "ewan@gmail.com"
-        },
-        {
           "name": "applicant_id",
+          "value": "1"
+        },
+        {
+          "name": "employee_id",
           "value": "1"
         },
         {
@@ -1128,7 +1108,7 @@
           "value": "SpMiddlename"
         },
         {
-          "name": "name_extension",
+          "name": "suffix_name",
           "value": "Jr."
         },
         {
@@ -1494,6 +1474,70 @@
         {
           "name": "membership_association[]",
           "value": "Assoc"
+        },
+        {
+          "name": "personal_data_sheet_id",
+          "value": "1"
+        },
+        {
+          "name": "question_id",
+          "value": "1"
+        },
+        {
+          "name": "choice",
+          "value": "yes"
+        },
+        {
+          "name": "details",
+          "value": "bla bla bla"
+        },
+        {
+          "name": "date_filed",
+          "value": ""
+        },
+        {
+          "name": "case_status",
+          "value": "aw"
+        },
+        {
+          "name": "personal_data_sheet_id",
+          "value": "1"
+        },
+        {
+          "name": "name",
+          "value": "Kenen1"
+        },
+        {
+          "name": "adress",
+          "value": "Atok1"
+        },
+        {
+          "name": "telephone_number",
+          "value": "8520"
+        },
+        {
+          "name": "name2",
+          "value": "Kenen2"
+        },
+        {
+          "name": "adress2",
+          "value": "Atok2"
+        },
+        {
+          "name": "telephone_number2",
+          "value": "845120"
+        },
+        {
+          "name": "name3",
+          "value": "Kenen3"
+        },
+        {
+          "name": "adress3",
+          "value": "Atok3"
+        },
+        {
+          "name": "telephone_number3",
+          "value": "485120"
         }
       ]
     },
@@ -2280,6 +2324,24 @@
     "method": "GET",
     "sortNum": 40000,
     "created": "2023-03-24T01:20:01.544Z",
+    "modified": "2023-03-24T01:20:01.544Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|l5IC27mYC8d1a4s7BVoLxIgdvyPqxiBbneUvSqxX"
+    },
+    "tests": []
+  },
+  {
+    "_id": "a5caf8e5-ff7c-4df2-9a8e-5cc2fcc3dced",
+    "colId": "d9a7eabb-45ca-433d-a4c4-6cbb5f331775",
+    "containerId": "",
+    "name": "Index Vacancy",
+    "url": "http://127.0.0.1:8000/api/vacancy",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2023-03-24T01:20:01.544Z",
     "modified": "2023-03-27T07:30:06.370Z",
     "headers": [],
     "params": [],
@@ -2298,12 +2360,12 @@
     "method": "GET",
     "sortNum": 20000,
     "created": "2023-03-24T02:39:57.804Z",
-    "modified": "2023-03-29T02:00:46.296Z",
+    "modified": "2023-03-29T02:50:15.294Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "1|OGKVVCxB1zB8U3H8K6Xtr36QHX8fVx7ObLuaWrP8"
+      "bearer": "1|Al63VGUSU3Qc9e3aXuq00lbrhBeMPTbTUh38uJHy"
     },
     "tests": []
   },
@@ -2312,16 +2374,16 @@
     "colId": "8a686a09-4f64-4b37-90e4-08dd4673be85",
     "containerId": "",
     "name": "Show PDS",
-    "url": "http://127.0.0.1:8000/api/personal-data-sheet/8",
+    "url": "http://127.0.0.1:8000/api/personal-data-sheet/1",
     "method": "GET",
     "sortNum": 30000,
     "created": "2023-03-24T07:20:56.223Z",
-    "modified": "2023-03-28T00:03:03.307Z",
+    "modified": "2023-03-29T02:51:08.404Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "1|KsegompYZzJW9ebsB4e5fnembJA7ZdJXdCIY0aUl"
+      "bearer": "1|Al63VGUSU3Qc9e3aXuq00lbrhBeMPTbTUh38uJHy"
     },
     "tests": []
   },
@@ -3022,15 +3084,15 @@
           "value": "12345"
         },
         {
-          "name": "permanent_barangay_id",
+          "name": "barangay_id",
           "value": "1"
         },
         {
-          "name": "permanent_municipality_id",
+          "name": "municipality_id",
           "value": "1"
         },
         {
-          "name": "permanent_province_id",
+          "name": "province_id",
           "value": "1"
         },
         {
@@ -3050,15 +3112,15 @@
           "value": "12345"
         },
         {
-          "name": "residential_barangay_id",
+          "name": "r_barangay_id",
           "value": "1"
         },
         {
-          "name": "residential_municipality_id",
+          "name": "r_municipality_id",
           "value": "1"
         },
         {
-          "name": "residential_province_id",
+          "name": "r_province_id",
           "value": "12"
         },
         {
@@ -3111,7 +3173,7 @@
         },
         {
           "name": "sex",
-          "value": "f "
+          "value": "f"
         },
         {
           "name": "birthplace",
@@ -3129,7 +3191,43 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "1|UP0Altx2Acvhk7C03uCDkjY1DHMhVuqx9mPs2T44"
+      "bearer": "1|Al63VGUSU3Qc9e3aXuq00lbrhBeMPTbTUh38uJHy"
+    },
+    "tests": []
+  },
+  {
+    "_id": "235d5413-bc1d-4e6a-ba3e-c394591ca8d9",
+    "colId": "d9a7eabb-45ca-433d-a4c4-6cbb5f331775",
+    "containerId": "",
+    "name": "Queue Vacancy",
+    "url": "http://127.0.0.1:8000/api/vacancy-queue/1",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2023-03-28T01:15:27.265Z",
+    "modified": "2023-03-28T01:19:04.576Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|l5IC27mYC8d1a4s7BVoLxIgdvyPqxiBbneUvSqxX"
+    },
+    "tests": []
+  },
+  {
+    "_id": "c5a5971b-6371-44aa-a2e3-0361f9e0dd68",
+    "colId": "d9a7eabb-45ca-433d-a4c4-6cbb5f331775",
+    "containerId": "",
+    "name": "All Approved",
+    "url": "http://127.0.0.1:8000/api/vacancy-all-approved",
+    "method": "GET",
+    "sortNum": 70000,
+    "created": "2023-03-28T03:09:33.840Z",
+    "modified": "2023-03-28T03:09:33.840Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "2|TpAE34PRO7io4CQq5nqrzciM8IQxjCzbGiRfcmhv"
     },
     "tests": []
   },
@@ -3238,6 +3336,392 @@
     "auth": {
       "type": "bearer",
       "bearer": "2|TpAE34PRO7io4CQq5nqrzciM8IQxjCzbGiRfcmhv"
+    },
+    "tests": []
+  },
+  {
+    "_id": "845e82d0-d8fa-4bb7-9811-9d6bfa0af66d",
+    "colId": "66b9c9ed-e491-4231-92e6-fbd92f2fd7f5",
+    "containerId": "",
+    "name": "Delete Province",
+    "url": "http://127.0.0.1:8000/api/province/1",
+    "method": "DELETE",
+    "sortNum": 40000,
+    "created": "2023-03-29T01:10:11.584Z",
+    "modified": "2023-03-29T01:14:49.003Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|ZAZEIREgilfAYIGT87zOac9gcsse0mALByyB6T6K"
+    },
+    "tests": []
+  },
+  {
+    "_id": "0d71aebc-9db0-453f-af0f-85be1a8dba62",
+    "colId": "ebc78a32-3b23-4d94-9c2e-dd3e4c10642e",
+    "containerId": "",
+    "name": "Add Applicant",
+    "url": "http://127.0.0.1:8000/api/applicant",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-29T04:15:17.559Z",
+    "modified": "2023-03-29T06:56:46.781Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "first_name",
+          "value": "aw"
+        },
+        {
+          "name": "middle_name",
+          "value": "m."
+        },
+        {
+          "name": "last_name",
+          "value": "maga"
+        },
+        {
+          "name": "suffix_name",
+          "value": "jr"
+        },
+        {
+          "name": "contact_number",
+          "value": "0987654321"
+        },
+        {
+          "name": "email_address",
+          "value": "aw@gmail.com"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|twY1T9JcZfBE6wQ4aw3iVWl882XhbhXZLdnDmx8J"
+    },
+    "tests": []
+  },
+  {
+    "_id": "4fea94f2-173b-4f7c-91bf-b8424985ae3f",
+    "colId": "ebc78a32-3b23-4d94-9c2e-dd3e4c10642e",
+    "containerId": "",
+    "name": "Index Applicant",
+    "url": "http://127.0.0.1:8000/api/applicant",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-03-29T06:08:49.891Z",
+    "modified": "2023-03-29T06:10:24.881Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|MQXY1SD3RtxvH5OgzxqpxucMbvOqkIvQQOdzOVjw"
+    },
+    "tests": []
+  },
+  {
+    "_id": "a6a9a086-fbf9-428e-8aaf-390e443c7ff8",
+    "colId": "ebc78a32-3b23-4d94-9c2e-dd3e4c10642e",
+    "containerId": "",
+    "name": "Show Applicant",
+    "url": "http://127.0.0.1:8000/api/applicant/2",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2023-03-29T06:12:14.084Z",
+    "modified": "2023-03-29T06:15:59.378Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|MQXY1SD3RtxvH5OgzxqpxucMbvOqkIvQQOdzOVjw"
+    },
+    "tests": []
+  },
+  {
+    "_id": "0e3db619-19b2-4c2c-8442-a3c4299ba736",
+    "colId": "629c3ce2-61ec-4ab2-8587-96d83a37c333",
+    "containerId": "",
+    "name": "Add Employee",
+    "url": "http://127.0.0.1:8000/api/employee",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-29T06:22:25.436Z",
+    "modified": "2023-03-29T06:54:04.717Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "office_id",
+          "value": "1"
+        },
+        {
+          "name": "first_name",
+          "value": "fNames"
+        },
+        {
+          "name": "middle_name",
+          "value": "mName"
+        },
+        {
+          "name": "last_name",
+          "value": "lName"
+        },
+        {
+          "name": "suffix_name",
+          "value": "Jr."
+        },
+        {
+          "name": "contact_number",
+          "value": "0909"
+        },
+        {
+          "name": "email_address",
+          "value": "maga@gmail.com"
+        },
+        {
+          "name": "current_position",
+          "value": "master in something"
+        },
+        {
+          "name": "employment_status",
+          "value": "aw"
+        },
+        {
+          "name": "employee_status",
+          "value": "permanent"
+        },
+        {
+          "name": "orientation_status",
+          "value": "aw"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|twY1T9JcZfBE6wQ4aw3iVWl882XhbhXZLdnDmx8J"
+    },
+    "tests": []
+  },
+  {
+    "_id": "801ff904-7165-435c-91f1-a66ab12bd30f",
+    "colId": "629c3ce2-61ec-4ab2-8587-96d83a37c333",
+    "containerId": "",
+    "name": "Index Employee",
+    "url": "http://127.0.0.1:8000/api/employee",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-03-29T06:36:33.551Z",
+    "modified": "2023-03-29T06:37:08.022Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|2l4V1MrY00KugqT5GJGruaHqrePFle78ENtwONR5"
+    },
+    "tests": []
+  },
+  {
+    "_id": "49e6b6c3-faf1-4ab3-b128-e05901ff63ba",
+    "colId": "629c3ce2-61ec-4ab2-8587-96d83a37c333",
+    "containerId": "",
+    "name": "Show Employee",
+    "url": "http://127.0.0.1:8000/api/employee/2",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2023-03-29T06:39:21.174Z",
+    "modified": "2023-03-29T06:39:45.643Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|2l4V1MrY00KugqT5GJGruaHqrePFle78ENtwONR5"
+    },
+    "tests": []
+  },
+  {
+    "_id": "8e9af38b-39fa-41f3-9666-263a99ba6ebf",
+    "colId": "ebc78a32-3b23-4d94-9c2e-dd3e4c10642e",
+    "containerId": "",
+    "name": "Update Applicant",
+    "url": "http://127.0.0.1:8000/api/applicant/1",
+    "method": "PATCH",
+    "sortNum": 40000,
+    "created": "2023-03-29T06:41:05.799Z",
+    "modified": "2023-03-29T07:02:31.029Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "first_name",
+          "value": "aw"
+        },
+        {
+          "name": "middle_name",
+          "value": "awaw"
+        },
+        {
+          "name": "last_name",
+          "value": "aw"
+        },
+        {
+          "name": "suffix_name",
+          "value": "aw"
+        },
+        {
+          "name": "contact_number",
+          "value": "aw"
+        },
+        {
+          "name": "email_address",
+          "value": "aw"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|twY1T9JcZfBE6wQ4aw3iVWl882XhbhXZLdnDmx8J"
+    },
+    "tests": []
+  },
+  {
+    "_id": "e23c0378-8d39-4712-9470-b8dc2b7327d4",
+    "colId": "ebc78a32-3b23-4d94-9c2e-dd3e4c10642e",
+    "containerId": "",
+    "name": "Delete Applicant",
+    "url": "http://127.0.0.1:8000/api/applicant/1",
+    "method": "DELETE",
+    "sortNum": 50000,
+    "created": "2023-03-29T06:41:33.496Z",
+    "modified": "2023-03-29T07:02:51.605Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|twY1T9JcZfBE6wQ4aw3iVWl882XhbhXZLdnDmx8J"
+    },
+    "tests": []
+  },
+  {
+    "_id": "fce006ce-fb5a-480a-b879-0abfaa43aed8",
+    "colId": "629c3ce2-61ec-4ab2-8587-96d83a37c333",
+    "containerId": "",
+    "name": "Update Employee",
+    "url": "http://127.0.0.1:8000/api/employee/2",
+    "method": "PATCH",
+    "sortNum": 40000,
+    "created": "2023-03-29T06:42:26.097Z",
+    "modified": "2023-03-29T07:02:21.807Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "first_name",
+          "value": "aw"
+        },
+        {
+          "name": "middle_name",
+          "value": "aw"
+        },
+        {
+          "name": "last_name",
+          "value": "aw"
+        },
+        {
+          "name": "suffix_name",
+          "value": "aw"
+        },
+        {
+          "name": "contact_number",
+          "value": "aw"
+        },
+        {
+          "name": "email_address",
+          "value": "aw"
+        },
+        {
+          "name": "current_position",
+          "value": "aw"
+        },
+        {
+          "name": "employment_status",
+          "value": "aw"
+        },
+        {
+          "name": "employee_status",
+          "value": "aw"
+        },
+        {
+          "name": "orientation_status",
+          "value": "aw"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|twY1T9JcZfBE6wQ4aw3iVWl882XhbhXZLdnDmx8J"
+    },
+    "tests": []
+  },
+  {
+    "_id": "e88656e5-e6c3-4d14-980c-d53cbf97f1e2",
+    "colId": "629c3ce2-61ec-4ab2-8587-96d83a37c333",
+    "containerId": "",
+    "name": "Delete Employee",
+    "url": "http://127.0.0.1:8000/api/employee/1",
+    "method": "DELETE",
+    "sortNum": 50000,
+    "created": "2023-03-29T06:42:28.607Z",
+    "modified": "2023-03-29T06:56:32.473Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|twY1T9JcZfBE6wQ4aw3iVWl882XhbhXZLdnDmx8J"
+    },
+    "tests": []
+  },
+  {
+    "_id": "80a93875-6c2a-40e7-a404-495cbdc423c4",
+    "colId": "062c2a9b-e332-4b37-9824-b8c61a90e81e",
+    "containerId": "",
+    "name": "App Quesion",
+    "url": "http://127.0.0.1:8000/api/question",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-29T08:05:52.846Z",
+    "modified": "2023-03-29T08:21:57.829Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "number",
+          "value": "2"
+        },
+        {
+          "name": "questions",
+          "value": "do u2?"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|zjsMt56FnxgVYuPdzwupXStvySAkU4iuwuuGJe72"
     },
     "tests": []
   },

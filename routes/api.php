@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\ApplicantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -13,12 +13,14 @@ use App\Http\Controllers\PlantillaController;
 use App\Http\Controllers\PsbMemberController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\SalaryGradeController;
 use App\Http\Controllers\PersonalDataSheetController;
 use App\Http\Controllers\PositionDescriptionController;
 use App\Http\Controllers\QualificationStandardController;
 use App\Http\Controllers\PersonnelSelectionBoardController;
+use App\Http\Controllers\QuestionController;
 use App\Models\Vacancy;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -45,6 +47,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/qualification-standard', QualificationStandardController::class);
     Route::resource('/personal-data-sheet', PersonalDataSheetController::class);
     Route::resource('/province', ProvinceController::class);
+    Route::resource('/applicant', ApplicantController::class);
+    Route::resource('/employee', EmployeeController::class);
+    Route::resource('/question', QuestionController::class);
 
     //Qnan
     Route::resource('/personnel-selection-board', PersonnelSelectionBoardController::class);
