@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\PersonalDataSheet;
+use Faker\Guesser\Name;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class SpecialSkillHobbiesFactory extends Factory
+class ReferenceFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,10 +17,11 @@ class SpecialSkillHobbiesFactory extends Factory
      */
     public function definition(): array
     {
-        $personal_data_sheets = PersonalDataSheet::all();
         return [
-            'personal_data_sheet_id' => $personal_data_sheets->random()->id,
-            'special_skills' => $this->faker->text(1),
+            // 'personal_data_sheet_id'
+            'name' => $this->faker->name(),
+            'address' => $this->faker->sentence(),
+            'telephone_number' => $this->faker->phoneNumber(),
         ];
     }
 }
