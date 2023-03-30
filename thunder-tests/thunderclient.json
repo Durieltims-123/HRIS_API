@@ -1543,7 +1543,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "1|zjsMt56FnxgVYuPdzwupXStvySAkU4iuwuuGJe72"
+      "bearer": "1|6zm2c0SQu0XQOalAyUrW0Pak5C92eaE9pUi3zyqP"
     },
     "tests": []
   },
@@ -2324,6 +2324,24 @@
     "method": "GET",
     "sortNum": 40000,
     "created": "2023-03-24T01:20:01.544Z",
+    "modified": "2023-03-24T01:20:01.544Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|l5IC27mYC8d1a4s7BVoLxIgdvyPqxiBbneUvSqxX"
+    },
+    "tests": []
+  },
+  {
+    "_id": "a5caf8e5-ff7c-4df2-9a8e-5cc2fcc3dced",
+    "colId": "d9a7eabb-45ca-433d-a4c4-6cbb5f331775",
+    "containerId": "",
+    "name": "Index Vacancy",
+    "url": "http://127.0.0.1:8000/api/vacancy",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2023-03-24T01:20:01.544Z",
     "modified": "2023-03-27T07:30:06.370Z",
     "headers": [],
     "params": [],
@@ -2952,16 +2970,16 @@
     "colId": "8a686a09-4f64-4b37-90e4-08dd4673be85",
     "containerId": "",
     "name": "Delete PDS",
-    "url": "http://127.0.0.1:8000/api/personal-data-sheet/7",
+    "url": "http://127.0.0.1:8000/api/personal-data-sheet/1",
     "method": "DELETE",
     "sortNum": 50000,
     "created": "2023-03-27T06:28:17.937Z",
-    "modified": "2023-03-28T00:02:31.881Z",
+    "modified": "2023-03-29T02:56:34.855Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "2|TpAE34PRO7io4CQq5nqrzciM8IQxjCzbGiRfcmhv"
+      "bearer": "1|6zm2c0SQu0XQOalAyUrW0Pak5C92eaE9pUi3zyqP"
     },
     "tests": []
   },
@@ -3038,7 +3056,7 @@
     "method": "PATCH",
     "sortNum": 41250,
     "created": "2023-03-28T00:09:44.253Z",
-    "modified": "2023-03-29T02:52:59.639Z",
+    "modified": "2023-03-28T03:26:15.530Z",
     "headers": [],
     "params": [],
     "body": {
@@ -3174,6 +3192,42 @@
     "auth": {
       "type": "bearer",
       "bearer": "1|Al63VGUSU3Qc9e3aXuq00lbrhBeMPTbTUh38uJHy"
+    },
+    "tests": []
+  },
+  {
+    "_id": "235d5413-bc1d-4e6a-ba3e-c394591ca8d9",
+    "colId": "d9a7eabb-45ca-433d-a4c4-6cbb5f331775",
+    "containerId": "",
+    "name": "Queue Vacancy",
+    "url": "http://127.0.0.1:8000/api/vacancy-queue/1",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2023-03-28T01:15:27.265Z",
+    "modified": "2023-03-28T01:19:04.576Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|l5IC27mYC8d1a4s7BVoLxIgdvyPqxiBbneUvSqxX"
+    },
+    "tests": []
+  },
+  {
+    "_id": "c5a5971b-6371-44aa-a2e3-0361f9e0dd68",
+    "colId": "d9a7eabb-45ca-433d-a4c4-6cbb5f331775",
+    "containerId": "",
+    "name": "All Approved",
+    "url": "http://127.0.0.1:8000/api/vacancy-all-approved",
+    "method": "GET",
+    "sortNum": 70000,
+    "created": "2023-03-28T03:09:33.840Z",
+    "modified": "2023-03-28T03:09:33.840Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "2|TpAE34PRO7io4CQq5nqrzciM8IQxjCzbGiRfcmhv"
     },
     "tests": []
   },
@@ -3668,6 +3722,24 @@
     "auth": {
       "type": "bearer",
       "bearer": "1|zjsMt56FnxgVYuPdzwupXStvySAkU4iuwuuGJe72"
+    },
+    "tests": []
+  },
+  {
+    "_id": "845e82d0-d8fa-4bb7-9811-9d6bfa0af66d",
+    "colId": "66b9c9ed-e491-4231-92e6-fbd92f2fd7f5",
+    "containerId": "",
+    "name": "Delete Province",
+    "url": "http://127.0.0.1:8000/api/province/1",
+    "method": "DELETE",
+    "sortNum": 40000,
+    "created": "2023-03-29T01:10:11.584Z",
+    "modified": "2023-03-29T01:14:49.003Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|ZAZEIREgilfAYIGT87zOac9gcsse0mALByyB6T6K"
     },
     "tests": []
   }
