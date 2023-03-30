@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Office;
+use App\Models\Employee;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +18,21 @@ class EmployeeFactory extends Factory
      */
     public function definition(): array
     {
+        $office = Office::all();
+        $number = 1;
         return [
-             
+             'employee_id' => $number++,
+             'office_id' => $office->random()->id,
+             'first_name' => $this->faker->name(),
+             'middle_name' => $this->faker->name(),
+             'last_name' => $this->faker->name(),
+             'suffix' => $this->faker->randomElement(['Jr.', 'II', 'Sr.', 'III',' ']),
+             'contact_number' => $this->faker->randomElement(['09111111111', '09222222222', '09333333333', '09444444444','09555555555']),
+             'email_address' => $this->faker->safeEmail(),
+             'current_position' => $this->faker->randomElement(['Administrative Officer V', 'Nurse I', 'Administrative Officer III', 'Programmer I', 'Administrative I']),
+             'employment_status' => $this->faker->randomElement(['Regular', 'Casual', 'Project', 'Seasonal','Fixed-Term','Probationary']),
+             'employee_status' => $this->faker->randomElement(['Active', 'Terminated', 'Retired', 'Suspended','On-Leave']),
+             'orientation_status' => $this->faker->randomElement(['Waiting','Ongoing', 'Finished']),
         ];
     }
 }
