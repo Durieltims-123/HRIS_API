@@ -18,7 +18,7 @@ return new class extends Migration
             // $table->string('license_id')->unique();
 
             $table->string('career_service');
-            $table->string('rating');
+            $table->string('rating')->nullable();
             $table->date('examination_date');
             $table->string('place_examination');
             $table->string('license_number');

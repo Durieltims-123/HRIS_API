@@ -33,10 +33,7 @@ class PersonalDataSheetController extends Controller
      */
     public function index()
     {
-        // return ApplicantResource::collection(
-        //     Applicant::with('belongsToApplicant')->get()
-        // );
-        // dd(PersonalDataSheet::with('hasManyPersonalInformation')->get());
+        // dd(PersonalDataSheet::with('hasManyAnswer')->get());
         return PersonalDataSheetResource::collection(
             PersonalDataSheet::with(
                 'hasManyPersonalInformation',
@@ -80,7 +77,7 @@ class PersonalDataSheetController extends Controller
             'employee_id' => $request->id,
 
         ]);
-
+// dd($request->barangay_id);
         //personal information
         PersonalInformation::create([
             "personal_data_sheet_id" => $pds->id,
@@ -323,7 +320,6 @@ class PersonalDataSheetController extends Controller
                 'hasManyRecognition',
                 'hasManyMembershipAssociation',
                 'hasManyAnswer',
-                'hasManyOtherInformationAnswer',
                 'hasManyReference',
             )
                 ->where('id', $personalDataSheet->id)
@@ -344,7 +340,7 @@ class PersonalDataSheetController extends Controller
      */
     public function update(Request $pdsRequest, PersonalInformation $personalInformation)
     {
-
+// dd($pdsRequest);
         // $pdsRequest->validated($pdsRequest->all());
         // $validataData = $request->validated();
         // dd($pdsRequest->mobile_number); 
@@ -354,18 +350,18 @@ class PersonalDataSheetController extends Controller
         $personalInformation->permanent_house_number = $pdsRequest->permanent_house_number;
         $personalInformation->permanent_subdivision_village = $pdsRequest->permanent_subdivision_village;
         $personalInformation->permanent_street = $pdsRequest->permanent_street;
-        $personalInformation->permanent_barangay_id = $pdsRequest->permanent_barangay_id;
-        $personalInformation->permanent_municipality_id = $pdsRequest->permanent_municipality_id;
-        $personalInformation->permanent_province_id = $pdsRequest->permanent_province_id;
-        $personalInformation->permanent_zip_code_number = $pdsRequest->permanent_zip_code_number;
+        $personalInformation->barangay_id = $pdsRequest->barangay_id;
+        $personalInformation->municipality_id = $pdsRequest->municipality_id;
+        $personalInformation->province_id = $pdsRequest->province_id;
+        $personalInformation->permanent_zip_code = $pdsRequest->permanent_zip_code;
         $personalInformation->residential_house_number = $pdsRequest->residential_house_number;
 
         $personalInformation->residential_subdivision_village = $pdsRequest->residential_subdivision_village;
         $personalInformation->residential_street = $pdsRequest->residential_street;
-        $personalInformation->residential_barangay_id = $pdsRequest->residential_barangay_id;
-        $personalInformation->residential_municipality_id = $pdsRequest->residential_municipality_id;
-        $personalInformation->residential_province_id = $pdsRequest->residential_province_id;
-        $personalInformation->residential_zip_code_number = $pdsRequest->residential_zip_code_number;
+        $personalInformation->r_barangay_id = $pdsRequest->r_barangay_id;
+        $personalInformation->r_municipality_id = $pdsRequest->r_municipality_id;
+        $personalInformation->r_province_id = $pdsRequest->r_province_id;
+        $personalInformation->residential_zip_code = $pdsRequest->residential_zip_code;
         $personalInformation->citizenship = $pdsRequest->citizenship;
         $personalInformation->agency_employee = $pdsRequest->agency_employee;
         $personalInformation->tin_number = $pdsRequest->tin_number;

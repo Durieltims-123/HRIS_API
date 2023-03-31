@@ -23,7 +23,7 @@ class StorePersonalDataSheetRequest extends FormRequest
     {
         return [
 
-            //pds
+            //personal data sheet
             'applicant_id' => ['nullable'],
             'employee_id' => ['nullable'],
 
@@ -66,7 +66,7 @@ class StorePersonalDataSheetRequest extends FormRequest
             'spouse_surname' => ['required', 'string', 'max:255'],
             'spouse_first_name' => ['required', 'string', 'max:255'],
             'spouse_middle_name' => ['required', 'string', 'max:255'],
-            'suffix_name' => ['required', 'string', 'max:255'],
+            'suffix_name' => ['nullable'],
             'occupation' => ['required', 'string', 'max:255'],
             'employee_business_name' => ['required', 'string', 'max:255'],
             'business_address' => ['required', 'string', 'max:255'],
@@ -74,7 +74,7 @@ class StorePersonalDataSheetRequest extends FormRequest
             'father_surname' => ['required', 'string', 'max:255'],
             'father_first_name' => ['required', 'string', 'max:255'],
             'father_middle_name' => ['required', 'string', 'max:255'],
-            'father_extension_name' => ['required', 'string', 'max:255'],
+            'father_extension_name' => ['nullable'],
             'mother_maiden_surname' => ['required', 'string', 'max:255'],
             'mother_first_name' => ['required', 'string', 'max:255'],
             'mother_maiden_middle_name' => ['required', 'string', 'max:255'],
@@ -82,8 +82,8 @@ class StorePersonalDataSheetRequest extends FormRequest
             //children information
             'personal_data_sheet_id' => ['required'],
             'family_background_id' => ['required'],
-            'children_name' => ['required', 'max:255'],
-            'children_birthdate' => ['required'],
+            'children_name' => ['nullable'],
+            'children_birthdate' => ['nullable'],
 
             //educational background
             'personal_data_sheet_id' => ['required'],
@@ -99,7 +99,7 @@ class StorePersonalDataSheetRequest extends FormRequest
             //civil sercvice eligibility
             'personal_data_sheet_id' => ['required'],
             'career_service' => ['required','max:255'],
-            'rating' => ['required','max:255'],
+            'rating' => ['nullable'],
             'examination_date' => ['required'],
             'place_examination' => ['required','max:255'],
             'license_number' => ['required','max:255'],
@@ -144,7 +144,7 @@ class StorePersonalDataSheetRequest extends FormRequest
 
             //membership association
             'personal_data_sheet_id' => ['required'],
-            'membership_association' => ['required','max:255'],
+            'membership_association' => ['nullable'],
 
             //answer
             'personal_data_sheet_id' => ['required'],
@@ -153,7 +153,6 @@ class StorePersonalDataSheetRequest extends FormRequest
             'details' => ['nullable'],
             'date_filed' => ['nullable'],
             'case_status' => ['nullable'],
-
 
             //references
             'personal_data_sheet_id' =>['required'],

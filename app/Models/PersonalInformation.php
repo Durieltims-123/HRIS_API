@@ -11,7 +11,7 @@ class PersonalInformation extends Model
 {
     use HasFactory;
 
-    public function belongsPersonalDataSheet ():BelongsTo
+    public function belongsToPersonalDataSheet ():BelongsTo
     {
         return $this->belongsTo(PersonalDataSheet::class, 'personal_data_sheet_id');
     }

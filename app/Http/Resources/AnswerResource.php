@@ -19,10 +19,11 @@ class AnswerResource extends JsonResource
             "id" => (string)$this->id,
             "attributes" => 
             [
+                "question_id" => (string)$this->question_id,
                 "choice" => (string)$this->choice,
                 "details" => (string)$this->details,
                 "date_filed" => (string)$this->date_filed,
-                "case_status" => (string)$this->case_status
+                "case_status" => (string)$this->case_status,
             ]
         ];
     }

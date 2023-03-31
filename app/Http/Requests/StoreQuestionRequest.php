@@ -24,6 +24,7 @@ class StoreQuestionRequest extends FormRequest
         return [
             'number' => ['required', 'string', 'max:255'],
             'questions' => ['required', 'string', 'max:255'],
+            // 'questions' => ['required', 'longText'],
         ];
     }
 }

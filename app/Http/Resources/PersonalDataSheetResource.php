@@ -17,21 +17,32 @@ class PersonalDataSheetResource extends JsonResource
         return [
             "id" => (string)$this->id,
             "attributes" => [
-               
+
                 // pds
                 "applicant_id" => (string)$this->applicant_id,
                 "employee_id" => (string)$this->employee_id,
 
                 // personal information
+                "personal_data_sheet_id" => (string)$this->hasManyPersonalInformation[0]->personal_data_sheet_id,
                 "mobile_number" => (string)$this->hasManyPersonalInformation[0]->mobile_number,
                 "telephone_number" => (string)$this->hasManyPersonalInformation[0]->telephone_number,
                 "permanent_house_number" => (string)$this->hasManyPersonalInformation[0]->permanent_house_number,
                 "permanent_subdivision_village" => (string)$this->hasManyPersonalInformation[0]->permanent_subdivision_village,
                 "permanent_street" => (string)$this->hasManyPersonalInformation[0]->permanent_street,
+
+                "barangay_id" => (string)$this->hasManyPersonalInformation[0]->barangay_id,
+                "municipality_id" => (string)$this->hasManyPersonalInformation[0]->municipality_id,
+                "province_id" => (string)$this->hasManyPersonalInformation[0]->province_id,                
+
                 "permanent_zip_code_number" => (string)$this->hasManyPersonalInformation[0]->permanent_zip_code_number,
                 "residential_house_number" => (string)$this->hasManyPersonalInformation[0]->residential_house_number,
                 "residential_subdivision_village" => (string)$this->hasManyPersonalInformation[0]->residential_subdivision_village,
                 "residential_street" => (string)$this->hasManyPersonalInformation[0]->residential_street,
+
+                "r_barangay_id" => (string)$this->hasManyPersonalInformation[0]->r_barangay_id,
+                "r_municipality_id" => (string)$this->hasManyPersonalInformation[0]->r_municipality_id,
+                "r_province_id" => (string)$this->hasManyPersonalInformation[0]->r_province_id,
+
                 "residential_zip_code_number" => (string)$this->hasManyPersonalInformation[0]->residential_zip_code_number,
                 "citizenship" => (string)$this->hasManyPersonalInformation[0]->citizenship,
                 "agency_employee" => (string)$this->hasManyPersonalInformation[0]->agency_employee,
@@ -154,35 +165,26 @@ class PersonalDataSheetResource extends JsonResource
                 }),
 
                 //answer
-                'answer' => $this->hasManyAnswer->map(function ($answer) {
-                    return [
-                        'choice' => $answer->choice,
-                        'details' => $answer->details,
-                        'date_filed' => $answer->date_filed,
-                        'case_status' => $answer->case_status,
-                    ];
-                }),
+                "choice" => (string)$this->hasManyAnswer[0]->choice,
+                "details" => (string)$this->hasManyAnswer[0]->details,
+                "date_filed" => (string)$this->hasManyAnswer[0]->date_filed,
+                "case_status" => (string)$this->hasManyAnswer[0]->case_status,
+
 
                 //reference
-                'reference' => $this->hasManyReference->map(function ($reference) {
-                    return [
-                        'name' => $reference->name,
-                        'address' => $reference->address,
-                        'telephone_number' => $reference->telephone_number,
-                        'name2' => $reference->name2,
-                        'address2' => $reference->address2,
-                        'telephone_number2' => $reference->telephone_number2,
-                        'name3' => $reference->name3,
-                        'address3' => $reference->address3,
-                        'telephone_number3' => $reference->telephone_number3,
-                        
-                    ];
-                }),
-
+                "name" => (string)$this->hasManyReference[0]->name,
+                "address" => (string)$this->hasManyReference[0]->address,
+                "telephone_number" => (string)$this->hasManyReference[0]->telephone_number,
+                "name2" => (string)$this->hasManyReference[0]->name2,
+                "address2" => (string)$this->hasManyReference[0]->address2,
+                "telephone_number2" => (string)$this->hasManyReference[0]->telephone_number2,
+                "name3" => (string)$this->hasManyReference[0]->name3,
+                "address3" => (string)$this->hasManyReference[0]->address3,
+                "telephone_number3" => (string)$this->hasManyReference[0]->telephone_number3,
 
             ],
             // "vacancy" => new VacancyResource($this->whenLoaded('hasOneVacancy')),
-   
+
         ];
     }
 }
