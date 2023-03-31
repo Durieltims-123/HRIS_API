@@ -20,7 +20,7 @@ class RecognitionFactory extends Factory
         $personal_data_sheets = PersonalDataSheet::all();
         return [
             'personal_data_sheet_id' => $personal_data_sheets->random()->id,
-            'recognition_title' => $this->faker->text(1),
+            'recognition_title' => $this->faker->sentence(),
         ];
     }
 }

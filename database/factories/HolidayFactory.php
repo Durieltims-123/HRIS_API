@@ -20,7 +20,6 @@ class HolidayFactory extends Factory
         return [
             'title' => $this->faker->unique()->text(),
             'date' => $this->faker->unique()->date('Y-m-d'),
-            
         ];
     }
 }

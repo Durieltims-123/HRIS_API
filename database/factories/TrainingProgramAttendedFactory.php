@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class SpecialSkillHobbiesFactory extends Factory
+class TrainingProgramAttendedFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,7 +20,12 @@ class SpecialSkillHobbiesFactory extends Factory
         $personal_data_sheets = PersonalDataSheet::all();
         return [
             'personal_data_sheet_id' => $personal_data_sheets->random()->id,
-            'special_skills' => $this->faker->text(1),
+            'program_title' => $this->faker->sentence(),
+            'hours' => $this->faker->randomNumber(),
+            'type' => $this->faker->word(),
+            'conducted_by' => $this->faker->name(),
+            'tp_inclusive_dates_from' => $this->faker->date('Y-m-d'),
+            'tp_inclusive_dates_to' => $this->faker->date('Y-m-d')
         ];
     }
 }

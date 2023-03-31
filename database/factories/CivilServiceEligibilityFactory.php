@@ -16,15 +16,15 @@ class CivilServiceEligibilityFactory extends Factory
      */
     public function definition(): array
     {
-        $number = 1;
+        static $number = 1;
         return [
             'personal_data_sheet_id' => $number++,
-            'career_service' => $this->faker->text(1),
-            'rating' => $this->faker->text(1),
-            'examination_date' => $this->faker->date(),
-            'place_examination' => $this->faker->text(1),
-            'license_number' => $this->faker->unique()->number(),
-            'date_validity' => $this->faker->date(),
+            'career_service' => $this->faker->sentence(),
+            'rating' => $this->faker->randomDigit(),
+            'examination_date' => $this->faker->date('Y-m-d'),
+            'place_examination' => $this->faker->address(),
+            'license_number' => $this->faker->randomNumber(),
+            'date_validity' => $this->faker->date('Y-m-d'),
         ];
     }
 }

@@ -20,12 +20,12 @@ class VoluntaryWorkFactory extends Factory
         $personal_data_sheets = PersonalDataSheet::all();
         return [
             'personal_data_sheet_id' => $personal_data_sheets->random()->id,
-            'organization_name' => $this->faker->text(1),
-            'organization_address' => $this->faker->text(1),
-            'position' => $this->faker->text(1),
-            'number_hours' => $this->faker->number(),
-            'vw_inclusive_dates_from' => $this->faker->date(),
-            'vw_inclusive_dates_to'  => $this->faker->date(),
+            'organization_name' => $this->faker->sentence(),
+            'organization_address' => $this->faker->address(),
+            'position' => $this->faker->sentence(),
+            'number_hours' => $this->faker->randomDigit(),
+            'vw_inclusive_dates_from' => $this->faker->date('Y-m-d'),
+            'vw_inclusive_dates_to'  => $this->faker->date('Y-m-d'),
         ];
     }
 }
