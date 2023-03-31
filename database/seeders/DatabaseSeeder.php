@@ -3,28 +3,29 @@
 namespace Database\Seeders;
 
 use App\Models\Holiday;
-use App\Models\Position;
-use App\Models\Applicant;
-use App\Models\ChildrenInformation;
-use App\Models\CivilServiceEligibility;
-use App\Models\EducationalBackground;
 use App\Models\Employee;
-use App\Models\FamilyBackground;
-use App\Models\MembershipAssociation;
-use App\Models\PersonalDataSheet;
-use App\Models\PersonalInformation;
-use App\Models\SalaryGrade;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use App\Models\QualificationStandard;
+use App\Models\Position;
 use App\Models\Question;
-use App\Models\Recognition;
+use App\Models\Applicant;
 use App\Models\Reference;
-use App\Models\SpecialSkillHobby;
-use App\Models\TrainingProgramAttended;
+use App\Models\Recognition;
+use App\Models\SalaryGrade;
 use App\Models\VoluntaryWork;
 use App\Models\WorkExperience;
+use Illuminate\Database\Seeder;
+use App\Models\FamilyBackground;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\PersonalDataSheet;
+use App\Models\SpecialSkillHobby;
+use Database\Seeders\AnswerSeeder;
+use App\Models\ChildrenInformation;
+use App\Models\PersonalInformation;
+use App\Models\EducationalBackground;
+use App\Models\MembershipAssociation;
+use App\Models\QualificationStandard;
 use Database\Seeders\PlantillaSeeder;
+use App\Models\CivilServiceEligibility;
+use App\Models\TrainingProgramAttended;
 
 class DatabaseSeeder extends Seeder
 {
@@ -55,7 +56,8 @@ class DatabaseSeeder extends Seeder
             ProvinceSeeder::class,
             MunicipalitySeeder::class,
             BarangaySeeder::class,
-            Question::class
+            QuestionSeeder::class,
+            
         ]);
 
         Employee::factory(5)->create();
@@ -65,11 +67,16 @@ class DatabaseSeeder extends Seeder
         ChildrenInformation::factory(5)->create();
         EducationalBackground::factory(10)->create();
         CivilServiceEligibility::factory(5)->create();
-        WorkExperience::factory(10)->create();
-        VoluntaryWork::factory(10)->create();
-        TrainingProgramAttended::factory(10)->create();
-        SpecialSkillHobby::factory(10)->create();
-        Recognition ::factory(10)->create();
-        MembershipAssociation::factory(10)->create();
+        WorkExperience::factory(20)->create();
+        VoluntaryWork::factory(20)->create();
+        TrainingProgramAttended::factory(20)->create();
+        SpecialSkillHobby::factory(20)->create();
+        Recognition ::factory(20)->create();
+        MembershipAssociation::factory(20)->create();
+
+        $this->call([
+            ReferenceSeeder::class,
+            AnswerSeeder::class
+        ]);
     }
 }
