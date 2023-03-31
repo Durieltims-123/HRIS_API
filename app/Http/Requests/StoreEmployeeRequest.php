@@ -26,7 +26,7 @@ class StoreEmployeeRequest extends FormRequest
             'first_name' => ['required', 'string', 'max:255'],
             'middle_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'suffix_name' => ['required', 'string', 'max:255'],
+            'suffix_name' => ['nullable'],
             'contact_number' => ['required', 'string', 'max:255'],
             'email_address' => ['required', 'string', 'max:255'],
             'current_position' => ['required', 'string', 'max:255'],

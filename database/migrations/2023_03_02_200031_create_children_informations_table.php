@@ -18,8 +18,8 @@ return new class extends Migration
             $table->foreignId('personal_data_sheet_id')->constrained()->onDelete('cascade');
             $table->foreignId('family_background_id')->constrained('family_backgrounds');
             
-            $table->string('children_name');
-            $table->date('children_birthdate');
+            $table->string('children_name')->nullable();
+            $table->date('children_birthdate')->nullable();
             $table->timestamps();
         });
     }

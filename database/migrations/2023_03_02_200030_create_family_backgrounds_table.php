@@ -16,7 +16,7 @@ return new class extends Migration
             // $table->foreignId('personal_data_sheet_id')->constrained('personal_data_sheets');
             $table->foreignId('personal_data_sheet_id')->constrained()->onDelete('cascade');
             $table->string('spouse_surname');
-            $table->string('spouse_first_name');
+            $table->string('spouse_first_name')->nullable();
             $table->string('spouse_middle_name');
             $table->string('suffix_name');
             $table->string('occupation');
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('father_surname');
             $table->string('father_first_name');
             $table->string('father_middle_name');  
-            $table->string('father_extension_name'); 
+            $table->string('father_extension_name')->nullable(); 
             $table->string('mother_maiden_surname'); 
             $table->string('mother_first_name'); 
             $table->string('mother_maiden_middle_name');    

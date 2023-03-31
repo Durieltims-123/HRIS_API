@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreQuestionRequest;
+use App\Http\Resources\QuestionResource;
 use App\Models\Question;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
@@ -15,7 +16,9 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        return QuestionResource::collection(
+            Question::all()
+        );
     }
 
     /**
@@ -48,9 +51,12 @@ class QuestionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Question $question)
     {
-        //
+        return QuestionResource::collection(
+            Question::where('id',$question->id)
+            ->get()
+            );
     }
 
     /**
@@ -64,16 +70,21 @@ class QuestionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Question $question)
     {
-        //
+        $question->number = $request->number;
+        $question->questions = $request->questions;
+        $question->save();
+
+        return new QuestionResource($question);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Question $question)
     {
-        //
+        $question->delete();
+        return $this->success('', 'Successfull Deleted', 200);
     }
 }
