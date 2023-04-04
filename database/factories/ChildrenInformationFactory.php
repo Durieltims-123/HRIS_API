@@ -19,9 +19,10 @@ class ChildrenInformationFactory extends Factory
     {
         $fams = FamilyBackground::all();
         static $number = 1;
+        static $num = 1;
         return [
             'personal_data_sheet_id' => $number++,
-            'family_background_id' => $fams->random()->id,
+            'family_background_id' =>  $num++,
             'children_name' => $this->faker->name(),
             'children_birthdate' => $this->faker->date('Y-m-d')
         ];

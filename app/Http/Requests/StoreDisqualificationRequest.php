@@ -11,7 +11,7 @@ class StoreDisqualificationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,8 +22,16 @@ class StoreDisqualificationRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'application_id' => ['required', 'string', 'max:255'],
             'date_disqualified' => ['required', 'date'],
             'reason' => ['required', 'string', 'max:255'],
+
+            'member_id' => ['nullable', 'numeric', 'max:255'],
+            'training' => ['nullable', 'numeric', 'max:255'],
+            'performance' => ['nullable', 'numeric', 'max:255'],
+            'education' => ['nullable', 'numeric', 'max:255'],
+            'experience' => ['nullable', 'numeric', 'max:255'],
+            
         ];
     }
 }

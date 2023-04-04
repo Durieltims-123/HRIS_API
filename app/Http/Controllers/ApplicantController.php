@@ -6,6 +6,7 @@ use App\Traits\HttpResponses;
 use App\Http\Resources\ApplicantResource;
 use App\Http\Requests\StoreApplicantRequest;
 use App\Models\Applicant;
+use App\Models\Application;
 // use App\Models\Applicant as ModelsApplicant;
 use Illuminate\Http\Request;
 

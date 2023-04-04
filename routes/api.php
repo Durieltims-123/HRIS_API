@@ -1,27 +1,30 @@
 <?php
 
-use App\Http\Controllers\ApplicantController;
+use App\Models\Vacancy;
+use App\Models\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\VacancyController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HolidaysController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ProvinceController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\PlantillaController;
 use App\Http\Controllers\PsbMemberController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\DepartmentController;
-use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\SalaryGradeController;
+use App\Http\Controllers\DisqualificationController;
 use App\Http\Controllers\PersonalDataSheetController;
 use App\Http\Controllers\PositionDescriptionController;
 use App\Http\Controllers\QualificationStandardController;
 use App\Http\Controllers\PersonnelSelectionBoardController;
-use App\Http\Controllers\QuestionController;
-use App\Models\Vacancy;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -64,4 +67,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/plantilla', PlantillaController::class);
     Route::resource('/department', DepartmentController::class);
     Route::resource('/publication', PublicationController::class);
+    Route::resource('/application', ApplicationController::class);
+    Route::resource('/disqualification', DisqualificationController::class);
+    Route::get('/disqualification-reverse/{id}', [DisqualificationController::class, 'reverseDisqualification']);
 });
