@@ -17,6 +17,12 @@ class AssessmentResource extends JsonResource
         return [
             "id" => (string)$this->id,
             "attributes"=>[
+                "application_id" => (string)$this->application_id,
+                "member_id" => (string)$this->member_id,
+                "training" => (string)$this->training,
+                "performance" => (string)$this->performance,
+                "education" => (string)$this->education,
+                "experience" => (string)$this->experience,
                 "psychological_attribute" => (string)$this->psychological_attribute,
                 "potential" => (string)$this->potential,
                 "awards" => (string)$this->awards,

@@ -16,11 +16,15 @@ return new class extends Migration
             
             $table->foreignId('application_id')->constrained();
             $table->foreignId('member_id')->constrained('psb_members');
-            $table->integer('psychological_attribute');
-            $table->integer('potential');
-            $table->integer('awards');
-            $table->string('additional_information');
-            $table->string('remarks');
+            $table->integer('training');
+            $table->integer('performance');
+            $table->integer('education');
+            $table->integer('experience');
+            $table->integer('psychological_attribute')->nullable();
+            $table->integer('potential')->nullable();
+            $table->integer('awards')->nullable();
+            $table->string('additional_information')->nullable();
+            $table->string('remarks')->nullable();
             $table->date('date_of_assessment');
             $table->timestamps();
 

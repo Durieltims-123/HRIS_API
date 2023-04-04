@@ -11,7 +11,7 @@ class StoreApplicationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,13 +22,16 @@ class StoreApplicationRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'applicant_id' => ['nullable', 'string', 'max:255'],
+            'employee_id' => ['nullable', 'string', 'max:255'],
+            'publication_id' => ['required', 'string', 'max:255'],
             'submission_date' => ['required', 'date'],
             'first_name' => ['required', 'string', 'max:255'],
             'middle_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'suffix_name' => ['string', 'max:255'],
+            'suffix_name' => ['nullable','string', 'max:255'],
             'application_type' => ['required', 'string', 'max:255'],
-            'status' => ['required', 'string', 'max:255'],
+            // 'status' => ['required', 'string', 'max:255'],
         ];
     }
 }

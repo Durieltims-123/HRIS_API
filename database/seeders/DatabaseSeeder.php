@@ -43,7 +43,9 @@ class DatabaseSeeder extends Seeder
         SalaryGrade::factory(33)->create();
         Position::factory(33)->create();
         QualificationStandard::factory(33)->create();
+        
         // Applicant::factory(5)->create();
+        //
         
         
         // Reference::factory(10)
@@ -57,11 +59,17 @@ class DatabaseSeeder extends Seeder
             MunicipalitySeeder::class,
             BarangaySeeder::class,
             QuestionSeeder::class,
-            
         ]);
 
         Employee::factory(5)->create();
-        PersonalDataSheet::factory(5)->create();
+        Applicant::factory(5)->create();
+        $this->call([
+            PersonalDataSheetSeeder::class,
+
+        ]);
+
+        
+        // PersonalDataSheet::factory(5)->create();
         PersonalInformation::factory(5)->create();
         FamilyBackground::factory(5)->create();
         ChildrenInformation::factory(5)->create();

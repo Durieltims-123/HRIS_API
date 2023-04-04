@@ -22,12 +22,16 @@ class StoreAssessmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'psychological_attribute' => ['required', 'numeric', 'max:255'],
-            'potential' => ['required', 'numeric', 'max:25'],
-            'awards' => ['required', 'numeric', 'max:25'],
-            'additional_information' => ['required', 'string', 'max:255'],
-            'remarks' => ['required', 'string', 'max:255'],
-            'date_of_assessment' => ['required', 'date']
+            'training' => ['required', 'numeric', 'max:255'],
+            'performance' => ['required', 'numeric', 'max:255'],
+            'education' => ['required', 'numeric', 'max:255'],
+            'experience' => ['required', 'numeric', 'max:255'],
+            'psychological_attribute' => ['nullable', 'numeric', 'max:255'],
+            'potential' => ['nullable', 'numeric', 'max:25'],
+            'awards' => ['nullable', 'numeric', 'max:25'],
+            'additional_information' => ['nullable', 'string', 'max:255'],
+            'remarks' => ['nullable', 'string', 'max:255'],
+            // 'date_of_assessment' => ['nullable', 'date']
         ];
     }
 }

@@ -135,5 +135,26 @@
     "created": "2023-03-29T08:05:11.458Z",
     "sortNum": 22500,
     "folders": []
+  },
+  {
+    "_id": "a581caf8-ff50-4963-9abd-5458b204e485",
+    "colName": "Application",
+    "created": "2023-04-03T04:57:10.648Z",
+    "sortNum": 150000,
+    "folders": []
+  },
+  {
+    "_id": "22acf366-c965-4d2c-a7f7-5a308e6915f8",
+    "colName": "Assessment",
+    "created": "2023-04-03T07:53:25.639Z",
+    "sortNum": 160000,
+    "folders": []
+  },
+  {
+    "_id": "38960d59-024d-4080-a67e-9698f8fdfff0",
+    "colName": "Disqualification",
+    "created": "2023-04-03T07:55:29.025Z",
+    "sortNum": 170000,
+    "folders": []
   }
 ]

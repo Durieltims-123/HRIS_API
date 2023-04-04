@@ -19,6 +19,12 @@ class Assessment extends Model
     protected $primaryKey = 'id';
 
     protected $fillable =[
+        'application_id',
+        'member_id',
+        'training',
+        'performance',
+        'education',
+        'experience',
         'psychological_attribute',
         'potential',
         'awards',
