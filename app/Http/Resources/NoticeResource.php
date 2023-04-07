@@ -17,8 +17,11 @@ class NoticeResource extends JsonResource
         return [
             "id" => (string)$this->id,
             "attributes"=>[
-                "date_send" => (string)$this->date_send,
+                "application_id" => (string)$this->application_id,
+                "notice_type" => (string)$this->notice_type,
+                "date_sent" => (string)$this->date_send,
                 "date_received" => (string)$this->date_received,
+                "application" => new ApplicationResource($this->whenLoaded('belongsToApplication'))
             ]
             
         ];

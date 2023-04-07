@@ -4074,12 +4074,12 @@
     "method": "GET",
     "sortNum": 20000,
     "created": "2023-04-04T04:04:36.785Z",
-    "modified": "2023-04-04T04:04:36.785Z",
+    "modified": "2023-04-07T03:27:20.178Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "2|w6cgGhPoYw4J9hNO1BBNdS0yxVtACmBF1B3NhVYc"
+      "bearer": "3|a1sw9wDKykUitIl5RhCC8k1OdgZp26FKyyKNHeTV"
     },
     "tests": []
   },
@@ -4124,16 +4124,150 @@
     "colId": "38960d59-024d-4080-a67e-9698f8fdfff0",
     "containerId": "",
     "name": "Reverse Disqualification",
-    "url": "http://127.0.0.1:8000/api/disqualification/6",
-    "method": "PATCH",
+    "url": "http://127.0.0.1:8000/api/disqualification-reverse/8",
+    "method": "GET",
     "sortNum": 50000,
     "created": "2023-04-04T06:16:02.640Z",
-    "modified": "2023-04-04T08:50:19.917Z",
+    "modified": "2023-04-05T02:21:48.614Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
       "bearer": "2|w6cgGhPoYw4J9hNO1BBNdS0yxVtACmBF1B3NhVYc"
+    },
+    "tests": []
+  },
+  {
+    "_id": "4d72c530-bc07-4c9a-8b15-59b66a7ab476",
+    "colId": "c3da19ba-1544-42dc-a23f-c11940e63144",
+    "containerId": "",
+    "name": "Add Notice",
+    "url": "http://127.0.0.1:8000/api/notice",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-04-07T02:42:58.646Z",
+    "modified": "2023-04-07T02:54:26.843Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "application_id",
+          "value": "3"
+        },
+        {
+          "name": "notice_type",
+          "value": "Email"
+        },
+        {
+          "name": "date_sent",
+          "value": "2023-04-03"
+        },
+        {
+          "name": "date_received",
+          "value": "2023-05-06"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "3|a1sw9wDKykUitIl5RhCC8k1OdgZp26FKyyKNHeTV"
+    },
+    "tests": []
+  },
+  {
+    "_id": "3fbeccbe-35ad-433a-b013-f16c81c283dd",
+    "colId": "c3da19ba-1544-42dc-a23f-c11940e63144",
+    "containerId": "",
+    "name": "Index Notice",
+    "url": "http://127.0.0.1:8000/api/notice",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-04-07T03:39:19.021Z",
+    "modified": "2023-04-07T03:39:19.021Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "3|a1sw9wDKykUitIl5RhCC8k1OdgZp26FKyyKNHeTV"
+    },
+    "tests": []
+  },
+  {
+    "_id": "9ad19443-24ed-4a22-996a-47fb5df82e32",
+    "colId": "c3da19ba-1544-42dc-a23f-c11940e63144",
+    "containerId": "",
+    "name": "Update Notice",
+    "url": "http://127.0.0.1:8000/api/notice/2",
+    "method": "PUT",
+    "sortNum": 30000,
+    "created": "2023-04-07T03:44:50.666Z",
+    "modified": "2023-04-07T03:55:27.111Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "date_sent",
+          "value": "2023-04-04"
+        },
+        {
+          "name": "date_received",
+          "value": "2023-04-04"
+        },
+        {
+          "name": "notice_type",
+          "value": "CALL"
+        },
+        {
+          "name": "application_id",
+          "value": "3"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "3|a1sw9wDKykUitIl5RhCC8k1OdgZp26FKyyKNHeTV"
+    },
+    "tests": []
+  },
+  {
+    "_id": "a4294d96-af91-4491-a5a2-7da254c74832",
+    "colId": "c3da19ba-1544-42dc-a23f-c11940e63144",
+    "containerId": "",
+    "name": "Delete Notice",
+    "url": "http://127.0.0.1:8000/api/notice/2",
+    "method": "DELETE",
+    "sortNum": 40000,
+    "created": "2023-04-07T03:57:15.577Z",
+    "modified": "2023-04-07T03:57:15.577Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "3|a1sw9wDKykUitIl5RhCC8k1OdgZp26FKyyKNHeTV"
+    },
+    "tests": []
+  },
+  {
+    "_id": "7b2f38f6-e350-47eb-a086-944149e4dd63",
+    "colId": "c3da19ba-1544-42dc-a23f-c11940e63144",
+    "containerId": "",
+    "name": "Show Notice",
+    "url": "http://127.0.0.1:8000/api/notice/3",
+    "method": "GET",
+    "sortNum": 50000,
+    "created": "2023-04-07T04:00:12.754Z",
+    "modified": "2023-04-07T04:00:12.754Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "3|a1sw9wDKykUitIl5RhCC8k1OdgZp26FKyyKNHeTV"
     },
     "tests": []
   }

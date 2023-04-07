@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Notice;
 use App\Models\Assessment;
 use App\Models\Application;
 use Illuminate\Http\Request;
-use App\Models\Disqualification;
-use App\Http\Requests\StoreDisqualificationRequest;
-use App\Http\Resources\DisqualificationResource;
 use App\Traits\HttpResponses;
+use App\Models\Disqualification;
+use App\Http\Resources\DisqualificationResource;
+use App\Http\Requests\StoreDisqualificationRequest;
 
 class DisqualificationController extends Controller
 {
@@ -21,7 +22,7 @@ class DisqualificationController extends Controller
     public function index()
     {
         return DisqualificationResource::collection(
-            Disqualification::with('belongsToApplication')->get()
+            Disqualification::with('belongsToApplication.hasOneNotice')->get()
         );
     }
 
@@ -39,6 +40,12 @@ class DisqualificationController extends Controller
     public function store(StoreDisqualificationRequest $request)
     {
         $request->validated($request->all());
+
+        $noticeExist = Notice::where('application_id',$request->application_id)->exists();
+        if($noticeExist){
+            return $this->error('', 'Duplicate Entry', 200);
+        }
+        
 
         $status = 'Disqualified';
         $today = Carbon::today()->toDateString();
@@ -95,33 +102,6 @@ class DisqualificationController extends Controller
      */
     public function update(Request $request, Disqualification $disqualification)
     {   
-        $status = 'New';
-
-        $disqualifiedApplication = Disqualification::where('application_id', $disqualification->id)->first();
-        
-        // If the applicant was not disqualified, return an error message
-        if (!$disqualifiedApplication) {
-            return redirect()->back()->with('error', 'This applicant was not disqualified.');
-        }
-
-        //Reverse back to New Status Application
-        $dis = Disqualification::find($disqualification->id);
-        $application = $dis->belongsToApplication->find($dis->application_id);
-        $application->status = $status;
-        
-        //finds the assessment and delete
-        $assessment = Assessment::find($dis->application_id);  
-        if($assessment != null){
-        $assessment->delete();
-        }
-
-        //Deletes the record 
-        $disqualification->delete();
-
-        $application->save();
-
-
-        return $this->success('','Successfully Reversed',200);
 
     }
 
@@ -134,53 +114,27 @@ class DisqualificationController extends Controller
         return $this->success('', 'Successfully Deleted', 200);
     }
 
-    // public function reverseDisqualification(Disqualification $disqualification)
-    // {
-
-    //     dd($disqualification);
-
-    //     $disqualifiedApplicant = Disqualification::where('applicant_id', $disqualification->id)->first();
-
-    //     // If the applicant was not disqualified, return an error message
-    //     if (!$disqualifiedApplicant) {
-    //         return redirect()->back()->with('error', 'This applicant was not disqualified.');
-    //     }
-
-    //     $disqualification->delete();
-
-
-
-    //     return $this->success('', 'Successfully Reversed Action', 200);
-    // }
-
-    // public function reverseDisqualification(Disqualification $disqualification)
-    // {
+    public function reverseDisqualification(Disqualification $disqualification)
+    {
         
-    //     $status = 'New';
+        $status = 'New';
 
-    //     $disqualifiedApplication = Disqualification::where('application_id', $disqualification->id)->first();
+        $application = Application::where('id', $disqualification->application_id)->first();
+        $application->status = $status;
         
-    //     // If the applicant was not disqualified, return an error message
-    //     if (!$disqualifiedApplication) {
-    //         return redirect()->back()->with('error', 'This applicant was not disqualified.');
-    //     }
-
-    //     //Reverse back to New Status Application
-    //     $dis = Disqualification::find($disqualification->id);
-    //     $application = $dis->belongsToApplication->find($dis->application_id);
-    //     $application->status = $status;
+       
+        //finds the assessment and delete
+        $assessment = Assessment::where('application_id',$disqualification->application_id);  
+        // dd($assessment);
+        if($assessment != null){
+        $assessment->delete();
+        }
         
-    //     //finds the assessment and delete
-    //     $assessment = Assessment::find($dis->application_id);  
-    //     if($assessment != null){
-    //     $assessment->delete();
-    //     }
+        //Deletes the record 
+        $disqualification->delete();
 
-    //     //Deletes the record 
-    //     $disqualification->delete();
+        $application->save();
 
-    //     $application->save();
-
-    //     return $this->success('','Successfully Reversed',200);
-    // }
+        return $this->success('','Successfully Reversed',200);
+    }
 }

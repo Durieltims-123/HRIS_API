@@ -11,7 +11,7 @@ class StoreNoticeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class StoreNoticeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'date_send' => ['required', 'date'],
+            'application_id' => ['required','string', 'max:255'],
+            'notice_type' => ['required','string', 'max:255'],
+            'date_sent' => ['required', 'date'],
             'date_received' => ['required', 'date'],
         ];
     }

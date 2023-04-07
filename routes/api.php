@@ -1,10 +1,9 @@
 <?php
 
-use App\Models\Vacancy;
-use App\Models\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\VacancyController;
 use App\Http\Controllers\EmployeeController;
@@ -69,5 +68,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/publication', PublicationController::class);
     Route::resource('/application', ApplicationController::class);
     Route::resource('/disqualification', DisqualificationController::class);
-    Route::get('/disqualification-reverse/{id}', [DisqualificationController::class, 'reverseDisqualification']);
+    Route::get('/disqualification-reverse/{disqualification}', [DisqualificationController::class, 'reverseDisqualification']);
+    Route::resource('/notice', NoticeController::class);
 });
