@@ -27,6 +27,7 @@ class ApplicationResource extends JsonResource
                 "suffix_name" => (string)$this->suffix_name,
                 "application_type" => (string)$this->application_type,
                 "status" => (string)$this->status,
+                "notice" => new NoticeResource($this->whenLoaded('hasOneNotice')),
             ]
         ];
     }

@@ -12,8 +12,8 @@ class Application extends Model
 {
     use HasFactory;
 
-    public function hasManyNotice():HasMany{
-        return $this->hasMany(Notice::class);
+    public function hasOneNotice():HasOne{
+        return $this->hasOne(Notice::class);
     }
     public function hasOneDisqualification():HasOne{
         return $this->hasOne(Disqualification::class,'application_id');
