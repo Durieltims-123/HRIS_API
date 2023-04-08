@@ -115,7 +115,7 @@ class PersonnelSelectionBoardController extends Controller
     PersonnelSelectionBoard $personnelSelectionBoard)
     {
         $psbRequest->validated($psbRequest->all());
-        // Update PSB
+       
         $personnelSelectionBoard->start_date = $psbRequest->start_date;
         $personnelSelectionBoard->end_date = $psbRequest->end_date;
         $personnelSelectionBoard->chairman = $psbRequest->chairman;
@@ -125,10 +125,6 @@ class PersonnelSelectionBoardController extends Controller
         $ids = $psbRequest->input('employee_id');
         $names = $psbRequest->input('member_name');
         $positions = $psbRequest->input('member_position');
-
-        // Turns the name position and id of psb member to Array
-        
-
 
         foreach ($names as $i => $name) 
         {
