@@ -800,13 +800,184 @@
     "colId": "4ac85501-255b-4653-8994-abc29622758f",
     "containerId": "",
     "name": "Add Assessment",
-    "url": "http://127.0.0.1:8000/api/assessment",
+    "url": "http://127.0.0.1:8000/api/assessment?application_id=3&member_id[]=1&training[]=8&performance[]=8&education[]=8&experience[]=8&psychological_attribute[]=8&potential[]=8&awards[]=8&additional_information[]=Lrem ipsum&remarks[]=Quela Ipsoem&date_of_assessment[]=2023-01-01&member_id=2&training=9&performance=9&education=9&experience=9&psychological_attribute=9&potential=9&awards=9&additional_information=Lopaosm&remarks=Mikajqol&date_of_assessment=2023-02-02&member_id[]=3&training[]=10&performance[]=10&education[]=10&experience[]=10&psychological_attribute[]=10&potential[]=10&awards[]=10&additional_information[]=Qeuloparmi&remarks[]=Wepormais&date_of_assessment[]=2023-03-03",
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-15T04:27:41.065Z",
-    "modified": "2023-03-15T04:27:41.065Z",
+    "modified": "2023-04-08T02:00:20.986Z",
     "headers": [],
-    "params": [],
+    "params": [
+      {
+        "name": "application_id",
+        "value": "3",
+        "isPath": false
+      },
+      {
+        "name": "member_id[]",
+        "value": "1",
+        "isPath": false
+      },
+      {
+        "name": "training[]",
+        "value": "8",
+        "isPath": false
+      },
+      {
+        "name": "performance[]",
+        "value": "8",
+        "isPath": false
+      },
+      {
+        "name": "education[]",
+        "value": "8",
+        "isPath": false
+      },
+      {
+        "name": "experience[]",
+        "value": "8",
+        "isPath": false
+      },
+      {
+        "name": "psychological_attribute[]",
+        "value": "8",
+        "isPath": false
+      },
+      {
+        "name": "potential[]",
+        "value": "8",
+        "isPath": false
+      },
+      {
+        "name": "awards[]",
+        "value": "8",
+        "isPath": false
+      },
+      {
+        "name": "additional_information[]",
+        "value": "Lrem ipsum",
+        "isPath": false
+      },
+      {
+        "name": "remarks[]",
+        "value": "Quela Ipsoem",
+        "isPath": false
+      },
+      {
+        "name": "date_of_assessment[]",
+        "value": "2023-01-01",
+        "isPath": false
+      },
+      {
+        "name": "member_id",
+        "value": "2",
+        "isPath": false
+      },
+      {
+        "name": "training",
+        "value": "9",
+        "isPath": false
+      },
+      {
+        "name": "performance",
+        "value": "9",
+        "isPath": false
+      },
+      {
+        "name": "education",
+        "value": "9",
+        "isPath": false
+      },
+      {
+        "name": "experience",
+        "value": "9",
+        "isPath": false
+      },
+      {
+        "name": "psychological_attribute",
+        "value": "9",
+        "isPath": false
+      },
+      {
+        "name": "potential",
+        "value": "9",
+        "isPath": false
+      },
+      {
+        "name": "awards",
+        "value": "9",
+        "isPath": false
+      },
+      {
+        "name": "additional_information",
+        "value": "Lopaosm",
+        "isPath": false
+      },
+      {
+        "name": "remarks",
+        "value": "Mikajqol",
+        "isPath": false
+      },
+      {
+        "name": "date_of_assessment",
+        "value": "2023-02-02",
+        "isPath": false
+      },
+      {
+        "name": "member_id[]",
+        "value": "3",
+        "isPath": false
+      },
+      {
+        "name": "training[]",
+        "value": "10",
+        "isPath": false
+      },
+      {
+        "name": "performance[]",
+        "value": "10",
+        "isPath": false
+      },
+      {
+        "name": "education[]",
+        "value": "10",
+        "isPath": false
+      },
+      {
+        "name": "experience[]",
+        "value": "10",
+        "isPath": false
+      },
+      {
+        "name": "psychological_attribute[]",
+        "value": "10",
+        "isPath": false
+      },
+      {
+        "name": "potential[]",
+        "value": "10",
+        "isPath": false
+      },
+      {
+        "name": "awards[]",
+        "value": "10",
+        "isPath": false
+      },
+      {
+        "name": "additional_information[]",
+        "value": "Qeuloparmi",
+        "isPath": false
+      },
+      {
+        "name": "remarks[]",
+        "value": "Wepormais",
+        "isPath": false
+      },
+      {
+        "name": "date_of_assessment[]",
+        "value": "2023-03-03",
+        "isPath": false
+      }
+    ],
     "tests": []
   },
   {
@@ -4000,12 +4171,110 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-04-03T07:53:56.687Z",
-    "modified": "2023-04-03T07:54:29.657Z",
+    "modified": "2023-04-08T04:11:26.174Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "application_id",
+          "value": "5"
+        },
+        {
+          "name": "member_id[]",
+          "value": "1"
+        },
+        {
+          "name": "training[]",
+          "value": "7"
+        },
+        {
+          "name": "performance[]",
+          "value": "7"
+        },
+        {
+          "name": "education[]",
+          "value": "7"
+        },
+        {
+          "name": "experience[]",
+          "value": "7"
+        },
+        {
+          "name": "psychological_attribute[]",
+          "value": "7"
+        },
+        {
+          "name": "potential[]",
+          "value": "7"
+        },
+        {
+          "name": "awards[]",
+          "value": "7"
+        },
+        {
+          "name": "additional_information[]",
+          "value": "Lorem Ipsum"
+        },
+        {
+          "name": "remarks[]",
+          "value": "Lorem Ipsum"
+        },
+        {
+          "name": "date_of_assessment[]",
+          "value": "2023-01-01"
+        },
+        {
+          "name": "member_id[]",
+          "value": "2"
+        },
+        {
+          "name": "training[]",
+          "value": "8"
+        },
+        {
+          "name": "performance[]",
+          "value": "8"
+        },
+        {
+          "name": "education[]",
+          "value": "8"
+        },
+        {
+          "name": "experience[]",
+          "value": "8"
+        },
+        {
+          "name": "psychological_attribute[]",
+          "value": "8"
+        },
+        {
+          "name": "potential[]",
+          "value": "8"
+        },
+        {
+          "name": "awards[]",
+          "value": "8"
+        },
+        {
+          "name": "additional_information[]",
+          "value": "Quiq Pasum"
+        },
+        {
+          "name": "remarks[]",
+          "value": "Quiq Pasum"
+        },
+        {
+          "name": "date_of_assessment[]",
+          "value": "2023-02-02"
+        }
+      ]
+    },
     "auth": {
       "type": "bearer",
-      "bearer": "2|ObSJ6VaChg2KAYyYoJYukcREopDXeSfTtZUX3G6M"
+      "bearer": "3|a1sw9wDKykUitIl5RhCC8k1OdgZp26FKyyKNHeTV"
     },
     "tests": []
   },
@@ -4263,6 +4532,176 @@
     "sortNum": 50000,
     "created": "2023-04-07T04:00:12.754Z",
     "modified": "2023-04-07T04:00:12.754Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "3|a1sw9wDKykUitIl5RhCC8k1OdgZp26FKyyKNHeTV"
+    },
+    "tests": []
+  },
+  {
+    "_id": "6546cdce-1dbf-4a72-bf7b-5d910304ff6b",
+    "colId": "22acf366-c965-4d2c-a7f7-5a308e6915f8",
+    "containerId": "",
+    "name": "Update Assessment",
+    "url": "http://127.0.0.1:8000/api/assessment/14",
+    "method": "PUT",
+    "sortNum": 20000,
+    "created": "2023-04-08T12:38:08.355Z",
+    "modified": "2023-04-08T13:06:43.186Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "application_id",
+          "value": "5"
+        },
+        {
+          "name": "member_id[]",
+          "value": "1"
+        },
+        {
+          "name": "training[]",
+          "value": "3"
+        },
+        {
+          "name": "performance[]",
+          "value": "3"
+        },
+        {
+          "name": "education[]",
+          "value": "3"
+        },
+        {
+          "name": "experience[]",
+          "value": "3"
+        },
+        {
+          "name": "psychological_attribute[]",
+          "value": "3"
+        },
+        {
+          "name": "potential[]",
+          "value": "3"
+        },
+        {
+          "name": "awards[]",
+          "value": "3"
+        },
+        {
+          "name": "additional_information[]",
+          "value": "Updted"
+        },
+        {
+          "name": "remarks[]",
+          "value": "Updted"
+        },
+        {
+          "name": "date_of_assessment[]",
+          "value": "2023-04-04"
+        },
+        {
+          "name": "member_id[]",
+          "value": "2"
+        },
+        {
+          "name": "training[]",
+          "value": "2"
+        },
+        {
+          "name": "performance[]",
+          "value": "2"
+        },
+        {
+          "name": "education[]",
+          "value": "2"
+        },
+        {
+          "name": "experience[]",
+          "value": "2"
+        },
+        {
+          "name": "psychological_attribute[]",
+          "value": "2"
+        },
+        {
+          "name": "potential[]",
+          "value": "2"
+        },
+        {
+          "name": "awards[]",
+          "value": "2"
+        },
+        {
+          "name": "additional_information[]",
+          "value": "UpdatedToo"
+        },
+        {
+          "name": "remarks[]",
+          "value": "Updated2"
+        },
+        {
+          "name": "date_of_assessment[]",
+          "value": "2023-05-05"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "3|a1sw9wDKykUitIl5RhCC8k1OdgZp26FKyyKNHeTV"
+    },
+    "tests": []
+  },
+  {
+    "_id": "51f9abbe-9c21-42bb-bb54-2f60ed83962a",
+    "colId": "22acf366-c965-4d2c-a7f7-5a308e6915f8",
+    "containerId": "",
+    "name": "Index Assessment",
+    "url": "http://127.0.0.1:8000/api/assessment",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2023-04-08T13:09:48.764Z",
+    "modified": "2023-04-08T13:09:48.764Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "3|a1sw9wDKykUitIl5RhCC8k1OdgZp26FKyyKNHeTV"
+    },
+    "tests": []
+  },
+  {
+    "_id": "d448f8a2-01eb-4d1d-8ebe-4143fbc52619",
+    "colId": "22acf366-c965-4d2c-a7f7-5a308e6915f8",
+    "containerId": "",
+    "name": "Delete Assessment",
+    "url": "http://127.0.0.1:8000/api/assessment/14",
+    "method": "DELETE",
+    "sortNum": 40000,
+    "created": "2023-04-08T13:12:55.422Z",
+    "modified": "2023-04-08T13:12:55.422Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "3|a1sw9wDKykUitIl5RhCC8k1OdgZp26FKyyKNHeTV"
+    },
+    "tests": []
+  },
+  {
+    "_id": "b1240ff5-7fb4-46b0-97f9-d3eb4b3f0515",
+    "colId": "22acf366-c965-4d2c-a7f7-5a308e6915f8",
+    "containerId": "",
+    "name": "Show Assessment",
+    "url": "http://127.0.0.1:8000/api/assessment/15",
+    "method": "GET",
+    "sortNum": 50000,
+    "created": "2023-04-08T13:27:18.855Z",
+    "modified": "2023-04-08T13:27:18.855Z",
     "headers": [],
     "params": [],
     "auth": {
