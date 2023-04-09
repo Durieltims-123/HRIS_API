@@ -163,5 +163,12 @@
     "created": "2023-04-08T15:32:30.461Z",
     "sortNum": 190000,
     "folders": []
+  },
+  {
+    "_id": "86cab36c-29ca-4757-8cc1-09fe80f9c041",
+    "colName": "Appointment",
+    "created": "2023-04-09T12:13:31.468Z",
+    "sortNum": 200000,
+    "folders": []
   }
 ]

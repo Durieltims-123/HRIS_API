@@ -4628,5 +4628,127 @@
       "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
     },
     "tests": []
+  },
+  {
+    "_id": "97d1478d-7fcb-41f0-be68-54c8eec6c4fe",
+    "colId": "86cab36c-29ca-4757-8cc1-09fe80f9c041",
+    "containerId": "",
+    "name": "Add Appointment",
+    "url": "http://127.0.0.1:8000/api/appointment",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-04-09T15:54:32.827Z",
+    "modified": "2023-04-09T16:27:11.994Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "application_id",
+          "value": "2"
+        },
+        {
+          "name": "appointment_date",
+          "value": "2023-02-02"
+        },
+        {
+          "name": "reports",
+          "value": "ReporttofApooointment"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+    },
+    "tests": []
+  },
+  {
+    "_id": "3900be5f-5097-40af-97f9-bb36bfdbb8aa",
+    "colId": "86cab36c-29ca-4757-8cc1-09fe80f9c041",
+    "containerId": "",
+    "name": "Update Appointment",
+    "url": "http://127.0.0.1:8000/api/appointment/1",
+    "method": "PUT",
+    "sortNum": 20000,
+    "created": "2023-04-09T16:37:34.522Z",
+    "modified": "2023-04-09T16:37:34.522Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "application_id",
+          "value": "2"
+        },
+        {
+          "name": "appointment_date",
+          "value": "2023-03-03"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+    },
+    "tests": []
+  },
+  {
+    "_id": "a0d4ef38-d36a-49f9-bd77-f4de4e550eee",
+    "colId": "86cab36c-29ca-4757-8cc1-09fe80f9c041",
+    "containerId": "",
+    "name": "Index Appointment",
+    "url": "http://127.0.0.1:8000/api/appointment",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2023-04-09T16:39:26.269Z",
+    "modified": "2023-04-09T16:39:26.269Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+    },
+    "tests": []
+  },
+  {
+    "_id": "a9fafd71-63e6-4989-96c3-69aa5eb88d76",
+    "colId": "86cab36c-29ca-4757-8cc1-09fe80f9c041",
+    "containerId": "",
+    "name": "Show Appointment",
+    "url": "http://127.0.0.1:8000/api/appointment/1",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2023-04-09T16:45:57.666Z",
+    "modified": "2023-04-09T16:46:11.325Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+    },
+    "tests": []
+  },
+  {
+    "_id": "bc4c93fe-7976-4608-8631-c73e31cfc26c",
+    "colId": "86cab36c-29ca-4757-8cc1-09fe80f9c041",
+    "containerId": "",
+    "name": "Delete Appointment",
+    "url": "http://127.0.0.1:8000/api/appointment/1",
+    "method": "DELETE",
+    "sortNum": 50000,
+    "created": "2023-04-09T16:48:20.470Z",
+    "modified": "2023-04-09T16:48:20.470Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+    },
+    "tests": []
   }
 ]

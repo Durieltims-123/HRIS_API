@@ -18,6 +18,7 @@ use App\Http\Controllers\PsbMemberController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\SalaryGradeController;
 use App\Http\Controllers\DisqualificationController;
@@ -72,4 +73,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/disqualification-reverse/{disqualification}', [DisqualificationController::class, 'reverseDisqualification']);
     Route::resource('/notice', NoticeController::class);
     Route::resource('/interview', InterviewController::class);
+    Route::resource('/appointment', AppointmentController::class);
 });
