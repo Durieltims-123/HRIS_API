@@ -21,7 +21,8 @@ class PublicationResource extends JsonResource
                 "vacancy_id" => (string)$this->vacancy_id,
                 "opening_date" => (string)$this->opening_date,
                 "closing_date" => (string)$this->closing_date,
-                "vacancy" => new VacancyResource($this->whenLoaded('belongsToVacancy'))
+                "vacancy" => new VacancyResource($this->whenLoaded('belongsToVacancy')),
+                "application" => new ApplicationResource($this->whenLoaded('hasOneApplication'))
             ]
         ];
     }

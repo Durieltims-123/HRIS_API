@@ -64,386 +64,6 @@
     "tests": []
   },
   {
-    "_id": "efa31d23-50cb-446d-84fe-1413ed3190f0",
-    "colId": "history",
-    "containerId": "",
-    "name": "http://127.0.0.1:8000/api/salary-grade",
-    "url": "http://127.0.0.1:8000/api/salary-grade",
-    "method": "DELETE",
-    "sortNum": 0,
-    "created": "2023-03-10T01:23:57.244Z",
-    "modified": "2023-03-10T01:23:57.244Z",
-    "headers": [],
-    "params": [],
-    "tests": []
-  },
-  {
-    "_id": "efa31d23-50cb-446d-84fe-1413ed3190f0",
-    "colId": "history",
-    "containerId": "",
-    "name": "http://127.0.0.1:8000/api/salary-grade",
-    "url": "http://127.0.0.1:8000/api/salary-grade",
-    "method": "DELETE",
-    "sortNum": 0,
-    "created": "2023-03-10T01:23:57.244Z",
-    "modified": "2023-03-10T01:23:57.244Z",
-    "headers": [],
-    "params": [],
-    "tests": []
-  },
-  {
-    "_id": "c50a4af4-7ba7-49fe-b035-e02738af858e",
-    "colId": "history",
-    "containerId": "",
-    "name": "http://127.0.0.1:8000/api/qualification-standard",
-    "url": "http://127.0.0.1:8000/api/qualification-standard",
-    "method": "POST",
-    "sortNum": 0,
-    "created": "2023-03-10T01:44:38.137Z",
-    "modified": "2023-03-10T03:25:00.619Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "formdata",
-      "raw": "",
-      "form": [
-        {
-          "name": "education",
-          "value": "yes"
-        },
-        {
-          "name": "training",
-          "value": "yah2"
-        },
-        {
-          "name": "experience",
-          "value": "yah"
-        },
-        {
-          "name": "eligibility",
-          "value": "yah"
-        },
-        {
-          "name": "competency",
-          "value": "yah"
-        }
-      ]
-    },
-    "tests": []
-  },
-  {
-    "_id": "30e648cf-dd13-44f4-8bf5-893359d3775c",
-    "colId": "history",
-    "containerId": "",
-    "name": "http://127.0.0.1:8000/api/qualification-standard",
-    "url": "http://127.0.0.1:8000/api/qualification-standard",
-    "method": "GET",
-    "sortNum": 0,
-    "created": "2023-03-10T03:12:32.572Z",
-    "modified": "2023-03-10T03:27:03.621Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "formdata",
-      "raw": "",
-      "form": [
-        {
-          "name": "tetetetete",
-          "value": "qeqeq"
-        }
-      ]
-    },
-    "tests": []
-  },
-  {
-    "_id": "ae10c307-5df4-461f-ab4f-a2bc363a8250",
-    "colId": "history",
-    "containerId": "",
-    "name": "http://127.0.0.1:8000/api/qualification-standard",
-    "url": "http://127.0.0.1:8000/api/qualification-standard",
-    "method": "PATCH",
-    "sortNum": 0,
-    "created": "2023-03-10T04:02:55.670Z",
-    "modified": "2023-03-10T04:02:55.670Z",
-    "headers": [],
-    "params": [],
-    "tests": []
-  },
-  {
-    "_id": "5c482268-142a-4757-b56c-5b8c7d02f326",
-    "colId": "history",
-    "containerId": "",
-    "name": "http://127.0.0.1:8000/api/qualification-standard/1",
-    "url": "http://127.0.0.1:8000/api/qualification-standard/1",
-    "method": "DELETE",
-    "sortNum": 0,
-    "created": "2023-03-10T05:32:16.968Z",
-    "modified": "2023-03-10T05:32:16.968Z",
-    "headers": [],
-    "params": [],
-    "auth": {
-      "type": "bearer",
-      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
-    },
-    "tests": []
-  },
-  {
-    "_id": "16b90d21-5fad-41e9-a658-29dde446c25c",
-    "colId": "history",
-    "containerId": "",
-    "name": "http://127.0.0.1:8000/api/personnel-selection-board/1",
-    "url": "http://127.0.0.1:8000/api/personnel-selection-board/1",
-    "method": "PATCH",
-    "sortNum": 0,
-    "created": "2023-03-10T06:48:04.322Z",
-    "modified": "2023-03-10T07:03:39.174Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "formencoded",
-      "raw": "",
-      "form": [
-        {
-          "name": "start_date",
-          "value": "2023-05-05"
-        },
-        {
-          "name": "end_date",
-          "value": "2023-06-06"
-        },
-        {
-          "name": "chairman",
-          "value": "Tankie White"
-        },
-        {
-          "name": "position",
-          "value": "Administrative"
-        },
-        {
-          "name": "status",
-          "value": "Active"
-        }
-      ]
-    },
-    "auth": {
-      "type": "bearer",
-      "bearer": "4|eCKfeFe8Rltw8zw6Zb3EpeMPRTRvfxj8JAnKMfrU"
-    },
-    "tests": []
-  },
-  {
-    "_id": "16b90d21-5fad-41e9-a658-29dde446c25c",
-    "colId": "history",
-    "containerId": "",
-    "name": "http://127.0.0.1:8000/api/personnel-selection-board/1",
-    "url": "http://127.0.0.1:8000/api/personnel-selection-board/1",
-    "method": "PATCH",
-    "sortNum": 0,
-    "created": "2023-03-10T06:48:04.322Z",
-    "modified": "2023-03-10T07:03:39.174Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "formencoded",
-      "raw": "",
-      "form": [
-        {
-          "name": "start_date",
-          "value": "2023-05-05"
-        },
-        {
-          "name": "end_date",
-          "value": "2023-06-06"
-        },
-        {
-          "name": "chairman",
-          "value": "Tankie White"
-        },
-        {
-          "name": "position",
-          "value": "Administrative"
-        },
-        {
-          "name": "status",
-          "value": "Active"
-        }
-      ]
-    },
-    "auth": {
-      "type": "bearer",
-      "bearer": "4|eCKfeFe8Rltw8zw6Zb3EpeMPRTRvfxj8JAnKMfrU"
-    },
-    "tests": []
-  },
-  {
-    "_id": "16b90d21-5fad-41e9-a658-29dde446c25c",
-    "colId": "history",
-    "containerId": "",
-    "name": "http://127.0.0.1:8000/api/personnel-selection-board/1",
-    "url": "http://127.0.0.1:8000/api/personnel-selection-board/1",
-    "method": "PATCH",
-    "sortNum": 0,
-    "created": "2023-03-10T06:48:04.322Z",
-    "modified": "2023-03-10T07:03:39.174Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "formencoded",
-      "raw": "",
-      "form": [
-        {
-          "name": "start_date",
-          "value": "2023-05-05"
-        },
-        {
-          "name": "end_date",
-          "value": "2023-06-06"
-        },
-        {
-          "name": "chairman",
-          "value": "Tankie White"
-        },
-        {
-          "name": "position",
-          "value": "Administrative"
-        },
-        {
-          "name": "status",
-          "value": "Active"
-        }
-      ]
-    },
-    "auth": {
-      "type": "bearer",
-      "bearer": "4|eCKfeFe8Rltw8zw6Zb3EpeMPRTRvfxj8JAnKMfrU"
-    },
-    "tests": []
-  },
-  {
-    "_id": "16b90d21-5fad-41e9-a658-29dde446c25c",
-    "colId": "history",
-    "containerId": "",
-    "name": "http://127.0.0.1:8000/api/personnel-selection-board/1",
-    "url": "http://127.0.0.1:8000/api/personnel-selection-board/1",
-    "method": "PATCH",
-    "sortNum": 0,
-    "created": "2023-03-10T06:48:04.322Z",
-    "modified": "2023-03-10T07:03:39.174Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "formencoded",
-      "raw": "",
-      "form": [
-        {
-          "name": "start_date",
-          "value": "2023-05-05"
-        },
-        {
-          "name": "end_date",
-          "value": "2023-06-06"
-        },
-        {
-          "name": "chairman",
-          "value": "Tankie White"
-        },
-        {
-          "name": "position",
-          "value": "Administrative"
-        },
-        {
-          "name": "status",
-          "value": "Active"
-        }
-      ]
-    },
-    "auth": {
-      "type": "bearer",
-      "bearer": "4|eCKfeFe8Rltw8zw6Zb3EpeMPRTRvfxj8JAnKMfrU"
-    },
-    "tests": []
-  },
-  {
-    "_id": "16b90d21-5fad-41e9-a658-29dde446c25c",
-    "colId": "history",
-    "containerId": "",
-    "name": "http://127.0.0.1:8000/api/personnel-selection-board/1",
-    "url": "http://127.0.0.1:8000/api/personnel-selection-board/1",
-    "method": "PATCH",
-    "sortNum": 0,
-    "created": "2023-03-10T06:48:04.322Z",
-    "modified": "2023-03-10T07:03:39.174Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "formencoded",
-      "raw": "",
-      "form": [
-        {
-          "name": "start_date",
-          "value": "2023-05-05"
-        },
-        {
-          "name": "end_date",
-          "value": "2023-06-06"
-        },
-        {
-          "name": "chairman",
-          "value": "Tankie White"
-        },
-        {
-          "name": "position",
-          "value": "Administrative"
-        },
-        {
-          "name": "status",
-          "value": "Active"
-        }
-      ]
-    },
-    "auth": {
-      "type": "bearer",
-      "bearer": "4|eCKfeFe8Rltw8zw6Zb3EpeMPRTRvfxj8JAnKMfrU"
-    },
-    "tests": []
-  },
-  {
-    "_id": "52d95653-f6b6-4ba3-961b-494dc3c33593",
-    "colId": "history",
-    "containerId": "",
-    "name": "http://127.0.0.1:8000/api/position-description",
-    "url": "http://127.0.0.1:8000/api/position-description",
-    "method": "GET",
-    "sortNum": 0,
-    "created": "2023-03-10T06:59:52.940Z",
-    "modified": "2023-03-10T07:00:14.063Z",
-    "headers": [],
-    "params": [],
-    "auth": {
-      "type": "bearer",
-      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
-    },
-    "tests": []
-  },
-  {
-    "_id": "08a10599-bbd3-4255-bc80-1fc4d24f1b34",
-    "colId": "history",
-    "containerId": "",
-    "name": "http://127.0.0.1:8000/api/position-description",
-    "url": "http://127.0.0.1:8000/api/position-description",
-    "method": "POST",
-    "sortNum": 0,
-    "created": "2023-03-10T07:00:21.698Z",
-    "modified": "2023-03-10T07:00:21.698Z",
-    "headers": [],
-    "params": [],
-    "auth": {
-      "type": "bearer",
-      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
-    },
-    "tests": []
-  },
-  {
     "_id": "46190053-808b-44e2-856d-219684948e89",
     "colId": "history",
     "containerId": "",
@@ -481,24 +101,6 @@
   },
   {
     "_id": "65678bdc-bca9-49c9-9ffa-e8eb63e6218e",
-    "colId": "history",
-    "containerId": "",
-    "name": "http://127.0.0.1:8000/api/position-description",
-    "url": "http://127.0.0.1:8000/api/position-description",
-    "method": "DELETE",
-    "sortNum": 0,
-    "created": "2023-03-10T07:09:30.378Z",
-    "modified": "2023-03-10T07:09:30.378Z",
-    "headers": [],
-    "params": [],
-    "auth": {
-      "type": "bearer",
-      "bearer": "5|Bd1hvBmtywvNhZzpnFEH4wQi7tAL0uKcXsJgDcTj"
-    },
-    "tests": []
-  },
-  {
-    "_id": "efa31d23-50cb-446d-84fe-1413ed3190f0",
     "colId": "history",
     "containerId": "",
     "name": "http://127.0.0.1:8000/api/position-description",
@@ -655,24 +257,6 @@
     "modified": "2023-03-14T12:38:10.780Z",
     "headers": [],
     "params": [],
-    "tests": []
-  },
-  {
-    "_id": "16b90d21-5fad-41e9-a658-29dde446c25c",
-    "colId": "history",
-    "containerId": "",
-    "name": "http://127.0.0.1:8000/api/personnel-selection-board/1",
-    "url": "http://127.0.0.1:8000/api/personnel-selection-board/1",
-    "method": "DELETE",
-    "sortNum": 0,
-    "created": "2023-03-10T07:50:16.840Z",
-    "modified": "2023-03-10T07:50:16.840Z",
-    "headers": [],
-    "params": [],
-    "auth": {
-      "type": "bearer",
-      "bearer": "4|eCKfeFe8Rltw8zw6Zb3EpeMPRTRvfxj8JAnKMfrU"
-    },
     "tests": []
   },
   {
@@ -2218,6 +1802,88 @@
     "auth": {
       "type": "bearer",
       "bearer": "3|a1sw9wDKykUitIl5RhCC8k1OdgZp26FKyyKNHeTV"
+    },
+    "tests": []
+  },
+  {
+    "_id": "d8df6e1d-18ef-482e-8fac-be18d2deaa76",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/interview",
+    "url": "http://127.0.0.1:8000/api/interview",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-04-08T15:32:46.332Z",
+    "modified": "2023-04-09T11:47:14.443Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+    },
+    "tests": []
+  },
+  {
+    "_id": "1d06cb43-1a27-4404-8de3-1e1e741d9f5b",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/interview",
+    "url": "http://127.0.0.1:8000/api/interview",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-04-08T15:32:49.794Z",
+    "modified": "2023-04-08T15:32:49.794Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "0406f47a-60af-4ef1-9292-4e9fff4ee998",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/interview/1",
+    "url": "http://127.0.0.1:8000/api/interview/1",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2023-04-08T15:33:16.876Z",
+    "modified": "2023-04-08T15:33:16.876Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "883b844c-f01b-4368-8d62-e8b9774d87cb",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/interview/4",
+    "url": "http://127.0.0.1:8000/api/interview/4",
+    "method": "DELETE",
+    "sortNum": 0,
+    "created": "2023-04-08T16:00:04.069Z",
+    "modified": "2023-04-08T16:00:04.069Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "3|a1sw9wDKykUitIl5RhCC8k1OdgZp26FKyyKNHeTV"
+    },
+    "tests": []
+  },
+  {
+    "_id": "1123d03e-0b48-4698-adf7-e11bd8443bd0",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/interview/1",
+    "url": "http://127.0.0.1:8000/api/interview/1",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-04-09T12:05:20.881Z",
+    "modified": "2023-04-09T12:05:20.881Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
     },
     "tests": []
   }

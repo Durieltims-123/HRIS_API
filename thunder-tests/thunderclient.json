@@ -1746,7 +1746,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-20T02:58:53.487Z",
-    "modified": "2023-04-04T02:42:56.580Z",
+    "modified": "2023-04-09T11:02:47.382Z",
     "headers": [],
     "params": [],
     "body": {
@@ -1777,7 +1777,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "2|w6cgGhPoYw4J9hNO1BBNdS0yxVtACmBF1B3NhVYc"
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
     },
     "tests": []
   },
@@ -2964,7 +2964,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-27T06:46:33.279Z",
-    "modified": "2023-04-04T02:45:06.738Z",
+    "modified": "2023-04-09T11:02:53.916Z",
     "headers": [],
     "params": [],
     "body": {
@@ -2972,7 +2972,7 @@
       "raw": "",
       "form": [
         {
-          "name": " opening_date",
+          "name": "opening_date",
           "value": "2023-03-05"
         },
         {
@@ -2987,7 +2987,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "2|w6cgGhPoYw4J9hNO1BBNdS0yxVtACmBF1B3NhVYc"
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
     },
     "tests": []
   },
@@ -3810,7 +3810,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-04-03T06:28:12.734Z",
-    "modified": "2023-04-04T03:31:08.510Z",
+    "modified": "2023-04-09T11:46:59.117Z",
     "headers": [],
     "params": [],
     "body": {
@@ -3857,7 +3857,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "2|w6cgGhPoYw4J9hNO1BBNdS0yxVtACmBF1B3NhVYc"
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
     },
     "tests": []
   },
@@ -4508,6 +4508,124 @@
     "auth": {
       "type": "bearer",
       "bearer": "3|a1sw9wDKykUitIl5RhCC8k1OdgZp26FKyyKNHeTV"
+    },
+    "tests": []
+  },
+  {
+    "_id": "d989c6a9-2d9d-4184-8fb1-3b69e1afbbf0",
+    "colId": "4f9913cb-d918-491a-a683-157697f84c09",
+    "containerId": "",
+    "name": "Add Interview",
+    "url": "http://127.0.0.1:8000/api/interview",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-04-08T15:33:01.002Z",
+    "modified": "2023-04-09T11:04:01.229Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "interview_date",
+          "value": "2023-05-05"
+        },
+        {
+          "name": "venue",
+          "value": "Ben Palispis Hall"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+    },
+    "tests": []
+  },
+  {
+    "_id": "e8ce71e6-ba88-4b19-a43f-b3b25ca7f937",
+    "colId": "4f9913cb-d918-491a-a683-157697f84c09",
+    "containerId": "",
+    "name": "Update Interview",
+    "url": "http://127.0.0.1:8000/api/interview/4",
+    "method": "PUT",
+    "sortNum": 20000,
+    "created": "2023-04-08T15:33:25.436Z",
+    "modified": "2023-04-08T15:59:34.340Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "interview_date",
+          "value": "2023-07-07"
+        },
+        {
+          "name": "venue",
+          "value": "Updated Hall"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "3|a1sw9wDKykUitIl5RhCC8k1OdgZp26FKyyKNHeTV"
+    },
+    "tests": []
+  },
+  {
+    "_id": "2aa4f8dc-b5f1-497c-a2a2-8158376f8570",
+    "colId": "4f9913cb-d918-491a-a683-157697f84c09",
+    "containerId": "",
+    "name": "Delete Interview",
+    "url": "http://127.0.0.1:8000/api/interview/4",
+    "method": "DELETE",
+    "sortNum": 30000,
+    "created": "2023-04-08T16:02:26.954Z",
+    "modified": "2023-04-08T16:02:26.954Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "3|a1sw9wDKykUitIl5RhCC8k1OdgZp26FKyyKNHeTV"
+    },
+    "tests": []
+  },
+  {
+    "_id": "376939f6-723c-42c8-b1f9-75e354d6e2d9",
+    "colId": "4f9913cb-d918-491a-a683-157697f84c09",
+    "containerId": "",
+    "name": "Index Interview",
+    "url": "http://127.0.0.1:8000/api/interview",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2023-04-09T11:47:44.603Z",
+    "modified": "2023-04-09T11:47:44.603Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+    },
+    "tests": []
+  },
+  {
+    "_id": "742ec73e-c2b6-452a-9889-14303c16e649",
+    "colId": "4f9913cb-d918-491a-a683-157697f84c09",
+    "containerId": "",
+    "name": "Show Interview",
+    "url": "http://127.0.0.1:8000/api/interview/1",
+    "method": "GET",
+    "sortNum": 50000,
+    "created": "2023-04-09T12:05:54.642Z",
+    "modified": "2023-04-09T12:05:54.642Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
     },
     "tests": []
   }

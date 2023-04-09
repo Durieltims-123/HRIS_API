@@ -11,7 +11,7 @@ class StoreInterviewRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,6 +22,7 @@ class StoreInterviewRequest extends FormRequest
     public function rules(): array
     {
         return [
+          
             'interview_date' => ['required', 'date'],
             'venue' => ['required', 'string', 'max:255'],
         ];
