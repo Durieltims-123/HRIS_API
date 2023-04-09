@@ -1886,5 +1886,105 @@
       "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
     },
     "tests": []
+  },
+  {
+    "_id": "147de0c0-bc11-4603-8108-716897ae80a4",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/appointment",
+    "url": "http://127.0.0.1:8000/api/appointment",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-04-09T15:54:09.770Z",
+    "modified": "2023-04-09T15:54:09.770Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+    },
+    "tests": []
+  },
+  {
+    "_id": "57048f1c-b5d0-4efb-a5cc-51bc5dbb8a22",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/appointment/1",
+    "url": "http://127.0.0.1:8000/api/appointment/1",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2023-04-09T16:36:24.927Z",
+    "modified": "2023-04-09T16:36:48.624Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "application_id",
+          "value": "2"
+        },
+        {
+          "name": "appointment_date",
+          "value": "2023-03-03"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+    },
+    "tests": []
+  },
+  {
+    "_id": "ee021733-bc38-40ff-b3f6-ebd6f49eb362",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/appointment",
+    "url": "http://127.0.0.1:8000/api/appointment",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-04-09T16:39:07.213Z",
+    "modified": "2023-04-09T16:39:07.213Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+    },
+    "tests": []
+  },
+  {
+    "_id": "e0690894-7e87-45e9-82aa-791df5bd570c",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/appointment/1",
+    "url": "http://127.0.0.1:8000/api/appointment/1",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-04-09T16:45:45.502Z",
+    "modified": "2023-04-09T16:45:45.502Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "61b941cf-f5ae-4b99-9281-18a74ac5ae4a",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/appointment/1",
+    "url": "http://127.0.0.1:8000/api/appointment/1",
+    "method": "DELETE",
+    "sortNum": 0,
+    "created": "2023-04-09T16:48:09.663Z",
+    "modified": "2023-04-09T16:48:09.663Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+    },
+    "tests": []
   }
 ]
