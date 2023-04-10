@@ -1986,5 +1986,149 @@
       "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
     },
     "tests": []
+  },
+  {
+    "_id": "4ef9c867-cce3-4a11-8cfd-06adf9a77400",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/oathtaking",
+    "url": "http://127.0.0.1:8000/api/oathtaking",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-04-10T03:58:29.210Z",
+    "modified": "2023-04-10T14:12:30.632Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+    },
+    "tests": []
+  },
+  {
+    "_id": "9d1ffccf-0455-4834-b36c-7d842d9e99e7",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/oathtaking",
+    "url": "http://127.0.0.1:8000/api/oathtaking",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-04-10T03:58:33.085Z",
+    "modified": "2023-04-10T03:58:33.085Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "2e9c63be-a088-474b-a7ea-43f569b466cf",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/oathtaking/5",
+    "url": "http://127.0.0.1:8000/api/oathtaking/5",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2023-04-10T13:50:18.952Z",
+    "modified": "2023-04-10T13:53:11.140Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "venue",
+          "value": "EditedVenue"
+        },
+        {
+          "name": "oath_date",
+          "value": "2023-02-02"
+        },
+        {
+          "name": "date_generated",
+          "value": "2023-02-02"
+        },
+        {
+          "name": "appointment_id[]",
+          "value": "2"
+        },
+        {
+          "name": "first_name[]",
+          "value": "Updated"
+        },
+        {
+          "name": "last_name[]",
+          "value": "Updated"
+        },
+        {
+          "name": "department[]",
+          "value": "Updated"
+        },
+        {
+          "name": "date_appointed[]",
+          "value": "2023-02-02"
+        },
+        {
+          "name": "appointment_id[]",
+          "value": "2"
+        },
+        {
+          "name": "first_name[]",
+          "value": "Updated"
+        },
+        {
+          "name": "last_name[]",
+          "value": "Updated"
+        },
+        {
+          "name": "department[]",
+          "value": "Updated"
+        },
+        {
+          "name": "date_appointed[]",
+          "value": "2023-02-02"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+    },
+    "tests": []
+  },
+  {
+    "_id": "7b0051f7-63a1-457e-9b78-952ab4c79ffc",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/oathtaking/5",
+    "url": "http://127.0.0.1:8000/api/oathtaking/5",
+    "method": "DELETE",
+    "sortNum": 0,
+    "created": "2023-04-10T14:04:08.460Z",
+    "modified": "2023-04-10T14:04:08.460Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+    },
+    "tests": []
+  },
+  {
+    "_id": "19fc0f8d-40a2-44c4-9e23-7c4270d8eabd",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/oathtaking/5",
+    "url": "http://127.0.0.1:8000/api/oathtaking/5",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-04-10T14:21:43.432Z",
+    "modified": "2023-04-10T14:21:43.432Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+    },
+    "tests": []
   }
 ]

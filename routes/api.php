@@ -17,6 +17,7 @@ use App\Http\Controllers\PlantillaController;
 use App\Http\Controllers\PsbMemberController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\OathTakingController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\PublicationController;
@@ -74,4 +75,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/notice', NoticeController::class);
     Route::resource('/interview', InterviewController::class);
     Route::resource('/appointment', AppointmentController::class);
+    Route::resource('/oathtaking', OathTakingController::class);
 });
