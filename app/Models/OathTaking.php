@@ -10,15 +10,18 @@ class OathTaking extends Model
 {
     use HasFactory;
 
-    public function hasManyOathTakers(): HasMany{
-        return $this->hasMany(OathTakers::class);
+    public function hasManyOathTakers(): HasMany
+    {
+        return $this->hasMany(OathTaker::class, 'oathtaking_id');
     }
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        "venue",
+        "oath_date",
         "date_generated",
-        "oath_date"
+        
     ];
 }
 

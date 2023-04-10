@@ -3810,7 +3810,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-04-03T06:28:12.734Z",
-    "modified": "2023-04-09T11:46:59.117Z",
+    "modified": "2023-04-10T11:13:29.393Z",
     "headers": [],
     "params": [],
     "body": {
@@ -3819,7 +3819,7 @@
       "form": [
         {
           "name": "applicant_id",
-          "value": "3"
+          "value": "1"
         },
         {
           "name": "employee_id",
@@ -3827,7 +3827,7 @@
         },
         {
           "name": "publication_id",
-          "value": "1"
+          "value": "2"
         },
         {
           "name": "submission_date",
@@ -4743,6 +4743,228 @@
     "sortNum": 50000,
     "created": "2023-04-09T16:48:20.470Z",
     "modified": "2023-04-09T16:48:20.470Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+    },
+    "tests": []
+  },
+  {
+    "_id": "57f0d16c-15d7-463e-b352-833b05aea830",
+    "colId": "3cd20973-e368-4daa-9a66-0b355743a2da",
+    "containerId": "",
+    "name": "Add Oathtaking",
+    "url": "http://127.0.0.1:8000/api/oathtaking",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-04-10T03:58:49.522Z",
+    "modified": "2023-04-10T11:20:19.766Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "venue",
+          "value": "Ben Palispis"
+        },
+        {
+          "name": "oath_date",
+          "value": "2023-01-01"
+        },
+        {
+          "name": "date_generated",
+          "value": "2023-01-01"
+        },
+        {
+          "name": "appointment_id[]",
+          "value": "2"
+        },
+        {
+          "name": "first_name[]",
+          "value": "John"
+        },
+        {
+          "name": "last_name[]",
+          "value": "Ceno"
+        },
+        {
+          "name": "department[]",
+          "value": "IT Office"
+        },
+        {
+          "name": "job_title[]",
+          "value": "Programmer"
+        },
+        {
+          "name": "date_appointed[]",
+          "value": "2023-01-01"
+        },
+        {
+          "name": "appointment_id[]",
+          "value": "2"
+        },
+        {
+          "name": "first_name[]",
+          "value": "Dwayne"
+        },
+        {
+          "name": "last_name[]",
+          "value": "Johnsoon"
+        },
+        {
+          "name": "department[]",
+          "value": "IT Office"
+        },
+        {
+          "name": "job_title[]",
+          "value": "Programmer"
+        },
+        {
+          "name": "date_appointed[]",
+          "value": "2023-01-01"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+    },
+    "tests": []
+  },
+  {
+    "_id": "93678624-7503-42c6-9f4a-412629192581",
+    "colId": "3cd20973-e368-4daa-9a66-0b355743a2da",
+    "containerId": "",
+    "name": "Update OathTaking",
+    "url": "http://127.0.0.1:8000/api/oathtaking/5",
+    "method": "PUT",
+    "sortNum": 20000,
+    "created": "2023-04-10T13:53:52.944Z",
+    "modified": "2023-04-10T14:02:18.989Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "venue",
+          "value": "AgainEditedVenue"
+        },
+        {
+          "name": "oath_date",
+          "value": "2023-02-02"
+        },
+        {
+          "name": "date_generated",
+          "value": "2023-02-02"
+        },
+        {
+          "name": "appointment_id[]",
+          "value": "2"
+        },
+        {
+          "name": "first_name[]",
+          "value": "Updated"
+        },
+        {
+          "name": "last_name[]",
+          "value": "Updated"
+        },
+        {
+          "name": "department[]",
+          "value": "Updated"
+        },
+        {
+          "name": "date_appointed[]",
+          "value": "2023-02-02"
+        },
+        {
+          "name": "appointment_id[]",
+          "value": "2"
+        },
+        {
+          "name": "first_name[]",
+          "value": "UpdatedTwo"
+        },
+        {
+          "name": "last_name[]",
+          "value": "Updated"
+        },
+        {
+          "name": "department[]",
+          "value": "Updated"
+        },
+        {
+          "name": "date_appointed[]",
+          "value": "2023-02-02"
+        },
+        {
+          "name": "job_title[]",
+          "value": "Updated"
+        },
+        {
+          "name": "job_title[]",
+          "value": "Updated"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+    },
+    "tests": []
+  },
+  {
+    "_id": "c4526cca-611e-485c-ac5d-aa52b35056fd",
+    "colId": "3cd20973-e368-4daa-9a66-0b355743a2da",
+    "containerId": "",
+    "name": "Delete OathTaking",
+    "url": "http://127.0.0.1:8000/api/oathtaking/5",
+    "method": "DELETE",
+    "sortNum": 30000,
+    "created": "2023-04-10T14:04:20.332Z",
+    "modified": "2023-04-10T14:04:20.332Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+    },
+    "tests": []
+  },
+  {
+    "_id": "adbbae14-2eda-4327-8eef-35e3b07877e9",
+    "colId": "3cd20973-e368-4daa-9a66-0b355743a2da",
+    "containerId": "",
+    "name": "Index OathTaking",
+    "url": "http://127.0.0.1:8000/api/oathtaking",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2023-04-10T14:12:42.938Z",
+    "modified": "2023-04-10T14:12:42.938Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+    },
+    "tests": []
+  },
+  {
+    "_id": "df0a1835-206d-4837-a5c5-9c6435e23be9",
+    "colId": "3cd20973-e368-4daa-9a66-0b355743a2da",
+    "containerId": "",
+    "name": "Show OathTaking",
+    "url": "http://127.0.0.1:8000/api/oathtaking/5",
+    "method": "GET",
+    "sortNum": 50000,
+    "created": "2023-04-10T14:21:55.290Z",
+    "modified": "2023-04-10T14:22:15.249Z",
     "headers": [],
     "params": [],
     "auth": {
