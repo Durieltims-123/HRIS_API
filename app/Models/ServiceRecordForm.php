@@ -9,13 +9,14 @@ class ServiceRecordForm extends Model
 {
     use HasFactory;
 
-    public function hasOneEmployee()
+    public function belongsToEmployee()
     {
-        return $this->hasOneEmployee(ServiceRecordForm::class);
+        return $this->belongsTo(Employee::class, 'employee_id');
     }
 
     protected $fillable = 
     [
+        'employee_id',
         'date_from',
         'date_to',
         'appointment_records',
@@ -23,7 +24,7 @@ class ServiceRecordForm extends Model
         'remarks',
         'civil_status',
         'designation',
-        'slary_annum',
+        'salary_annum',
         'office_department',
     ];
 }
