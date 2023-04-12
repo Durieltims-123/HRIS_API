@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('salary_grades', function (Blueprint $table) {
             $table->id();
             $table->string('number');
-            $table->string('amount');
+            $table->decimal('amount',8,2);
             $table->timestamps();
         });
     }

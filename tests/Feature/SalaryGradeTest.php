@@ -32,7 +32,7 @@ class SalaryGradeTest extends TestCase
     {
         $formData = [
             "number" => "100",
-            "amount" => "1000"
+            "amount" => 1.23
         ];
         $user = User::factory()->create();
         $this->assertCount(0, $user->tokens);
@@ -50,9 +50,9 @@ class SalaryGradeTest extends TestCase
     {
         $formData = [
             "number" => "100",
-            "amount" => "10001"
+            "amount" => 2.34
         ];
-        $sg = SalaryGrade::where([["number", "100"], ["amount", "1000"]])->first();
+        $sg = SalaryGrade::where([["number", "100"], ["amount", 1.23]])->first();
 
         $user = User::factory()->create();
         $this->assertCount(0, $user->tokens);
@@ -68,9 +68,9 @@ class SalaryGradeTest extends TestCase
     {
         $formData = [
             "number" => "100",
-            "amount" => "10001"
+            "amount" => 2.34
         ];
-        $sg = SalaryGrade::where([["number", "100"], ["amount", "10001"]])->first();
+        $sg = SalaryGrade::where([["number", "100"], ["amount", 2.34]])->first();
         $user = User::factory()->create();
         $this->assertCount(0, $user->tokens);
         $this->actingAs($user);
