@@ -23,9 +23,8 @@ class PositionController extends Controller
     {
 
         return PositionResource::collection(
-            Position::with('hasManyQualificationStandard','belongsToSalaryGrade')->get()
+            Position::with('hasManyQualificationStandard', 'belongsToSalaryGrade')->get()
         );
-       
     }
 
     /**
@@ -41,42 +40,42 @@ class PositionController extends Controller
      */
     public function store(StorePositionRequest $request)
     {
-            // validate input fields
-            $request->validated($request->all());
+        // validate input fields
+        $request->validated($request->all());
 
-            // validate user from database
+        // validate user from database
 
-            // $positionExist = Position::where('title', $request->title);
+        // $positionExist = Position::where('title', $request->title);
 
-            // if ($positionExist) {
-            //     return $this->error('', 'Duplicate Entry', 400);
-            // }
-    
+        // if ($positionExist) {
+        //     return $this->error('', 'Duplicate Entry', 400);
+        // }
 
-            $positionQS = Position::create([
-                "title" => $request->title,
-                "salary_grade_id" => $request->salary_grade_id
 
-            ]);
-            
-            QualificationStandard::create([
-                'position_id' => $positionQS->id,
-                "education" => $request->education,
-                "training" => $request->training,
-                "experience" => $request->experience,
-                "eligibility" => $request->eligibility,
-                "competency" => $request->competency,
+        $positionQS = Position::create([
+            "title" => $request->title,
+            "salary_grade_id" => $request->salary_grade_id
 
-                
-            ]);
-            // $position=new Position();
-            // $position-> title=$request->title;
-            // $position->save();
-           
-    
-    
-            // return message
-            return $this->success('', 'Successfull Saved', 200);
+        ]);
+
+        QualificationStandard::create([
+            'position_id' => $positionQS->id,
+            "education" => $request->education,
+            "training" => $request->training,
+            "experience" => $request->experience,
+            "eligibility" => $request->eligibility,
+            "competency" => $request->competency,
+
+
+        ]);
+        // $position=new Position();
+        // $position-> title=$request->title;
+        // $position->save();
+
+
+
+        // return message
+        return $this->success('', 'Successfull Saved', 200);
     }
 
     /**
@@ -85,9 +84,9 @@ class PositionController extends Controller
     public function show(Position $position)
     {
         return PositionResource::collection(
-            Position::where('id',$position->id)
-            ->get()
-            );
+            Position::where('id', $position->id)
+                ->get()
+        );
     }
 
     /**
@@ -101,9 +100,13 @@ class PositionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StorePositionRequest $request, Position $position, QualificationStandard $qualificationStandard)
+    public function update(StorePositionRequest $request, Position $position)
     {
-    
+        $position->title = $request->title;
+        $position->save();
+
+        return new PositionResource($position);
+
         // // $positionId =  Position::where('title', $request->position_title)->pluck('id')->first();
         //     //     $position->title = $positionRequest->title;
         //     //     $position->salary_grade_id = $positionRequest->salary_grade_id;
@@ -119,7 +122,7 @@ class PositionController extends Controller
 
         //     // $qualificationStandard = QualificationStandard::where('id', $positionId)->first();
 
-            
+
         //     // $position->position_id = $positionId;
 
         //     $position->education = $request->education;
@@ -133,34 +136,32 @@ class PositionController extends Controller
 
         //     return new PositionResource($position);
 
-     }
+    }
 
- /**
+    /**
      * Remove the specified resource from storage.
      */
 
     public function destroy(Position $position, QualificationStandard $qualificationStandard)
     {
- 
-       $position->delete();
-    //    $qualificationStandard->delete();
+
+        $position->delete();
+        //    $qualificationStandard->delete();
         return $this->success('', 'Successfull Deleted', 200);
-    
     }
 
-    public function search(Request $request){
-       
+    public function search(Request $request)
+    {
+
         // dd(Position::where('title', 'like', '%'.$request->keyword.'%')
         // ->with(['hasManyQualificationStandard','belongsToSalaryGrade'])
         // ->limit(10)
         // ->get());
         return PositionResource::collection(
-            Position::where('title', 'like', '%'.$request->keyword.'%')
-            ->with(['hasManyQualificationStandard','belongsToSalaryGrade'])
-            ->limit(10)
-            ->get()
+            Position::where('title', 'like', '%' . $request->keyword . '%')
+                ->with(['hasManyQualificationStandard', 'belongsToSalaryGrade'])
+                ->limit(10)
+                ->get()
         );
-       
-
     }
 }

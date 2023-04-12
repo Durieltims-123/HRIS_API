@@ -22,8 +22,10 @@ class PersonalDataSheetResource extends JsonResource
                 "applicant_id" => (string)$this->applicant_id,
                 "employee_id" => (string)$this->employee_id,
 
+                // $mobile_number = optional($this->hasManyPersonalInformation->first())->mobile_number;
                 // personal information
                 "personal_data_sheet_id" => (string)$this->hasManyPersonalInformation[0]->personal_data_sheet_id,
+                // "mobile_number" => (string)$this->mobile_number,
                 "mobile_number" => (string)$this->hasManyPersonalInformation[0]->mobile_number,
                 "telephone_number" => (string)$this->hasManyPersonalInformation[0]->telephone_number,
                 "permanent_house_number" => (string)$this->hasManyPersonalInformation[0]->permanent_house_number,
@@ -106,7 +108,7 @@ class PersonalDataSheetResource extends JsonResource
                 }),
 
                 //work experience
-                'workExpererience' => $this->hasManyWorkExperience->map(function ($workExpererience) {
+                'workExperience' => $this->hasManyWorkExperience->map(function ($workExpererience) {
                     return [
                         'position_title' => $workExpererience->position_title,
                         'department' => $workExpererience->department,
@@ -165,11 +167,14 @@ class PersonalDataSheetResource extends JsonResource
                 }),
 
                 //answer
-                "choice" => (string)$this->hasManyAnswer[0]->choice,
-                "details" => (string)$this->hasManyAnswer[0]->details,
-                "date_filed" => (string)$this->hasManyAnswer[0]->date_filed,
-                "case_status" => (string)$this->hasManyAnswer[0]->case_status,
-
+                'answer' => $this->hasManyAnswer->map(function ($answer) {
+                    return [
+                        'choice' => $answer->choice,
+                        'details' => $answer->details,
+                        'date_filed' => $answer->date_filed,
+                        'case_status' => $answer->case_status,
+                    ];
+                }),
 
                 //reference
                 "name" => (string)$this->hasManyReference[0]->name,
@@ -183,7 +188,6 @@ class PersonalDataSheetResource extends JsonResource
                 "telephone_number3" => (string)$this->hasManyReference[0]->telephone_number3,
 
             ],
-            // "vacancy" => new VacancyResource($this->whenLoaded('hasOneVacancy')),
 
         ];
     }
