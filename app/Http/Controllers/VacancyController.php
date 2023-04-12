@@ -17,13 +17,6 @@ class VacancyController extends Controller
      */
     public function index()
     {
-
-        //Position, QS, Plantilla, Department, Vacancy 
-
-        // return VacancyResource::collection(
-        //     Vacancy::with(['belongsToPlantilla.belongsToPosition'])->get()
-        // );
-
         return VacancyResource::collection(
             Vacancy::with([
                 'belongsToPlantilla.belongsToPosition',

@@ -10,6 +10,7 @@ use App\Http\Requests\StorePsbMemberRequest;
 use App\Http\Resources\PersonnelSelectionBoardResource;
 use App\Http\Requests\StorePersonnelSelectionBoardRequest;
 use App\Http\Resources\PsbMemberResource;
+use App\Models\PersonalDataSheet;
 
 class PersonnelSelectionBoardController extends Controller
 {
@@ -20,7 +21,7 @@ class PersonnelSelectionBoardController extends Controller
     public function index()
     {
         return PersonnelSelectionBoardResource::collection(
-            PersonnelSelectionBoard::with('hasManyMembers')->get()
+            PersonnelSelectionBoard::with('psbMembers')->get()
         );
     }
 
@@ -93,7 +94,7 @@ class PersonnelSelectionBoardController extends Controller
     {
         
         return PersonnelSelectionBoardResource::collection(
-            PersonnelSelectionBoard::with('hasManyMembers')
+            PersonnelSelectionBoard::with('psbMembers')
             ->where('id',$personnelSelectionBoard->id)
             ->get()
         );
@@ -114,7 +115,7 @@ class PersonnelSelectionBoardController extends Controller
     PersonnelSelectionBoard $personnelSelectionBoard)
     {
         $psbRequest->validated($psbRequest->all());
-        // Update PSB
+       
         $personnelSelectionBoard->start_date = $psbRequest->start_date;
         $personnelSelectionBoard->end_date = $psbRequest->end_date;
         $personnelSelectionBoard->chairman = $psbRequest->chairman;

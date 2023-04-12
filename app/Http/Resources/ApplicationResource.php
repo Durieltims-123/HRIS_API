@@ -17,6 +17,9 @@ class ApplicationResource extends JsonResource
         return [
             "id" => (string)$this->id,
             "attributes"=>[
+                'applicant_id' => (string)$this->applicant_id,
+                'employee_id' => (string)$this->employee_id,
+                'publication_id' => (string)$this->publication_id,
                 "submission_date" => (string)$this->submission_date,
                 "first_name" => (string)$this->first_name,
                 "middle_name" => (string)$this->middle_name,
@@ -24,6 +27,7 @@ class ApplicationResource extends JsonResource
                 "suffix_name" => (string)$this->suffix_name,
                 "application_type" => (string)$this->application_type,
                 "status" => (string)$this->status,
+                "notice" => new NoticeResource($this->whenLoaded('hasOneNotice')),
             ]
         ];
     }

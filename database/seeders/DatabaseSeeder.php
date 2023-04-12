@@ -3,18 +3,23 @@
 namespace Database\Seeders;
 
 use App\Models\Holiday;
+use App\Models\Vacancy;
 use App\Models\Employee;
 use App\Models\Position;
 use App\Models\Question;
 use App\Models\Applicant;
+use App\Models\Interview;
+use App\Models\PsbMember;
 use App\Models\Reference;
+use App\Models\Assessment;
+use App\Models\Application;
+use App\Models\Publication;
 use App\Models\Recognition;
 use App\Models\SalaryGrade;
 use App\Models\VoluntaryWork;
 use App\Models\WorkExperience;
 use Illuminate\Database\Seeder;
 use App\Models\FamilyBackground;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\PersonalDataSheet;
 use App\Models\SpecialSkillHobby;
 use Database\Seeders\AnswerSeeder;
@@ -25,6 +30,9 @@ use App\Models\MembershipAssociation;
 use App\Models\QualificationStandard;
 use Database\Seeders\PlantillaSeeder;
 use App\Models\CivilServiceEligibility;
+use App\Models\Disqualification;
+use App\Models\PersonnelSelectionBoard;
+use App\Models\PublicationInterview;
 use App\Models\TrainingProgramAttended;
 
 class DatabaseSeeder extends Seeder
@@ -43,7 +51,12 @@ class DatabaseSeeder extends Seeder
         SalaryGrade::factory(33)->create();
         Position::factory(33)->create();
         QualificationStandard::factory(33)->create();
+        PersonnelSelectionBoard::factory(5)
+            ->has(PsbMember::factory()->count(5))
+            ->create();
+        
         // Applicant::factory(5)->create();
+        //
         
         
         // Reference::factory(10)
@@ -57,11 +70,23 @@ class DatabaseSeeder extends Seeder
             MunicipalitySeeder::class,
             BarangaySeeder::class,
             QuestionSeeder::class,
-            
         ]);
-
+        Vacancy::factory(2)->create();
+        Publication::factory(2)->create();
         Employee::factory(5)->create();
-        PersonalDataSheet::factory(5)->create();
+        Applicant::factory(10)->create();
+        Application::factory(10)->create();
+        $this->call([
+            PersonalDataSheetSeeder::class,
+
+        ]);
+        Assessment::factory(10)->create();
+        Interview::factory(5)
+        ->has(PublicationInterview::factory()->count(5)) //I stopped here
+        ->create();
+        Disqualification::factory(5)->create();
+        
+        // PersonalDataSheet::factory(5)->create();
         PersonalInformation::factory(5)->create();
         FamilyBackground::factory(5)->create();
         ChildrenInformation::factory(5)->create();

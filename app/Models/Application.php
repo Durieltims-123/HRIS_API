@@ -12,11 +12,11 @@ class Application extends Model
 {
     use HasFactory;
 
-    public function hasManyNotice():HasMany{
-        return $this->hasMany(Notice::class);
+    public function hasOneNotice():HasOne{
+        return $this->hasOne(Notice::class);
     }
-    public function belongsToDisqualification():BelongsTo{
-        return $this->belongsTo(Disqualification::class);
+    public function hasOneDisqualification():HasOne{
+        return $this->hasOne(Disqualification::class,'application_id');
     }
     public function hasOnePublication():HasOne{
         return $this->hasOne(Publication::class);
@@ -31,12 +31,15 @@ class Application extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'applicant_id',
+        'employee_id',
+        'publication_id',
         'submission_date',
         'first_name',
         'middle_name',
         'last_name',
         'suffix_name',
         'application_type',
-        'status',
+        'status'
     ];
 }

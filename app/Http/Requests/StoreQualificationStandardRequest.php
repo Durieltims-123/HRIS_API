@@ -21,12 +21,8 @@ class StoreQualificationStandardRequest extends FormRequest
      */
     public function rules(): array
     {
-<<<<<<< Updated upstream
-        return [
-=======
         return [ 
             'salary_grade_id' =>['required'],
->>>>>>> Stashed changes
             'education' => ['required', 'string', 'max:255'],
             'training' => ['required', 'string', 'max:255'],
             'experience' => ['required', 'string', 'max:255'],

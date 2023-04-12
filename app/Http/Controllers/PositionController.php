@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Position;
+use App\Models\SalaryGrade;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
+use App\Http\Requests\StoreRequest;
 use App\Models\QualificationStandard;
 use App\Http\Resources\PositionResource;
 use App\Http\Requests\StorePositionRequest;
-use App\Http\Requests\StoreQualificationStandardRequest;
-use App\Http\Resources\QualificationStandardResource;
 use App\Http\Resources\SalaryGradeResource;
-use App\Models\SalaryGrade;
+use App\Http\Resources\QualificationStandardResource;
+use App\Http\Requests\StoreQualificationStandardRequest;
 
 class PositionController extends Controller
 {
@@ -40,42 +41,43 @@ class PositionController extends Controller
      */
     public function store(StorePositionRequest $request)
     {
-        // validate input fields
-        $request->validated($request->all());
+            // validate input fields
+            $request->validated($request->all());
 
-        // validate user from database
+            // validate user from database
 
-        // $positionExist = Position::where('title', $request->title);
+            // $positionExist = Position::where('title', $request->title);
 
-        // if ($positionExist) {
-        //     return $this->error('', 'Duplicate Entry', 400);
-        // }
+            // if ($positionExist) {
+            //     return $this->error('', 'Duplicate Entry', 400);
+            // }
+    
 
+            $positionQS = Position::create([
+                "title" => $request->title,
+                "salary_grade_id" => $request->salary_grade_id
 
-        $positionQS = Position::create([
-            "title" => $request->title,
-            "salary_grade_id" => $request->salary_grade_id
+            ]);
+            
+            QualificationStandard::create([
+                'position_id' => $positionQS->id,
+                "education" => $request->education,
+                "training" => $request->training,
+                "experience" => $request->experience,
+                "eligibility" => $request->eligibility,
+                "competency" => $request->competency,
 
-        ]);
+                
+            ]);
 
-        QualificationStandard::create([
-            'position_id' => $positionQS->id,
-            "education" => $request->education,
-            "training" => $request->training,
-            "experience" => $request->experience,
-            "eligibility" => $request->eligibility,
-            "competency" => $request->competency,
-
-
-        ]);
-        // $position=new Position();
-        // $position-> title=$request->title;
-        // $position->save();
-
-
-
-        // return message
-        return $this->success('', 'Successfull Saved', 200);
+            // $position=new Position();
+            // $position-> title=$request->title;
+            // $position->save();
+           
+    
+    
+            // return message
+            return $this->success('', 'Successfull Saved', 200);
     }
 
     /**
@@ -102,39 +104,22 @@ class PositionController extends Controller
      */
     public function update(StorePositionRequest $request, Position $position)
     {
-        $position->title = $request->title;
-        $position->save();
+    
+        // $positionId =  Position::where('title', $request->position_title)->pluck('id')->first();
+            $position->title = $request->title;
+            $position->salary_grade_id = $request->salary_grade_id;
 
-        return new PositionResource($position);
+            $qualificationStandard = QualificationStandard::where('position_id',$position->id);
+            $qualificationStandard->education = $request->education;
+            $qualificationStandard->training = $request->training;
+            $qualificationStandard->experience = $request->experience;
+            $qualificationStandard->eligibility = $request->eligibility;
+            $qualificationStandard->competency = $request->competency   ;
 
-        // // $positionId =  Position::where('title', $request->position_title)->pluck('id')->first();
-        //     //     $position->title = $positionRequest->title;
-        //     //     $position->salary_grade_id = $positionRequest->salary_grade_id;
+            $position->save();
+            // $qualificationStandard->save();
 
-        //     //     // $position->position_id = $positionRequest->position_id;
-        //     //     $position->education = $positionRequest->education;
-        //     //     $position->training = $positionRequest->training;
-        //     //     $position->experience = $positionRequest->experience;
-        //     //     $position->eligibility = $positionRequest->eligibility;
-        //     //     $position->competency = $positionRequest->competency;
-        //     $position->title = $request->title;
-        //     // $positionId =  Position::where('title', $request->position_title)->pluck('id')->first();
-
-        //     // $qualificationStandard = QualificationStandard::where('id', $positionId)->first();
-
-
-        //     // $position->position_id = $positionId;
-
-        //     $position->education = $request->education;
-        //     $position->training = $request->training;
-        //     $position->experience = $request->experience;
-        //     $position->eligibility = $request->eligibility;
-        //     $position->competency = $request->competency   ;
-
-        //     $position->save();
-        //     // $qualificationStandard->save();
-
-        //     return new PositionResource($position);
+            return new PositionResource($position);
 
     }
 

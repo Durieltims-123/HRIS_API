@@ -17,8 +17,11 @@ class DisqualificationResource extends JsonResource
         return [
             "id" => (string)$this->id,
             "attributes"=>[
+                "application_id" => (string) $this->application_id,
                 "date_disqualified" => (string)$this->date_disqualified,
                 "reason" => (string)$this->reason,
+                "application" => new ApplicationResource($this->whenLoaded('belongsToApplication'))
+                
             ]
             
         ];

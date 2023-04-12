@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('oath_takers', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('oathtaking_id')->constrained('oath_takings');
             $table->foreignId('appointment_id')->constrained();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('department');
+            $table->string('job_title');
+            $table->string('date_appointed');
+            
             $table->timestamps();
         });
     }

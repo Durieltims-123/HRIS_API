@@ -17,8 +17,10 @@ use App\Http\Resources\PersonalDataSheetResource;
 use App\Http\Resources\PersonalInformationResource;
 use App\Http\Resources\TraningProgramAttendedResource;
 use App\Models\Answer;
+use App\Models\Application;
 use App\Models\CivilServiceEligibility;
 use App\Models\EducationalBackground;
+use App\Models\Employee;
 use App\Models\MembershipAssociation;
 use App\Models\Reference;
 use App\Models\SpecialSkillHobby;
@@ -68,7 +70,6 @@ class PersonalDataSheetController extends Controller
     public function store(StorePersonalDataSheetRequest $request)
     {
 
-
         // validate input fields
         $request->validated($request->all());
 
@@ -76,8 +77,8 @@ class PersonalDataSheetController extends Controller
         $personalDataSheet = PersonalDataSheet::create([
             'applicant_id' => $request->id,
             'employee_id' => $request->id,
-
         ]);
+        
         // dd($request->barangay_id);
         //personal information
         PersonalInformation::create([
@@ -352,7 +353,6 @@ class PersonalDataSheetController extends Controller
      */
     public function update(Request $request, PersonalDataSheet $personalDataSheet)
     {
-
         //PERSONAL INFORMATION
         PersonalInformation::where("personal_data_sheet_id", $personalDataSheet->id)
             ->update([

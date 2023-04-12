@@ -10,13 +10,20 @@ class Disqualification extends Model
     use HasFactory;
 
     public function belongsToApplication(){
-        return $this->belongsTo(Application::class);
+        return $this->belongsTo(Application::class, 'application_id');
     }
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'application_id',
         'date_disqualified',
-        'reason'
+        'reason',
+
+        'member_id',
+        'training',
+        'performance',
+        'education',
+        'experience',
     ];
 }

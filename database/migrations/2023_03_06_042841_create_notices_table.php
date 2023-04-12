@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('application_id')->constrained();
             $table->string('notice_type');
             $table->date('date_sent');
-            $table->date('date_received');
+            $table->date('date_received')->nullable();
             $table->timestamps();
         });
     }

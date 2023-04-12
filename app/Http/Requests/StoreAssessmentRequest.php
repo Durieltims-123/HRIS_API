@@ -11,7 +11,7 @@ class StoreAssessmentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,12 +22,18 @@ class StoreAssessmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'psychological_attribute' => ['required', 'numeric', 'max:255'],
-            'potential' => ['required', 'numeric', 'max:25'],
-            'awards' => ['required', 'numeric', 'max:25'],
-            'additional_information' => ['required', 'string', 'max:255'],
-            'remarks' => ['required', 'string', 'max:255'],
-            'date_of_assessment' => ['required', 'date']
+            'application_id' => ['required'],
+            'member_id' => ['required'],
+            'training' => ['required'],
+            'performance' => ['required'],
+            'education' => ['required'],
+            'experience' => ['required'],
+            'psychological_attribute' => ['nullable'],
+            'potential' => ['nullable'],
+            'awards' => ['nullable'],
+            'additional_information' => ['nullable'],
+            'remarks' => ['nullable'],
+            'date_of_assessment' => ['required']
         ];
     }
 }

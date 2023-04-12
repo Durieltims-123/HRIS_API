@@ -24,13 +24,14 @@ class PersonnelSelectionBoardResource extends JsonResource
                 "chairman" => (string)$this->chairman,
                 "position" => (string)$this->position,
                 "status" => (string)$this->status,
-                'members' => $this->hasManyMembers->map(function ($member_name) {
-                    return [
-                        'employee_id' => $member_name->employee_id,
-                        'member_name' => $member_name->member_name,
-                        'member_position' => $member_name->member_position,
-                    ];
-                }),
+                // 'members' => $this->hasManyMembers->map(function ($member_name) {
+                //     return [
+                //         'employee_id' => $member_name->employee_id,
+                //         'member_name' => $member_name->member_name,
+                //         'member_position' => $member_name->member_position,
+                //     ];
+                // }),
+                "members" => PsbMemberResource::collection($this->whenLoaded('psbMembers'))
 
             ],
             

@@ -11,7 +11,7 @@ class StoreOathTakingRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,9 +22,15 @@ class StoreOathTakingRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'venue' => ['required', 'string', 'max:255'],
             'date_generated' => ['required', 'date'],
             'oath_date' => ['required', 'date'],
-            
+            'appointment_id' => ['required'],
+            'first_name' => ['required'],
+            'last_name' =>['required'],
+            'department' =>['required'],
+            'job_title' =>['required'],
+            'date_appointed' => ['required'],
         ];
     }
 }
