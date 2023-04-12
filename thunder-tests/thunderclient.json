@@ -700,12 +700,12 @@
     "method": "GET",
     "sortNum": 20000,
     "created": "2023-03-13T03:58:26.046Z",
-    "modified": "2023-03-27T04:29:47.068Z",
+    "modified": "2023-04-11T07:31:59.255Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "2|boaNk3QNKXdaNFZUcBPDhDTTTOsYeDUQLDnhgNCp"
+      "bearer": "1|IN24Jf3eb1VwPfGfB0SRO7W6lRqg1nvap96pyNLZ"
     },
     "tests": []
   },
@@ -4520,7 +4520,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-04-08T15:33:01.002Z",
-    "modified": "2023-04-09T11:04:01.229Z",
+    "modified": "2023-04-11T08:43:56.102Z",
     "headers": [],
     "params": [],
     "body": {
@@ -4529,17 +4529,25 @@
       "form": [
         {
           "name": "interview_date",
-          "value": "2023-05-05"
+          "value": "2023-05-06"
         },
         {
           "name": "venue",
-          "value": "Ben Palispis Hall"
+          "value": "Ben Palispis Hall Two"
+        },
+        {
+          "name": "publication_id[]",
+          "value": "1"
+        },
+        {
+          "name": "publication_id[]",
+          "value": "2"
         }
       ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+      "bearer": "1|xe3kr0zbH7MahfkIrgD6ityYhkjvkWbNAs5iDZRk"
     },
     "tests": []
   },

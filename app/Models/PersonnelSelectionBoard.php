@@ -10,7 +10,7 @@ class PersonnelSelectionBoard extends Model
 {
     use HasFactory;
 
-    public function hasManyMembers():HasMany
+    public function psbMembers():HasMany
     {
         return $this->hasMany(PsbMember::class);
     }

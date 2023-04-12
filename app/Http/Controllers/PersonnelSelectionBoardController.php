@@ -21,7 +21,7 @@ class PersonnelSelectionBoardController extends Controller
     public function index()
     {
         return PersonnelSelectionBoardResource::collection(
-            PersonnelSelectionBoard::with('hasManyMembers')->get()
+            PersonnelSelectionBoard::with('psbMembers')->get()
         );
     }
 
@@ -94,7 +94,7 @@ class PersonnelSelectionBoardController extends Controller
     {
         
         return PersonnelSelectionBoardResource::collection(
-            PersonnelSelectionBoard::with('hasManyMembers')
+            PersonnelSelectionBoard::with('psbMembers')
             ->where('id',$personnelSelectionBoard->id)
             ->get()
         );

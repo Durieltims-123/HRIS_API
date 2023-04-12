@@ -20,9 +20,7 @@ class OathTakingResource extends JsonResource
                 "date_generated" => (string)$this->date_generated,
                 "oath_date" => (string)$this->oath_date,
                 "oath_takers" => OathTakerResource::collection($this->whenLoaded('hasManyOathTakers'))
-                
             ]
-                  
         ];
     }
 }
