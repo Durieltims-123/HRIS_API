@@ -426,7 +426,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-10T07:14:57.607Z",
-    "modified": "2023-03-28T00:47:42.207Z",
+    "modified": "2023-04-12T01:41:43.001Z",
     "headers": [],
     "params": [],
     "body": {
@@ -460,16 +460,12 @@
         {
           "name": "competency",
           "value": "magas"
-        },
-        {
-          "name": "position_id",
-          "value": "2"
         }
       ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "1|KsegompYZzJW9ebsB4e5fnembJA7ZdJXdCIY0aUl"
+      "bearer": "1|Y2pwXbujwYPmKioNKThUpeVe9AU3MvmX9QEv9PSn"
     },
     "tests": []
   },
@@ -855,10 +851,10 @@
     "containerId": "",
     "name": "Update",
     "url": "http://127.0.0.1:8000/api/position/1",
-    "method": "PATCH",
+    "method": "PUT",
     "sortNum": 40000,
     "created": "2023-03-15T05:22:35.532Z",
-    "modified": "2023-04-04T08:51:55.631Z",
+    "modified": "2023-04-12T02:01:09.852Z",
     "headers": [],
     "params": [],
     "body": {
@@ -886,6 +882,10 @@
           "value": "working"
         },
         {
+          "name": "salary_grade_id",
+          "value": "1"
+        },
+        {
           "name": "competency",
           "value": "working"
         }
@@ -893,7 +893,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "2|w6cgGhPoYw4J9hNO1BBNdS0yxVtACmBF1B3NhVYc"
+      "bearer": "1|Y2pwXbujwYPmKioNKThUpeVe9AU3MvmX9QEv9PSn"
     },
     "tests": []
   },
