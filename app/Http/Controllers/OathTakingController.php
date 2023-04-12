@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Applicant;
 use App\Models\OathTaker;
 use App\Models\OathTaking;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 use App\Http\Resources\OathTakingResource;
 use App\Http\Requests\StoreOathTakingRequest;
-use App\Http\Resources\OathTakerResource;
 
 class OathTakingController extends Controller
 {
@@ -45,7 +43,6 @@ class OathTakingController extends Controller
             "oath_date" => $request->oath_date,
             "date_generated" => $request->date_generated
         ]);
-
 
         $appointment_ids = $request->input('appointment_id');
         $first_names = $request->input('first_name');
@@ -95,7 +92,6 @@ class OathTakingController extends Controller
         $oathtaking->venue = $request->venue;
         $oathtaking->oath_date = $request->oath_date;
         $oathtaking->date_generated = $request->date_generated;
-        
 
         $appointment_ids = $request->input('appointment_id');
         $first_names = $request->input('first_name');

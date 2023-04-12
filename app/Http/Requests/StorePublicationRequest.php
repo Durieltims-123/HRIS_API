@@ -23,7 +23,8 @@ class StorePublicationRequest extends FormRequest
     {
         return [
             'opening_date' => ['required', 'date'],
-            'closing_date' => ['required', 'date']
+            'closing_date' => ['required', 'date'],
+            
         ];
     }
 }

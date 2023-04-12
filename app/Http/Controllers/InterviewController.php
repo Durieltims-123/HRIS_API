@@ -20,7 +20,7 @@ class InterviewController extends Controller
     public function index()
     {
         return InterviewResource::collection(
-            Interview::with('hasManyPublicationInterview.belongsToPublication.hasOneApplication')->get()
+            Interview::with('publicationInterview.belongsToPublication.hasOneApplication')->get()
         );
     }
 
@@ -44,10 +44,14 @@ class InterviewController extends Controller
             'venue' => $request->venue,
         ]);
 
-        PublicationInterview::create([
-            'publication_id' => $request->publication_id,
-            'interview_id' => $interview->id
-        ]);
+        $publication_ids = $request->input('publication_id');
+        foreach($publication_ids as $i => $publication_id){
+            PublicationInterview::create([
+                'publication_id' => $publication_id, //Accepts array of publication ID based on selected interviewees
+                'interview_id' => $interview->id
+            ]);
+        }
+        
 
         return $this->success('','Successfully Saved', 200);
     }
@@ -57,7 +61,7 @@ class InterviewController extends Controller
      */
     public function show(Interview $interview)
     {
-        return new InterviewResource($interview->loadMissing(['hasManyPublicationInterview.belongsToPublication.hasOneApplication']));
+        return new InterviewResource($interview->loadMissing(['publicationInterview.belongsToPublication.hasOneApplication']));
     }
 
     /**

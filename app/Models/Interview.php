@@ -10,7 +10,7 @@ class Interview extends Model
 {
     use HasFactory;
 
-    public function hasManyPublicationInterview() : HasMany{
+    public function publicationInterview() : HasMany{
         return $this->hasMany(PublicationInterview::class,'interview_id');
     }
 
