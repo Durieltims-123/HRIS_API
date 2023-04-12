@@ -149,7 +149,7 @@ class StorePersonalDataSheetRequest extends FormRequest
             //answer
             'personal_data_sheet_id' => ['required'],
             'question_id' => ['required'],
-            'choice' => ['required', 'string', 'max:255'],
+            'choice' => ['required','max:255'],
             'details' => ['nullable'],
             'date_filed' => ['nullable'],
             'case_status' => ['nullable'],

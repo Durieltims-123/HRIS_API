@@ -937,6 +937,20 @@
     "modified": "2023-03-28T01:14:51.938Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "title",
+          "value": "wada"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|K1eXlIu8tiGCPp1lc4AkcUaBNoECIXco1ws1APaS"
+    },
     "tests": []
   },
   {
@@ -1947,6 +1961,74 @@
       "type": "bearer",
       "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
     },
+    "tests": []
+  },
+  {
+    "_id": "bfad43cf-ac1c-4019-b1e3-90799b9a4cf1",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/province/7",
+    "url": "http://127.0.0.1:8000/api/province/7",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-04-03T01:07:24.207Z",
+    "modified": "2023-04-03T01:07:35.433Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|ZPBvo2Nd1a9WIbpGotME4mdUJkQd9LoNvwI1aDga"
+    },
+    "tests": []
+  },
+  {
+    "_id": "dc12b754-05ed-49cb-a20f-afef1f24c953",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/province/6",
+    "url": "http://127.0.0.1:8000/api/province/6",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-04-03T01:07:41.828Z",
+    "modified": "2023-04-03T01:07:41.828Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|ZPBvo2Nd1a9WIbpGotME4mdUJkQd9LoNvwI1aDga"
+    },
+    "tests": []
+  },
+  {
+    "_id": "4ec7326a-a57e-4b4a-aa92-09dce06480ea",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/province/6",
+    "url": "http://127.0.0.1:8000/api/province/6",
+    "method": "DELETE",
+    "sortNum": 0,
+    "created": "2023-04-03T01:08:25.118Z",
+    "modified": "2023-04-03T01:08:25.118Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|ZPBvo2Nd1a9WIbpGotME4mdUJkQd9LoNvwI1aDga"
+    },
+    "tests": []
+  },
+  {
+    "_id": "6797574a-5311-4891-a0e6-2411bf41d77f",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/position/1",
+    "url": "http://127.0.0.1:8000/api/position/1",
+    "method": "PATCH",
+    "sortNum": 0,
+    "created": "2023-04-04T05:54:46.990Z",
+    "modified": "2023-04-04T05:54:46.990Z",
+    "headers": [],
+    "params": [],
     "tests": []
   }
 ]

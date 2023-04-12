@@ -24,9 +24,8 @@ class PositionController extends Controller
     {
 
         return PositionResource::collection(
-            Position::with('hasManyQualificationStandard','belongsToSalaryGrade')->get()
+            Position::with('hasManyQualificationStandard', 'belongsToSalaryGrade')->get()
         );
-       
     }
 
     /**
@@ -87,9 +86,9 @@ class PositionController extends Controller
     public function show(Position $position)
     {
         return PositionResource::collection(
-            Position::where('id',$position->id)
-            ->get()
-            );
+            Position::where('id', $position->id)
+                ->get()
+        );
     }
 
     /**
@@ -122,34 +121,32 @@ class PositionController extends Controller
 
             return new PositionResource($position);
 
-     }
+    }
 
- /**
+    /**
      * Remove the specified resource from storage.
      */
 
     public function destroy(Position $position, QualificationStandard $qualificationStandard)
     {
- 
-       $position->delete();
-    //    $qualificationStandard->delete();
+
+        $position->delete();
+        //    $qualificationStandard->delete();
         return $this->success('', 'Successfull Deleted', 200);
-    
     }
 
-    public function search(Request $request){
-       
+    public function search(Request $request)
+    {
+
         // dd(Position::where('title', 'like', '%'.$request->keyword.'%')
         // ->with(['hasManyQualificationStandard','belongsToSalaryGrade'])
         // ->limit(10)
         // ->get());
         return PositionResource::collection(
-            Position::where('title', 'like', '%'.$request->keyword.'%')
-            ->with(['hasManyQualificationStandard','belongsToSalaryGrade'])
-            ->limit(10)
-            ->get()
+            Position::where('title', 'like', '%' . $request->keyword . '%')
+                ->with(['hasManyQualificationStandard', 'belongsToSalaryGrade'])
+                ->limit(10)
+                ->get()
         );
-       
-
     }
 }
