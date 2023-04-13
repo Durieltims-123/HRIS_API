@@ -22,7 +22,7 @@ class InterviewResource extends JsonResource
                 "interview_date" => (string)$this->interview_date,
                 "venue" => (string)$this->venue,
                 
-                "publicationInterview"=>  PublicationInterviewResource::collection($this->whenLoaded('hasManyPublicationInterview')),
+                "publicationInterview"=>  PublicationInterviewResource::collection($this->whenLoaded('publicationInterview')),
                 // "application" => new ApplicationResource($this->whenLoaded('hasOneApplication')),
             ]
             
