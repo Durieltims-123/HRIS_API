@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePlantillaRequest;
 use App\Http\Resources\PlantillaResource;
 use App\Models\Plantilla;
+use App\Models\PositionDescription;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 
@@ -43,12 +44,17 @@ class PlantillaController extends Controller
             return $this->error('', 'Duplicate Entry', 400);
         }
 
-        Plantilla::create([
+        $plantilla = Plantilla::create([
             'office_id' => $request->office_id,
             'position_id' => $request->position_id,
             'item_number' => $request->item_number, 
             "place_of_assignment" => $request->place_of_assignment,
             "year" => $request->year
+        ]);
+
+        PositionDescription::create([
+            'plantilla_id' => $plantilla->id,
+            'description' => $request->description
         ]);
 
 
@@ -81,6 +87,12 @@ class PlantillaController extends Controller
         $plantilla->place_of_assignment = $request->place_of_assignment;
         $plantilla->year = $request->year;
         $plantilla->save();
+
+        PositionDescription::where('plantilla_id',$plantilla->id)
+        ->update([
+            'plantilla_id' => $plantilla->id,
+            'description' => $request->description
+        ]);
 
         return new PlantillaResource($plantilla);
     }

@@ -2126,7 +2126,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-23T07:17:46.573Z",
-    "modified": "2023-04-03T06:59:41.992Z",
+    "modified": "2023-04-12T06:29:25.377Z",
     "headers": [],
     "params": [],
     "body": {
@@ -2152,12 +2152,16 @@
         {
           "name": "year",
           "value": "2023"
+        },
+        {
+          "name": "description",
+          "value": "Lorem Ipsum"
         }
       ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "2|ObSJ6VaChg2KAYyYoJYukcREopDXeSfTtZUX3G6M"
+      "bearer": "1|Y2pwXbujwYPmKioNKThUpeVe9AU3MvmX9QEv9PSn"
     },
     "tests": []
   },
@@ -2166,11 +2170,11 @@
     "colId": "24751377-77f2-486c-bc16-f3219ce6304e",
     "containerId": "",
     "name": "Update Plantilla",
-    "url": "http://127.0.0.1:8000/api/plantilla/1",
+    "url": "http://127.0.0.1:8000/api/plantilla/4",
     "method": "PATCH",
     "sortNum": 20000,
     "created": "2023-03-23T07:30:01.179Z",
-    "modified": "2023-04-03T08:43:40.327Z",
+    "modified": "2023-04-12T06:47:14.862Z",
     "headers": [],
     "params": [],
     "body": {
@@ -2188,12 +2192,16 @@
         {
           "name": "year",
           "value": "2024"
+        },
+        {
+          "name": "description",
+          "value": "UPdatedDesc"
         }
       ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "1|K1eXlIu8tiGCPp1lc4AkcUaBNoECIXco1ws1APaS"
+      "bearer": "1|Y2pwXbujwYPmKioNKThUpeVe9AU3MvmX9QEv9PSn"
     },
     "tests": []
   },
@@ -2378,16 +2386,16 @@
     "colId": "97cdb4bf-4035-46bf-be5f-0bf3a2b63aa9",
     "containerId": "",
     "name": "Delete Department",
-    "url": "http://127.0.0.1:8000/api/department/4",
+    "url": "http://127.0.0.1:8000/api/department/15",
     "method": "DELETE",
     "sortNum": 30000,
     "created": "2023-03-24T01:10:30.028Z",
-    "modified": "2023-03-24T01:10:30.028Z",
+    "modified": "2023-04-12T08:10:25.767Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "1|l5IC27mYC8d1a4s7BVoLxIgdvyPqxiBbneUvSqxX"
+      "bearer": "1|Y2pwXbujwYPmKioNKThUpeVe9AU3MvmX9QEv9PSn"
     },
     "tests": []
   },
@@ -4710,12 +4718,12 @@
     "method": "GET",
     "sortNum": 40000,
     "created": "2023-04-09T11:47:44.603Z",
-    "modified": "2023-04-14T03:40:44.725Z",
+    "modified": "2023-04-12T07:59:30.851Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "AcbEhQQVyUtcHbXYyL0qAHNA5HmnTLzAUHSENUiv"
+      "bearer": "1|Y2pwXbujwYPmKioNKThUpeVe9AU3MvmX9QEv9PSn"
     },
     "tests": []
   },
