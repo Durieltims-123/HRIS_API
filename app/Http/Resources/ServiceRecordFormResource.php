@@ -18,6 +18,7 @@ class ServiceRecordFormResource extends JsonResource
             "id" => (string)$this->id,
             "attributes" => 
             [
+                "employee_id" => (string)$this->employee_id,
                 "date_from" => (string)$this->date_from,
                 "date_to" => (string)$this->date_to,
                 "appointment_records" => (string)$this->appointment_records,

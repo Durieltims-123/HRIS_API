@@ -22,10 +22,8 @@ class PersonalDataSheetResource extends JsonResource
                 "applicant_id" => (string)$this->applicant_id,
                 "employee_id" => (string)$this->employee_id,
 
-                // $mobile_number = optional($this->hasManyPersonalInformation->first())->mobile_number;
                 // personal information
                 "personal_data_sheet_id" => (string)$this->hasManyPersonalInformation[0]->personal_data_sheet_id,
-                // "mobile_number" => (string)$this->mobile_number,
                 "mobile_number" => (string)$this->hasManyPersonalInformation[0]->mobile_number,
                 "telephone_number" => (string)$this->hasManyPersonalInformation[0]->telephone_number,
                 "permanent_house_number" => (string)$this->hasManyPersonalInformation[0]->permanent_house_number,

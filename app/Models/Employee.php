@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Employee extends Model
 {
@@ -24,10 +25,9 @@ class Employee extends Model
         return $this->hasOne(ServiceRecordForm::class);
     }
     
-    public function hasManyEmployeeOrientation()
-     {
-        return $this->hasMany(EmployeeOrientation::class);
-     }
+    public function hasManyEmployeeOrientation() : HasMany{
+        return $this->hasMany(EmployeeOrientation::class, 'orientation_id');
+    }
      public function belongsToOffice()
      {
         return $this->belongsTo(Office::class, 'office_id');

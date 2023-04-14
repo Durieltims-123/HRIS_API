@@ -11,7 +11,7 @@ class OrientationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,10 +22,9 @@ class OrientationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'date_generated' => ['required', 'string', 'max:255'],
-            '' => ['required', 'string', 'max:255'],
-            'start_date' => ['required', 'string', 'max:255'],
-            'end_date' => ['required', 'string', 'max:255'],
+            'date_generated' => ['required', 'date'],
+            'start_date' => ['required', 'date'],
+            'end_date' => ['required', 'date'],
             'venue' => ['required', 'string', 'max:255'],
         ];
     }
