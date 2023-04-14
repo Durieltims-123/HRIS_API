@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('assessments', function (Blueprint $table) {
             $table->id();
             
-            $table->foreignId('application_id')->constrained();
+            $table->foreignId('application_id')->constrained()->onDelete('cascade');
             $table->foreignId('member_id')->constrained('psb_members');
             $table->integer('training');
             $table->integer('performance');
@@ -27,9 +27,6 @@ return new class extends Migration
             $table->string('remarks')->nullable();
             $table->date('date_of_assessment');
             $table->timestamps();
-
-            // $table->foreign('application_id')->references('id')->on('applications');
-            // $table->foreign('member_id')->references('id')->on('psb_members');
         });
     }
 

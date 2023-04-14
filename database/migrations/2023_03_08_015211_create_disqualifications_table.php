@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('disqualifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('application_id')->constrained();
+            $table->foreignId('application_id')->constrained()->onDelete('cascade');
             $table->date('date_disqualified');
             $table->string('reason');
             $table->timestamps();
