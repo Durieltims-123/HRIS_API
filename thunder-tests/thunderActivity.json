@@ -1958,5 +1958,23 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "d79fe5e3-06c8-4d7e-9142-8e0e8c90c7bc",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://127.0.0.1:8000/api/orientation",
+    "url": "http://127.0.0.1:8000/api/orientation",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-04-14T03:20:47.192Z",
+    "modified": "2023-04-14T03:20:47.192Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "yaqBPSWBlyzWrODiGHTA0Xve5Lj0E47NukZq5z0r"
+    },
+    "tests": []
   }
 ]

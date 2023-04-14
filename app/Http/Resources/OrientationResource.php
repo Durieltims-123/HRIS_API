@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\EmployeeOrientation;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -23,6 +24,8 @@ class OrientationResource extends JsonResource
                 "start_date" => (string)$this->start_date,
                 "end_date" => (string)$this->end_date,
                 "venue" => (string)$this->venue,
+
+                "employeeOrientation"=>  EmployeeOrientationResource::collection($this->whenLoaded('employeeOrientation')),
             ]
         ];
     }

@@ -14,9 +14,15 @@ class EmployeeOrientationResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return 
-        [
+        return ([
             "id" => (string)$this->id,
-        ];
+            "attributes"=>[
+                
+                "employee_id" => (string)$this->employee_id,
+                "orientation_id" => (string)$this->orientation_id,
+                "employee"=> new EmployeeResource($this->whenLoaded('belongsToEmployee')),
+                
+            ]
+            ]);
     }
 }
