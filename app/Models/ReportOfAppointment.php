@@ -9,9 +9,14 @@ class ReportOfAppointment extends Model
 {
     use HasFactory;
 
+    public function hasManyReportAppointment(){
+        return $this->hasMany(ReportAppointment::class, 'roa_id');
+    }
+
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'reports'
+        'reports',
+        'report_date'
     ];
 }

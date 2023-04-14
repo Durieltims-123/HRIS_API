@@ -34,7 +34,7 @@ class AssessmentController extends Controller
      */
     public function store(StoreAssessmentRequest $request)
     {
-        $request->validate($request->all());
+        $request->validated($request->all());
 
         $assessmentExists = Assessment::where('application_id', $request->application_id)->exists();
         if($assessmentExists){
