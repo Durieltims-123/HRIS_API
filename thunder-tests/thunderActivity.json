@@ -937,6 +937,20 @@
     "modified": "2023-03-28T01:14:51.938Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "title",
+          "value": "wada"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|K1eXlIu8tiGCPp1lc4AkcUaBNoECIXco1ws1APaS"
+    },
     "tests": []
   },
   {
@@ -1947,132 +1961,6 @@
       "type": "bearer",
       "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
     },
-    "tests": []
-  },
-  {
-    "_id": "92f84e8d-eea7-4f16-87d7-280daf7744ed",
-    "colId": "history",
-    "containerId": "",
-    "name": "http://127.0.0.1:8000/api/report-of-appointment",
-    "url": "http://127.0.0.1:8000/api/report-of-appointment",
-    "method": "POST",
-    "sortNum": 0,
-    "created": "2023-04-14T06:47:41.160Z",
-    "modified": "2023-04-14T06:50:19.096Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "formdata",
-      "raw": "",
-      "form": [
-        {
-          "name": "reports",
-          "value": "Lorem Ipsum"
-        },
-        {
-          "name": "report_date",
-          "value": "2023-02-02"
-        },
-        {
-          "name": "roa_id[]",
-          "value": "1"
-        },
-        {
-          "name": "appointment_id[]",
-          "value": "1"
-        },
-        {
-          "name": "roa_id[]",
-          "value": "2"
-        },
-        {
-          "name": "appointment_id[]",
-          "value": "2"
-        }
-      ]
-    },
-    "tests": []
-  },
-  {
-    "_id": "f5983b75-eb67-4413-85c8-13d013c083ca",
-    "colId": "history",
-    "containerId": "",
-    "name": "http://127.0.0.1:8000/api/report-of-appointment",
-    "url": "http://127.0.0.1:8000/api/report-of-appointment",
-    "method": "GET",
-    "sortNum": 0,
-    "created": "2023-04-14T07:13:36.977Z",
-    "modified": "2023-04-14T07:23:24.498Z",
-    "headers": [],
-    "params": [],
-    "auth": {
-      "type": "bearer",
-      "bearer": "1|N9UsLtQ0KkMBAZIidgOxv5zjyyb51HAG58dOeTfi"
-    },
-    "tests": []
-  },
-  {
-    "_id": "5918a108-d0cc-4950-b456-efbe3991880e",
-    "colId": "history",
-    "containerId": "",
-    "name": "http://127.0.0.1:8000/api/report-of-appointment/1",
-    "url": "http://127.0.0.1:8000/api/report-of-appointment/1",
-    "method": "PUT",
-    "sortNum": 0,
-    "created": "2023-04-14T07:14:22.529Z",
-    "modified": "2023-04-14T07:15:52.293Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "formencoded",
-      "raw": "",
-      "form": [
-        {
-          "name": "reports",
-          "value": "Update Lorem Ipsum"
-        },
-        {
-          "name": "report_date",
-          "value": "2023-03-03"
-        }
-      ]
-    },
-    "auth": {
-      "type": "bearer",
-      "bearer": "1|N9UsLtQ0KkMBAZIidgOxv5zjyyb51HAG58dOeTfi"
-    },
-    "tests": []
-  },
-  {
-    "_id": "cc18f1c0-8cb9-4c8f-b5ef-e6f66b4e8687",
-    "colId": "history",
-    "containerId": "",
-    "name": "http://127.0.0.1:8000/api/report-of-appointment/12",
-    "url": "http://127.0.0.1:8000/api/report-of-appointment/12",
-    "method": "DELETE",
-    "sortNum": 0,
-    "created": "2023-04-14T07:18:10.939Z",
-    "modified": "2023-04-14T07:18:10.939Z",
-    "headers": [],
-    "params": [],
-    "auth": {
-      "type": "bearer",
-      "bearer": "1|N9UsLtQ0KkMBAZIidgOxv5zjyyb51HAG58dOeTfi"
-    },
-    "tests": []
-  },
-  {
-    "_id": "24623a23-bde3-4e23-b263-d93cec4e5312",
-    "colId": "history",
-    "containerId": "",
-    "name": "http://127.0.0.1:8000/api/report-of-appointment/13",
-    "url": "http://127.0.0.1:8000/api/report-of-appointment/13",
-    "method": "GET",
-    "sortNum": 0,
-    "created": "2023-04-14T07:31:38.777Z",
-    "modified": "2023-04-14T07:31:38.777Z",
-    "headers": [],
-    "params": [],
     "tests": []
   }
 ]

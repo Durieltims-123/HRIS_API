@@ -122,6 +122,7 @@ class PersonnelSelectionBoardController extends Controller
         $personnelSelectionBoard->position = $psbRequest->position;
         $personnelSelectionBoard->status = $psbRequest->status;
 
+        
         $ids = $psbRequest->input('employee_id');
         $names = $psbRequest->input('member_name');
         $positions = $psbRequest->input('member_position');

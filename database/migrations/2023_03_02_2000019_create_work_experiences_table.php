@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('work_experiences', function (Blueprint $table) {
             $table->id();
 
-            // $table->foreignId('personal_data_sheet_id')->constrained('personal_data_sheets');
             $table->foreignId('personal_data_sheet_id')->constrained()->onDelete('cascade');
-            // $table->foreignId('pds_id')->constrained();
             $table->string('position_title');
             $table->string('department');
             $table->string('monthly_salary');
