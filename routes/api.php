@@ -25,6 +25,7 @@ use App\Http\Controllers\SalaryGradeController;
 use App\Http\Controllers\DisqualificationController;
 use App\Http\Controllers\PersonalDataSheetController;
 use App\Http\Controllers\PositionDescriptionController;
+use App\Http\Controllers\ReportOfAppointmentController;
 use App\Http\Controllers\QualificationStandardController;
 use App\Http\Controllers\PersonnelSelectionBoardController;
 
@@ -76,4 +77,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/interview', InterviewController::class);
     Route::resource('/appointment', AppointmentController::class);
     Route::resource('/oathtaking', OathTakingController::class);
+    Route::resource('/report-of-appointment', ReportOfAppointmentController::class);
 });

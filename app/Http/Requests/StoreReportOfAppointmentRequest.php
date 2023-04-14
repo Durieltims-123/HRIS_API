@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreAppointmentRequest extends FormRequest
+class StoreReportOfAppointmentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,8 @@ class StoreAppointmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "application_id" => ['required'],
-            "appointment_date" => ['required','date'],
+            "reports" => ["required", "string", "max:255"],
+            "report_date" => ["required", "date"],
         ];
     }
 }

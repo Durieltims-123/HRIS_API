@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('report_of_appointments', function (Blueprint $table) {
             $table->id();
             $table->string("reports");
+            $table->string("report_date");
             $table->timestamps();
         });
     }

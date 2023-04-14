@@ -42,14 +42,9 @@ class AppointmentController extends Controller
         if($appointmentExist){
             return $this->error('','Duplicate Entry', 200);
         }
-
-        $roa = ReportOfAppointment::create([
-            'reports' => $request->reports,
-        ]);
         
         Appointment::create([
             'application_id' => $request->application_id,
-            'roa_id' => $roa->id,
             'appointment_date' => $request->appointment_date
         ]);
 
