@@ -13,6 +13,7 @@ use App\Models\PsbMember;
 use App\Models\Reference;
 use App\Models\Assessment;
 use App\Models\Application;
+use App\Models\Appointment;
 use App\Models\Publication;
 use App\Models\Recognition;
 use App\Models\SalaryGrade;
@@ -85,6 +86,7 @@ class DatabaseSeeder extends Seeder
         ->has(PublicationInterview::factory()->count(5)) //I stopped here
         ->create();
         Disqualification::factory(5)->create();
+        Appointment::factory(5)->create();
         
         // PersonalDataSheet::factory(5)->create();
         PersonalInformation::factory(5)->create();

@@ -4080,7 +4080,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-04-03T07:53:56.687Z",
-    "modified": "2023-04-08T04:11:26.174Z",
+    "modified": "2023-04-14T01:18:26.718Z",
     "headers": [],
     "params": [],
     "body": {
@@ -4183,7 +4183,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "3|a1sw9wDKykUitIl5RhCC8k1OdgZp26FKyyKNHeTV"
+      "bearer": "1|EJgyO7Y0uGl9WAFelJHY8kjZrkrzLAXhbnyjyuxh"
     },
     "tests": []
   },
@@ -4700,12 +4700,12 @@
     "method": "DELETE",
     "sortNum": 30000,
     "created": "2023-04-08T16:02:26.954Z",
-    "modified": "2023-04-14T04:12:26.950Z",
+    "modified": "2023-04-14T04:09:55.861Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "9nX6lEY86Qf0wHPhiwSJ4YpM9JVlssueCy78vxcL"
+      "bearer": "1|DO5b4jvdEMJS57ZFJKFlUJ2rxVbIja1DqEEgzPru"
     },
     "tests": []
   },
@@ -4754,7 +4754,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-04-09T15:54:32.827Z",
-    "modified": "2023-04-09T16:27:11.994Z",
+    "modified": "2023-04-14T08:03:20.307Z",
     "headers": [],
     "params": [],
     "body": {
@@ -4768,16 +4768,12 @@
         {
           "name": "appointment_date",
           "value": "2023-02-02"
-        },
-        {
-          "name": "reports",
-          "value": "ReporttofApooointment"
         }
       ]
     },
     "auth": {
       "type": "bearer",
-      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+      "bearer": "1|WePki9tQRFJx28JfkZRFjvVL80hmEDSyxbf3WJkY"
     },
     "tests": []
   },
@@ -4790,7 +4786,7 @@
     "method": "PUT",
     "sortNum": 20000,
     "created": "2023-04-09T16:37:34.522Z",
-    "modified": "2023-04-09T16:37:34.522Z",
+    "modified": "2023-04-14T08:03:37.129Z",
     "headers": [],
     "params": [],
     "body": {
@@ -4809,7 +4805,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+      "bearer": "1|WePki9tQRFJx28JfkZRFjvVL80hmEDSyxbf3WJkY"
     },
     "tests": []
   },
@@ -4876,7 +4872,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-04-10T03:58:49.522Z",
-    "modified": "2023-04-10T11:20:19.766Z",
+    "modified": "2023-04-14T03:51:44.437Z",
     "headers": [],
     "params": [],
     "body": {
@@ -4947,7 +4943,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "1|iYuk4PSvjfOg9BMZhDocixsXsu9L0E1E6d44ZAt9"
+      "bearer": "2|wezhAsMRyQlyJFI2bmj61kdFZPqeG9igVXNfFFzV"
     },
     "tests": []
   },
@@ -5090,6 +5086,46 @@
     "tests": []
   },
   {
+    "_id": "34ac7742-1ff7-4bd6-a81d-7e87c05ee276",
+    "colId": "a9ec324e-cd7f-4785-871e-b063f75095ff",
+    "containerId": "",
+    "name": "Add ReportOfAppointment",
+    "url": "http://127.0.0.1:8000/api/report-of-appointment",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-04-14T06:50:47.000Z",
+    "modified": "2023-04-14T07:10:26.019Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+        "name": "reports",
+          "value": "Lorem Ipsum"
+        },
+        {
+          "name": "report_date",
+          "value": "2023-02-02"
+        },
+        {
+          "name": "appointment_id[]",
+          "value": "1"
+        },
+        {
+          "name": "appointment_id[]",
+          "value": "2"
+          }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|N9UsLtQ0KkMBAZIidgOxv5zjyyb51HAG58dOeTfi"
+    },
+    "tests": []
+  },
+  {
     "_id": "521e1cd4-672f-4ec5-ae7b-21c72ebda714",
     "colId": "5950633f-efbf-4724-ac11-2440357282c3",
     "containerId": "",
@@ -5149,7 +5185,39 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "8eJcI5usT1FWMrHVbIxl4eUC5hQJbM5jYbqZS5F3"
+      "bearer": "1|N9UsLtQ0KkMBAZIidgOxv5zjyyb51HAG58dOeTfi"
+    },
+    "tests": []
+  },
+  {
+    "_id": "2a0d93bf-94bd-4d35-98f4-eb9da025232a",
+    "colId": "a9ec324e-cd7f-4785-871e-b063f75095ff",
+    "containerId": "",
+    "name": "Update ReportOfAppointment",
+    "url": "http://127.0.0.1:8000/api/report-of-appointment/12",
+    "method": "PUT",
+    "sortNum": 20000,
+    "created": "2023-04-14T07:16:07.441Z",
+    "modified": "2023-04-14T07:16:43.237Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+        "name": "reports",
+          "value": "Update Lorem Ipsum"
+        },
+        {
+          "name": "report_date",
+          "value": "2023-03-03"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|N9UsLtQ0KkMBAZIidgOxv5zjyyb51HAG58dOeTfi"
     },
     "tests": []
   },
@@ -5231,7 +5299,25 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "8eJcI5usT1FWMrHVbIxl4eUC5hQJbM5jYbqZS5F3"
+      "bearer": "1|N9UsLtQ0KkMBAZIidgOxv5zjyyb51HAG58dOeTfi"
+    },
+    "tests": []
+  },
+  {
+    "_id": "c1ab8b6d-7a9e-4bfc-9c0d-8d5761497a6f",
+    "colId": "a9ec324e-cd7f-4785-871e-b063f75095ff",
+    "containerId": "",
+    "name": "Delete ReportOfAppointment",
+    "url": "http://127.0.0.1:8000/api/report-of-appointment/12",
+    "method": "DELETE",
+    "sortNum": 30000,
+    "created": "2023-04-14T07:18:27.336Z",
+    "modified": "2023-04-14T07:18:27.336Z",
+     "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "hqQW7PQUVHkkFrhSFwsUMlV0e8uFdc8Hy9sqeSKb"
     },
     "tests": []
   },
@@ -5249,8 +5335,26 @@
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "8eJcI5usT1FWMrHVbIxl4eUC5hQJbM5jYbqZS5F3"
+      "bearer": "1|N9UsLtQ0KkMBAZIidgOxv5zjyyb51HAG58dOeTfi"
     },
+    "tests": []
+  },
+  {
+    "_id": "96ad318c-f188-4289-83b0-1533bbabe846",
+    "colId": "a9ec324e-cd7f-4785-871e-b063f75095ff",
+    "containerId": "",
+    "name": "Index ReportOfAppointment",
+    "url": "http://127.0.0.1:8000/api/report-of-appointment",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2023-04-14T07:23:48.793Z",
+    "modified": "2023-04-14T07:23:48.793Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|N9UsLtQ0KkMBAZIidgOxv5zjyyb51HAG58dOeTfi"
+      },
     "tests": []
   },
   {
@@ -5301,6 +5405,24 @@
     },
     "tests": []
   },
+  {
+    "_id": "f7c8223a-62eb-49f2-8ab7-750e50188398",
+    "colId": "a9ec324e-cd7f-4785-871e-b063f75095ff",
+    "containerId": "",
+    "name": "Show ReportOfAppointment",
+    "url": "http://127.0.0.1:8000/api/report-of-appointment/13",
+    "method": "GET",
+    "sortNum": 50000,
+    "created": "2023-04-14T07:32:00.977Z",
+    "modified": "2023-04-14T07:32:17.815Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "1|N9UsLtQ0KkMBAZIidgOxv5zjyyb51HAG58dOeTfi"
+    },
+    "tests": []
+  }
   {
     "_id": "b19269cc-dfb6-4679-9c42-f8a4afca25c3",
     "colId": "ab602471-421e-48a3-aca6-133c59ebf7ef",
@@ -5373,7 +5495,7 @@
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "9nX6lEY86Qf0wHPhiwSJ4YpM9JVlssueCy78vxcL"
+      "bearer": "1|N9UsLtQ0KkMBAZIidgOxv5zjyyb51HAG58dOeTfi"
     },
     "tests": []
   }

@@ -18,11 +18,11 @@ class AssessmentFactory extends Factory
      */
     public function definition(): array
     {
-        $psb_members = PsbMember::all();
+        $number = 1;
         $applications = Application::all();
         return [
             'application_id' => $applications->random()->id,
-            'member_id' => $psb_members->random()->id,
+            'member_id' => $number++,
             'training' => fake()->randomDigit(),
             'performance' => fake()->randomDigit(),
             'education' => fake()->randomDigit(),
