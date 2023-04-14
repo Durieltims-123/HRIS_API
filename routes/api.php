@@ -23,11 +23,13 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\SalaryGradeController;
 use App\Http\Controllers\DisqualificationController;
+use App\Http\Controllers\OrientationController;
 use App\Http\Controllers\PersonalDataSheetController;
 use App\Http\Controllers\PositionDescriptionController;
 use App\Http\Controllers\ReportOfAppointmentController;
 use App\Http\Controllers\QualificationStandardController;
 use App\Http\Controllers\PersonnelSelectionBoardController;
+use App\Http\Controllers\ServiceRecordFormController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -56,6 +58,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/applicant', ApplicantController::class);
     Route::resource('/employee', EmployeeController::class);
     Route::resource('/question', QuestionController::class);
+    Route::resource('/service-record-form', ServiceRecordFormController::class);
+    Route::resource('/orientation', OrientationController::class);
 
     //Qnan
     Route::resource('/personnel-selection-board', PersonnelSelectionBoardController::class);

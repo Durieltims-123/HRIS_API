@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('orientations', function (Blueprint $table) {
             $table->id();
-            $table->string('date_generated');
-            $table->string('start_date');
-            $table->string('end_date');
+            $table->date('date_generated');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->string('venue');
             $table->timestamps();
         });

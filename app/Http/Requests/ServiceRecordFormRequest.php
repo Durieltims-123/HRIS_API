@@ -11,7 +11,7 @@ class ServiceRecordFormRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,6 +22,7 @@ class ServiceRecordFormRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'employee_id' => ['required'],
             'date_from' => ['required', 'string', 'max:255'],
             'date_to' => ['required', 'string', 'max:255'],
             'appointment_records' => ['required', 'string', 'max:255'],
