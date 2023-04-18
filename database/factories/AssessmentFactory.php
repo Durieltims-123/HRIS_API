@@ -21,7 +21,7 @@ class AssessmentFactory extends Factory
         $number = 1;
         $applications = Application::all();
         return [
-            'application_id' => $applications->random()->id,
+            'application_id' => $number++,
             'member_id' => $number++,
             'training' => fake()->randomDigit(),
             'performance' => fake()->randomDigit(),

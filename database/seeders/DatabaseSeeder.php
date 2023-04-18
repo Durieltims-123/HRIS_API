@@ -81,7 +81,7 @@ class DatabaseSeeder extends Seeder
             PersonalDataSheetSeeder::class,
 
         ]);
-        Assessment::factory(10)->create();
+        Assessment::factory(5)->create();
         Interview::factory(5)
         ->has(PublicationInterview::factory()->count(5)) //I stopped here
         ->create();
