@@ -37,7 +37,24 @@ class PersonalDataSheetController extends Controller
     public function index()
     {
         // dd(PersonalDataSheet::with('hasManyAnswer')->get());
-        return PersonalDataSheetResource::collection(
+        // return PersonalDataSheetResource::collection(
+        //     PersonalDataSheet::with(
+        //         'hasManyPersonalInformation',
+        //         'hasManyFamilyBackground',
+        //         'hasManyChildrenInformation',
+        //         'hasManyEducationalBackground',
+        //         'hasManyCivilServiceEligibility',
+        //         'hasManyWorkExperience',
+        //         'hasManyVoluntaryWork',
+        //         'hasManyTrainingProgramAttended',
+        //         'hasManySpecialSkillHobby',
+        //         'hasManyRecognition',
+        //         'hasManyMembershipAssociation',
+        //         'hasManyAnswer',
+        //         'hasManyReference',
+        //     )->get()
+        // );
+        return (
             PersonalDataSheet::with(
                 'hasManyPersonalInformation',
                 'hasManyFamilyBackground',
@@ -54,6 +71,10 @@ class PersonalDataSheetController extends Controller
                 'hasManyReference',
             )->get()
         );
+
+        // return PersonalDataSheetResource::collection(
+        //     PersonalDataSheet::all()
+        // );
     }
 
     /**
@@ -744,10 +765,9 @@ class PersonalDataSheetController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PersonalDataSheet $personalDataSheet, Applicant $applicant)
+    public function destroy(PersonalDataSheet $personalDataSheet)
     {
         $personalDataSheet->delete();
-        $applicant->delete();
         return $this->success('', 'Successfull Deleted', 200);
     }
 }
