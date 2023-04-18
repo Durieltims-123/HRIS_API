@@ -31,7 +31,7 @@ class AssessmentTest extends TestCase
     public function test_add_assessment():void
     {
         $formData = [
-            "application_id" => '1',
+            "application_id" => 6,
             'member_id' => [1,2],
             'training' => ['5','8'],
             'performance' => ['5','8'],
@@ -57,8 +57,8 @@ class AssessmentTest extends TestCase
     public function test_edit_assessment(): void
     {
         $formData = [
-            "application_id" => 1,
-            'member_id' => ['1','2'],
+            "application_id" => 6,
+            'member_id' => [1,2],
             'training' => ['5','9'],
             'performance' => ['5','9'],
             'education' => ['5','9'],
@@ -71,7 +71,7 @@ class AssessmentTest extends TestCase
             'date_of_assessment' => ['2023-01-02','2023,02-02'],
             
         ];
-        $assessment = Assessment::where('application_id', 1)->first();
+        $assessment = Assessment::where('application_id', 6)->first();
 
         $user = User::factory()->create();
         $this->assertCount(0, $user->tokens);
@@ -86,8 +86,8 @@ class AssessmentTest extends TestCase
     public function test_delete_assessment(): void
     {
         $formData = [
-            "application_id" => 1,
-            'member_id' => ['1','2'],
+            "application_id" => 6,
+            'member_id' => [1,2],
             'training' => ['5','9'],
             'performance' => ['5','9'],
             'education' => ['5','9'],
@@ -100,7 +100,7 @@ class AssessmentTest extends TestCase
             'date_of_assessment' => ['2023-01-02','2023,02-02'],
             
         ];
-        $assessment = Assessment::where('application_id', 1)->first();
+        $assessment = Assessment::where('application_id', 6)->first();
         $user = User::factory()->create();
         $this->assertCount(0, $user->tokens);
         $this->actingAs($user);
