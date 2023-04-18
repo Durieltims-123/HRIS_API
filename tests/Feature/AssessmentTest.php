@@ -31,7 +31,7 @@ class AssessmentTest extends TestCase
     public function test_add_assessment():void
     {
         $formData = [
-            "application_id" => 6,
+            'application_id' => 6,
             'member_id' => [1,2],
             'training' => ['5','8'],
             'performance' => ['5','8'],
@@ -57,7 +57,7 @@ class AssessmentTest extends TestCase
     public function test_edit_assessment(): void
     {
         $formData = [
-            "application_id" => 6,
+            'application_id' => 6,
             'member_id' => [1,2],
             'training' => ['5','9'],
             'performance' => ['5','9'],
@@ -86,7 +86,7 @@ class AssessmentTest extends TestCase
     public function test_delete_assessment(): void
     {
         $formData = [
-            "application_id" => 6,
+            'application_id' => 6,
             'member_id' => [1,2],
             'training' => ['5','9'],
             'performance' => ['5','9'],
@@ -100,11 +100,14 @@ class AssessmentTest extends TestCase
             'date_of_assessment' => ['2023-01-02','2023,02-02'],
             
         ];
-        $assessment = Assessment::where('application_id', 6)->first();
+        
+        $assessment = Assessment::where('application_id', 6)->get();
         $user = User::factory()->create();
         $this->assertCount(0, $user->tokens);
         $this->actingAs($user);
-        $this->delete('/api/assessment/' . $assessment->id);
+        foreach($assessment as $data){
+            $this->delete('/api/assessment/' . $data->id);
+        }
         $response = $this->assertDatabaseMissing('assessments', $formData);
     }
 }
