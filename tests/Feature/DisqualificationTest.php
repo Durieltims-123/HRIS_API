@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Assessment;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Disqualification;
@@ -50,7 +51,6 @@ class DisqualificationTest extends TestCase
         $this->assertCount(0, $user->tokens);
         $this->actingAs($user);
         $this->post('/api/disqualification', $formData);
-
         // this will check if it is inserted in the database
         $response = $this->assertDatabaseHas('disqualifications', $disqualificationData);   
     }
@@ -92,6 +92,7 @@ class DisqualificationTest extends TestCase
             'date_disqualified' => '2023-01-02',
         ];
         $dept = Disqualification::where([['application_id', '5'],['date_disqualified','2023-01-02']])->first();
+        Assessment::where('application_id', 5)->delete();
         $user = User::factory()->create();
         $this->assertCount(0, $user->tokens);
         $this->actingAs($user);
