@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Applicant;
 use App\Models\PersonalDataSheet;
 use App\Models\PersonalInformation;
 use Tests\TestCase;
@@ -31,8 +32,11 @@ public function test_personal_data_sheet_index(): void
 // add
 public function test_add_personal_data_sheet(): void
 {
+
+$applicant = Applicant::first();
+
     $formData = [
-        'applicant_id' => 1,
+        'applicant_id' => $applicant,
         'employee_id' => null,
 
         //personal information
@@ -175,7 +179,7 @@ public function test_add_personal_data_sheet(): void
         'telephone_number3' => "aw",
     ];
     $pdsData=[
-        'applicant_id' => 1,
+        'applicant_id' => $applicant->id,
         'employee_id' => null,
     ];
 
@@ -356,15 +360,16 @@ public function test_edit_personal_data_sheet(): void
 // delete 
 public function test_delete_personal_data_sheet(): void
 {
+    $pds = PersonalDataSheet::latest('id')->first();
     $formData = [
-        'applicant_id' => 1,
-        'employee_id' => null,
+        'applicant_id' => $pds->applicant_id,
+        'employee_id' => $pds->employee_id,
     ];
-    $sg = PersonalDataSheet::where([["applicant_id", 1], ["employee_id",null]])->first();
+    
     $user = User::factory()->create();
     $this->assertCount(0, $user->tokens);
     $this->actingAs($user);
-    $this->delete('/api/personal-data-sheet/' . $sg->id);
+    $this->delete('/api/personal-data-sheet/' . $pds->id);
     $response = $this->assertDatabaseMissing('personal_data_sheets', $formData);
 }
 }
