@@ -36,6 +36,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // Public Routes
+Route::get('/test', [AuthController::class, 'testing']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 
@@ -47,6 +48,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     //alfy
     Route::resource('/salary-grade', SalaryGradeController::class);
+    Route::post('/search-salary-grade', [SalaryGradeController::class, 'search']);
+
     Route::resource('/position', PositionController::class);
     Route::post('/search-position', [PositionController::class, 'search']);
     Route::post('/search-office', [OfficeController::class, 'search']);
@@ -69,7 +72,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/vacancy-queue/{vacancy}', [VacancyController::class, 'vacancyQueue']);
     Route::get('/vacancy-all-approved', [VacancyController::class, 'allApproved']);
     Route::get('/vacancy-all-queued', [VacancyController::class, 'allQueued']);
-    
+
     Route::post('/search-closing-date', [PublicationController::class, 'searchClosingDate']);
     Route::resource('/plantilla', PlantillaController::class);
     Route::resource('/department', DepartmentController::class);

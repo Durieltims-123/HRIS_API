@@ -10,15 +10,45 @@ use Illuminate\Http\Request;
 
 class SalaryGradeController extends Controller
 {
-use HttpResponses; 
-   /**
+    use HttpResponses;
+    /**
      * Display a listing of the resource.
      */
     public function index()
     {
         return SalaryGradeResource::collection(
             SalaryGrade::all()
+        )->toJson();
+    }
+
+
+
+    public function search(Request $request)
+    {
+        $activePage = $request->activePage;
+        $searchKeyword = $request->searchKeyword;
+        $orderAscending = $request->orderAscending;
+        $orderBy = $request->orderBy;
+        $orderAscending  ? $orderAscending = "asc" : $orderAscending = "desc";
+        $searchKeyword == null ?: $searchKeyword = "";
+        $orderBy == null ? $orderBy = "id" : $orderBy = $orderBy;
+
+        $data = SalaryGradeResource::collection(
+            SalaryGrade::where("id", "like", "%" . $searchKeyword . "%")
+                ->where("number", "like", "%" . $searchKeyword . "%")
+                ->where("amount", "like", "%" . $searchKeyword . "%")
+                ->skip(($activePage - 1) * 10)
+                ->orderBy($orderBy, $orderAscending)
+                ->take(10)
+                ->get()
         );
+        if (SalaryGrade::count() < 10 && SalaryGrade::count() > 0) {
+            $pages = 1;
+        } else {
+            $pages = ceil(SalaryGrade::count() / 10);
+        }
+
+        return compact('pages', 'data');
     }
 
     /**
@@ -34,10 +64,9 @@ use HttpResponses;
      */
     public function store(StoreSalaryGradeRequest $request)
     {
-       // validate input fields
+        // validate input fields
         $request->validated($request->all());
 
-        // dd($request);
         // validate user from database
         $salaryGradeExist = SalaryGrade::where([['number', $request->number], ['amount', $request->amount]])->exists();
         if ($salaryGradeExist) {
@@ -59,10 +88,9 @@ use HttpResponses;
      */
     public function show(SalaryGrade $salaryGrade)
     {
-        
         return SalaryGradeResource::collection(
-        SalaryGrade::where('id',$salaryGrade->id)
-        ->get()
+            SalaryGrade::where('id', $salaryGrade->id)
+                ->get()
         );
     }
 
@@ -80,21 +108,20 @@ use HttpResponses;
     public function update(Request $request, SalaryGrade $salaryGrade)
     {
         //  dd($request->number);
-                   
-            $salaryGrade->amount = $request->amount;
-            $salaryGrade->number = $request->number;
-            $salaryGrade->save();
-    
-            // $holiday->update($request->all());
-            return new SalaryGradeResource($salaryGrade);
-        
+
+        $salaryGrade->amount = $request->amount;
+        $salaryGrade->number = $request->number;
+        $salaryGrade->save();
+
+        // $holiday->update($request->all());
+        return new SalaryGradeResource($salaryGrade);
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(SalaryGrade $salaryGrade)
-    { 
+    {
         $salaryGrade->delete();
         return $this->success('', 'Successfull Deleted', 200);
     }

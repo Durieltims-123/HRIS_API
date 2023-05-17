@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\StoreUserRequest;
-
+use App\Http\Resources\SalaryGradeResource;
+use App\Models\SalaryGrade;
 use App\Traits\HttpResponses;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class AuthController extends Controller
 
     public function login(LoginUserRequest $request)
     {
-       
+
         // validate input fields
         $request->validated($request->all());
 
@@ -34,6 +35,13 @@ class AuthController extends Controller
             'user' => $user,
             'token' => $user->createToken('API Token of ' . $user->name)->plainTextToken
         ]);
+    }
+
+    public function testing()
+    {
+        return SalaryGradeResource::collection(
+            SalaryGrade::all()
+        )->toJson();
     }
 
     public function register(StoreUserRequest $request)
@@ -69,6 +77,4 @@ class AuthController extends Controller
             'messsage' => "You have successfully logged out"
         ]);
     }
-
-
 }
