@@ -42,11 +42,7 @@ class SalaryGradeController extends Controller
                 ->take(10)
                 ->get()
         );
-        if (SalaryGrade::count() < 10 && SalaryGrade::count() > 0) {
-            $pages = 1;
-        } else {
-            $pages = ceil(SalaryGrade::count() / 10);
-        }
+        $pages = SalaryGrade::count();
 
         return compact('pages', 'data');
     }
