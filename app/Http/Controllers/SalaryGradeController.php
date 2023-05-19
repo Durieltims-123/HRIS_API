@@ -30,19 +30,23 @@ class SalaryGradeController extends Controller
         $orderAscending = $request->orderAscending;
         $orderBy = $request->orderBy;
         $orderAscending  ? $orderAscending = "asc" : $orderAscending = "desc";
-        $searchKeyword == null ?: $searchKeyword = "";
+        $searchKeyword == null ? $searchKeyword = "" : $searchKeyword = $searchKeyword;
         $orderBy == null ? $orderBy = "id" : $orderBy = $orderBy;
 
         $data = SalaryGradeResource::collection(
             SalaryGrade::where("id", "like", "%" . $searchKeyword . "%")
-                ->where("number", "like", "%" . $searchKeyword . "%")
-                ->where("amount", "like", "%" . $searchKeyword . "%")
+                ->orWhere("number", "like", "%" . $searchKeyword . "%")
+                ->orWhere("amount", "like", "%" . $searchKeyword . "%")
                 ->skip(($activePage - 1) * 10)
                 ->orderBy($orderBy, $orderAscending)
                 ->take(10)
                 ->get()
         );
-        $pages = SalaryGrade::count();
+        $pages = SalaryGrade::where("id", "like", "%" . $searchKeyword . "%")
+            ->orWhere("number", "like", "%" . $searchKeyword . "%")
+            ->orWhere("amount", "like", "%" . $searchKeyword . "%")
+            ->orderBy($orderBy, $orderAscending)
+            ->count();
 
         return compact('pages', 'data');
     }
