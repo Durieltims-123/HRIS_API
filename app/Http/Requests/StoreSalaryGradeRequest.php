@@ -22,7 +22,7 @@ class StoreSalaryGradeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'number' => ['required', 'string', 'max:255'],
+            'number' => ['required', 'numeric', 'gt:0'],
             'amount' => ['required','numeric', 'between:0,999999.99']
         ];
     }

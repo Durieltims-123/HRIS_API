@@ -68,7 +68,7 @@ class SalaryGradeController extends Controller
         $request->validated($request->all());
 
         // validate user from database
-        $salaryGradeExist = SalaryGrade::where([['number', $request->number], ['amount', $request->amount]])->exists();
+        $salaryGradeExist = SalaryGrade::where([['number', $request->number]])->exists();
         if ($salaryGradeExist) {
             return $this->error('', 'Duplicate Entry', 400);
         }
@@ -88,10 +88,7 @@ class SalaryGradeController extends Controller
      */
     public function show(SalaryGrade $salaryGrade)
     {
-        return SalaryGradeResource::collection(
-            SalaryGrade::where('id', $salaryGrade->id)
-                ->get()
-        );
+        return SalaryGrade::where('id', $salaryGrade->id)->first();
     }
 
     /**
