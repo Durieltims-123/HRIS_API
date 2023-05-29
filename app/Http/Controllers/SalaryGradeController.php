@@ -70,7 +70,7 @@ class SalaryGradeController extends Controller
         // validate user from database
         $salaryGradeExist = SalaryGrade::where([['number', $request->number]])->exists();
         if ($salaryGradeExist) {
-            return $this->error('', 'Duplicate Entry', 400);
+            return $this->error('', 'Duplicate Number Entry', 400);
         }
 
         SalaryGrade::create([
@@ -104,13 +104,13 @@ class SalaryGradeController extends Controller
      */
     public function update(Request $request, SalaryGrade $salaryGrade)
     {
-        //  dd($request->number);
-
+        $duplicate = SalaryGrade::where([["number", $request->number], ['id', '<>', $salaryGrade->id]])->exists();
+        if ($duplicate) {
+            return $this->error('', 'Duplicate Number Entry', 400);
+        }
         $salaryGrade->amount = $request->amount;
         $salaryGrade->number = $request->number;
         $salaryGrade->save();
-
-        // $holiday->update($request->all());
         return new SalaryGradeResource($salaryGrade);
     }
 
@@ -120,6 +120,6 @@ class SalaryGradeController extends Controller
     public function destroy(SalaryGrade $salaryGrade)
     {
         $salaryGrade->delete();
-        return $this->success('', 'Successfull Deleted', 200);
+        return $this->success('', 'Successfully Deleted', 200);
     }
 }
