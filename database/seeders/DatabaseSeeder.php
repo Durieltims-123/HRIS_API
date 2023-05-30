@@ -35,6 +35,7 @@ use App\Models\Disqualification;
 use App\Models\PersonnelSelectionBoard;
 use App\Models\PublicationInterview;
 use App\Models\TrainingProgramAttended;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -47,7 +48,7 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        user::factory(100)->create();
+        User::factory(100)->create();
         Holiday::factory(10)->create();
         SalaryGrade::factory(33)->create();
         Position::factory(33)->create();
