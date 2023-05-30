@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-
+        user::factory(100)->create();
         Holiday::factory(10)->create();
         SalaryGrade::factory(33)->create();
         Position::factory(33)->create();
