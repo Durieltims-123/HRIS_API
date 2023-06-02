@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::resource('/position', PositionController::class);
     Route::post('/search-position', [PositionController::class, 'search']);
+    Route::post('/search-department', [DepartmentController::class, 'search']);
     Route::post('/search-office', [OfficeController::class, 'search']);
     Route::resource('/office', OfficeController::class);
     Route::resource('/position-description', PositionDescriptionController::class);

@@ -19,7 +19,6 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        
     }
 
     /**
@@ -36,31 +35,25 @@ class DepartmentController extends Controller
     public function store(StoreDepartmentRequest $request)
     {
         $request->validated($request->all());
-
-        $department = Department::create([
-            'department_code' => $request->department_code,
-            'department_name' => $request->department_name,
-        ]);
-        $office_codes = $request->input('office_code');
-        $office_names = $request->input('office_name');
-
-        foreach($office_codes as $i => $office_code){
-            Office::create([
-                'department_id' => $department->id,
-                'office_code' => $office_code,
-                'office_name' => $office_names[$i],
+        $departmentExist = Department::where('department_code', $request->department_code)->orWhere('department_name', $request->department_name)->exists();
+        if ($departmentExist) {
+            return $this->error('', 'Duplicate Entry', 400);
+        } else {
+            $department = Department::create([
+                'department_code' => $request->department_code,
+                'department_name' => $request->department_name,
             ]);
-        }
 
-        return $this->success('', 'Successfull Saved', 200);
+            return $this->success('', 'Successfully Saved', 200);
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Department $department)
     {
-        //
+        return $department;
     }
 
     /**
@@ -78,18 +71,8 @@ class DepartmentController extends Controller
     {
         $department->department_code = $request->department_code;
         $department->department_name = $request->department_name;
-        $office_codes = $request->input('office_code');
-        $office_names = $request->input('office_name');
-
-       
-        foreach($office_codes as $i => $office_code){
-            Office::where('department_id', $department->id)
-            ->update([
-                'office_code'=> $office_code,
-                'office_name'=> $office_names[$i],
-            ]);
-        }
-
+        $department_codes = $request->input('department_code');
+        $department_names = $request->input('department_name');
         $department->save();
 
         return new DepartmentResource($department);
@@ -100,7 +83,41 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        $department->delete();
-        return $this->success('', 'Successfull Deleted', 200);
+        // validate user from database
+        $officeExist = Office::where([['department_id', $department->id]])->exists();
+        if ($officeExist) {
+            return $this->error('', 'You cannot delete Department with existing offices.', 400);
+        } else {
+            $department->delete();
+            return $this->success('', 'Successfull Deleted', 200);
+        }
+    }
+
+    public function search(Request $request)
+    {
+        $activePage = $request->activePage;
+        $searchKeyword = $request->searchKeyword;
+        $orderAscending = $request->orderAscending;
+        $orderBy = $request->orderBy;
+        $orderAscending  ? $orderAscending = "asc" : $orderAscending = "desc";
+        $searchKeyword == null ? $searchKeyword = "" : $searchKeyword = $searchKeyword;
+        $orderBy == null ? $orderBy = "id" : $orderBy = $orderBy;
+
+        $data = DepartmentResource::collection(
+            Department::where("id", "like", "%" . $searchKeyword . "%")
+                ->orWhere("department_name", "like", "%" . $searchKeyword . "%")
+                ->orWhere("department_code", "like", "%" . $searchKeyword . "%")
+                ->skip(($activePage - 1) * 10)
+                ->orderBy($orderBy, $orderAscending)
+                ->take(10)
+                ->get()
+        );
+        $pages = Department::where("id", "like", "%" . $searchKeyword . "%")
+            ->orWhere("department_name", "like", "%" . $searchKeyword . "%")
+            ->orWhere("department_code", "like", "%" . $searchKeyword . "%")
+            ->orderBy($orderBy, $orderAscending)
+            ->count();
+
+        return compact('pages', 'data');
     }
 }

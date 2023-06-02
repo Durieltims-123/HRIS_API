@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSalaryGradeRequest;
 use App\Http\Resources\SalaryGradeResource;
+use App\Models\Position;
 use App\Models\SalaryGrade;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
@@ -88,7 +89,7 @@ class SalaryGradeController extends Controller
      */
     public function show(SalaryGrade $salaryGrade)
     {
-        return SalaryGrade::where('id', $salaryGrade->id)->first();
+        return $salaryGrade;
     }
 
     /**
@@ -119,7 +120,12 @@ class SalaryGradeController extends Controller
      */
     public function destroy(SalaryGrade $salaryGrade)
     {
-        $salaryGrade->delete();
-        return $this->success('', 'Successfully Deleted', 200);
+        $positionExist=Position::where('salary_grade_id',$salaryGrade->id)->exists();
+        if ($positionExist) {
+            return $this->error('', 'You cannot delete Salary Grade  connected to a position.', 400);
+        } else {
+            $salaryGrade->delete();
+            return $this->success('', 'Successfully Deleted', 200);
+        }
     }
 }

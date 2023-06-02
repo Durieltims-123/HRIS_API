@@ -92,11 +92,31 @@ class OfficeController extends Controller
     }
 
     public function search(Request $request){
-        return OfficeResource::collection(
-            Office::where('office_name', 'like', '%'.$request->keyword.'%')
-            ->orWhere('office_code', 'like', '%'.$request->keyword.'%')
-            ->limit(10)
-            ->get()
+
+        $activePage = $request->activePage;
+        $searchKeyword = $request->searchKeyword;
+        $orderAscending = $request->orderAscending;
+        $orderBy = $request->orderBy;
+        $orderAscending  ? $orderAscending = "asc" : $orderAscending = "desc";
+        $searchKeyword == null ? $searchKeyword = "" : $searchKeyword = $searchKeyword;
+        $orderBy == null ? $orderBy = "id" : $orderBy = $orderBy;
+
+        $data = OfficeResource::collection(
+            Office::where("id", "like", "%" . $searchKeyword . "%")
+                ->orWhere("office_name", "like", "%" . $searchKeyword . "%")
+                ->orWhere("office_code", "like", "%" . $searchKeyword . "%")
+                ->skip(($activePage - 1) * 10)
+                ->orderBy($orderBy, $orderAscending)
+                ->take(10)
+                ->get()
         );
+        $pages = Office::where("id", "like", "%" . $searchKeyword . "%")
+            ->orWhere("office_name", "like", "%" . $searchKeyword . "%")
+            ->orWhere("office_code", "like", "%" . $searchKeyword . "%")
+            ->orderBy($orderBy, $orderAscending)
+            ->count();
+
+        return compact('pages', 'data');
+        
     }
 }

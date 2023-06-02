@@ -23,9 +23,7 @@ class StoreDepartmentRequest extends FormRequest
     {
         return [
             'department_code' => ['required','string', 'max:255'],
-            'department_name' => ['required','string', 'max:255'],
-            'office_code' => ['required', 'max:255'],
-            'office_name' => ['required', 'max:255'],
+            'department_name' => ['required','string', 'max:255']
         ];
     }
 }
