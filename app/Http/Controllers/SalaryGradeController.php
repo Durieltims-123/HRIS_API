@@ -81,7 +81,7 @@ class SalaryGradeController extends Controller
 
 
         // return message
-        return $this->success('', 'Successfull Saved', 200);
+        return $this->success('', 'Successfully Saved', 200);
     }
 
     /**

@@ -332,7 +332,7 @@ class PersonalDataSheetController extends Controller
             "telephone_number3" => $request->telephone_number3,
         ]);
 
-        return $this->success('', 'Successfull Saved', 200);
+        return $this->success('', 'Successfully Saved', 200);
     }
 
     /**
@@ -768,6 +768,6 @@ class PersonalDataSheetController extends Controller
     public function destroy(PersonalDataSheet $personalDataSheet)
     {
         $personalDataSheet->delete();
-        return $this->success('', 'Successfull Deleted', 200);
+        return $this->success('', 'Successfully Deleted', 200);
     }
 }

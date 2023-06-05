@@ -48,7 +48,7 @@ class PsbMemberController extends Controller
             "member_position" => $request->member_position
          ]);
 
-         return $this->success('', 'Successfull Saved', 200);
+         return $this->success('', 'Successfully Saved', 200);
     }
 
     /**

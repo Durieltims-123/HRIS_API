@@ -58,7 +58,7 @@ class ProvinceController extends Controller
             "barangay_code" => $request->barangay_code,
         ]);
 
-        return $this->success('', 'Successfull Saved', 200);
+        return $this->success('', 'Successfully Saved', 200);
     }
 
     /**
@@ -91,6 +91,6 @@ class ProvinceController extends Controller
     public function destroy(Province $province)
     {
         $province->delete();
-        return $this->success('', 'Successfull Deleted', 200);
+        return $this->success('', 'Successfully Deleted', 200);
     }
 }

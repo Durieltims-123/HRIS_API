@@ -16,12 +16,12 @@ class OfficeResource extends JsonResource
     {
         return [
             "id" => (string)$this->id,
-            "attributes"=>[
+            "attributes" => [
                 "office_code" => (string)$this->office_code,
                 "office_name" => (string)$this->office_name,
-                "department" => new OfficeResource($this->whenLoaded('belongsToDepartment'))
+                "department" => $this->whenLoaded('belongsToDepartment')->department_name
             ]
-            
+
         ];
     }
 }

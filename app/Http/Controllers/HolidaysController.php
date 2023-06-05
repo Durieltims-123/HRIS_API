@@ -50,7 +50,7 @@ class HolidaysController extends Controller
 
 
         // return message
-        return $this->success('', 'Successfull Saved', 200);
+        return $this->success('', 'Successfully Saved', 200);
     }
 
     /**
@@ -89,6 +89,6 @@ class HolidaysController extends Controller
     public function destroy(Holiday $holiday)
     {
         $holiday->delete();
-        return $this->success('', 'Successfull Deleted', 200);
+        return $this->success('', 'Successfully Deleted', 200);
     }
 }

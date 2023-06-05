@@ -17,7 +17,7 @@ class OfficeController extends Controller
     public function index()
     {
         return OfficeResource::collection(
-            Office::all()
+            Office::with('belongsToDepartment')->get()
         );
     }
 
@@ -49,9 +49,9 @@ class OfficeController extends Controller
         // $office-> office_code=$request->office_code;
         // $office-> office_name=$request->office_name;
         // $office->save();
- 
+
         // return message
-        return $this->success('', 'Successfull Saved', 200);
+        return $this->success('', 'Successfully Saved', 200);
     }
 
     /**
@@ -88,10 +88,11 @@ class OfficeController extends Controller
     public function destroy(Office $office)
     {
         $office->delete();
-        return $this->success('', 'Successfull Deleted', 200);
+        return $this->success('', 'Successfully Deleted', 200);
     }
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
 
         $activePage = $request->activePage;
         $searchKeyword = $request->searchKeyword;
@@ -107,9 +108,19 @@ class OfficeController extends Controller
                 ->orWhere("office_code", "like", "%" . $searchKeyword . "%")
                 ->skip(($activePage - 1) * 10)
                 ->orderBy($orderBy, $orderAscending)
+                ->with('belongsToDepartment')
                 ->take(10)
                 ->get()
         );
+        // $data =  Office::where("id", "like", "%" . $searchKeyword . "%")
+        //     ->orWhere("office_name", "like", "%" . $searchKeyword . "%")
+        //     ->orWhere("office_code", "like", "%" . $searchKeyword . "%")
+        //     ->skip(($activePage - 1) * 10)
+        //     ->orderBy($orderBy, $orderAscending)
+        //     ->with('belongsToDepartment')
+        //     ->take(10)
+        //     ->get();
+
         $pages = Office::where("id", "like", "%" . $searchKeyword . "%")
             ->orWhere("office_name", "like", "%" . $searchKeyword . "%")
             ->orWhere("office_code", "like", "%" . $searchKeyword . "%")
@@ -117,6 +128,5 @@ class OfficeController extends Controller
             ->count();
 
         return compact('pages', 'data');
-        
     }
 }

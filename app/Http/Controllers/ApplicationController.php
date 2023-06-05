@@ -105,6 +105,6 @@ class ApplicationController extends Controller
     public function destroy(Application $application)
     {
         $application->delete();
-        return $this->success('', 'Successfull Deleted', 200);
+        return $this->success('', 'Successfully Deleted', 200);
     }
 }

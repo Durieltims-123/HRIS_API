@@ -61,7 +61,7 @@ class VacancyController extends Controller
         ]);
 
         // return message
-        return $this->success('', 'Successfull Saved', 200);
+        return $this->success('', 'Successfully Saved', 200);
     }
 
     /**
@@ -104,7 +104,7 @@ class VacancyController extends Controller
     public function destroy(Vacancy $vacancy)
     {
         $vacancy->delete();
-        return $this->success('', 'Successfull Deleted', 200);
+        return $this->success('', 'Successfully Deleted', 200);
     }
 
     public function vacancyQueue(Vacancy $vacancy)

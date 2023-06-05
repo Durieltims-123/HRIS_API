@@ -70,7 +70,7 @@ class AssessmentController extends Controller
             ]);
         }
 
-        return $this->success('', 'Successfull Saved', 200);
+        return $this->success('', 'Successfully Saved', 200);
     }
 
     /**

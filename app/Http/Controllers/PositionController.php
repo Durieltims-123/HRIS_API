@@ -77,7 +77,7 @@ class PositionController extends Controller
     
     
             // return message
-            return $this->success('', 'Successfull Saved', 200);
+            return $this->success('', 'Successfully Saved', 200);
     }
 
     /**
@@ -132,7 +132,7 @@ class PositionController extends Controller
 
         $position->delete();
         //    $qualificationStandard->delete();
-        return $this->success('', 'Successfull Deleted', 200);
+        return $this->success('', 'Successfully Deleted', 200);
     }
 
     public function search(Request $request)

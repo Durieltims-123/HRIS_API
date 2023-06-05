@@ -51,7 +51,7 @@ class ServiceRecordFormController extends Controller
         ]);
 
         // return message
-        return $this->success('', 'Successfull Saved', 200);
+        return $this->success('', 'Successfully Saved', 200);
     }
 
     /**
@@ -96,6 +96,6 @@ class ServiceRecordFormController extends Controller
     public function destroy(ServiceRecordForm $serviceRecordForm)
     {
         $serviceRecordForm->delete();
-        return $this->success('', 'Successfull Deleted', 200);
+        return $this->success('', 'Successfully Deleted', 200);
     }
 }

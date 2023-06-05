@@ -19,6 +19,9 @@ class DepartmentController extends Controller
      */
     public function index()
     {
+        return DepartmentResource::collection(
+            Department::all()
+        );
     }
 
     /**
@@ -89,7 +92,7 @@ class DepartmentController extends Controller
             return $this->error('', 'You cannot delete Department with existing offices.', 400);
         } else {
             $department->delete();
-            return $this->success('', 'Successfull Deleted', 200);
+            return $this->success('', 'Successfully Deleted', 200);
         }
     }
 
