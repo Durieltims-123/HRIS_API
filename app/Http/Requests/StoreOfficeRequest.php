@@ -24,6 +24,7 @@ class StoreOfficeRequest extends FormRequest
         return [
             'office_code' => ['required', 'string', 'max:255'],
             'office_name' => ['required', 'string', 'max:255'],
+            'department_id' => ['required'],
         ];
     }
 }

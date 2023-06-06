@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreOfficeRequest;
 use App\Http\Resources\OfficeResource;
+use App\Models\Employee;
 use App\Models\Office;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
@@ -34,32 +35,28 @@ class OfficeController extends Controller
      */
     public function store(StoreOfficeRequest $request)
     {
-        // 
         $request->validated($request->all());
 
-        $officeExist = Office::where([['office_code', $request->office_code], ['office_name', $request->office_name]])->exists();
+        $officeExist = Office::where('office_code', $request->office_code)->orWhere("office_name", $request->office_name)->exists();
         if ($officeExist) {
             return $this->error('', 'Duplicate Entry', 400);
-        }
-        Office::create([
-            "office_code" => $request->office_code,
-            "office_name" => $request->office_name,
-        ]);
-        // $office=new Office();
-        // $office-> office_code=$request->office_code;
-        // $office-> office_name=$request->office_name;
-        // $office->save();
+        } else {
+            Office::create([
+                "office_code" => $request->office_code,
+                "office_name" => $request->office_name,
+                "department_id" => $request->department_id,
+            ]);
 
-        // return message
-        return $this->success('', 'Successfully Saved', 200);
+            return $this->success('', 'Successfully Saved', 200);
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Office $office)
     {
-        //
+        return $office;
     }
 
     /**
@@ -77,9 +74,12 @@ class OfficeController extends Controller
     {
         $office->office_code = $request->office_code;
         $office->office_name = $request->office_name;
+        $office->department_id = $request->department_id;
         $office->save();
 
-        return new OfficeResource($office);
+        return new OfficeResource(
+            Office::where('id', $office->id)->with('belongsToDepartment')->first()
+        );
     }
 
     /**
@@ -87,8 +87,13 @@ class OfficeController extends Controller
      */
     public function destroy(Office $office)
     {
-        $office->delete();
-        return $this->success('', 'Successfully Deleted', 200);
+        $employeesExists = Employee::where('office_id', $office->id)->exists();
+        if ($employeesExists) {
+            return $this->error('', 'You cannot delete Office with existing employees.', 400);
+        } else {
+            $office->delete();
+            return $this->success('', 'Successfully Deleted', 200);
+        }
     }
 
     public function search(Request $request)
@@ -112,14 +117,6 @@ class OfficeController extends Controller
                 ->take(10)
                 ->get()
         );
-        // $data =  Office::where("id", "like", "%" . $searchKeyword . "%")
-        //     ->orWhere("office_name", "like", "%" . $searchKeyword . "%")
-        //     ->orWhere("office_code", "like", "%" . $searchKeyword . "%")
-        //     ->skip(($activePage - 1) * 10)
-        //     ->orderBy($orderBy, $orderAscending)
-        //     ->with('belongsToDepartment')
-        //     ->take(10)
-        //     ->get();
 
         $pages = Office::where("id", "like", "%" . $searchKeyword . "%")
             ->orWhere("office_name", "like", "%" . $searchKeyword . "%")
