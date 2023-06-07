@@ -22,14 +22,20 @@ class PositionResource extends JsonResource
                 // "number" => (string)$this->belongsToSalaryGrade->number,
                 // "amount" => (string)$this->belongsToSalaryGrade->amount,
                 "title" => (string)$this->title,
-                "salary_grade_id" => (string)$this->salary_grade_id,
+                "number" => (string)$this->number,
+                "amount" => (string)$this->amount,
+                "education" => (string)$this->education,
+                "training" => (string)$this->training,
+                "experience" => (string)$this->experience,
+                "eligibility" => (string)$this->eligibility,
+                "competency" => (string)$this->competency,
 
-                'salary_grade' => new SalaryGradeResource($this->whenLoaded('belongsToSalaryGrade')),
+                // 'salary_grade' => new SalaryGradeResource($this->whenLoaded('belongsToSalaryGrade')),
 
                 //position
                 
 
-                'qualification_standards' => QualificationStandardResource::collection($this->whenLoaded('hasManyQualificationStandard') ),
+                // 'qualification_standards' => QualificationStandardResource::collection($this->whenLoaded('hasManyQualificationStandard') ),
 
                 //qualification standards
                 // "position_id" => (string)$this->hasManyQualificationStandard[0]->position_id,
