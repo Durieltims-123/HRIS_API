@@ -72,7 +72,7 @@ class HolidaysController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Holiday $holiday)
+    public function update(StoreHolidayRequest $request, Holiday $holiday)
     {
         $holiday->date = Date('Y-m-d', strtotime($request->date));
         $holiday->title = $request->title;
@@ -88,7 +88,35 @@ class HolidaysController extends Controller
      */
     public function destroy(Holiday $holiday)
     {
-        $holiday->delete();
-        return $this->success('', 'Successfully Deleted', 200);
+            $holiday->delete();
+            return $this->success('', 'Successfully Deleted', 200);
+    }
+    public function search(Request $request)
+    {  
+        $activePage = $request->activePage;
+        $searchKeyword = $request->searchKeyword;
+        $orderAscending = $request->orderAscending;
+        $orderBy = $request->orderBy;
+        $orderAscending  ? $orderAscending = "asc" : $orderAscending = "desc";
+        $searchKeyword == null ? $searchKeyword = "" : $searchKeyword = $searchKeyword;
+        $orderBy == null ? $orderBy = "id" : $orderBy = $orderBy;
+
+        $data = HolidayResource::collection(
+            Holiday::where("id", "like", "%" . $searchKeyword . "%")
+                ->orWhere("title", "like", "%" . $searchKeyword . "%")
+                ->orWhere("date", "like", "%" . $searchKeyword . "%")
+                ->skip(($activePage - 1) * 10)
+                ->orderBy($orderBy, $orderAscending)
+                ->take(10)
+                ->get()
+        );
+        $pages = Holiday::where("id", "like", "%" . $searchKeyword . "%")
+            ->orWhere("title", "like", "%" . $searchKeyword . "%")
+            ->orWhere("date", "like", "%" . $searchKeyword . "%") 
+            ->orderBy($orderBy, $orderAscending)
+            ->count();
+
+        return compact('pages', 'data');
     }
 }
+
