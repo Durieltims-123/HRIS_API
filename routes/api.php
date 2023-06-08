@@ -30,6 +30,8 @@ use App\Http\Controllers\ReportOfAppointmentController;
 use App\Http\Controllers\QualificationStandardController;
 use App\Http\Controllers\PersonnelSelectionBoardController;
 use App\Http\Controllers\ServiceRecordFormController;
+use App\Http\Controllers\UserController;
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -45,6 +47,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::resource('/holidays', HolidaysController::class);
     Route::post('/search-holidays', [HolidaysController::class, 'search']);
+    Route::resource('/users', UserController::class);
+    Route::post('/search-users', [UserController::class, 'search']);
 
 
     //alfy
