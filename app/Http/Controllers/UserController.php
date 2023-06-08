@@ -9,7 +9,7 @@ use App\Models\Usery;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 
-class UsersController extends Controller
+class UserController extends Controller
 {
     use HttpResponses;
 
