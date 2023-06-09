@@ -85,10 +85,13 @@ class PositionController extends Controller
      */
     public function show(Position $position)
     {
-        return PositionResource::collection(
-            Position::where('id', $position->id)
-                ->get()
-        );
+        return 
+            Position::where("positions.id", $position->id)
+                ->select("title", "positions.id", "salary_grades.id as salary_grade_id", "salary_grades.number", "salary_grades.amount", "qualification_standards.education", "qualification_standards.training", "qualification_standards.experience", "qualification_standards.eligibility", "qualification_standards.competency")
+                ->join("qualification_standards", "qualification_standards.position_id", "positions.id")
+                ->join("salary_grades", "salary_grades.id", "positions.id")
+                ->first();
+        
     }
 
     /**
@@ -137,6 +140,52 @@ class PositionController extends Controller
 
     public function search(Request $request)
     {
+
+        $activePage = $request->activePage;
+        $searchKeyword = $request->searchKeyword;
+        $orderAscending = $request->orderAscending;
+        $orderBy = $request->orderBy;
+        $orderAscending  ? $orderAscending = "asc" : $orderAscending = "desc";
+        $searchKeyword == null ? $searchKeyword = "" : $searchKeyword = $searchKeyword;
+        $orderBy == null ? $orderBy = "id" : $orderBy = $orderBy;
+
+        $data = PositionResource::collection(
+            Position::where("title", "like", "%" . $searchKeyword . "%")
+                ->select("title","positions.id","salary_grades.number","salary_grades.amount", "qualification_standards.education", "qualification_standards.training", "qualification_standards.experience", "qualification_standards.eligibility", "qualification_standards.competency")
+                ->join("qualification_standards", "qualification_standards.position_id", "positions.id")
+                ->join("salary_grades", "salary_grades.id", "positions.id")
+                ->orWhere("qualification_standards.education", "like", "%" . $searchKeyword . "%")
+                ->orWhere("qualification_standards.training", "like", "%" . $searchKeyword . "%")
+                ->orWhere("qualification_standards.experience", "like", "%" . $searchKeyword . "%")
+                ->orWhere("qualification_standards.eligibility", "like", "%" . $searchKeyword . "%")
+                ->orWhere("qualification_standards.competency", "like", "%" . $searchKeyword . "%")
+                ->skip(($activePage - 1) * 10)
+                ->orderBy($orderBy, $orderAscending)
+                ->limit(10)
+                ->get()
+        );
+
+        $pages = Position::where("title", "like", "%" . $searchKeyword . "%")
+        ->select("title",
+            "positions.id",
+            "salary_grades.number",
+            "salary_grades.amount",
+            "qualification_standards.education",
+            "qualification_standards.training",
+            "qualification_standards.experience",
+            "qualification_standards.eligibility",
+            "qualification_standards.competency"
+        )
+        ->join("qualification_standards", "qualification_standards.position_id", "positions.id")
+        ->join("salary_grades", "salary_grades.id", "positions.id")
+        ->orWhere("qualification_standards.education", "like", "%" . $searchKeyword . "%")
+        ->orWhere("qualification_standards.training", "like", "%" . $searchKeyword . "%")
+        ->orWhere("qualification_standards.experience", "like", "%" . $searchKeyword . "%")
+        ->orWhere("qualification_standards.eligibility", "like", "%" . $searchKeyword . "%")
+        ->orWhere("qualification_standards.competency", "like", "%" . $searchKeyword . "%")
+        ->count();
+        
+        return compact('pages', 'data');
 
         // dd(Position::where('title', 'like', '%'.$request->keyword.'%')
         // ->with(['hasManyQualificationStandard','belongsToSalaryGrade'])
