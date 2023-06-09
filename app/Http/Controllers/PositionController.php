@@ -13,6 +13,7 @@ use App\Http\Requests\StorePositionRequest;
 use App\Http\Resources\SalaryGradeResource;
 use App\Http\Resources\QualificationStandardResource;
 use App\Http\Requests\StoreQualificationStandardRequest;
+use App\Models\Plantilla;
 
 class PositionController extends Controller
 {
@@ -130,10 +131,16 @@ class PositionController extends Controller
 
     public function destroy(Position $position, QualificationStandard $qualificationStandard)
     {
-
-        $position->delete();
-        //    $qualificationStandard->delete();
-        return $this->success('', 'Successfully Deleted', 200);
+        $plantillaExist = Plantilla::where([['position_id', $position->id]])
+        ->exists();
+        if ($plantillaExist) {
+            return $this->error('', 'You cannot delete Position with existing Plantilla.', 400);
+        }else {
+            $position->delete();
+            //    $qualificationStandard->delete();
+            return $this->success('', 'Successfully Deleted', 200);
+        }
+       
     }
 
     public function search(Request $request)
