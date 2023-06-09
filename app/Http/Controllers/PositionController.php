@@ -85,10 +85,13 @@ class PositionController extends Controller
      */
     public function show(Position $position)
     {
-        return PositionResource::collection(
-            Position::where('id', $position->id)
-                ->get()
-        );
+        return 
+            Position::where("positions.id", $position->id)
+                ->select("title", "positions.id", "salary_grades.id as salary_grade_id", "salary_grades.number", "salary_grades.amount", "qualification_standards.education", "qualification_standards.training", "qualification_standards.experience", "qualification_standards.eligibility", "qualification_standards.competency")
+                ->join("qualification_standards", "qualification_standards.position_id", "positions.id")
+                ->join("salary_grades", "salary_grades.id", "positions.id")
+                ->first();
+        
     }
 
     /**
