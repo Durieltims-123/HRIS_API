@@ -79,7 +79,10 @@ class UserController extends Controller
     {
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = $request->password;
+        if ($request->password != null) {
+            $user->password = Hash::make($request->password);
+        }
+       
         $user->save();
 
         // $user->update($request->all());
