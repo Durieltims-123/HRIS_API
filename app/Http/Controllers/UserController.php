@@ -9,7 +9,7 @@ use App\Models\Usery;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 
-class UsersController extends Controller
+class UserController extends Controller
 {
     use HttpResponses;
 
@@ -39,14 +39,15 @@ class UsersController extends Controller
         $request->validated($request->all());
 
         // validate user from database
-        $user_exist = User::where([['title', $request->title], ['date', Date('Y-m-d', strtotime($request->date))]])->exists();
+        $user_exist = User::where('name', $request->name)->orwhere('email',$request->email)->orwhere('password', $request->password)->exists();
         if ($user_exist) {
             return $this->error('', 'Duplicate Entry', 400);
         }
 
         User::create([
-            "title" => $request->title,
-            "date" => Date('Y-m-d', strtotime($request->date))
+            "name" => $request->name,
+            "email" => $request->email,
+            "password" => $request->password,
         ]);
 
 
@@ -75,8 +76,10 @@ class UsersController extends Controller
      */
     public function update(StoreUserRequest $request, User $user)
     {
-        $user->date = Date('Y-m-d', strtotime($request->date));
-        $user->title = $request->title;
+        
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
         $user->save();
 
         // $user->update($request->all());
@@ -104,16 +107,18 @@ class UsersController extends Controller
 
         $data = UserResource::collection(
             User::where("id", "like", "%" . $searchKeyword . "%")
-                ->orWhere("title", "like", "%" . $searchKeyword . "%")
-                ->orWhere("date", "like", "%" . $searchKeyword . "%")
+                ->orWhere("name", "like", "%" . $searchKeyword . "%")
+                ->orWhere("email", "like", "%" . $searchKeyword . "%")
+                ->orWhere("password", "like", "%" . $searchKeyword . "%")
                 ->skip(($activePage - 1) * 10)
                 ->orderBy($orderBy, $orderAscending)
                 ->take(10)
                 ->get()
         );
         $pages = User::where("id", "like", "%" . $searchKeyword . "%")
-            ->orWhere("title", "like", "%" . $searchKeyword . "%")
-            ->orWhere("date", "like", "%" . $searchKeyword . "%")
+            -> orWhere("name", "like", "%" . $searchKeyword . "%")
+            ->orWhere("email", "like", "%" . $searchKeyword . "%")
+            ->orWhere("password", "like", "%" . $searchKeyword . "%")
             ->orderBy($orderBy, $orderAscending)
             ->count();
 
