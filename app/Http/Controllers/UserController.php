@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreUserRequest;
-use App\Http\Resources\UserResource;
 use App\Models\User;
-use App\Models\Usery;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
+use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 
 class UserController extends Controller
 {
@@ -39,7 +40,7 @@ class UserController extends Controller
         $request->validated($request->all());
 
         // validate user from database
-        $user_exist = User::where('name', $request->name)->orwhere('email',$request->email)->orwhere('password', $request->password)->exists();
+        $user_exist = User::where('name', $request->name)->orwhere('email',$request->email)->exists();
         if ($user_exist) {
             return $this->error('', 'Duplicate Entry', 400);
         }
@@ -47,7 +48,7 @@ class UserController extends Controller
         User::create([
             "name" => $request->name,
             "email" => $request->email,
-            "password" => $request->password,
+            "password" => Hash::make($request->password)
         ]);
 
 
@@ -74,9 +75,8 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreUserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = $request->password;
@@ -109,7 +109,6 @@ class UserController extends Controller
             User::where("id", "like", "%" . $searchKeyword . "%")
                 ->orWhere("name", "like", "%" . $searchKeyword . "%")
                 ->orWhere("email", "like", "%" . $searchKeyword . "%")
-                ->orWhere("password", "like", "%" . $searchKeyword . "%")
                 ->skip(($activePage - 1) * 10)
                 ->orderBy($orderBy, $orderAscending)
                 ->take(10)
@@ -118,7 +117,6 @@ class UserController extends Controller
         $pages = User::where("id", "like", "%" . $searchKeyword . "%")
             -> orWhere("name", "like", "%" . $searchKeyword . "%")
             ->orWhere("email", "like", "%" . $searchKeyword . "%")
-            ->orWhere("password", "like", "%" . $searchKeyword . "%")
             ->orderBy($orderBy, $orderAscending)
             ->count();
 
