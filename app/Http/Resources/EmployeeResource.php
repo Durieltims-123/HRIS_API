@@ -16,19 +16,19 @@ class EmployeeResource extends JsonResource
     {
         return [
             "id" => (string)$this->id,
-            "attributes" => 
-            [
-                "first_name" => (string)$this->first_name,
-                "middle_name" => (string)$this->middle_name,
-                "last_name" => (string)$this->last_name,
-                "suffix_name" => (string)$this->suffix_name,
-                "contact_number" => (string)$this->contact_number,
-                "email_address" =>(string)$this->email_address,
-                "current_position" => (string)$this->current_position,
-                "employment_status" => (string)$this->employment_status,
-                "employee_status" => (string)$this->employee_status,
-                "orientation_status" => (string)$this->orientation_status
-            ]
-            ];
+            "attributes" => [
+                "employee_code" => (string)$this->employee_code,
+                "employee_name" => (string)$this->employee_name,
+                'offices' => $this->hasManyOffices->map(function ($offices) {
+                    return [
+                        'office_code' => $offices->office_code,
+                        'office_name' => $offices->office_name,
+                    ];
+                }),
+
+            ],
+
+
+        ];
     }
 }

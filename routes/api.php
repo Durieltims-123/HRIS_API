@@ -33,9 +33,9 @@ use App\Http\Controllers\ServiceRecordFormController;
 use App\Http\Controllers\UserController;
 
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 // Public Routes
 Route::get('/test', [AuthController::class, 'testing']);
@@ -54,6 +54,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     //alfy
     Route::resource('/salary-grade', SalaryGradeController::class);
     Route::post('/search-salary-grade', [SalaryGradeController::class, 'search']);
+
+    Route::resource('/employee', EmployeeController::class);
+    Route::post('/employee', [EmployeeController::class, 'search']);
 
     Route::resource('/position', PositionController::class);
     Route::post('/search-position', [PositionController::class, 'search']);
