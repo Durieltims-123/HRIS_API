@@ -29,7 +29,7 @@ use App\Models\PersonalInformation;
 use App\Models\EducationalBackground;
 use App\Models\MembershipAssociation;
 use App\Models\QualificationStandard;
-use Database\Seeders\PlantillaSeeder;
+use Database\Seeders\LguPositionSeeder;
 use App\Models\CivilServiceEligibility;
 use App\Models\Disqualification;
 use App\Models\PersonnelSelectionBoard;
@@ -66,7 +66,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             DepartmentSeeder::class,
             OfficeSeeder::class,
-            PlantillaSeeder::class,
+            LguPositionSeeder::class,
             PositionDescriptionSeeder::class,
             ProvinceSeeder::class,
             MunicipalitySeeder::class,

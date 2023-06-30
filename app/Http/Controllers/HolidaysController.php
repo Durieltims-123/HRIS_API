@@ -88,35 +88,35 @@ class HolidaysController extends Controller
      */
     public function destroy(Holiday $holiday)
     {
-            $holiday->delete();
-            return $this->success('', 'Successfully Deleted', 200);
+        $holiday->delete();
+        return $this->success('', 'Successfully Deleted', 200);
     }
     public function search(Request $request)
-    {  
+    {
         $activePage = $request->activePage;
         $searchKeyword = $request->searchKeyword;
         $orderAscending = $request->orderAscending;
         $orderBy = $request->orderBy;
+        $year = $request->year;
         $orderAscending  ? $orderAscending = "asc" : $orderAscending = "desc";
         $searchKeyword == null ? $searchKeyword = "" : $searchKeyword = $searchKeyword;
         $orderBy == null ? $orderBy = "id" : $orderBy = $orderBy;
 
         $data = HolidayResource::collection(
-            Holiday::where("id", "like", "%" . $searchKeyword . "%")
-                ->orWhere("title", "like", "%" . $searchKeyword . "%")
-                ->orWhere("date", "like", "%" . $searchKeyword . "%")
+            Holiday::where([["id", "like", "%" . $searchKeyword . "%"], ["date", "like", $year . "%"]])
+                ->orWhere([["title", "like", "%" . $searchKeyword . "%"], ["date", "like", $year . "%"]])
+                ->orWhere([["date", "like", "%" . $searchKeyword . "%"], ["date", "like", $year . "%"]])
                 ->skip(($activePage - 1) * 10)
                 ->orderBy($orderBy, $orderAscending)
                 ->take(10)
                 ->get()
         );
-        $pages = Holiday::where("id", "like", "%" . $searchKeyword . "%")
-            ->orWhere("title", "like", "%" . $searchKeyword . "%")
-            ->orWhere("date", "like", "%" . $searchKeyword . "%") 
+        $pages = Holiday::where([["id", "like", "%" . $searchKeyword . "%"], ["date", "like", $year . "%"]])
+            ->orWhere([["title", "like", "%" . $searchKeyword . "%"], ["date", "like", $year . "%"]])
+            ->orWhere([["date", "like", "%" . $searchKeyword . "%"], ["date", "like", $year . "%"]])
             ->orderBy($orderBy, $orderAscending)
             ->count();
 
         return compact('pages', 'data');
     }
 }
-

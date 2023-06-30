@@ -18,8 +18,11 @@ class OfficeController extends Controller
     public function index()
     {
         return OfficeResource::collection(
-            Office::with('belongsToDepartment')->get()
-        );
+            Office::with('belongsToDepartment')
+                ->join('departments', 'departments.id', 'offices.department_id')
+                ->orderBy('department_name', 'asc')
+                ->get()
+        )->toJson();
     }
 
     /**
@@ -78,7 +81,7 @@ class OfficeController extends Controller
         $office->save();
 
         return new OfficeResource(
-            Office::where('id', $office->id)->with('belongsToDepartment')->first()
+            Office::where('id', $office->id)->join('departments', 'departments.id', 'offices.department_id')->first()
         );
     }
 
@@ -113,7 +116,7 @@ class OfficeController extends Controller
                 ->orWhere("office_code", "like", "%" . $searchKeyword . "%")
                 ->skip(($activePage - 1) * 10)
                 ->orderBy($orderBy, $orderAscending)
-                ->with('belongsToDepartment')
+                ->join('departments', 'departments.id', 'offices.department_id')
                 ->take(10)
                 ->get()
         );
@@ -121,6 +124,8 @@ class OfficeController extends Controller
         $pages = Office::where("id", "like", "%" . $searchKeyword . "%")
             ->orWhere("office_name", "like", "%" . $searchKeyword . "%")
             ->orWhere("office_code", "like", "%" . $searchKeyword . "%")
+            ->orWhere("department_name", "like", "%" . $searchKeyword . "%")
+            ->join('departments', 'departments.id', 'offices.department_id')
             ->orderBy($orderBy, $orderAscending)
             ->count();
 

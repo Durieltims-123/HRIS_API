@@ -13,7 +13,7 @@ use App\Http\Requests\StorePositionRequest;
 use App\Http\Resources\SalaryGradeResource;
 use App\Http\Resources\QualificationStandardResource;
 use App\Http\Requests\StoreQualificationStandardRequest;
-use App\Models\Plantilla;
+use App\Models\LguPosition;
 
 class PositionController extends Controller
 {
@@ -23,10 +23,23 @@ class PositionController extends Controller
      */
     public function index()
     {
-
         return PositionResource::collection(
-            Position::with('hasManyQualificationStandard', 'belongsToSalaryGrade')->get()
-        );
+            Position::select(
+                "title",
+                "positions.id",
+                "salary_grades.number",
+                "salary_grades.amount",
+                "qualification_standards.education",
+                "qualification_standards.training",
+                "qualification_standards.experience",
+                "qualification_standards.eligibility",
+                "qualification_standards.competency"
+            )
+                ->join("qualification_standards", "qualification_standards.position_id", "positions.id")
+                ->join("salary_grades", "salary_grades.id", "positions.salary_grade_id")
+                ->orderBy('title','asc')
+                ->get()
+        )->toJson();
     }
 
     /**
@@ -80,17 +93,17 @@ class PositionController extends Controller
         return
             Position::where("positions.id", $position->id)
             ->select(
-                "title", 
-                "positions.id", 
-                "salary_grades.id as salary_grade_id", 
-                "salary_grades.number", 
-                "salary_grades.amount", 
-                "qualification_standards.education", 
-                "qualification_standards.training", 
-                "qualification_standards.experience", 
-                "qualification_standards.eligibility", 
+                "title",
+                "positions.id",
+                "salary_grades.id as salary_grade_id",
+                "salary_grades.number",
+                "salary_grades.amount",
+                "qualification_standards.education",
+                "qualification_standards.training",
+                "qualification_standards.experience",
+                "qualification_standards.eligibility",
                 "qualification_standards.competency"
-                )
+            )
             ->join("qualification_standards", "qualification_standards.position_id", "positions.id")
             ->join("salary_grades", "salary_grades.id", "positions.salary_grade_id")
             ->first();
@@ -129,16 +142,15 @@ class PositionController extends Controller
 
     public function destroy(Position $position, QualificationStandard $qualificationStandard)
     {
-        $plantillaExist = Plantilla::where([['position_id', $position->id]])
-        ->exists();
+        $plantillaExist = LguPosition::where([['position_id', $position->id]])
+            ->exists();
         if ($plantillaExist) {
-            return $this->error('', 'You cannot delete Position with existing Plantilla.', 400);
-        }else {
+            return $this->error('', 'You cannot delete Position with existing LguPosition.', 400);
+        } else {
             $position->delete();
             //    $qualificationStandard->delete();
             return $this->success('', 'Successfully Deleted', 200);
         }
-       
     }
 
     public function search(Request $request)
@@ -155,16 +167,16 @@ class PositionController extends Controller
         $data = PositionResource::collection(
             Position::where("title", "like", "%" . $searchKeyword . "%")
                 ->select(
-                    "title", 
-                    "positions.id", 
-                    "salary_grades.number", 
-                    "salary_grades.amount", 
-                    "qualification_standards.education", 
-                    "qualification_standards.training", 
-                    "qualification_standards.experience", 
-                    "qualification_standards.eligibility", 
+                    "title",
+                    "positions.id",
+                    "salary_grades.number",
+                    "salary_grades.amount",
+                    "qualification_standards.education",
+                    "qualification_standards.training",
+                    "qualification_standards.experience",
+                    "qualification_standards.eligibility",
                     "qualification_standards.competency"
-                    )
+                )
                 ->join("qualification_standards", "qualification_standards.position_id", "positions.id")
                 ->join("salary_grades", "salary_grades.id", "positions.salary_grade_id")
                 ->orWhere("qualification_standards.education", "like", "%" . $searchKeyword . "%")

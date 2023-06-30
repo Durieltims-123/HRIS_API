@@ -35,7 +35,7 @@ class VacancyTest extends TestCase
             "status" => "Test Status",
             'date_queued' => "2023-01-01",
             'date_approved' => "2023-01-01",
-            'plantilla_id' => 1,
+            'lgu_position_id' => 1,
         ];
         $user = User::factory()->create();
         $this->assertCount(0, $user->tokens);
@@ -54,7 +54,7 @@ class VacancyTest extends TestCase
             "status" => "updatedTest Status",
             'date_queued' => "2023-01-01",
             'date_approved' => "2023-01-01",
-            'plantilla_id' => 1,
+            'lgu_position_id' => 1,
         ];
         $sg = Vacancy::where([["date_submitted", "2023-03-05"], ["status", "Test Status"]])->first();
 
@@ -75,7 +75,7 @@ class VacancyTest extends TestCase
             "status" => "updatedTest Status",
             'date_queued' => null,
             'date_approved' => null,
-            'plantilla_id' => 1,
+            'lgu_position_id' => 1,
         ];
         $dept = Vacancy::where([["date_submitted", "2023-03-07"], ["status", "updatedTest Status"]])->first();
         $user = User::factory()->create();

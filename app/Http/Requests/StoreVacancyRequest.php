@@ -22,7 +22,7 @@ class StoreVacancyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'plantilla_id' => ['required'],
+            'lgu_position_id' => ['required'],
             'date_submitted' => ['required', 'date'],
             'date_queued' => ['nullable','date'],
             'date_approved' => ['nullable','date'],

@@ -12,9 +12,9 @@ class Vacancy extends Model
 {
     use HasFactory;
 
-    public function belongsToPlantilla (): BelongsTo
+    public function belongsToLguPosition (): BelongsTo
     {
-        return $this->belongsTo(Plantilla::class, 'plantilla_id');
+        return $this->belongsTo(LguPosition::class, 'lgu_position_id');
     }
     public function hasManyPublication (): HasMany
     {
@@ -30,7 +30,7 @@ class Vacancy extends Model
         'date_queued',
         'date_approved',
         'status',
-        'plantilla_id',
+        'lgu_position_id',
 
         'office_id',
         'position_id',

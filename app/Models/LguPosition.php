@@ -10,25 +10,25 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Plantilla extends Model
+class LguPosition extends Model
 {
     use HasFactory;
 
-    public function hasOneOffice ():HasOne
+    public function hasOneOffice(): HasOne
     {
         return $this->hasOne(Office::class);
     }
-    public function belongsToPosition ():BelongsTo
+    public function belongsToPosition(): BelongsTo
     {
         return $this->belongsTo(Position::class, 'position_id');
     }
-    public function hasManyPositionDescription (): HasMany
+    public function hasManyPositionDescription(): HasMany
     {
-        return $this->hasMany(PositionDescription::class, 'plantilla_id');
+        return $this->hasMany(PositionDescription::class, 'lgu_position_id');
     }
-    public function hasOneVacancy (): HasOne
+    public function hasOneVacancy(): HasOne
     {
-        return $this->hasOne(Vacancy::class, 'plantilla_id');
+        return $this->hasOne(Vacancy::class, 'lgu_position_id');
     }
 
     protected $primaryKey = 'id';
@@ -38,6 +38,9 @@ class Plantilla extends Model
         'position_id',
         'item_number',
         'place_of_assignment',
-        'year'
+        'year',
+        'position_status',
+        'status'
+
     ];
 }

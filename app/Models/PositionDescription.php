@@ -10,15 +10,15 @@ class PositionDescription extends Model
 {
     use HasFactory;
 
-    public function belongsToPlantilla (): BelongsTo
+    public function belongsToLguPosition (): BelongsTo
     {
-        return $this->belongsTo(Plantilla::class, 'plantilla_id');
+        return $this->belongsTo(LguPosition::class, 'lgu_position_id');
     }
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'plantilla_id',
+        'lgu_position_id',
         'description',
     ];
 }

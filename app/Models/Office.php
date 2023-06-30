@@ -12,9 +12,9 @@ class Office extends Model
 {
     use HasFactory;
 
-    public function belongsToPlantilla (): BelongsTo
+    public function belongsToLguPosition (): BelongsTo
     {
-        return $this->belongsTo(Plantilla::class);
+        return $this->belongsTo(LguPosition::class);
     }
     public function hasManyEmployee (): HasMany
     {

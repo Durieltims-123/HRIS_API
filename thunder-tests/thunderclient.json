@@ -1946,7 +1946,7 @@
           "value": ""
         },
         {
-          "name": "plantilla_id",
+          "name": "lgu_position_id",
           "value": "1"
         }
       ]
@@ -2121,7 +2121,7 @@
     "_id": "a1e6f98a-4d61-410e-bb71-92d877ead361",
     "colId": "24751377-77f2-486c-bc16-f3219ce6304e",
     "containerId": "",
-    "name": "Add Plantilla",
+    "name": "Add LguPosition",
     "url": "http://127.0.0.1:8000/api/plantilla",
     "method": "POST",
     "sortNum": 10000,
@@ -2169,7 +2169,7 @@
     "_id": "784883a4-493c-445d-b740-fe9391240eb1",
     "colId": "24751377-77f2-486c-bc16-f3219ce6304e",
     "containerId": "",
-    "name": "Update Plantilla",
+    "name": "Update LguPosition",
     "url": "http://127.0.0.1:8000/api/plantilla/4",
     "method": "PATCH",
     "sortNum": 20000,
@@ -2209,7 +2209,7 @@
     "_id": "56ae5ab1-5ca6-48a2-acaf-9aa559b20357",
     "colId": "24751377-77f2-486c-bc16-f3219ce6304e",
     "containerId": "",
-    "name": "Delete Plantilla",
+    "name": "Delete LguPosition",
     "url": "http://127.0.0.1:8000/api/plantilla/3",
     "method": "DELETE",
     "sortNum": 30000,
@@ -2421,7 +2421,7 @@
     "_id": "770a3690-f86e-4726-9c46-292e9c8d00a4",
     "colId": "24751377-77f2-486c-bc16-f3219ce6304e",
     "containerId": "",
-    "name": "Index Plantilla",
+    "name": "Index LguPosition",
     "url": "http://127.0.0.1:8000/api/plantilla",
     "method": "GET",
     "sortNum": 40000,
@@ -2439,7 +2439,7 @@
     "_id": "770a3690-f86e-4726-9c46-292e9c8d00a4",
     "colId": "24751377-77f2-486c-bc16-f3219ce6304e",
     "containerId": "",
-    "name": "Index Plantilla",
+    "name": "Index LguPosition",
     "url": "http://127.0.0.1:8000/api/plantilla",
     "method": "GET",
     "sortNum": 40000,

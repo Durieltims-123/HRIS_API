@@ -13,7 +13,7 @@ use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\InterviewController;
-use App\Http\Controllers\PlantillaController;
+use App\Http\Controllers\LguPositionController;
 use App\Http\Controllers\PsbMemberController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\DepartmentController;
@@ -75,12 +75,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/psb-member', PsbMemberController::class);
     Route::resource('/assessment', AssessmentController::class);
     Route::resource('/vacancy', VacancyController::class);
+    Route::post('/search-vacancy', [VacancyController::class, 'search']);
     Route::get('/vacancy-queue/{vacancy}', [VacancyController::class, 'vacancyQueue']);
     Route::get('/vacancy-all-approved', [VacancyController::class, 'allApproved']);
     Route::get('/vacancy-all-queued', [VacancyController::class, 'allQueued']);
 
     Route::post('/search-closing-date', [PublicationController::class, 'searchClosingDate']);
-    Route::resource('/plantilla', PlantillaController::class);
+    Route::post('/search-lgu-position', [LguPositionController::class, 'search']);
+    Route::resource('/lgu-position', LguPositionController::class);
     Route::resource('/department', DepartmentController::class);
     Route::resource('/publication', PublicationController::class);
     Route::resource('/application', ApplicationController::class);

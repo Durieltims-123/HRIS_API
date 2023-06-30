@@ -6,7 +6,7 @@ use App\Http\Requests\StoreDepartmentRequest;
 use App\Http\Resources\DepartmentResource;
 use App\Models\Department;
 use App\Models\Office;
-use App\Models\Plantilla;
+use App\Models\LguPosition;
 use App\Models\Position;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;

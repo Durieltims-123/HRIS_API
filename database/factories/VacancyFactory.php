@@ -18,11 +18,11 @@ class VacancyFactory extends Factory
     {
         static $num = 1;
         return [
-            'plantilla_id' => $num++,
+            'lgu_position_id' => $num++,
             'date_submitted' => fake()->date('Y-m-d'),
             'date_queued' => fake()->date('Y-m-d'),
             'date_approved' => fake()->date('Y-m-d'),
-            'status' => fake()->word()
+            'status' => "Active"
         ];
     }
 }

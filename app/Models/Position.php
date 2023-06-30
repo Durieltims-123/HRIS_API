@@ -20,9 +20,9 @@ class Position extends Model
     {
         return $this->hasMany(QualificationStandard::class);
     }
-    public function hasManyPlantilla (): HasMany
+    public function hasManyLguPosition (): HasMany
     {
-        return $this->hasMany(Plantilla::class);
+        return $this->hasMany(LguPosition::class);
     }
 
     protected $primaryKey = 'id';
