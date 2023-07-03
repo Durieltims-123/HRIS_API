@@ -16,9 +16,13 @@ class LguPositionResource extends JsonResource
     {
         return [
             "id" => (string)$this->id,
-            "attributes"=>[
-                "office_name" => (string)$this->lgu_position_id,
+            "attributes" => [
+                "office_name" => (string)$this->office_name,
                 "department_name" => (string)$this->department_name,
+                "office_id" => (string)$this->office_id,
+                "position_id" => (string)$this->position_id,
+                "year" => (string)$this->year,
+                "office" => (string)$this->department_name . "-" . (string)$this->office_name,
                 "title" => (string)$this->title,
                 "number" => (string)$this->number,
                 "amount" => (string)$this->amount,
@@ -28,6 +32,10 @@ class LguPositionResource extends JsonResource
                 "experience" => (string)$this->experience,
                 "eligibility" => (string)$this->eligibility,
                 "competency" => (string)$this->competency,
+                "status" => (string)$this->status,
+                "description" => (string)$this->description,
+                "place_of_assignment" => (string)$this->place_of_assignment,
+                "position_status" => (string)$this->position_status,
             ],
         ];
     }

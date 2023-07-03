@@ -142,9 +142,9 @@ class PositionController extends Controller
 
     public function destroy(Position $position, QualificationStandard $qualificationStandard)
     {
-        $plantillaExist = LguPosition::where([['position_id', $position->id]])
+        $lguPositionExist = LguPosition::where([['position_id', $position->id]])
             ->exists();
-        if ($plantillaExist) {
+        if ($lguPositionExist) {
             return $this->error('', 'You cannot delete Position with existing LguPosition.', 400);
         } else {
             $position->delete();

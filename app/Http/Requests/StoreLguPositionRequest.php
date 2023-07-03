@@ -24,9 +24,11 @@ class StoreLguPositionRequest extends FormRequest
         return [
             'office_id' => ['required'],
             'position_id' => ['required'],
-            'item_number' => ['required', 'string', 'max:255'],
+            'item_number' => ['required_if:position_status,==,Permanent','max:255'],
             'place_of_assignment' => ['nullable', 'string', 'max:255'],
-            'year' => ['required', 'string'],
+            'year' => ['required'],
+            'position_status' => ['required', 'string'],
+            'status' => ['required'],
         ];
     }
 }

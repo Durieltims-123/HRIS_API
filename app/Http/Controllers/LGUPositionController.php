@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vacancy;
 use App\Models\LguPosition;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
@@ -19,10 +20,10 @@ class LguPositionController extends Controller
     public function index()
     {
 
-        $plantilla = LguPosition::with(['hasOneVacancy'])->get();
+        $lguPosition = LguPosition::with(['hasOneVacancy'])->get();
 
-        return LguPositionResource::collection($plantilla);
-        //    return $plantilla->mapInto(VacancyResource::class);
+        return LguPositionResource::collection($lguPosition);
+        //    return $lguPosition->mapInto(VacancyResource::class);
     }
 
     /**
@@ -40,21 +41,23 @@ class LguPositionController extends Controller
     {
         $request->validated($request->all());
 
-        $plantillaExist = LguPosition::where('item_number', $request->item_number)->exists();
-        if ($plantillaExist) {
+        $lguPositionExist = LguPosition::where('item_number', $request->item_number)->exists();
+        if ($lguPositionExist) {
             return $this->error('', 'Duplicate Entry', 400);
         }
 
-        $plantilla = LguPosition::create([
+        $lguPosition = LguPosition::create([
             'office_id' => $request->office_id,
             'position_id' => $request->position_id,
             'item_number' => $request->item_number,
-            "place_of_assignment" => $request->place_of_assignment,
-            "year" => $request->year
+            'place_of_assignment' => $request->place_of_assignment,
+            'year' => (int) date('Y', strtotime($request->year)),
+            'status' => $request->status,
+            'position_status' => $request->position_status
         ]);
 
         PositionDescription::create([
-            'lgu_position_id' => $plantilla->id,
+            'lgu_position_id' => $lguPosition->id,
             'description' => $request->description
         ]);
 
@@ -66,9 +69,18 @@ class LguPositionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(LguPosition $lguPosition)
     {
-        //
+        return new LguPositionResource(
+            LguPosition::join('positions', 'positions.id', 'lgu_positions.position_id')
+                ->join('offices', 'lgu_positions.office_id', 'offices.id')
+                ->join('departments', 'departments.id', 'offices.department_id')
+                ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
+                ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
+                ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
+                ->where('lgu_position_id', $lguPosition->id)
+                ->first()
+        );
     }
 
     /**
@@ -82,20 +94,24 @@ class LguPositionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, LguPosition $plantilla)
+    public function update(Request $request, LguPosition $lguPosition)
     {
-        $plantilla->item_number = $request->item_number;
-        $plantilla->place_of_assignment = $request->place_of_assignment;
-        $plantilla->year = $request->year;
-        $plantilla->save();
 
-        PositionDescription::where('lgu_position_id', $plantilla->id)
+        $lguPosition->office_id = $request->office_id;
+        $lguPosition->position_id = $request->position_id;
+        $lguPosition->item_number = $request->item_number;
+        $lguPosition->place_of_assignment = $request->place_of_assignment;
+        $lguPosition->year = (int) date('Y', strtotime($request->year));
+        $lguPosition->status = $request->status;
+        $lguPosition->position_status = $request->position_status;
+        $lguPosition->save();
+
+        PositionDescription::where('lgu_position_id', $lguPosition->id)
             ->update([
-                'lgu_position_id' => $plantilla->id,
                 'description' => $request->description
             ]);
 
-        return new LguPositionResource($plantilla);
+        return new LguPositionResource($lguPosition);
     }
 
     public function search(Request $request)
@@ -103,101 +119,53 @@ class LguPositionController extends Controller
         $activePage = $request->activePage;
         $status = $request->status;
         // initial test
-        $status = "Active";
         $searchKeyword = $request->searchKeyword;
         $orderAscending = $request->orderAscending;
         $orderBy = $request->orderBy;
         $year = $request->year;
-        $positionStatus = $request->positionStatus;
+        $positionStatus = implode('","', $request->positionStatus);
 
-        $orderAscending  ? $orderAscending = "asc" : $orderAscending = "desc";
-        $searchKeyword == null ? $searchKeyword = "" : $searchKeyword = $searchKeyword;
-        ($orderBy == null || $orderBy == "id") ? $orderBy = "lgu_positions.id" : $orderBy = $orderBy;
+        $orderAscending  ? $orderAscending = 'asc' : $orderAscending = 'desc';
+        $searchKeyword == null ? $searchKeyword = '' : $searchKeyword = $searchKeyword;
+        ($orderBy == null || $orderBy == 'id') ? $orderBy = 'lgu_positions.id' : $orderBy = $orderBy;
 
         $data = LguPositionResource::collection(
-            LguPosition::join('positions', 'positions.id', 'lgu_positions.position_id')
+            LguPosition::select('*', 'lgu_positions.id')
+                ->join('positions', 'positions.id', 'lgu_positions.position_id')
                 ->join('offices', 'lgu_positions.office_id', 'offices.id')
                 ->join('departments', 'departments.id', 'offices.department_id')
                 ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
                 ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
-                ->join('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
-                // ->where([
-                //     ["lgu_positions.id", "like", "%" . $searchKeyword . "%"], ["lgu_positions.year", "like", $year . "%"],
-                //     [DB::RAW('position_status IN (' . $positionStatus . ')')]
-                // ])
-                // ->orWhere([
-                //     ["positions.title", "like", "%" . $searchKeyword . "%"], ["lgu_positions.year", "like", $year . "%"],
-                //     [DB::RAW('position_status IN (' . $positionStatus . ')')]
-                // ])
-                // ->orWhere([
-                //     ["lgu_positions.item_number", "like", "%" . $searchKeyword . "%"], ["lgu_positions.year", "like", $year . "%"],
-                //     [DB::RAW('position_status IN (' . $positionStatus . ')')]
-                // ])
-                // ->orWhere([
-                //     ["qualification_standards.education", "like", "%" . $searchKeyword . "%"], ["lgu_positions.year", "like", $year . "%"],
-                //     [DB::RAW('position_status IN (' . $positionStatus . ')')]
-                // ])
-                // ->orWhere([
-                //     ["qualification_standards.eligibility", "like", "%" . $searchKeyword . "%"], ["lgu_positions.year", "like", $year . "%"],
-                //     [DB::RAW('position_status IN (' . $positionStatus . ')')]
-                // ])
-                // ->orWhere([
-                //     ["qualification_standards.training", "like", "%" . $searchKeyword . "%"], ["lgu_positions.year", "like", $year . "%"],
-                //     [DB::RAW('position_status IN (' . $positionStatus . ')')]
-                // ])
-                // ->orWhere([
-                //     ["qualification_standards.experience", "like", "%" . $searchKeyword . "%"], ["lgu_positions.year", "like", $year . "%"],
-                //     [DB::RAW('position_status IN (' . $positionStatus . ')')]
-                // ])
-                // ->orWhere([
-                //     ["position_descriptions.description", "like", "%" . $searchKeyword . "%"], ["lgu_positions.year", "like", $year . "%"],
-                //     [DB::RAW('position_status IN (' . $positionStatus . ')')]
-                // ])
+                ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
+                ->whereRaw('lgu_positions.id LIKE "%' . $searchKeyword . '%" AND lgu_positions.year LIKE "' . $year . '%" AND position_status IN ("' . $positionStatus . '")')
+                ->orWhereRaw('positions.title LIKE "%' . $searchKeyword . '%" AND lgu_positions.year LIKE "' . $year . '%" AND position_status IN ("' . $positionStatus . '")')
+                ->orWhereRaw('lgu_positions.item_number LIKE "%' . $searchKeyword . '%" AND lgu_positions.year LIKE "' . $year . '%" AND position_status IN ("' . $positionStatus . '")')
+                ->orWhereRaw('qualification_standards.education LIKE "%' . $searchKeyword . '%" AND lgu_positions.year LIKE "' . $year . '%" AND position_status IN ("' . $positionStatus . '")')
+                ->orWhereRaw('qualification_standards.eligibility LIKE "%' . $searchKeyword . '%" AND lgu_positions.year LIKE "' . $year . '%" AND position_status IN ("' . $positionStatus . '")')
+                ->orWhereRaw('qualification_standards.training LIKE "%' . $searchKeyword . '%" AND lgu_positions.year LIKE "' . $year . '%" AND position_status IN ("' . $positionStatus . '")')
+                ->orWhereRaw('qualification_standards.experience LIKE "%' . $searchKeyword . '%" AND lgu_positions.year LIKE "' . $year . '%" AND position_status IN ("' . $positionStatus . '")')
+                ->orWhereRaw('position_descriptions.description LIKE "%' . $searchKeyword . '%" AND lgu_positions.year LIKE "' . $year . '%" AND position_status IN ("' . $positionStatus . '")')
                 ->skip(($activePage - 1) * 10)
                 ->orderBy($orderBy, $orderAscending)
                 ->take(10)
                 ->get()
         );
         $pages =
-            LguPosition::select("*", 'lgu_positions.id')
-            ->join('positions', 'positions.id', 'lgu_positions.position_id')
+            LguPosition::select('*', 'lgu_positions.id')
+            ->leftJoin('positions', 'positions.id', 'lgu_positions.position_id')
             ->join('offices', 'lgu_positions.office_id', 'offices.id')
             ->join('departments', 'departments.id', 'offices.department_id')
             ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
             ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
-            ->join('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
-            // ->where([
-            //     ["lgu_positions.id", "like", "%" . $searchKeyword . "%"], ["lgu_positions.year", "like", $year . "%"],
-            //     [DB::RAW('position_status IN (' . $positionStatus . ')')]
-            // ])
-            // ->orWhere([
-            //     ["positions.title", "like", "%" . $searchKeyword . "%"], ["lgu_positions.year", "like", $year . "%"],
-            //     [DB::RAW('position_status IN (' . $positionStatus . ')')]
-            // ])
-            // ->orWhere([
-            //     ["lgu_positions.item_number", "like", "%" . $searchKeyword . "%"], ["lgu_positions.year", "like", $year . "%"],
-            //     [DB::RAW('position_status IN (' . $positionStatus . ')')]
-            // ])
-            // ->orWhere([
-            //     ["qualification_standards.education", "like", "%" . $searchKeyword . "%"], ["lgu_positions.year", "like", $year . "%"],
-            //     [DB::RAW('position_status IN (' . $positionStatus . ')')]
-            // ])
-            // ->orWhere([
-            //     ["qualification_standards.eligibility", "like", "%" . $searchKeyword . "%"], ["lgu_positions.year", "like", $year . "%"],
-            //     [DB::RAW('position_status IN (' . $positionStatus . ')')]
-            // ])
-            // ->orWhere([
-            //     ["qualification_standards.training", "like", "%" . $searchKeyword . "%"], ["lgu_positions.year", "like", $year . "%"],
-            //     [DB::RAW('position_status IN (' . $positionStatus . ')')]
-            // ])
-            // ->orWhere([
-            //     ["qualification_standards.experience", "like", "%" . $searchKeyword . "%"], ["lgu_positions.year", "like", $year . "%"],
-            //     [DB::RAW('position_status IN (' . $positionStatus . ')')]
-            // ])
-            // ->orWhere([
-            //     ["position_descriptions.description", "like", "%" . $searchKeyword . "%"], ["lgu_positions.year", "like", $year . "%"],
-            //     [DB::RAW('position_status IN (' . $positionStatus . ')')]
-            // ])
+            ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
+            ->whereRaw('lgu_positions.id LIKE "%' . $searchKeyword . '%" AND lgu_positions.year LIKE "' . $year . '%" AND position_status IN ("' . $positionStatus . '")')
+            ->orWhereRaw('positions.title LIKE "%' . $searchKeyword . '%" AND lgu_positions.year LIKE "' . $year . '%" AND position_status IN ("' . $positionStatus . '")')
+            ->orWhereRaw('lgu_positions.item_number LIKE "%' . $searchKeyword . '%" AND lgu_positions.year LIKE "' . $year . '%" AND position_status IN ("' . $positionStatus . '")')
+            ->orWhereRaw('qualification_standards.education LIKE "%' . $searchKeyword . '%" AND lgu_positions.year LIKE "' . $year . '%" AND position_status IN ("' . $positionStatus . '")')
+            ->orWhereRaw('qualification_standards.eligibility LIKE "%' . $searchKeyword . '%" AND lgu_positions.year LIKE "' . $year . '%" AND position_status IN ("' . $positionStatus . '")')
+            ->orWhereRaw('qualification_standards.training LIKE "%' . $searchKeyword . '%" AND lgu_positions.year LIKE "' . $year . '%" AND position_status IN ("' . $positionStatus . '")')
+            ->orWhereRaw('qualification_standards.experience LIKE "%' . $searchKeyword . '%" AND lgu_positions.year LIKE "' . $year . '%" AND position_status IN ("' . $positionStatus . '")')
+            ->orWhereRaw('position_descriptions.description LIKE "%' . $searchKeyword . '%" AND lgu_positions.year LIKE "' . $year . '%" AND position_status IN ("' . $positionStatus . '")')
             ->count();
 
         return compact('pages', 'data', 'positionStatus');
@@ -207,9 +175,16 @@ class LguPositionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(LguPosition $plantilla)
+    public function destroy(LguPosition $lguPosition)
     {
-        $plantilla->delete();
-        return $this->success('', 'Successfully Deleted', 200);
+        $lguPositionExist = Vacancy::where([['lgu_position_id', $lguPosition->id]])
+            ->exists();
+        if ($lguPositionExist) {
+            return $this->error('', 'You cannot delete Data connected to Vacancies.', 400);
+        } else {
+            PositionDescription::where('lgu_position_id', $lguPosition->id)->delete();
+            $lguPosition->delete();
+            return $this->success('', 'Successfully Deleted', 200);
+        }
     }
 }
