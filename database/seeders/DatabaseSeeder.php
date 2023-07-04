@@ -50,9 +50,14 @@ class DatabaseSeeder extends Seeder
         // ]);
         User::factory(100)->create();
         Holiday::factory(10)->create();
-        SalaryGrade::factory(33)->create();
-        Position::factory(33)->create();
-        QualificationStandard::factory(33)->create();
+        // SalaryGrade::factory(33)->create();
+        // Position::factory(33)->create();
+        // QualificationStandard::factory(33)->create();
+        $this->call([
+            SalaryGradeSeeder::class,
+            PositionSeeder::class,
+        ]);
+
         PersonnelSelectionBoard::factory(5)
             ->has(PsbMember::factory()->count(5))
             ->create();
@@ -80,7 +85,6 @@ class DatabaseSeeder extends Seeder
         Application::factory(10)->create();
         $this->call([
             PersonalDataSheetSeeder::class,
-
         ]);
         Assessment::factory(5)->create();
         Interview::factory(5)

@@ -126,53 +126,60 @@ class VacancyController extends Controller
         $activePage = $request->activePage;
         $status = $request->status;
         // initial test
-        $status = "Active";
         $searchKeyword = $request->searchKeyword;
         $orderAscending = $request->orderAscending;
         $orderBy = $request->orderBy;
         $year = $request->year;
-        $orderAscending  ? $orderAscending = "asc" : $orderAscending = "desc";
-        $searchKeyword == null ? $searchKeyword = "" : $searchKeyword = $searchKeyword;
-        ($orderBy == null || $orderBy == "id") ? $orderBy = "vacancies.id" : $orderBy = $orderBy;
+
+        $orderAscending  ? $orderAscending = 'asc' : $orderAscending = 'desc';
+        $searchKeyword == null ? $searchKeyword = '' : $searchKeyword = $searchKeyword;
+        ($orderBy == null || $orderBy == 'id') ? $orderBy = 'lgu_positions.id' : $orderBy = $orderBy;
 
         $data = VacancyResource::collection(
-            Vacancy::select("*", 'vacancies.id')
+            Vacancy::select('*', 'vacancies.id', 'vacancies.status')
                 ->join('lgu_positions', 'lgu_positions.id', 'vacancies.lgu_position_id')
                 ->join('positions', 'positions.id', 'lgu_positions.position_id')
                 ->join('offices', 'lgu_positions.office_id', 'offices.id')
                 ->join('departments', 'departments.id', 'offices.department_id')
                 ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
                 ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
-                ->where([["vacancies.id", "like", "%" . $searchKeyword . "%"], ["vacancies.date_submitted", "like", $year . "%"]])
-                ->orWhere([["positions.title", "like", "%" . $searchKeyword . "%"], ["vacancies.date_submitted", "like", $year . "%"]])
-                ->orWhere([["lgu_positions.item_number", "like", "%" . $searchKeyword . "%"], ["vacancies.date_submitted", "like", $year . "%"]])
-                ->orWhere([["qualification_standards.education", "like", "%" . $searchKeyword . "%"], ["vacancies.date_submitted", "like", $year . "%"]])
-                ->orWhere([["qualification_standards.eligibility", "like", "%" . $searchKeyword . "%"], ["vacancies.date_submitted", "like", $year . "%"]])
-                ->orWhere([["qualification_standards.training", "like", "%" . $searchKeyword . "%"], ["vacancies.date_submitted", "like", $year . "%"]])
-                ->orWhere([["qualification_standards.experience", "like", "%" . $searchKeyword . "%"], ["vacancies.date_submitted", "like", $year . "%"]])
+                ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
+                ->whereRaw('vacancies.date_submitted LIKE "%' . $searchKeyword . '%" AND vacancies.date_submitted LIKE "' . $year . '%" ')
+                ->whereRaw('lgu_positions.id LIKE "%' . $searchKeyword . '%" AND vacancies.date_submitted LIKE "' . $year . '%" ')
+                ->orWhereRaw('positions.title LIKE "%' . $searchKeyword . '%" AND vacancies.date_submitted LIKE "' . $year . '%" ')
+                ->orWhereRaw('lgu_positions.item_number LIKE "%' . $searchKeyword . '%" AND vacancies.date_submitted LIKE "' . $year . '%" ')
+                ->orWhereRaw('qualification_standards.education LIKE "%' . $searchKeyword . '%" AND vacancies.date_submitted LIKE "' . $year . '%" ')
+                ->orWhereRaw('qualification_standards.eligibility LIKE "%' . $searchKeyword . '%" AND vacancies.date_submitted LIKE "' . $year . '%" ')
+                ->orWhereRaw('qualification_standards.training LIKE "%' . $searchKeyword . '%" AND vacancies.date_submitted LIKE "' . $year . '%" ')
+                ->orWhereRaw('qualification_standards.experience LIKE "%' . $searchKeyword . '%" AND vacancies.date_submitted LIKE "' . $year . '%" ')
+                ->orWhereRaw('position_descriptions.description LIKE "%' . $searchKeyword . '%" AND vacancies.date_submitted LIKE "' . $year . '%" ')
                 ->skip(($activePage - 1) * 10)
                 ->orderBy($orderBy, $orderAscending)
                 ->take(10)
                 ->get()
         );
-        $pages = Vacancy::select("*", 'vacancies.id')
+        $pages =
+            Vacancy::select('*', 'vacancies.id', 'vacancies.status')
             ->join('lgu_positions', 'lgu_positions.id', 'vacancies.lgu_position_id')
-            ->join('positions', 'positions.id', 'lgu_positions.position_id')
+            ->leftJoin('positions', 'positions.id', 'lgu_positions.position_id')
             ->join('offices', 'lgu_positions.office_id', 'offices.id')
             ->join('departments', 'departments.id', 'offices.department_id')
             ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
             ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
-            ->where([["vacancies.id", "like", "%" . $searchKeyword . "%"], ["vacancies.date_submitted", "like", $year . "%"]])
-            ->orWhere([["positions.title", "like", "%" . $searchKeyword . "%"], ["vacancies.date_submitted", "like", $year . "%"]])
-            ->orWhere([["lgu_positions.item_number", "like", "%" . $searchKeyword . "%"], ["vacancies.date_submitted", "like", $year . "%"]])
-            ->orWhere([["qualification_standards.education", "like", "%" . $searchKeyword . "%"], ["vacancies.date_submitted", "like", $year . "%"]])
-            ->orWhere([["qualification_standards.eligibility", "like", "%" . $searchKeyword . "%"], ["vacancies.date_submitted", "like", $year . "%"]])
-            ->orWhere([["qualification_standards.training", "like", "%" . $searchKeyword . "%"], ["vacancies.date_submitted", "like", $year . "%"]])
-            ->orWhere([["qualification_standards.experience", "like", "%" . $searchKeyword . "%"], ["vacancies.date_submitted", "like", $year . "%"]])
+            ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
+            ->whereRaw('lgu_positions.id LIKE "%' . $searchKeyword . '%" AND vacancies.date_submitted LIKE "' . $year . '%" ')
+            ->orWhereRaw('positions.title LIKE "%' . $searchKeyword . '%" AND vacancies.date_submitted LIKE "' . $year . '%" ')
+            ->orWhereRaw('lgu_positions.item_number LIKE "%' . $searchKeyword . '%" AND vacancies.date_submitted LIKE "' . $year . '%" ')
+            ->orWhereRaw('qualification_standards.education LIKE "%' . $searchKeyword . '%" AND vacancies.date_submitted LIKE "' . $year . '%" ')
+            ->orWhereRaw('qualification_standards.eligibility LIKE "%' . $searchKeyword . '%" AND vacancies.date_submitted LIKE "' . $year . '%" ')
+            ->orWhereRaw('qualification_standards.training LIKE "%' . $searchKeyword . '%" AND vacancies.date_submitted LIKE "' . $year . '%" ')
+            ->orWhereRaw('qualification_standards.experience LIKE "%' . $searchKeyword . '%" AND vacancies.date_submitted LIKE "' . $year . '%" ')
+            ->orWhereRaw('position_descriptions.description LIKE "%' . $searchKeyword . '%" AND vacancies.date_submitted LIKE "' . $year . '%" ')
             ->count();
 
         return compact('pages', 'data');
     }
+
 
     public function allApproved()
     {

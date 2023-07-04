@@ -108,10 +108,10 @@ class OfficeController extends Controller
         $orderBy = $request->orderBy;
         $orderAscending  ? $orderAscending = "asc" : $orderAscending = "desc";
         $searchKeyword == null ? $searchKeyword = "" : $searchKeyword = $searchKeyword;
-        $orderBy == null ? $orderBy = "id" : $orderBy = $orderBy;
+        $orderBy == null ? $orderBy = "offices.id" : $orderBy = $orderBy;
 
         $data = OfficeResource::collection(
-            Office::where("id", "like", "%" . $searchKeyword . "%")
+            Office::where("offices.id", "like", "%" . $searchKeyword . "%")
                 ->orWhere("office_name", "like", "%" . $searchKeyword . "%")
                 ->orWhere("office_code", "like", "%" . $searchKeyword . "%")
                 ->skip(($activePage - 1) * 10)
@@ -121,7 +121,7 @@ class OfficeController extends Controller
                 ->get()
         );
 
-        $pages = Office::where("id", "like", "%" . $searchKeyword . "%")
+        $pages = Office::where("offices.id", "like", "%" . $searchKeyword . "%")
             ->orWhere("office_name", "like", "%" . $searchKeyword . "%")
             ->orWhere("office_code", "like", "%" . $searchKeyword . "%")
             ->orWhere("department_name", "like", "%" . $searchKeyword . "%")
