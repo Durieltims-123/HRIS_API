@@ -158,9 +158,8 @@ class LguPositionController extends Controller
         }
 
         $data = LguPositionResource::collection($rawData);
-        $pages =
-            LguPosition::select('*', 'lgu_positions.id')
-            ->leftJoin('positions', 'positions.id', 'lgu_positions.position_id')
+        $pages = LguPosition::select('*', 'lgu_positions.id')
+            ->join('positions', 'positions.id', 'lgu_positions.position_id')
             ->join('offices', 'lgu_positions.office_id', 'offices.id')
             ->join('departments', 'departments.id', 'offices.department_id')
             ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
@@ -176,7 +175,7 @@ class LguPositionController extends Controller
             ->orWhereRaw('position_descriptions.description LIKE "%' . $searchKeyword . '%" AND lgu_positions.year LIKE "' . $year . '%" AND position_status IN ("' . $positionStatus . '") AND status IN ("' . $status . '")')
             ->count();
 
-        return compact('pages', 'data', 'positionStatus');
+        return compact('pages', 'data');
     }
 
 
