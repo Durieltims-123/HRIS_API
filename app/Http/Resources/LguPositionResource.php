@@ -36,6 +36,7 @@ class LguPositionResource extends JsonResource
                 "description" => (string)$this->description,
                 "place_of_assignment" => (string)$this->place_of_assignment,
                 "position_status" => (string)$this->position_status,
+                "label" =>(string)$this->title." - ".(string)$this->item_number,
             ],
         ];
     }
