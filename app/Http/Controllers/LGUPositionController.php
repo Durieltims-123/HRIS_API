@@ -132,7 +132,27 @@ class LguPositionController extends Controller
         $searchKeyword == null ? $searchKeyword = '' : $searchKeyword = $searchKeyword;
         ($orderBy == null || $orderBy == 'id') ? $orderBy = 'lgu_positions.id' : $orderBy = $orderBy;
 
-        $rawData = LguPosition::select('*', 'lgu_positions.id')
+        $rawData = LguPosition::select(
+            'office_name',
+            'department_name',
+            'lgu_positions.office_id',
+            'lgu_positions.position_id',
+            'year',
+            'title',
+            'number',
+            'amount',
+            'item_number',
+            'education',
+            'training',
+            'experience',
+            'eligibility',
+            'competency',
+            'status',
+            'description',
+            'place_of_assignment',
+            'position_status',
+            'lgu_positions.id'
+        )
             ->join('positions', 'positions.id', 'lgu_positions.position_id')
             ->join('offices', 'lgu_positions.office_id', 'offices.id')
             ->join('departments', 'departments.id', 'offices.department_id')
@@ -158,7 +178,7 @@ class LguPositionController extends Controller
         }
 
         $data = LguPositionResource::collection($rawData);
-        $pages = LguPosition::select('*', 'lgu_positions.id')
+        $pages = LguPosition::select('lgu_positions.id')
             ->join('positions', 'positions.id', 'lgu_positions.position_id')
             ->join('offices', 'lgu_positions.office_id', 'offices.id')
             ->join('departments', 'departments.id', 'offices.department_id')

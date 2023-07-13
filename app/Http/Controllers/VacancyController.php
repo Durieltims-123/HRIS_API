@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 use App\Http\Resources\VacancyResource;
 use App\Http\Requests\StoreVacancyRequest;
+use App\Models\Publication;
 
 class VacancyController extends Controller
 {
@@ -39,15 +40,14 @@ class VacancyController extends Controller
      */
     public function store(StoreVacancyRequest $request)
     {
-
         $request->validated($request->all());
 
         $vacancyExist = Vacancy::where([
-            ['date_submitted', Date('Y-m-d', strtotime($request->date_submitted))],
-            ['date_queued', Date('Y-m-d', strtotime($request->date_queued))],
-            ['date_approved', Date('Y-m-d', strtotime($request->date_approved))],
-            ['status', $request->status]
+            ['lgu_position_id', $request->lgu_position_id],
+            ['date_submitted', Date('Y-m-d', strtotime($request->date_submitted))]
         ])->exists();
+
+
         if ($vacancyExist) {
             return $this->error('', 'Duplicate Entry', 400);
         }
@@ -55,8 +55,6 @@ class VacancyController extends Controller
         Vacancy::create([
             'lgu_position_id' => $request->lgu_position_id,
             'date_submitted' => Date('Y-m-d', strtotime($request->date_submitted)),
-            'date_queued' => Date('Y-m-d', strtotime($request->date_queued)),
-            'date_approved' => Date('Y-m-d', strtotime($request->date_approved)),
             'status' => $request->status
         ]);
 
@@ -89,12 +87,14 @@ class VacancyController extends Controller
     {
 
         $vacancy->date_submitted = Date('Y-m-d', strtotime($request->date_submitted));
-        $vacancy->date_queued = Date('Y-m-d', strtotime($request->date_queued));
-        $vacancy->date_approved = Date('Y-m-d', strtotime($request->date_approved));
+        if (!is_null($request->date_queued)) {
+            $vacancy->date_queued = Date('Y-m-d', strtotime($request->date_queued));
+        }
+        if (!is_null($request->date_queued)) {
+            $vacancy->date_approved = Date('Y-m-d', strtotime($request->date_approved));
+        }
         $vacancy->status = $request->status;
-
         $vacancy->save();
-
         return new VacancyResource($vacancy);
     }
 
@@ -103,8 +103,13 @@ class VacancyController extends Controller
      */
     public function destroy(Vacancy $vacancy)
     {
-        $vacancy->delete();
-        return $this->success('', 'Successfully Deleted', 200);
+        $publicationExists = Publication::where('vacancy_id', $vacancy->id)->exists();
+        if ($publicationExists) {
+            return $this->error('', 'You cannot delete Vacancy with Publication.', 400);
+        } else {
+            $vacancy->delete();
+            return $this->success('', 'Successfully Deleted', 200);
+        }
     }
 
     public function vacancyQueue(Vacancy $vacancy)

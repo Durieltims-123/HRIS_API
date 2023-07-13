@@ -59,7 +59,13 @@ class OfficeController extends Controller
      */
     public function show(Office $office)
     {
-        return $office;
+        return
+            // OfficeResource::collection(
+            Office::select('offices.id', 'department_id', 'office_code', 'office_name', 'department_name')
+            ->where("offices.id", $office->id)
+            ->join('departments', 'departments.id', 'offices.department_id')
+            ->first();
+        // );
     }
 
     /**
@@ -81,7 +87,7 @@ class OfficeController extends Controller
         $office->save();
 
         return new OfficeResource(
-            Office::where('id', $office->id)->join('departments', 'departments.id', 'offices.department_id')->first()
+            Office::where('offices.id', $office->id)->join('departments', 'departments.id', 'offices.department_id')->first()
         );
     }
 
@@ -111,7 +117,8 @@ class OfficeController extends Controller
         $orderBy == null ? $orderBy = "offices.id" : $orderBy = $orderBy;
 
         $data = OfficeResource::collection(
-            Office::where("offices.id", "like", "%" . $searchKeyword . "%")
+            Office::select('offices.id', 'office_code', 'office_name', 'department_name')
+                ->where("offices.id", "like", "%" . $searchKeyword . "%")
                 ->orWhere("office_name", "like", "%" . $searchKeyword . "%")
                 ->orWhere("office_code", "like", "%" . $searchKeyword . "%")
                 ->skip(($activePage - 1) * 10)
@@ -121,7 +128,8 @@ class OfficeController extends Controller
                 ->get()
         );
 
-        $pages = Office::where("offices.id", "like", "%" . $searchKeyword . "%")
+        $pages = Office::select('offices.id', 'office_code', 'office_name', 'department_name')
+            ->where("offices.id", "like", "%" . $searchKeyword . "%")
             ->orWhere("office_name", "like", "%" . $searchKeyword . "%")
             ->orWhere("office_code", "like", "%" . $searchKeyword . "%")
             ->orWhere("department_name", "like", "%" . $searchKeyword . "%")
