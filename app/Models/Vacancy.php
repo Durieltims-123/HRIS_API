@@ -31,7 +31,6 @@ class Vacancy extends Model
         'date_approved',
         'status',
         'lgu_position_id',
-
         'office_id',
         'position_id',
         'item_number',

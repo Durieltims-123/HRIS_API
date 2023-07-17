@@ -43,7 +43,7 @@ class VacancyController extends Controller
         $request->validated($request->all());
 
         $vacancyExist = Vacancy::where([
-            ['lgu_position_id', $request->lgu_position_id],
+            ['lgu_position_id', $request->position_id],
             ['date_submitted', Date('Y-m-d', strtotime($request->date_submitted))]
         ])->exists();
 
@@ -53,7 +53,7 @@ class VacancyController extends Controller
         }
 
         Vacancy::create([
-            'lgu_position_id' => $request->lgu_position_id,
+            'lgu_position_id' => $request->position_id,
             'date_submitted' => Date('Y-m-d', strtotime($request->date_submitted)),
             'status' => $request->status
         ]);
@@ -67,7 +67,15 @@ class VacancyController extends Controller
      */
     public function show(Vacancy $vacancy)
     {
-        return (new VacancyResource($vacancy->loadMissing(['belongsToLguPosition.belongsToPosition'])));
+        return Vacancy::select('*', 'vacancies.id', 'vacancies.status')
+            ->join('lgu_positions', 'lgu_positions.id', 'vacancies.lgu_position_id')
+            ->leftJoin('positions', 'positions.id', 'lgu_positions.position_id')
+            ->join('offices', 'lgu_positions.office_id', 'offices.id')
+            ->join('departments', 'departments.id', 'offices.department_id')
+            ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
+            ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
+            ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
+            ->where("vacancies.id", $vacancy->id)->first();
     }
 
     /**
@@ -93,6 +101,7 @@ class VacancyController extends Controller
         if (!is_null($request->date_queued)) {
             $vacancy->date_approved = Date('Y-m-d', strtotime($request->date_approved));
         }
+        $vacancy->lgu_position_id = $request->position_id;
         $vacancy->status = $request->status;
         $vacancy->save();
         return new VacancyResource($vacancy);
@@ -138,7 +147,7 @@ class VacancyController extends Controller
 
         $orderAscending  ? $orderAscending = 'asc' : $orderAscending = 'desc';
         $searchKeyword == null ? $searchKeyword = '' : $searchKeyword = $searchKeyword;
-        ($orderBy == null || $orderBy == 'id') ? $orderBy = 'lgu_positions.id' : $orderBy = $orderBy;
+        ($orderBy == null || $orderBy == 'id') ? $orderBy = 'vacancies.id' : $orderBy = $orderBy;
 
         $data = VacancyResource::collection(
             Vacancy::select('*', 'vacancies.id', 'vacancies.status')
