@@ -76,9 +76,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/assessment', AssessmentController::class);
     Route::resource('/vacancy', VacancyController::class);
     Route::post('/search-vacancy', [VacancyController::class, 'search']);
-    Route::get('/vacancy-queue/{vacancy}', [VacancyController::class, 'vacancyQueue']);
-    Route::get('/vacancy-all-approved', [VacancyController::class, 'allApproved']);
-    Route::get('/vacancy-all-queued', [VacancyController::class, 'allQueued']);
 
     Route::post('/search-closing-date', [PublicationController::class, 'searchClosingDate']);
     Route::post('/search-lgu-position', [LguPositionController::class, 'search']);
