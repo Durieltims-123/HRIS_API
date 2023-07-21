@@ -105,6 +105,25 @@ class VacancyController extends Controller
         $vacancy->lgu_position_id = $request->position_id;
         $vacancy->status = $request->status;
         $vacancy->save();
+
+        if (!is_null($request->opening_date)) {
+            $publication_exists = Publication::where('vacancy_id', $request->id)->exists();
+            if ($publication_exists) {
+                $publication = Publication::where('vacancy_id', $request->id)->orderBy('id', 'desc')->first();
+                Publication::where('id', $publication->id)->update([
+                    "posting_date" => $request->posting_date,
+                    "closing_date" => $request->closing_date
+                ]);
+            } else {
+                Publication::create([
+                    "vacancy_id" => $vacancy->id,
+                    "posting_date" => $request->posting_date,
+                    "closing_date" => $request->closing_date
+                ]);
+            }
+        }
+
+
         return new VacancyResource($vacancy);
     }
 

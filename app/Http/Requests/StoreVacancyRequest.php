@@ -26,10 +26,11 @@ class StoreVacancyRequest extends FormRequest
             'position' => ['required'],
             'position_id' => ['required'],
             'date_submitted' => ['required', 'date'],
-            'date_approved' => ['exclude_unless::process,Approve','required'],
-            // 'scheduled_opening' => ['required_if:process,Approve', 'after:date_submitted'],
-            // 'scheduled_closing' => ['required_if:process,Approve', 'exclude_if:process,!=,Approve|date|after:scheduled_opening'],
-            // 'date_queued' => ['required_if:process,Queue', 'exclude_if:process,!=,Approve|date|after:date_submitted'],
+            'date_approved' => ['required_if:process,Approve', 'nullable', 'date', 'after_or_equal:date_submitted'],
+            'posting_date' => ['required_if:process,Approve', 'nullable', 'date', 'after_or_equal:date_approved'],
+            'closing_date' => ['required_if:process,Approve', 'nullable', 'date', 'after_or_equal:posting_date'],
+            'date_queued' => ['required_if:process,Queue', 'nullable', 'date', 'after_or_equal:date_submitted'],
+            'state' => "required",
             'status' => ['required', 'string', 'max:255'],
         ];
     }
