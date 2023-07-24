@@ -19,7 +19,7 @@ class PublicationFactory extends Factory
         static $number = 1;
         return [
             'vacancy_id' => $number++,
-            'opening_date' => fake()->date('Y-m-d'),
+            'posting_date' => fake()->date('Y-m-d'),
             'closing_date' => fake()->date('Y-m-d'),
         ];
     }

@@ -79,7 +79,7 @@ class OfficeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Office $office)
+    public function update(StoreOfficeRequest $request, Office $office)
     {
         $office->office_code = $request->office_code;
         $office->office_name = $request->office_name;

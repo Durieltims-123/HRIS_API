@@ -99,26 +99,26 @@ class VacancyController extends Controller
         if (!is_null($request->date_queued)) {
             $vacancy->date_queued = Date('Y-m-d', strtotime($request->date_queued));
         }
-        if (!is_null($request->date_queued)) {
+        if (!is_null($request->date_approved)) {
             $vacancy->date_approved = Date('Y-m-d', strtotime($request->date_approved));
         }
         $vacancy->lgu_position_id = $request->position_id;
         $vacancy->status = $request->status;
         $vacancy->save();
 
-        if (!is_null($request->opening_date)) {
+        if (!is_null($request->date_approved)) {
             $publication_exists = Publication::where('vacancy_id', $request->id)->exists();
             if ($publication_exists) {
                 $publication = Publication::where('vacancy_id', $request->id)->orderBy('id', 'desc')->first();
                 Publication::where('id', $publication->id)->update([
-                    "posting_date" => $request->posting_date,
-                    "closing_date" => $request->closing_date
+                    "posting_date" =>  Date('Y-m-d', strtotime($request->posting_date)),
+                    "closing_date" =>  Date('Y-m-d', strtotime($request->closing_date))
                 ]);
             } else {
                 Publication::create([
                     "vacancy_id" => $vacancy->id,
-                    "posting_date" => $request->posting_date,
-                    "closing_date" => $request->closing_date
+                    "posting_date" =>  Date('Y-m-d', strtotime($request->posting_date)),
+                    "closing_date" =>  Date('Y-m-d', strtotime($request->closing_date))
                 ]);
             }
         }
@@ -159,7 +159,33 @@ class VacancyController extends Controller
         ($orderBy == null || $orderBy == 'id') ? $orderBy = 'vacancies.id' : $orderBy = $orderBy;
 
         $data = VacancyResource::collection(
-            Vacancy::select('*', 'vacancies.id', 'vacancies.status')
+            Vacancy::select(
+                'vacancies.id',
+                'date_submitted',
+                'date_queued',
+                'date_approved',
+                'posting_date',
+                'closing_date',
+                'office_name',
+                'department_name',
+                'office_id',
+                'positions.id as position_id',
+                'year',
+                'title',
+                'number',
+                'amount',
+                'item_number',
+                'education',
+                'training',
+                'experience',
+                'eligibility',
+                'competency',
+                'vacancies.status',
+                'description',
+                'place_of_assignment',
+                'position_status',
+            )
+                ->leftJoin('publications', 'publications.vacancy_id', 'vacancies.id')
                 ->join('lgu_positions', 'lgu_positions.id', 'vacancies.lgu_position_id')
                 ->join('positions', 'positions.id', 'lgu_positions.position_id')
                 ->join('offices', 'lgu_positions.office_id', 'offices.id')
@@ -182,7 +208,8 @@ class VacancyController extends Controller
                 ->get()
         );
         $pages =
-            Vacancy::select('*', 'vacancies.id', 'vacancies.status')
+            Vacancy::select('*')
+            ->leftJoin('publications', 'publications.vacancy_id', 'vacancies.id')
             ->join('lgu_positions', 'lgu_positions.id', 'vacancies.lgu_position_id')
             ->leftJoin('positions', 'positions.id', 'lgu_positions.position_id')
             ->join('offices', 'lgu_positions.office_id', 'offices.id')

@@ -94,7 +94,7 @@ class LguPositionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, LguPosition $lguPosition)
+    public function update(StoreLguPositionRequest $request, LguPosition $lguPosition)
     {
 
         $lguPosition->office_id = $request->office_id;

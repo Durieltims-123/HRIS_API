@@ -103,7 +103,7 @@ class SalaryGradeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SalaryGrade $salaryGrade)
+    public function update(StoreSalaryGradeRequest $request, SalaryGrade $salaryGrade)
     {
         $duplicate = SalaryGrade::where([["number", $request->number], ['id', '<>', $salaryGrade->id]])->exists();
         if ($duplicate) {
