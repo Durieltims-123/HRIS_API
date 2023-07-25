@@ -68,7 +68,33 @@ class VacancyController extends Controller
      */
     public function show(Vacancy $vacancy)
     {
-        return Vacancy::select('*', 'vacancies.id', 'vacancies.status')
+        return Vacancy::select(
+            'vacancies.id',
+            'date_submitted',
+            'date_queued',
+            'date_approved',
+            'posting_date',
+            'closing_date',
+            'office_name',
+            'department_name',
+            'office_id',
+            'positions.id as position_id',
+            'year',
+            'title',
+            'number',
+            'amount',
+            'item_number',
+            'education',
+            'training',
+            'experience',
+            'eligibility',
+            'competency',
+            'vacancies.status',
+            'description',
+            'place_of_assignment',
+            'position_status'
+        )
+            ->leftJoin('publications', 'publications.vacancy_id', 'vacancies.id')
             ->join('lgu_positions', 'lgu_positions.id', 'vacancies.lgu_position_id')
             ->leftJoin('positions', 'positions.id', 'lgu_positions.position_id')
             ->join('offices', 'lgu_positions.office_id', 'offices.id')
