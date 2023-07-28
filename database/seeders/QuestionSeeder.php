@@ -17,8 +17,8 @@ class QuestionSeeder extends Seeder
             [
                 'number' => '34a',
                 'questions' => 'Are you related by consanguinity or affinity to the appointing or recommending authority, or to the			
-                            chief of bureau or office or to the person who has immediate supervision over you in the Office, 			
-                            Bureau or Department where you will be apppointed,			
+                            chief of bureau or division or to the person who has immediate supervision over you in the Division, 			
+                            Bureau or Office where you will be apppointed,			
                             a. within the third degree?'
             ],
             [

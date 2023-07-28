@@ -21,7 +21,7 @@ class OathTaker extends Model
         'appointment_id',
         'first_name',
         'last_name',
-        'department',
+        'office',
         'job_title',
         'date_appointed'
     ];

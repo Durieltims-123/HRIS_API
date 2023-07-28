@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreOfficeRequest;
 use App\Http\Resources\OfficeResource;
-use App\Models\Employee;
 use App\Models\Office;
+use App\Models\Division;
+use App\Models\LguPosition;
+use App\Models\Position;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 
@@ -18,17 +20,14 @@ class OfficeController extends Controller
     public function index()
     {
         return OfficeResource::collection(
-            Office::with('belongsToDepartment')
-                ->join('departments', 'departments.id', 'offices.department_id')
-                ->orderBy('department_name', 'asc')
-                ->get()
-        )->toJson();
+            Office::all()
+        );
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    public function create()
     {
         //
     }
@@ -39,15 +38,13 @@ class OfficeController extends Controller
     public function store(StoreOfficeRequest $request)
     {
         $request->validated($request->all());
-
-        $officeExist = Office::where('office_code', $request->office_code)->orWhere("office_name", $request->office_name)->exists();
+        $officeExist = Office::where('office_code', $request->office_code)->orWhere('office_name', $request->office_name)->exists();
         if ($officeExist) {
             return $this->error('', 'Duplicate Entry', 400);
         } else {
-            Office::create([
-                "office_code" => $request->office_code,
-                "office_name" => $request->office_name,
-                "department_id" => $request->department_id,
+            $office = Office::create([
+                'office_code' => $request->office_code,
+                'office_name' => $request->office_name,
             ]);
 
             return $this->success('', 'Successfully Saved', 200);
@@ -59,13 +56,7 @@ class OfficeController extends Controller
      */
     public function show(Office $office)
     {
-        return
-            // OfficeResource::collection(
-            Office::select('offices.id', 'department_id', 'office_code', 'office_name', 'department_name')
-            ->where("offices.id", $office->id)
-            ->join('departments', 'departments.id', 'offices.department_id')
-            ->first();
-        // );
+        return $office;
     }
 
     /**
@@ -83,12 +74,11 @@ class OfficeController extends Controller
     {
         $office->office_code = $request->office_code;
         $office->office_name = $request->office_name;
-        $office->department_id = $request->department_id;
+        $office_codes = $request->input('office_code');
+        $office_names = $request->input('office_name');
         $office->save();
 
-        return new OfficeResource(
-            Office::where('offices.id', $office->id)->join('departments', 'departments.id', 'offices.department_id')->first()
-        );
+        return new OfficeResource($office);
     }
 
     /**
@@ -96,9 +86,10 @@ class OfficeController extends Controller
      */
     public function destroy(Office $office)
     {
-        $employeesExists = Employee::where('office_id', $office->id)->exists();
-        if ($employeesExists) {
-            return $this->error('', 'You cannot delete Office with existing employees.', 400);
+        // validate user from database
+        $divisionExist = Division::where([['office_id', $office->id]])->exists();
+        if ($divisionExist) {
+            return $this->error('', 'You cannot delete Office with existing divisions.', 400);
         } else {
             $office->delete();
             return $this->success('', 'Successfully Deleted', 200);
@@ -107,33 +98,26 @@ class OfficeController extends Controller
 
     public function search(Request $request)
     {
-
         $activePage = $request->activePage;
         $searchKeyword = $request->searchKeyword;
         $orderAscending = $request->orderAscending;
         $orderBy = $request->orderBy;
         $orderAscending  ? $orderAscending = "asc" : $orderAscending = "desc";
         $searchKeyword == null ? $searchKeyword = "" : $searchKeyword = $searchKeyword;
-        $orderBy == null ? $orderBy = "offices.id" : $orderBy = $orderBy;
+        $orderBy == null ? $orderBy = "id" : $orderBy = $orderBy;
 
         $data = OfficeResource::collection(
-            Office::select('offices.id', 'office_code', 'office_name', 'department_name')
-                ->where("offices.id", "like", "%" . $searchKeyword . "%")
+            Office::where("id", "like", "%" . $searchKeyword . "%")
                 ->orWhere("office_name", "like", "%" . $searchKeyword . "%")
                 ->orWhere("office_code", "like", "%" . $searchKeyword . "%")
                 ->skip(($activePage - 1) * 10)
                 ->orderBy($orderBy, $orderAscending)
-                ->join('departments', 'departments.id', 'offices.department_id')
                 ->take(10)
                 ->get()
         );
-
-        $pages = Office::select('offices.id', 'office_code', 'office_name', 'department_name')
-            ->where("offices.id", "like", "%" . $searchKeyword . "%")
+        $pages = Office::where("id", "like", "%" . $searchKeyword . "%")
             ->orWhere("office_name", "like", "%" . $searchKeyword . "%")
             ->orWhere("office_code", "like", "%" . $searchKeyword . "%")
-            ->orWhere("department_name", "like", "%" . $searchKeyword . "%")
-            ->join('departments', 'departments.id', 'offices.department_id')
             ->orderBy($orderBy, $orderAscending)
             ->count();
 

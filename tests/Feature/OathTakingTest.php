@@ -40,7 +40,7 @@ class OathTakingTest extends TestCase
             "appointment_id" => ["2", "2"],
             "first_name" => ["TestFirst", 'TestFirstTwo'],
             "last_name" => ['TestLastOne', 'TestLastTwo'],
-            "department" => ['TestDepartmentOne', 'TestDepartmentTwo'],
+            "office" => ['TestOfficeOne', 'TestOfficeTwo'],
             "job_title" => ["TestTitle", "TestTitleTwo"],
             "date_appointed" => ["2023-01-01", "2023-02-02"]
         ];
@@ -68,7 +68,7 @@ class OathTakingTest extends TestCase
             "appointment_id" => ["1", "1"],
             "first_name" => ["UpdateTestFirst", 'UpdateTestFirstTwo'],
             "last_name" => ['UpdateTestLastOne', 'UpdateTestLastTwo'],
-            "department" => ['UpdateTestDepartmentOne', 'UpdateTestDepartmentTwo'],
+            "office" => ['UpdateTestOfficeOne', 'UpdateTestOfficeTwo'],
             "job_title" => ["UpdateTestTitle", "UpdateTestTitleTwo"],
             "date_appointed" => ["2023-01-01", "2023-02-02"]
         ];

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('vacancy_id')->constrained();
             $table->date('posting_date');
             $table->date('closing_date');
+            $table->enum('publication_status', ['Active', 'Closed']);
             $table->timestamps();
         });
     }

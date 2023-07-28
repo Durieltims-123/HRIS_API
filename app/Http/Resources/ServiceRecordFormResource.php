@@ -26,7 +26,7 @@ class ServiceRecordFormResource extends JsonResource
                 "civil_status" => (string)$this->civil_status,
                 "designation" =>(string)$this->designation,
                 "salary_annum" => (string)$this->salary_annum,
-                "office_department" => (string)$this->office_department,
+                "division_office" => (string)$this->division_office,
             ]
             ];
     }

@@ -47,7 +47,7 @@ class OathTakingController extends Controller
         $appointment_ids = $request->input('appointment_id');
         $first_names = $request->input('first_name');
         $last_names = $request->input('last_name');
-        $departments = $request->input('department');
+        $offices = $request->input('office');
         $job_titles = $request->input('job_title');
         $date_appointeds = $request->input('date_appointed');
 
@@ -58,7 +58,7 @@ class OathTakingController extends Controller
                 'appointment_id' => $appointment_id,
                 'first_name' => $first_names[$i],
                 'last_name' => $last_names[$i],
-                'department' => $departments[$i],
+                'office' => $offices[$i],
                 'job_title' => $job_titles[$i],
                 'date_appointed' => $date_appointeds[$i],
             ]);
@@ -96,7 +96,7 @@ class OathTakingController extends Controller
         $appointment_ids = $request->input('appointment_id');
         $first_names = $request->input('first_name');
         $last_names = $request->input('last_name');
-        $departments = $request->input('department');
+        $offices = $request->input('office');
         $job_titles = $request->input('job_title');
         $date_appointeds = $request->input('date_appointed');
 
@@ -108,7 +108,7 @@ class OathTakingController extends Controller
                         'appointment_id' => $appointment_id,
                         'first_name' => $first_names[$i],
                         'last_name' => $last_names[$i],
-                        'department' => $departments[$i],
+                        'office' => $offices[$i],
                         'job_title' => $job_titles[$i],
                         'date_appointed' => $date_appointeds[$i],
                     ]);
@@ -118,7 +118,7 @@ class OathTakingController extends Controller
                     'appointment_id' => $appointment_id,
                     'first_name' => $first_names[$i],
                     'last_name' => $last_names[$i],
-                    'department' => $departments[$i],
+                    'office' => $offices[$i],
                     'job_title' => $job_titles[$i],
                     'date_appointed' => $date_appointeds[$i],
                 ]);

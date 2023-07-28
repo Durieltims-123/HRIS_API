@@ -31,7 +31,7 @@ class LguPositionTest extends TestCase
     public function test_add_plantilla(): void
     {
         $formData = [
-            "office_id" => 1,
+            "division_id" => 1,
             "position_id" => 1,
             'item_number' => "Lorep Ipsum Test5467",
             'place_of_assignment' => "Lorep Ipsum Test",
@@ -40,7 +40,7 @@ class LguPositionTest extends TestCase
             'lgu_position_id' => 1
         ];
         $plantillaData = [
-            "office_id" => 1,
+            "division_id" => 1,
             "position_id" => 1,
             'item_number' => "Lorep Ipsum Test5467",
             'place_of_assignment' => "Lorep Ipsum Test",
@@ -86,10 +86,10 @@ class LguPositionTest extends TestCase
 
            $plantillaData =[
             'item_number' => "234",
-            'place_of_assignment' => "IT Office",
+            'place_of_assignment' => "IT Division",
             'year' =>  "2012",
             ];
-           $instance = LguPosition::where([["item_number", "234"],['place_of_assignment','IT Office']])->first();
+           $instance = LguPosition::where([["item_number", "234"],['place_of_assignment','IT Division']])->first();
            $user = User::factory()->create();
            $this->assertCount(0, $user->tokens);
            $this->actingAs($user);

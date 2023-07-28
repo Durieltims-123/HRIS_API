@@ -108,7 +108,7 @@ class StorePersonalDataSheetRequest extends FormRequest
             //work experience
             'personal_data_sheet_id' => ['required'],
             'position_title' => ['required','max:255'],
-            'department' => ['required','max:255'],
+            'office' => ['required','max:255'],
             'monthly_salary' => ['required'],
             'salary' => ['required','max:255'],
             'status_appointment' => ['required','max:255'],

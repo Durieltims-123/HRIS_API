@@ -21,7 +21,7 @@ class WorkExperienceFactory extends Factory
         return [
             'personal_data_sheet_id' => $personal_data_sheets->random()->id,
             'position_title' => $this->faker->sentence(),
-            'department' => $this->faker->sentence(),
+            'office' => $this->faker->sentence(),
             'monthly_salary' => $this->faker->randomNumber(),
             'salary' => $this->faker->randomNumber(),
             'status_appointment' => $this->faker->sentence(),

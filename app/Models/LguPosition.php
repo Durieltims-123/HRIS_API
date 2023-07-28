@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Office;
+use App\Models\Division;
 use App\Models\Position;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -14,9 +14,9 @@ class LguPosition extends Model
 {
     use HasFactory;
 
-    public function hasOneOffice(): HasOne
+    public function hasOneDivision(): HasOne
     {
-        return $this->hasOne(Office::class);
+        return $this->hasOne(Division::class);
     }
     public function belongsToPosition(): BelongsTo
     {
@@ -34,7 +34,7 @@ class LguPosition extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'office_id',
+        'division_id',
         'position_id',
         'item_number',
         'place_of_assignment',

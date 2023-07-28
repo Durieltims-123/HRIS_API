@@ -109,7 +109,7 @@ class PersonalDataSheetResource extends JsonResource
                 'workExperience' => $this->hasManyWorkExperience->map(function ($workExpererience) {
                     return [
                         'position_title' => $workExpererience->position_title,
-                        'department' => $workExpererience->department,
+                        'office' => $workExpererience->office,
                         'monthly_salary' => $workExpererience->monthly_salary,
                         'salary' => $workExpererience->salary,
                         'status_appointment' => $workExpererience->status_appointment,

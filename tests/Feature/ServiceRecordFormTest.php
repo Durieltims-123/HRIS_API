@@ -40,7 +40,7 @@ class ServiceRecordFormTest extends TestCase
             'civil_status' => "yahoo",
             'designation' => "yahoo",
             'salary_annum' => "yahoo",
-            'office_department' => "yahoo",
+            'division_office' => "yahoo",
         ];
         $user = User::factory()->create();
         $this->assertCount(0, $user->tokens);
@@ -66,7 +66,7 @@ class ServiceRecordFormTest extends TestCase
             'civil_status' => "yahoo",
             'designation' => "yahoo",
             'salary_annum' => "yahoo",
-            'office_department' => "yahoo",
+            'division_office' => "yahoo",
         ];
         $sg = ServiceRecordForm::where([["employee_id", 1], ["appointment_records", "yahoo"]])->first();
 
@@ -92,7 +92,7 @@ class ServiceRecordFormTest extends TestCase
             'civil_status' => "yahoo",
             'designation' => "yahoo",
             'salary_annum' => "yahoo",
-            'office_department' => "yahoo",
+            'division_office' => "yahoo",
         ];
         $sg = ServiceRecordForm::where([["employee_id", 1], ["appointment_records", "yahoo 2 3"]])->first();
         $user = User::factory()->create();

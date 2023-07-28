@@ -69,8 +69,8 @@ class DatabaseSeeder extends Seeder
         // Reference::factory(10)
 
         $this->call([
-            DepartmentSeeder::class,
             OfficeSeeder::class,
+            DivisionSeeder::class,
             LguPositionSeeder::class,
             PositionDescriptionSeeder::class,
             ProvinceSeeder::class,

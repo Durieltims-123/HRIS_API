@@ -43,7 +43,7 @@ class EmployeeController extends Controller
         }
 
         Employee::create([
-            "office_id" => $request->office_id,
+            "division_id" => $request->division_id,
             "first_name" => $request->first_name,
             "middle_name" => $request->middle_name,
             "last_name" => $request->last_name,

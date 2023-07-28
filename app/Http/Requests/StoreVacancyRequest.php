@@ -30,7 +30,6 @@ class StoreVacancyRequest extends FormRequest
             'posting_date' => ['required_if:process,Approve', 'nullable', 'date', 'after_or_equal:date_approved'],
             'closing_date' => ['required_if:process,Approve', 'nullable', 'date', 'after_or_equal:posting_date'],
             'date_queued' => ['required_if:process,Queue', 'nullable', 'date', 'after_or_equal:date_submitted'],
-            'state' => "required",
             'status' => ['required', 'string', 'max:255'],
         ];
     }

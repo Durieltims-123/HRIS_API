@@ -28,7 +28,7 @@ class StoreOathTakingRequest extends FormRequest
             'appointment_id' => ['required'],
             'first_name' => ['required'],
             'last_name' =>['required'],
-            'department' =>['required'],
+            'office' =>['required'],
             'job_title' =>['required'],
             'date_appointed' => ['required'],
         ];

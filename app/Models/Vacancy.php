@@ -25,13 +25,12 @@ class Vacancy extends Model
     
 
     protected $fillable = [
-
         'date_submitted',
         'date_queued',
         'date_approved',
         'status',
         'lgu_position_id',
-        'office_id',
+        'division_id',
         'position_id',
         'item_number',
         'place_of_assignment',

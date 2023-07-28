@@ -17,8 +17,8 @@ class LguPositionSeeder extends Seeder
         
         $positions = Position::all();
 
-        LguPosition::create(['office_id' => '1', 'position_id' => $positions->random()->id, 'item_number' => '234', 'place_of_assignment' => 'IT Office', 'year' => '2023', 'position_status' => 'Permanent']);
-        LguPosition::create(['office_id' => '2', 'position_id' => $positions->random()->id, 'item_number' => '564', 'place_of_assignment' => 'Accounting Office', 'year' => '2023', 'position_status' => 'Casual']);
+        LguPosition::create(['division_id' => '1', 'position_id' => $positions->random()->id, 'item_number' => '234', 'place_of_assignment' => 'IT Division', 'year' => '2023', 'position_status' => 'Permanent']);
+        LguPosition::create(['division_id' => '2', 'position_id' => $positions->random()->id, 'item_number' => '564', 'place_of_assignment' => 'Accounting Division', 'year' => '2023', 'position_status' => 'Casual']);
        
     }
 }

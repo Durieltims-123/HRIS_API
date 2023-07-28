@@ -24,12 +24,12 @@ class VacancyResource extends JsonResource
                 "date_approved" => (string)$this->date_approved,
                 "posting_date" => (string)$this->posting_date,
                 "closing_date" => (string)$this->closing_date,
+                "division_name" => (string)$this->division_name,
                 "office_name" => (string)$this->office_name,
-                "department_name" => (string)$this->department_name,
-                "office_id" => (string)$this->office_id,
+                "division_id" => (string)$this->division_id,
                 "position_id" => (string)$this->position_id,
                 "year" => (string)$this->year,
-                "office" => (string)$this->department_name . "-" . (string)$this->office_name,
+                "division" => (string)$this->office_name . "-" . (string)$this->division_name,
                 "title" => (string)$this->title,
                 "number" => (string)$this->number,
                 "amount" => (string)$this->amount,
@@ -43,6 +43,7 @@ class VacancyResource extends JsonResource
                 "description" => (string)$this->description,
                 "place_of_assignment" => (string)$this->place_of_assignment,
                 "position_status" => (string)$this->position_status,
+                "publication_status" => (string)$this->publication_status,
             ],
 
         ];

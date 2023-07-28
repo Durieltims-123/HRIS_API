@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->foreignId('personal_data_sheet_id')->constrained()->onDelete('cascade');
             $table->string('position_title');
-            $table->string('department');
+            $table->string('office');
             $table->string('monthly_salary');
             $table->string('salary');
             $table->string('status_appointment');

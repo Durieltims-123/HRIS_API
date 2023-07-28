@@ -31,7 +31,7 @@ class ServiceRecordFormRequest extends FormRequest
             'civil_status' => ['required', 'string', 'max:255'],
             'designation' => ['required', 'string', 'max:255'],
             'salary_annum' => ['required', 'string', 'max:255'],
-            'office_department' => ['required', 'string', 'max:255'],
+            'division_office' => ['required', 'string', 'max:255'],
         ];
     }
 }

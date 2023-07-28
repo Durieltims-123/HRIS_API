@@ -22,7 +22,7 @@ class StoreLguPositionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'office_id' => ['required'],
+            'division_id' => ['required'],
             'position_id' => ['required'],
             'item_number' => ['required_if:position_status,==,Permanent','max:255'],
             'place_of_assignment' => ['nullable', 'string', 'max:255'],

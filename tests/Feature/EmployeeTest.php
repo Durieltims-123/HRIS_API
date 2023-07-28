@@ -31,7 +31,7 @@ class employeeTest extends TestCase
  public function test_add_employee(): void
  {
      $formData = [
-        'office_id' => 2,
+        'division_id' => 2,
         'first_name' => "First name test",
         'middle_name' => "aw",
         'last_name' => "aw",
@@ -58,7 +58,7 @@ class employeeTest extends TestCase
  public function test_edit_employee(): void
  {
      $formData = [
-        'office_id' => 2,
+        'division_id' => 2,
         'first_name' => "Edited aw",
         'middle_name' => "Edited2",
         'last_name' => "aw",
@@ -85,7 +85,7 @@ class employeeTest extends TestCase
  public function test_delete_employee(): void
  {
      $formData = [
-        'office_id' => 2,
+        'division_id' => 2,
         'first_name' => "Edited aw",
         'middle_name' => "Edited2",
         'last_name' => "aw",

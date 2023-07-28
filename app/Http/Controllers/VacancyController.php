@@ -69,15 +69,16 @@ class VacancyController extends Controller
     public function show(Vacancy $vacancy)
     {
         return Vacancy::select(
+            'lgu_positions.id as lgu_position_id',
             'vacancies.id',
             'date_submitted',
             'date_queued',
             'date_approved',
             'posting_date',
             'closing_date',
+            'division_name',
             'office_name',
-            'department_name',
-            'office_id',
+            'division_id',
             'positions.id as position_id',
             'year',
             'title',
@@ -92,13 +93,14 @@ class VacancyController extends Controller
             'vacancies.status',
             'description',
             'place_of_assignment',
-            'position_status'
+            'position_status',
+            'publication_status'
         )
             ->leftJoin('publications', 'publications.vacancy_id', 'vacancies.id')
             ->join('lgu_positions', 'lgu_positions.id', 'vacancies.lgu_position_id')
             ->leftJoin('positions', 'positions.id', 'lgu_positions.position_id')
-            ->join('offices', 'lgu_positions.office_id', 'offices.id')
-            ->join('departments', 'departments.id', 'offices.department_id')
+            ->join('divisions', 'lgu_positions.division_id', 'divisions.id')
+            ->join('offices', 'offices.id', 'divisions.office_id')
             ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
             ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
             ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
@@ -121,6 +123,9 @@ class VacancyController extends Controller
     public function update(StoreVacancyRequest $request, Vacancy $vacancy)
     {
         $request->validated($request->all());
+
+        // return $vacancy->id;
+
         $vacancy->date_submitted = Date('Y-m-d', strtotime($request->date_submitted));
         if (!is_null($request->date_queued)) {
             $vacancy->date_queued = Date('Y-m-d', strtotime($request->date_queued));
@@ -129,25 +134,44 @@ class VacancyController extends Controller
             $vacancy->date_approved = Date('Y-m-d', strtotime($request->date_approved));
         }
         $vacancy->lgu_position_id = $request->position_id;
-        $vacancy->status = $request->status;
+
+        if ($request->process == "Reactivate") {
+            $publication_exists = Publication::where('vacancy_id', $vacancy->id)->orderBy('id', 'desc')->exists();
+            if ($publication_exists) {
+                $publication = Publication::where('vacancy_id', $vacancy->id)->orderBy('id', 'desc')->first();
+                if ($publication->publication_status === "Closed") {
+                    return $this->error('', 'Sorry! You cannot Reactivate Vacancy when publication is already closed', 400);
+                } else {
+                    Publication::where('vacancy_id', $vacancy->id)->orderBy('id', 'desc')->delete();
+                }
+            }
+            $vacancy->date_queued = null;
+            $vacancy->status = 'Active';
+        } else {
+            $vacancy->status = $request->status;
+        }
         $vacancy->save();
 
         if (!is_null($request->date_approved)) {
-            $publication_exists = Publication::where('vacancy_id', $request->id)->exists();
+            $publication_exists = Publication::where('vacancy_id', $vacancy->id)->exists();
             if ($publication_exists) {
-                $publication = Publication::where('vacancy_id', $request->id)->orderBy('id', 'desc')->first();
+                $publication = Publication::where('vacancy_id', $vacancy->id)->orderBy('id', 'desc')->first();
                 Publication::where('id', $publication->id)->update([
                     "posting_date" =>  Date('Y-m-d', strtotime($request->posting_date)),
-                    "closing_date" =>  Date('Y-m-d', strtotime($request->closing_date))
+                    "closing_date" =>  Date('Y-m-d', strtotime($request->closing_date)),
+                    "publication_status" => $request->publication_status
                 ]);
             } else {
                 Publication::create([
                     "vacancy_id" => $vacancy->id,
                     "posting_date" =>  Date('Y-m-d', strtotime($request->posting_date)),
-                    "closing_date" =>  Date('Y-m-d', strtotime($request->closing_date))
+                    "closing_date" =>  Date('Y-m-d', strtotime($request->closing_date)),
+                    "publication_status" => "Active"
                 ]);
             }
         }
+
+
 
 
         return new VacancyResource($vacancy);
@@ -186,15 +210,16 @@ class VacancyController extends Controller
 
         $data = VacancyResource::collection(
             Vacancy::select(
+                'lgu_positions.id as lgu_position_id',
                 'vacancies.id',
                 'date_submitted',
                 'date_queued',
                 'date_approved',
                 'posting_date',
                 'closing_date',
+                'division_name',
                 'office_name',
-                'department_name',
-                'office_id',
+                'division_id',
                 'positions.id as position_id',
                 'year',
                 'title',
@@ -210,12 +235,13 @@ class VacancyController extends Controller
                 'description',
                 'place_of_assignment',
                 'position_status',
+                'publication_status'
             )
                 ->leftJoin('publications', 'publications.vacancy_id', 'vacancies.id')
                 ->join('lgu_positions', 'lgu_positions.id', 'vacancies.lgu_position_id')
                 ->join('positions', 'positions.id', 'lgu_positions.position_id')
-                ->join('offices', 'lgu_positions.office_id', 'offices.id')
-                ->join('departments', 'departments.id', 'offices.department_id')
+                ->join('divisions', 'lgu_positions.division_id', 'divisions.id')
+                ->join('offices', 'offices.id', 'divisions.office_id')
                 ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
                 ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
                 ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
@@ -234,12 +260,12 @@ class VacancyController extends Controller
                 ->get()
         );
         $pages =
-            Vacancy::select('*')
+            Vacancy::select('vacancy.id')
             ->leftJoin('publications', 'publications.vacancy_id', 'vacancies.id')
             ->join('lgu_positions', 'lgu_positions.id', 'vacancies.lgu_position_id')
             ->leftJoin('positions', 'positions.id', 'lgu_positions.position_id')
-            ->join('offices', 'lgu_positions.office_id', 'offices.id')
-            ->join('departments', 'departments.id', 'offices.department_id')
+            ->join('divisions', 'lgu_positions.division_id', 'divisions.id')
+            ->join('offices', 'offices.id', 'divisions.office_id')
             ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
             ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
             ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')

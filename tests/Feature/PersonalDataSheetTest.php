@@ -120,7 +120,7 @@ $applicant = Applicant::first();
         //work experience
         'personal_data_sheet_id' => 1,
         'position_title' => ["maga"],
-        'department' => ["maga"],
+        'office' => ["maga"],
         'monthly_salary' => ["maga"],
         'salary' => ["maga"],
         'status_appointment' => ["maga"],
@@ -282,7 +282,7 @@ public function test_edit_personal_data_sheet(): void
         //work experience
         'personal_data_sheet_id' => 1,
         'position_title' => ["maga"],
-        'department' => ["maga"],
+        'office' => ["maga"],
         'monthly_salary' => ["maga"],
         'salary' => ["maga"],
         'status_appointment' => ["maga"],

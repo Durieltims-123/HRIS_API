@@ -21,7 +21,7 @@ class OathTakerResource extends JsonResource
                 "appointment_id" => (string)$this->appointment_id,
                 "first_name" => (string)$this->first_name,
                 "last_name" => (string)$this->last_name,
-                "department" => (string)$this->department,
+                "office" => (string)$this->office,
                 "date_appointed" => (string)$this->date_appointed,                
             ]
                   

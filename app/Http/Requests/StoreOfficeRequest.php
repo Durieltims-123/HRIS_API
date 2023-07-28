@@ -22,9 +22,8 @@ class StoreOfficeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'office_code' => ['required', 'string', 'max:255'],
-            'office_name' => ['required', 'string', 'max:255'],
-            'department_id' => ['required'],
+            'office_code' => ['required','string', 'max:255'],
+            'office_name' => ['required','string', 'max:255']
         ];
     }
 }

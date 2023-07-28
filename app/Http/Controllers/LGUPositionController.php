@@ -47,7 +47,7 @@ class LguPositionController extends Controller
         }
 
         $lguPosition = LguPosition::create([
-            'office_id' => $request->office_id,
+            'division_id' => $request->division_id,
             'position_id' => $request->position_id,
             'item_number' => $request->item_number,
             'place_of_assignment' => $request->place_of_assignment,
@@ -73,8 +73,8 @@ class LguPositionController extends Controller
     {
         return new LguPositionResource(
             LguPosition::join('positions', 'positions.id', 'lgu_positions.position_id')
-                ->join('offices', 'lgu_positions.office_id', 'offices.id')
-                ->join('departments', 'departments.id', 'offices.department_id')
+                ->join('divisions', 'lgu_positions.division_id', 'divisions.id')
+                ->join('offices', 'offices.id', 'divisions.office_id')
                 ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
                 ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
                 ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
@@ -97,7 +97,7 @@ class LguPositionController extends Controller
     public function update(StoreLguPositionRequest $request, LguPosition $lguPosition)
     {
 
-        $lguPosition->office_id = $request->office_id;
+        $lguPosition->division_id = $request->division_id;
         $lguPosition->position_id = $request->position_id;
         $lguPosition->item_number = $request->item_number;
         $lguPosition->place_of_assignment = $request->place_of_assignment;
@@ -133,9 +133,9 @@ class LguPositionController extends Controller
         ($orderBy == null || $orderBy == 'id') ? $orderBy = 'lgu_positions.id' : $orderBy = $orderBy;
 
         $rawData = LguPosition::select(
+            'division_name',
             'office_name',
-            'department_name',
-            'lgu_positions.office_id',
+            'lgu_positions.division_id',
             'lgu_positions.position_id',
             'year',
             'title',
@@ -154,8 +154,8 @@ class LguPositionController extends Controller
             'lgu_positions.id'
         )
             ->join('positions', 'positions.id', 'lgu_positions.position_id')
-            ->join('offices', 'lgu_positions.office_id', 'offices.id')
-            ->join('departments', 'departments.id', 'offices.department_id')
+            ->join('divisions', 'lgu_positions.division_id', 'divisions.id')
+            ->join('offices', 'offices.id', 'divisions.office_id')
             ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
             ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
             ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
@@ -180,8 +180,8 @@ class LguPositionController extends Controller
         $data = LguPositionResource::collection($rawData);
         $pages = LguPosition::select('lgu_positions.id')
             ->join('positions', 'positions.id', 'lgu_positions.position_id')
-            ->join('offices', 'lgu_positions.office_id', 'offices.id')
-            ->join('departments', 'departments.id', 'offices.department_id')
+            ->join('divisions', 'lgu_positions.division_id', 'divisions.id')
+            ->join('offices', 'offices.id', 'divisions.office_id')
             ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
             ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
             ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')

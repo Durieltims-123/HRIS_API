@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('lgu_positions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('office_id')->constrained();
+            $table->foreignId('division_id')->constrained();
             $table->foreignId('position_id')->constrained();
             $table->string('item_number')->nullable();
             $table->string('place_of_assignment')->nullable();

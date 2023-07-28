@@ -34,7 +34,7 @@
   },
   {
     "_id": "5b41dc28-5985-4b97-b9d0-810cea6937aa",
-    "colName": "Office",
+    "colName": "Division",
     "created": "2023-03-10T05:34:08.597Z",
     "sortNum": 50000,
     "folders": []
@@ -96,7 +96,7 @@
   },
   {
     "_id": "97cdb4bf-4035-46bf-be5f-0bf3a2b63aa9",
-    "colName": "Department",
+    "colName": "Office",
     "created": "2023-03-23T08:03:16.671Z",
     "sortNum": 130000,
     "folders": []

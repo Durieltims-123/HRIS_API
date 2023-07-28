@@ -473,8 +473,8 @@
     "_id": "36108f11-5c51-4827-8307-b3d2c4c52aa7",
     "colId": "5b41dc28-5985-4b97-b9d0-810cea6937aa",
     "containerId": "",
-    "name": "Add Office",
-    "url": "http://127.0.0.1:8000/api/office",
+    "name": "Add Division",
+    "url": "http://127.0.0.1:8000/api/division",
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-10T07:56:53.833Z",
@@ -486,11 +486,11 @@
       "raw": "",
       "form": [
         {
-          "name": "office_code",
+          "name": "division_code",
           "value": "qwerty"
         },
         {
-          "name": "office_name",
+          "name": "division_name",
           "value": "fddvfdvf"
         }
       ]
@@ -505,8 +505,8 @@
     "_id": "70c61909-69fa-48ef-96bf-0612020790b1",
     "colId": "5b41dc28-5985-4b97-b9d0-810cea6937aa",
     "containerId": "",
-    "name": "Index Office",
-    "url": "http://127.0.0.1:8000/api/office",
+    "name": "Index Division",
+    "url": "http://127.0.0.1:8000/api/division",
     "method": "GET",
     "sortNum": 20000,
     "created": "2023-03-10T08:29:27.136Z",
@@ -523,8 +523,8 @@
     "_id": "fa517082-7611-45c9-ae74-22ff1ac404ff",
     "colId": "5b41dc28-5985-4b97-b9d0-810cea6937aa",
     "containerId": "",
-    "name": "Update Office",
-    "url": "http://127.0.0.1:8000/api/office/1",
+    "name": "Update Division",
+    "url": "http://127.0.0.1:8000/api/division/1",
     "method": "PATCH",
     "sortNum": 30000,
     "created": "2023-03-10T08:30:21.910Z",
@@ -536,11 +536,11 @@
       "raw": "",
       "form": [
         {
-          "name": "office_code",
+          "name": "division_code",
           "value": "awaw"
         },
         {
-          "name": "office_name",
+          "name": "division_name",
           "value": "magamaga"
         }
       ]
@@ -555,8 +555,8 @@
     "_id": "b1a53d81-a676-43b6-b76f-f8a90dc05bbd",
     "colId": "5b41dc28-5985-4b97-b9d0-810cea6937aa",
     "containerId": "",
-    "name": "Delete Office",
-    "url": "http://127.0.0.1:8000/api/office/3",
+    "name": "Delete Division",
+    "url": "http://127.0.0.1:8000/api/division/3",
     "method": "DELETE",
     "sortNum": 40000,
     "created": "2023-03-10T08:31:46.657Z",
@@ -1252,11 +1252,11 @@
           "value": "Supervisor2"
         },
         {
-          "name": "department[]",
+          "name": "office[]",
           "value": "PGO"
         },
         {
-          "name": "department[]",
+          "name": "office[]",
           "value": "BENRO"
         },
         {
@@ -2034,7 +2034,7 @@
           "value": "2023-02-03"
         },
         {
-          "name": "office_name",
+          "name": "division_name",
           "value": "Benro"
         },
         {
@@ -2046,7 +2046,7 @@
           "value": "2023-03-04"
         },
         {
-          "name": "office_code",
+          "name": "division_code",
           "value": "456"
         },
         {
@@ -2065,8 +2065,8 @@
     "_id": "59de27fa-694b-4946-8e14-3711589211ac",
     "colId": "34261b3d-5f99-4369-8af2-e71585f03775",
     "containerId": "",
-    "name": "Search Office",
-    "url": "http://127.0.0.1:8000/api/search-office",
+    "name": "Search Division",
+    "url": "http://127.0.0.1:8000/api/search-division",
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-22T07:16:59.283Z",
@@ -2134,7 +2134,7 @@
       "raw": "",
       "form": [
         {
-          "name": "office_id",
+          "name": "division_id",
           "value": "3"
         },
         {
@@ -2147,7 +2147,7 @@
         },
         {
           "name": "place_of_assignment",
-          "value": "HR Office"
+          "value": "HR Division"
         },
         {
           "name": "year",
@@ -2241,8 +2241,8 @@
     "_id": "ad31f3f4-def8-4614-8692-f048692dc82b",
     "colId": "97cdb4bf-4035-46bf-be5f-0bf3a2b63aa9",
     "containerId": "",
-    "name": "Add Department",
-    "url": "http://127.0.0.1:8000/api/department",
+    "name": "Add Office",
+    "url": "http://127.0.0.1:8000/api/office",
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-23T08:03:29.638Z",
@@ -2254,28 +2254,28 @@
       "raw": "",
       "form": [
         {
-          "name": "department_code",
+          "name": "office_code",
           "value": "0869"
         },
         {
-          "name": "department_name",
+          "name": "office_name",
           "value": "PPP"
         },
         {
-          "name": "office_code[]",
+          "name": "division_code[]",
           "value": "7686"
         },
         {
-          "name": "office_name[]",
-          "value": "Development Office"
+          "name": "division_name[]",
+          "value": "Development Division"
         },
         {
-          "name": "office_code[]",
+          "name": "division_code[]",
           "value": "0449"
         },
         {
-          "name": "office_name[]",
-          "value": "Luosj Office"
+          "name": "division_name[]",
+          "value": "Luosj Division"
         }
       ]
     },
@@ -2289,8 +2289,8 @@
     "_id": "ac7dddab-2397-4434-9927-29a61cbbb2ff",
     "colId": "97cdb4bf-4035-46bf-be5f-0bf3a2b63aa9",
     "containerId": "",
-    "name": "Update Department",
-    "url": "http://127.0.0.1:8000/api/department/1",
+    "name": "Update Office",
+    "url": "http://127.0.0.1:8000/api/office/1",
     "method": "PATCH",
     "sortNum": 20000,
     "created": "2023-03-23T08:47:24.722Z",
@@ -2302,27 +2302,27 @@
       "raw": "",
       "form": [
         {
-          "name": "department_code",
+          "name": "office_code",
           "value": "0003"
         },
         {
-          "name": "department_name",
+          "name": "office_name",
           "value": "EditedDept"
         },
         {
-          "name": "office_code[]",
+          "name": "division_code[]",
           "value": "9999"
         },
         {
-          "name": "office_name[]",
+          "name": "division_name[]",
           "value": "EditedOffOne"
         },
         {
-          "name": "office_code[]",
+          "name": "division_code[]",
           "value": "8888"
         },
         {
-          "name": "office_name[]",
+          "name": "division_name[]",
           "value": "EditedOffTwo"
         }
       ]
@@ -2337,8 +2337,8 @@
     "_id": "ac7dddab-2397-4434-9927-29a61cbbb2ff",
     "colId": "97cdb4bf-4035-46bf-be5f-0bf3a2b63aa9",
     "containerId": "",
-    "name": "Update Department",
-    "url": "http://127.0.0.1:8000/api/department/1",
+    "name": "Update Office",
+    "url": "http://127.0.0.1:8000/api/office/1",
     "method": "PATCH",
     "sortNum": 20000,
     "created": "2023-03-23T08:47:24.722Z",
@@ -2350,27 +2350,27 @@
       "raw": "",
       "form": [
         {
-          "name": "department_code",
+          "name": "office_code",
           "value": "10000000"
         },
         {
-          "name": "department_name",
+          "name": "office_name",
           "value": "EditedDept"
         },
         {
-          "name": "office_code[]",
+          "name": "division_code[]",
           "value": "9999"
         },
         {
-          "name": "office_name[]",
+          "name": "division_name[]",
           "value": "EditedOffOne"
         },
         {
-          "name": "office_code[]",
+          "name": "division_code[]",
           "value": "8888"
         },
         {
-          "name": "office_name[]",
+          "name": "division_name[]",
           "value": "EditedOffTwo"
         }
       ]
@@ -2385,8 +2385,8 @@
     "_id": "ea30cb0b-a889-494a-aa74-091e82549e8d",
     "colId": "97cdb4bf-4035-46bf-be5f-0bf3a2b63aa9",
     "containerId": "",
-    "name": "Delete Department",
-    "url": "http://127.0.0.1:8000/api/department/15",
+    "name": "Delete Office",
+    "url": "http://127.0.0.1:8000/api/office/15",
     "method": "DELETE",
     "sortNum": 30000,
     "created": "2023-03-24T01:10:30.028Z",
@@ -2403,8 +2403,8 @@
     "_id": "ea30cb0b-a889-494a-aa74-091e82549e8d",
     "colId": "97cdb4bf-4035-46bf-be5f-0bf3a2b63aa9",
     "containerId": "",
-    "name": "Delete Department",
-    "url": "http://127.0.0.1:8000/api/department/4",
+    "name": "Delete Office",
+    "url": "http://127.0.0.1:8000/api/office/4",
     "method": "DELETE",
     "sortNum": 30000,
     "created": "2023-03-24T01:10:30.028Z",
@@ -2844,7 +2844,7 @@
           "value": "wada"
         },
         {
-          "name": "department[]",
+          "name": "office[]",
           "value": "wada"
         },
         {
@@ -3556,7 +3556,7 @@
       "raw": "",
       "form": [
         {
-          "name": "office_id",
+          "name": "division_id",
           "value": "1"
         },
         {
@@ -4904,8 +4904,8 @@
           "value": "Ceno"
         },
         {
-          "name": "department[]",
-          "value": "IT Office"
+          "name": "office[]",
+          "value": "IT Division"
         },
         {
           "name": "job_title[]",
@@ -4928,8 +4928,8 @@
           "value": "Johnsoon"
         },
         {
-          "name": "department[]",
-          "value": "IT Office"
+          "name": "office[]",
+          "value": "IT Division"
         },
         {
           "name": "job_title[]",
@@ -4988,7 +4988,7 @@
           "value": "Updated"
         },
         {
-          "name": "department[]",
+          "name": "office[]",
           "value": "Updated"
         },
         {
@@ -5008,7 +5008,7 @@
           "value": "Updated"
         },
         {
-          "name": "department[]",
+          "name": "office[]",
           "value": "Updated"
         },
         {
@@ -5138,7 +5138,7 @@
           "value": "secret"
         },
         {
-          "name": "office_department",
+          "name": "division_office",
           "value": "PGO-IT"
         }
       ]
@@ -5220,7 +5220,7 @@
           "value": "edited"
         },
         {
-          "name": "office_department",
+          "name": "division_office",
           "value": "edited"
         }
       ]
