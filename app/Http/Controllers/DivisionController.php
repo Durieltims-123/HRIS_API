@@ -40,14 +40,15 @@ class DivisionController extends Controller
     {
         $request->validated($request->all());
 
-        $divisionExist = Division::where('division_code', $request->division_code)->orWhere("division_name", $request->division_name)->exists();
+        $divisionExist = Division::where('division_code', $request->code)->orWhere("division_name", $request->name)->exists();
         if ($divisionExist) {
             return $this->error('', 'Duplicate Entry', 400);
         } else {
             Division::create([
-                "division_code" => $request->division_code,
-                "division_name" => $request->division_name,
+                "division_code" => $request->code,
+                "division_name" => $request->name,
                 "office_id" => $request->office_id,
+                "division_type" => $request->type,
             ]);
 
             return $this->success('', 'Successfully Saved', 200);
@@ -61,7 +62,7 @@ class DivisionController extends Controller
     {
         return
             // DivisionResource::collection(
-            Division::select('divisions.id', 'office_id', 'division_code', 'division_name', 'office_name')
+            Division::select('divisions.id', 'office_id', 'division_code', 'division_name', 'office_name', 'divisions.division_type')
             ->where("divisions.id", $division->id)
             ->join('offices', 'offices.id', 'divisions.office_id')
             ->first();
@@ -81,9 +82,10 @@ class DivisionController extends Controller
      */
     public function update(StoreDivisionRequest $request, Division $division)
     {
-        $division->division_code = $request->division_code;
-        $division->division_name = $request->division_name;
+        $division->division_code = $request->code;
+        $division->division_name = $request->name;
         $division->office_id = $request->office_id;
+        $division->division_type = $request->type;
         $division->save();
 
         return new DivisionResource(
@@ -117,7 +119,7 @@ class DivisionController extends Controller
         $orderBy == null ? $orderBy = "divisions.id" : $orderBy = $orderBy;
 
         $data = DivisionResource::collection(
-            Division::select('divisions.id', 'division_code', 'division_name', 'office_name')
+            Division::select('divisions.id', 'division_code', 'division_name', 'office_name', 'divisions.division_type')
                 ->where("divisions.id", "like", "%" . $searchKeyword . "%")
                 ->orWhere("division_name", "like", "%" . $searchKeyword . "%")
                 ->orWhere("division_code", "like", "%" . $searchKeyword . "%")

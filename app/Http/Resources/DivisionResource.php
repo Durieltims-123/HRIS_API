@@ -16,10 +16,12 @@ class DivisionResource extends JsonResource
     {
         return [
             "id" => (string)$this->id,
+            "label" => (string)$this->division_name,
             "attributes" => [
                 "division_code" => (string)$this->division_code,
                 "division_name" => (string)$this->division_name,
-                "office" => (string)$this->office_name
+                "office" => (string)$this->office_name,
+                "division_type" => (string)$this->division_type
             ]
 
         ];

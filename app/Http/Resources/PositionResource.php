@@ -16,6 +16,7 @@ class PositionResource extends JsonResource
     {
         return [
             "id" => (string)$this->id,
+            "label" => (string)$this->title,
             "attributes" => [
                 "title" => (string)$this->title,
                 "number" => (string)$this->number,

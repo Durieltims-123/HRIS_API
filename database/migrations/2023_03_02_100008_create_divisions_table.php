@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('office_id')->constrained()->onDelete('cascade');
             $table->string('division_code');
             $table->string('division_name');
+            $table->enum('division_type', ['Division', 'Section', 'Unit']);
             $table->timestamps();
         });
     }
