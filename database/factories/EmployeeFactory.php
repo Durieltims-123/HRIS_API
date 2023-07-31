@@ -20,17 +20,16 @@ class EmployeeFactory extends Factory
     {
         $division = Division::all();
         return [
-             'division_id' => $division->random()->id,
-             'first_name' => $this->faker->name(),
-             'middle_name' => $this->faker->name(),
-             'last_name' => $this->faker->name(),
-             'suffix_name' => $this->faker->randomElement(['Jr.', 'II', 'Sr.', 'III',' ']),
-             'contact_number' => $this->faker->randomElement(['09111111111', '09222222222', '09333333333', '09444444444','09555555555']),
-             'email_address' => $this->faker->safeEmail(),
-             'current_position' => $this->faker->randomElement(['Administrative Divisionr V', 'Nurse I', 'Administrative Divisionr III', 'Programmer I', 'Administrative I']),
-             'employment_status' => $this->faker->randomElement(['Regular', 'Casual', 'Project', 'Seasonal','Fixed-Term','Probationary']),
-             'employee_status' => $this->faker->randomElement(['Active', 'Terminated', 'Retired', 'Suspended','On-Leave']),
-             'orientation_status' => $this->faker->randomElement(['Waiting','Ongoing', 'Finished']),
+            'division_id' => $division->random()->id,
+            'first_name' => $this->faker->firstName(),
+            'middle_name' => $this->faker->lastName(),
+            'last_name' => $this->faker->lastName(),
+            'suffix_name' => $this->faker->randomElement(['Jr.', 'II', 'Sr.', 'III', ' ']),
+            'contact_number' => $this->faker->randomElement(['09111111111', '09222222222', '09333333333', '09444444444', '09555555555']),
+            'email_address' => $this->faker->safeEmail(),
+            'lgu_position_id' => $this->faker->randomElement(['1', '2']),
+            'employee_status' => $this->faker->randomElement(['Active', 'Terminated', 'Resigned', 'Retired', 'Suspended', 'On-Leave']),
+            'orientation_status' => $this->faker->randomElement(['Pending', 'Completed']),
         ];
     }
 }

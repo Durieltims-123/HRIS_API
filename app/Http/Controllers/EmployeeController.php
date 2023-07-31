@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Resources\EmployeeResource;
 use App\Models\Employee;
+use App\Models\Vacancy;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 
@@ -19,6 +20,84 @@ class EmployeeController extends Controller
         return EmployeeResource::collection(
             Employee::all()
         );
+    }
+
+    public function search(Request $request)
+    {
+        $activePage = $request->activePage;
+        $status = $request->status;
+        // initial test
+        $searchKeyword = $request->searchKeyword;
+        $orderAscending = $request->orderAscending;
+        $orderBy = $request->orderBy;
+        $year = $request->year;
+
+        $filter = $request->filter;
+
+        $orderAscending  ? $orderAscending = 'asc' : $orderAscending = 'desc';
+        $searchKeyword == null ? $searchKeyword = '' : $searchKeyword = $searchKeyword;
+        ($orderBy == null || $orderBy == 'id') ? $orderBy = 'employees.id' : $orderBy = $orderBy;
+
+        $data = EmployeeResource::collection(
+            Employee::select(
+                '*',
+                'employees.id',
+                'lgu_positions.division_id',
+                'first_name',
+                'middle_name',
+                'last_name',
+                'suffix_name',
+                'contact_number',
+                'email_address',
+            )
+                ->join('lgu_positions', 'lgu_positions.id', 'employees.lgu_position_id')
+                ->join('positions', 'positions.id', 'lgu_positions.position_id')
+                ->join('divisions', 'lgu_positions.division_id', 'divisions.id')
+                ->join('offices', 'offices.id', 'divisions.office_id')
+                ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
+                // ->where([['vacancies.date_submitted', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
+                // ->where([['lgu_positions.id', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
+                // ->orwhere([['positions.title', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
+                // ->orwhere([['lgu_positions.item_number', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
+                // ->orwhere([['qualification_standards.education', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
+                // ->orwhere([['qualification_standards.eligibility', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
+                // ->orwhere([['qualification_standards.training', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
+                // ->orwhere([['qualification_standards.experience', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
+                // ->orwhere([['position_descriptions.description', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
+                ->skip(($activePage - 1) * 10)
+                ->orderBy($orderBy, $orderAscending)
+                ->take(10)
+                ->get()
+        );
+        $pages =
+            Employee::select(
+                '*',
+                'employees.id',
+                'lgu_positions.division_id',
+                'first_name',
+                'middle_name',
+                'last_name',
+                'suffix_name',
+                'contact_number',
+                'email_address'
+            )
+            ->join('lgu_positions', 'lgu_positions.id', 'employees.lgu_position_id')
+            ->join('positions', 'positions.id', 'lgu_positions.position_id')
+            ->join('divisions', 'lgu_positions.division_id', 'divisions.id')
+            ->join('offices', 'offices.id', 'divisions.office_id')
+            ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
+            // ->where([['vacancies.date_submitted', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
+            // ->where([['lgu_positions.id', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
+            // ->orwhere([['positions.title', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
+            // ->orwhere([['lgu_positions.item_number', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
+            // ->orwhere([['qualification_standards.education', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
+            // ->orwhere([['qualification_standards.eligibility', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
+            // ->orwhere([['qualification_standards.training', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
+            // ->orwhere([['qualification_standards.experience', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
+            // ->orwhere([['position_descriptions.description', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
+            ->count();
+
+        return compact('pages', 'data', 'filter');
     }
 
     /**
@@ -67,9 +146,9 @@ class EmployeeController extends Controller
     public function show(Employee $employee)
     {
         return EmployeeResource::collection(
-            Employee::where('id',$employee->id)
-            ->get()
-            );
+            Employee::where('id', $employee->id)
+                ->get()
+        );
     }
 
     /**

@@ -20,8 +20,7 @@ return new class extends Migration
             $table->string('suffix_name')->nullable();
             $table->string('contact_number');
             $table->string('email_address');
-            $table->string('current_position');
-            $table->string('employment_status');
+            $table->foreignId('lgu_position_id')->constrained('lgu_positions');
             $table->string('employee_status');
             $table->string('orientation_status');
             $table->timestamps();

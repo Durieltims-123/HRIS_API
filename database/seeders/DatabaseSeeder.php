@@ -61,11 +61,11 @@ class DatabaseSeeder extends Seeder
         PersonnelSelectionBoard::factory(5)
             ->has(PsbMember::factory()->count(5))
             ->create();
-        
+
         // Applicant::factory(5)->create();
         //
-        
-        
+
+
         // Reference::factory(10)
 
         $this->call([
@@ -88,11 +88,11 @@ class DatabaseSeeder extends Seeder
         ]);
         Assessment::factory(5)->create();
         Interview::factory(5)
-        ->has(PublicationInterview::factory()->count(5)) //I stopped here
-        ->create();
+            ->has(PublicationInterview::factory()->count(5)) //I stopped here
+            ->create();
         Disqualification::factory(5)->create();
         Appointment::factory(5)->create();
-        
+
         // PersonalDataSheet::factory(5)->create();
         PersonalInformation::factory(5)->create();
         FamilyBackground::factory(5)->create();
@@ -103,12 +103,13 @@ class DatabaseSeeder extends Seeder
         VoluntaryWork::factory(20)->create();
         TrainingProgramAttended::factory(20)->create();
         SpecialSkillHobby::factory(20)->create();
-        Recognition ::factory(20)->create();
+        Recognition::factory(20)->create();
         MembershipAssociation::factory(20)->create();
 
         $this->call([
             ReferenceSeeder::class,
-            AnswerSeeder::class
+            AnswerSeeder::class,
+            UserSeeder::class
         ]);
     }
 }

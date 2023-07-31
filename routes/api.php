@@ -66,6 +66,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/province', ProvinceController::class);
     Route::resource('/applicant', ApplicantController::class);
     Route::resource('/employee', EmployeeController::class);
+    Route::post('/search-employee', [EmployeeController::class, 'search']);
     Route::resource('/question', QuestionController::class);
     Route::resource('/service-record-form', ServiceRecordFormController::class);
     Route::resource('/orientation', OrientationController::class);
