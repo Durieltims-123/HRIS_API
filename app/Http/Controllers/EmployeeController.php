@@ -40,7 +40,6 @@ class EmployeeController extends Controller
 
         $data = EmployeeResource::collection(
             Employee::select(
-                '*',
                 'employees.id',
                 'lgu_positions.division_id',
                 'first_name',
@@ -49,6 +48,9 @@ class EmployeeController extends Controller
                 'suffix_name',
                 'contact_number',
                 'email_address',
+                'title',
+                'item_number',
+                'employee_status'
             )
                 ->join('lgu_positions', 'lgu_positions.id', 'employees.lgu_position_id')
                 ->join('positions', 'positions.id', 'lgu_positions.position_id')

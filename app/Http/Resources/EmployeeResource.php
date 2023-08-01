@@ -18,16 +18,18 @@ class EmployeeResource extends JsonResource
             "id" => (string)$this->id,
             "attributes" => 
             [
+                "employee_id" => (string)$this->employee_id,
                 "first_name" => (string)$this->first_name,
                 "middle_name" => (string)$this->middle_name,
                 "last_name" => (string)$this->last_name,
                 "suffix_name" => (string)$this->suffix_name,
                 "contact_number" => (string)$this->contact_number,
                 "email_address" =>(string)$this->email_address,
-                "current_position" => (string)$this->current_position,
-                "employment_status" => (string)$this->employment_status,
+                "title" => (string)$this->title,
+                "position_status" => (string)$this->position_status,
                 "employee_status" => (string)$this->employee_status,
-                "orientation_status" => (string)$this->orientation_status
+                "orientation_status" => (string)$this->orientation_status,
+                "item_number" => (string)$this->item_number
             ]
             ];
     }

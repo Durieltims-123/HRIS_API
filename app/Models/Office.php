@@ -10,7 +10,7 @@ class Office extends Model
 {
     use HasFactory;
 
-    public function hasManyDivisions():HasMany
+    public function divisions():HasMany
     {
         return $this->hasMany(Division::class);
     }

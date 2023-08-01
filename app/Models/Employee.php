@@ -20,7 +20,7 @@ class Employee extends Model
         return $this->hasOne(PersonnalDataSheet::class);
     }
 
-    public function hasOneServiceRecordForm()
+    public function hasManyServiceRecordForm()
     {
         return $this->hasMany(ServiceRecordForm::class);
     }
@@ -33,6 +33,7 @@ class Employee extends Model
     {
         return $this->belongsTo(Division::class, 'division_id');
     }
+
     public function belongsToLGUPosition()
     {
         return $this->belongsTo(LguPosition::class, 'lgu_position_id');
