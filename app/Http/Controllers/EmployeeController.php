@@ -41,6 +41,7 @@ class EmployeeController extends Controller
         $data = EmployeeResource::collection(
             Employee::select(
                 'employees.id',
+                'employee_id',
                 'lgu_positions.division_id',
                 'first_name',
                 'middle_name',

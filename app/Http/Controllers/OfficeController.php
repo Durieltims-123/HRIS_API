@@ -99,28 +99,38 @@ class OfficeController extends Controller
     public function search(Request $request)
     {
         $activePage = $request->activePage;
-        $searchKeyword = $request->searchKeyword;
+        $filters = $request->filters;
+        $fill = $request->filters;
         $orderAscending = $request->orderAscending;
         $orderBy = $request->orderBy;
         $orderAscending  ? $orderAscending = "asc" : $orderAscending = "desc";
-        $searchKeyword == null ? $searchKeyword = "" : $searchKeyword = $searchKeyword;
+        if (count($filters) > 0) {
+            $filters =  array_map(function ($filter) {
+                if ($filter['column'] === "id") {
+                    return ['offices.id', 'like', '%' . $filter['value'] . '%'];
+                } else {
+                    return [$filter['column'], 'like', '%' . $filter['value'] . '%'];
+                }
+            }, $filters);
+        } else {
+            $filters = [['offices.id', 'like', '%']];
+        }
+
+
         $orderBy == null ? $orderBy = "id" : $orderBy = $orderBy;
 
         $data = OfficeResource::collection(
-            Office::where("id", "like", "%" . $searchKeyword . "%")
-                ->orWhere("office_name", "like", "%" . $searchKeyword . "%")
-                ->orWhere("office_code", "like", "%" . $searchKeyword . "%")
-                ->skip(($activePage - 1) * 10)
+            Office::skip(($activePage - 1) * 10)
                 ->orderBy($orderBy, $orderAscending)
+                ->with('divisions')
+                ->where($filters)
                 ->take(10)
                 ->get()
         );
-        $pages = Office::where("id", "like", "%" . $searchKeyword . "%")
-            ->orWhere("office_name", "like", "%" . $searchKeyword . "%")
-            ->orWhere("office_code", "like", "%" . $searchKeyword . "%")
+        $pages = Office::where($filters)
             ->orderBy($orderBy, $orderAscending)
             ->count();
 
-        return compact('pages', 'data');
+        return compact('pages', 'data', 'fill');
     }
 }

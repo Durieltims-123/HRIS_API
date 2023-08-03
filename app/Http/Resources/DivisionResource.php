@@ -20,7 +20,7 @@ class DivisionResource extends JsonResource
             "attributes" => [
                 "division_code" => (string)$this->division_code,
                 "division_name" => (string)$this->division_name,
-                "office" => (string)$this->office_name,
+                "office_name" => (string)$this->office_name,
                 "division_type" => (string)$this->division_type
             ]
 

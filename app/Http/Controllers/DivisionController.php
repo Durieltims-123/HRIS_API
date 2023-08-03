@@ -111,18 +111,26 @@ class DivisionController extends Controller
     {
 
         $activePage = $request->activePage;
-        $searchKeyword = $request->searchKeyword;
         $orderAscending = $request->orderAscending;
         $orderBy = $request->orderBy;
         $orderAscending  ? $orderAscending = "asc" : $orderAscending = "desc";
-        $searchKeyword == null ? $searchKeyword = "" : $searchKeyword = $searchKeyword;
         $orderBy == null ? $orderBy = "divisions.id" : $orderBy = $orderBy;
+        $filters = $request->filters;
+        if (count($filters) > 0) {
+            $filters =  array_map(function ($filter) {
+                if ($filter['column'] === "id") {
+                    return ['divisions.id', 'like', '%' . $filter['value'] . '%'];
+                } else {
+                    return [$filter['column'], 'like', '%' . $filter['value'] . '%'];
+                }
+            }, $filters);
+        } else {
+            $filters = [['divisions.id', 'like', '%']];
+        }
 
         $data = DivisionResource::collection(
             Division::select('divisions.id', 'division_code', 'division_name', 'office_name', 'divisions.division_type')
-                ->where("divisions.id", "like", "%" . $searchKeyword . "%")
-                ->orWhere("division_name", "like", "%" . $searchKeyword . "%")
-                ->orWhere("division_code", "like", "%" . $searchKeyword . "%")
+                ->where($filters)
                 ->skip(($activePage - 1) * 10)
                 ->orderBy($orderBy, $orderAscending)
                 ->join('offices', 'offices.id', 'divisions.office_id')
@@ -131,10 +139,7 @@ class DivisionController extends Controller
         );
 
         $pages = Division::select('divisions.id', 'division_code', 'division_name', 'office_name')
-            ->where("divisions.id", "like", "%" . $searchKeyword . "%")
-            ->orWhere("division_name", "like", "%" . $searchKeyword . "%")
-            ->orWhere("division_code", "like", "%" . $searchKeyword . "%")
-            ->orWhere("office_name", "like", "%" . $searchKeyword . "%")
+            ->where($filters)
             ->join('offices', 'offices.id', 'divisions.office_id')
             ->orderBy($orderBy, $orderAscending)
             ->count();

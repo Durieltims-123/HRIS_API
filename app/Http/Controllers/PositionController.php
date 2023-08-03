@@ -37,7 +37,7 @@ class PositionController extends Controller
             )
                 ->join("qualification_standards", "qualification_standards.position_id", "positions.id")
                 ->join("salary_grades", "salary_grades.id", "positions.salary_grade_id")
-                ->orderBy('title','asc')
+                ->orderBy('title', 'asc')
                 ->get()
         )->toJson();
     }
@@ -157,41 +157,25 @@ class PositionController extends Controller
     {
 
         $activePage = $request->activePage;
-        $searchKeyword = $request->searchKeyword;
         $orderAscending = $request->orderAscending;
         $orderBy = $request->orderBy;
         $orderAscending  ? $orderAscending = "asc" : $orderAscending = "desc";
-        $searchKeyword == null ? $searchKeyword = "" : $searchKeyword = $searchKeyword;
         $orderBy == null ? $orderBy = "id" : $orderBy = $orderBy;
+        $filters = $request->filters;
+        if (count($filters) > 0) {
+            $filters =  array_map(function ($filter) {
+                if ($filter['column'] === "id") {
+                    return ['positions.id', 'like', '%' . $filter['value'] . '%'];
+                } else {
+                    return [$filter['column'], 'like', '%' . $filter['value'] . '%'];
+                }
+            }, $filters);
+        } else {
+            $filters = [['positions.id', 'like', '%']];
+        }
 
         $data = PositionResource::collection(
-            Position::where("title", "like", "%" . $searchKeyword . "%")
-                ->select(
-                    "title",
-                    "positions.id",
-                    "salary_grades.number",
-                    "salary_grades.amount",
-                    "qualification_standards.education",
-                    "qualification_standards.training",
-                    "qualification_standards.experience",
-                    "qualification_standards.eligibility",
-                    "qualification_standards.competency"
-                )
-                ->join("qualification_standards", "qualification_standards.position_id", "positions.id")
-                ->join("salary_grades", "salary_grades.id", "positions.salary_grade_id")
-                ->orWhere("qualification_standards.education", "like", "%" . $searchKeyword . "%")
-                ->orWhere("qualification_standards.training", "like", "%" . $searchKeyword . "%")
-                ->orWhere("qualification_standards.experience", "like", "%" . $searchKeyword . "%")
-                ->orWhere("qualification_standards.eligibility", "like", "%" . $searchKeyword . "%")
-                ->orWhere("qualification_standards.competency", "like", "%" . $searchKeyword . "%")
-                ->skip(($activePage - 1) * 10)
-                ->orderBy($orderBy, $orderAscending)
-                ->limit(10)
-                ->get()
-        );
-
-        $pages = Position::where("title", "like", "%" . $searchKeyword . "%")
-            ->select(
+            Position::select(
                 "title",
                 "positions.id",
                 "salary_grades.number",
@@ -202,13 +186,29 @@ class PositionController extends Controller
                 "qualification_standards.eligibility",
                 "qualification_standards.competency"
             )
+                ->join("qualification_standards", "qualification_standards.position_id", "positions.id")
+                ->join("salary_grades", "salary_grades.id", "positions.salary_grade_id")
+                ->where($filters)
+                ->skip(($activePage - 1) * 10)
+                ->orderBy($orderBy, $orderAscending)
+                ->limit(10)
+                ->get()
+        );
+
+        $pages = Position::select(
+            "title",
+            "positions.id",
+            "salary_grades.number",
+            "salary_grades.amount",
+            "qualification_standards.education",
+            "qualification_standards.training",
+            "qualification_standards.experience",
+            "qualification_standards.eligibility",
+            "qualification_standards.competency"
+        )
             ->join("qualification_standards", "qualification_standards.position_id", "positions.id")
             ->join("salary_grades", "salary_grades.id", "positions.salary_grade_id")
-            ->orWhere("qualification_standards.education", "like", "%" . $searchKeyword . "%")
-            ->orWhere("qualification_standards.training", "like", "%" . $searchKeyword . "%")
-            ->orWhere("qualification_standards.experience", "like", "%" . $searchKeyword . "%")
-            ->orWhere("qualification_standards.eligibility", "like", "%" . $searchKeyword . "%")
-            ->orWhere("qualification_standards.competency", "like", "%" . $searchKeyword . "%")
+            ->where($filters)
             ->count();
 
         return compact('pages', 'data');

@@ -32,6 +32,7 @@ use App\Models\QualificationStandard;
 use Database\Seeders\LguPositionSeeder;
 use App\Models\CivilServiceEligibility;
 use App\Models\Disqualification;
+use App\Models\LguPosition;
 use App\Models\PersonnelSelectionBoard;
 use App\Models\PublicationInterview;
 use App\Models\TrainingProgramAttended;
@@ -71,16 +72,17 @@ class DatabaseSeeder extends Seeder
         $this->call([
             OfficeSeeder::class,
             DivisionSeeder::class,
-            LguPositionSeeder::class,
-            PositionDescriptionSeeder::class,
             ProvinceSeeder::class,
             MunicipalitySeeder::class,
             BarangaySeeder::class,
             QuestionSeeder::class,
         ]);
+        
+        LguPosition::factory(11)->create();
+        $this->call([PositionDescriptionSeeder::class]);
+        Employee::factory(11)->create();
         Vacancy::factory(2)->create();
         Publication::factory(2)->create();
-        Employee::factory(5)->create();
         Applicant::factory(10)->create();
         Application::factory(10)->create();
         $this->call([
