@@ -40,7 +40,7 @@ class DivisionController extends Controller
     {
         $request->validated($request->all());
 
-        $divisionExist = Division::where('division_code', $request->code)->orWhere("division_name", $request->name)->exists();
+        $divisionExist = Division::where('division_code', $request->code)->orWhere([["division_name", $request->name], ["office_id", $request->office_id]])->exists();
         if ($divisionExist) {
             return $this->error('', 'Duplicate Entry', 400);
         } else {
@@ -116,7 +116,7 @@ class DivisionController extends Controller
         $orderAscending  ? $orderAscending = "asc" : $orderAscending = "desc";
         $orderBy == null ? $orderBy = "divisions.id" : $orderBy = $orderBy;
         $filters = $request->filters;
-        if (count($filters) > 0) {
+        if (!is_null($filters)) {
             $filters =  array_map(function ($filter) {
                 if ($filter['column'] === "id") {
                     return ['divisions.id', 'like', '%' . $filter['value'] . '%'];

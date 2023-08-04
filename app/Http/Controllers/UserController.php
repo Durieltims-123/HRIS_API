@@ -40,7 +40,7 @@ class UserController extends Controller
         $request->validated($request->all());
 
         // validate user from database
-        $user_exist = User::where('name', $request->name)->orwhere('email',$request->email)->exists();
+        $user_exist = User::where('name', $request->name)->orwhere('email', $request->email)->exists();
         if ($user_exist) {
             return $this->error('', 'Duplicate Entry', 400);
         }
@@ -98,25 +98,32 @@ class UserController extends Controller
     public function search(Request $request)
     {
         $activePage = $request->activePage;
-        $searchKeyword = $request->searchKeyword;
         $orderAscending = $request->orderAscending;
         $orderBy = $request->orderBy;
         $orderAscending  ? $orderAscending = "asc" : $orderAscending = "desc";
-        $searchKeyword == null ? $searchKeyword = "" : $searchKeyword = $searchKeyword;
         $orderBy == null ? $orderBy = "id" : $orderBy = $orderBy;
+        $filters = $request->filters;
+        if (!is_null($filters)) {
+            $filters =  array_map(function ($filter) {
+                if ($filter['column'] === "id") {
+                    return ['users.id', 'like', '%' . $filter['value'] . '%'];
+                } else {
+                    return [$filter['column'], 'like', '%' . $filter['value'] . '%'];
+                }
+            }, $filters);
+        } else {
+            $filters = [['users.id', 'like', '%']];
+        }
 
         $data = UserResource::collection(
-            User::where("id", "like", "%" . $searchKeyword . "%")
-                ->orWhere("name", "like", "%" . $searchKeyword . "%")
-                ->orWhere("email", "like", "%" . $searchKeyword . "%")
+            User::where($filters)
                 ->skip(($activePage - 1) * 10)
                 ->orderBy($orderBy, $orderAscending)
                 ->take(10)
                 ->get()
         );
-        $pages = User::where("id", "like", "%" . $searchKeyword . "%")
-            -> orWhere("name", "like", "%" . $searchKeyword . "%")
-            ->orWhere("email", "like", "%" . $searchKeyword . "%")
+        $pages =
+            User::where($filters)
             ->orderBy($orderBy, $orderAscending)
             ->count();
 

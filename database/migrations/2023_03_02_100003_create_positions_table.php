@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             // $table->
             $table->foreignId('salary_grade_id')->constrained();
-            $table->string('title');
+            $table->string('code')->required;
+            $table->string('title')->required;
             $table->timestamps();
         });
     }

@@ -29,6 +29,7 @@ class Position extends Model
     // protected $foreignKey = 'salary_grade_id';
 
     protected $fillable = [
+        'code',
         'title',
         'salary_grade_id'
     ];

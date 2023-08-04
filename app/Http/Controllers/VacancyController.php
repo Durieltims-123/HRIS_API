@@ -197,15 +197,23 @@ class VacancyController extends Controller
         $activePage = $request->activePage;
         $status = $request->status;
         // initial test
-        $searchKeyword = $request->searchKeyword;
         $orderAscending = $request->orderAscending;
         $orderBy = $request->orderBy;
         $year = $request->year;
-
-        $filter = $request->filter;
+        $filters = $request->filters;
+        if (!is_null($filters)) {
+            $filters =  array_map(function ($filter) {
+                if ($filter['column'] === "id") {
+                    return ['vacancies.id', 'like', '%' . $filter['value'] . '%'];
+                } else {
+                    return [$filter['column'], 'like', '%' . $filter['value'] . '%'];
+                }
+            }, $filters);
+        } else {
+            $filters = [['vacancies.id', 'like', '%']];
+        }
 
         $orderAscending  ? $orderAscending = 'asc' : $orderAscending = 'desc';
-        $searchKeyword == null ? $searchKeyword = '' : $searchKeyword = $searchKeyword;
         ($orderBy == null || $orderBy == 'id') ? $orderBy = 'vacancies.id' : $orderBy = $orderBy;
 
         $data = VacancyResource::collection(
@@ -245,15 +253,7 @@ class VacancyController extends Controller
                 ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
                 ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
                 ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
-                ->where([['vacancies.date_submitted', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
-                ->where([['lgu_positions.id', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
-                ->orwhere([['positions.title', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
-                ->orwhere([['lgu_positions.item_number', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
-                ->orwhere([['qualification_standards.education', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
-                ->orwhere([['qualification_standards.eligibility', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
-                ->orwhere([['qualification_standards.training', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
-                ->orwhere([['qualification_standards.experience', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
-                ->orwhere([['position_descriptions.description', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
+                ->where($filters)
                 ->skip(($activePage - 1) * 10)
                 ->orderBy($orderBy, $orderAscending)
                 ->take(10)
@@ -269,16 +269,9 @@ class VacancyController extends Controller
             ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
             ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
             ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
-            ->where([['lgu_positions.id', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
-            ->orwhere([['positions.title', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
-            ->orwhere([['lgu_positions.item_number', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
-            ->orwhere([['qualification_standards.education', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
-            ->orwhere([['qualification_standards.eligibility', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
-            ->orWhere([['qualification_standards.training', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
-            ->orWhere([['qualification_standards.experience', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
-            ->orWhere([['position_descriptions.description', 'like', '%' . $searchKeyword . '%'], ['vacancies.date_submitted', 'like', '%' . $year . '%'], $filter])
+            ->where($filters)
             ->count();
 
-        return compact('pages', 'data', 'filter');
+        return compact('pages', 'data');
     }
 }

@@ -58,22 +58,23 @@ class PositionController extends Controller
         // validate input fields
         $request->validated($request->all());
 
+        // return $request->code;
+
         // validate user from database
-        $positionExist = Position::where('title', $request->title)->exists();
+        $positionExist = Position::where('title', $request->title)->orWhere('code', $request->code)->exists();
 
         if ($positionExist) {
-            return $this->error('', 'Duplicate Entry', 400);
+            return $this->error('', 'Duplicate Code or Title Entry', 400);
         } else {
-
-
-            $positionQS = Position::create([
+            $position = Position::create([
                 "title" => $request->title,
+                "code" => $request->code,
                 "salary_grade_id" => $request->salary_grade_id
 
             ]);
 
             QualificationStandard::create([
-                'position_id' => $positionQS->id,
+                'position_id' => $position->id,
                 "education" => $request->education,
                 "training" => $request->training,
                 "experience" => $request->experience,
@@ -93,6 +94,7 @@ class PositionController extends Controller
         return
             Position::where("positions.id", $position->id)
             ->select(
+                "code",
                 "title",
                 "positions.id",
                 "salary_grades.id as salary_grade_id",
@@ -121,19 +123,25 @@ class PositionController extends Controller
      */
     public function update(StorePositionRequest $request, Position $position)
     {
-        $position->title = $request->title;
-        $position->salary_grade_id = $request->salary_grade_id;
-        $qs = QualificationStandard::where('position_id', $position->id)->orderBy('id', "desc")->first();
-        $qualificationStandard = QualificationStandard::find($qs->id);
-        $qualificationStandard->education = $request->education;
-        $qualificationStandard->training = $request->training;
-        $qualificationStandard->experience = $request->experience;
-        $qualificationStandard->eligibility = $request->eligibility;
-        $qualificationStandard->competency = $request->competency;
-        $position->save();
-        $qualificationStandard->save();
+        $positionExist = Position::where([['title', $request->title], ['id', '!=', $position->id]])->orWhere([['code', $request->code], ['id', '!=', $position->id]])->exists();
+        if ($positionExist) {
+            return $this->error('', 'Duplicate Code or Title Entry', 400);
+        } else {
+            $position->title = $request->title;
+            $position->code = $request->code;
+            $position->salary_grade_id = $request->salary_grade_id;
+            $qs = QualificationStandard::where('position_id', $position->id)->orderBy('id', "desc")->first();
+            $qualificationStandard = QualificationStandard::find($qs->id);
+            $qualificationStandard->education = $request->education;
+            $qualificationStandard->training = $request->training;
+            $qualificationStandard->experience = $request->experience;
+            $qualificationStandard->eligibility = $request->eligibility;
+            $qualificationStandard->competency = $request->competency;
+            $position->save();
+            $qualificationStandard->save();
 
-        return new PositionResource($position);
+            return new PositionResource($position);
+        }
     }
 
     /**
@@ -162,7 +170,7 @@ class PositionController extends Controller
         $orderAscending  ? $orderAscending = "asc" : $orderAscending = "desc";
         $orderBy == null ? $orderBy = "id" : $orderBy = $orderBy;
         $filters = $request->filters;
-        if (count($filters) > 0) {
+        if (!is_null($filters)) {
             $filters =  array_map(function ($filter) {
                 if ($filter['column'] === "id") {
                     return ['positions.id', 'like', '%' . $filter['value'] . '%'];
@@ -176,6 +184,7 @@ class PositionController extends Controller
 
         $data = PositionResource::collection(
             Position::select(
+                "code",
                 "title",
                 "positions.id",
                 "salary_grades.number",
@@ -196,15 +205,7 @@ class PositionController extends Controller
         );
 
         $pages = Position::select(
-            "title",
             "positions.id",
-            "salary_grades.number",
-            "salary_grades.amount",
-            "qualification_standards.education",
-            "qualification_standards.training",
-            "qualification_standards.experience",
-            "qualification_standards.eligibility",
-            "qualification_standards.competency"
         )
             ->join("qualification_standards", "qualification_standards.position_id", "positions.id")
             ->join("salary_grades", "salary_grades.id", "positions.salary_grade_id")

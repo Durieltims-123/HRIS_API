@@ -104,7 +104,7 @@ class OfficeController extends Controller
         $orderAscending = $request->orderAscending;
         $orderBy = $request->orderBy;
         $orderAscending  ? $orderAscending = "asc" : $orderAscending = "desc";
-        if (count($filters) > 0) {
+        if (!is_null($filters)) {
             $filters =  array_map(function ($filter) {
                 if ($filter['column'] === "id") {
                     return ['offices.id', 'like', '%' . $filter['value'] . '%'];
