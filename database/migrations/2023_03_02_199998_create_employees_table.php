@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('contact_number');
             $table->string('email_address');
             $table->foreignId('lgu_position_id')->constrained('lgu_positions');
+            $table->enum('employee_type', ['Permanent', 'Casual', 'Elective', 'Coterminous', 'Contractual']);
             $table->string('employee_status');
             $table->string('orientation_status');
             $table->timestamps();
