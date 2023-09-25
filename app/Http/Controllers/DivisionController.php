@@ -116,33 +116,63 @@ class DivisionController extends Controller
         $orderAscending  ? $orderAscending = "asc" : $orderAscending = "desc";
         $orderBy == null ? $orderBy = "divisions.id" : $orderBy = $orderBy;
         $filters = $request->filters;
-        if (!is_null($filters)) {
-            $filters =  array_map(function ($filter) {
-                if ($filter['column'] === "id") {
-                    return ['divisions.id', 'like', '%' . $filter['value'] . '%'];
-                } else {
-                    return [$filter['column'], 'like', '%' . $filter['value'] . '%'];
-                }
-            }, $filters);
+
+
+        if (!is_null($request->multiFilter)) {
+            $value = $filters[0]['value'];
+            $data = DivisionResource::collection(
+                Division::select('divisions.id', 'division_code', 'division_name', 'office_name', 'divisions.division_type')
+                    ->where('divisions.division_code', 'like', '%' . $value . '%')
+                    ->orWhere('divisions.division_name', 'like', '%' . $value . '%')
+                    ->orWhere('office_name', 'like', '%' . $value . '%')
+                    ->orWhere('office_code', 'like', '%' . $value . '%')
+                    ->skip(($activePage - 1) * 10)
+                    ->orderBy($orderBy, $orderAscending)
+                    ->join('offices', 'offices.id', 'divisions.office_id')
+                    ->take(10)
+                    ->get()
+            );
+
+
+            $pages = Division::select('divisions.id', 'division_code', 'division_name', 'office_name')
+                ->where('divisions.division_code', 'like', '%' . $value . '%')
+                ->orWhere('divisions.division_name', 'like', '%' . $value . '%')
+                ->orWhere('office_name', 'like', '%' . $value . '%')
+                ->orWhere('office_code', 'like', '%' . $value . '%')
+                ->join('offices', 'offices.id', 'divisions.office_id')
+                ->orderBy($orderBy, $orderAscending)
+                ->count();
         } else {
-            $filters = [['divisions.id', 'like', '%']];
+            if (!is_null($filters)) {
+                $filters =  array_map(function ($filter) {
+                    if ($filter['column'] === "id") {
+                        return ['divisions.id', 'like', '%' . $filter['value'] . '%'];
+                    } else {
+                        return [$filter['column'], 'like', '%' . $filter['value'] . '%'];
+                    }
+                }, $filters);
+            } else {
+                $filters = [['divisions.id', 'like', '%']];
+            }
+
+            $data = DivisionResource::collection(
+                Division::select('divisions.id', 'division_code', 'division_name', 'office_name', 'divisions.division_type')
+                    ->where($filters)
+                    ->skip(($activePage - 1) * 10)
+                    ->orderBy($orderBy, $orderAscending)
+                    ->join('offices', 'offices.id', 'divisions.office_id')
+                    ->take(10)
+                    ->get()
+            );
+
+            $pages = Division::select('divisions.id', 'division_code', 'division_name', 'office_name')
+                ->where($filters)
+                ->join('offices', 'offices.id', 'divisions.office_id')
+                ->orderBy($orderBy, $orderAscending)
+                ->count();
         }
 
-        $data = DivisionResource::collection(
-            Division::select('divisions.id', 'division_code', 'division_name', 'office_name', 'divisions.division_type')
-                ->where($filters)
-                ->skip(($activePage - 1) * 10)
-                ->orderBy($orderBy, $orderAscending)
-                ->join('offices', 'offices.id', 'divisions.office_id')
-                ->take(10)
-                ->get()
-        );
 
-        $pages = Division::select('divisions.id', 'division_code', 'division_name', 'office_name')
-            ->where($filters)
-            ->join('offices', 'offices.id', 'divisions.office_id')
-            ->orderBy($orderBy, $orderAscending)
-            ->count();
 
         return compact('pages', 'data');
     }
