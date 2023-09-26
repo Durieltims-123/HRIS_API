@@ -27,7 +27,7 @@ class LguPositionFactory extends Factory
              'item_number' => $this->faker->randomDigit(),
              'place_of_assignment' => '', 
              'year' => '2023', 
-             'position_status' => $this->faker->randomElement(['Permanent', 'Casual', 'Elective', 'Coterminous', 'Contractual']),
+             'position_status' => $this->faker->randomElement(['permanent', 'casual', 'coterminous', 'fixed term', 'contractual', 'substitute', 'provisional']),
         ];
     }
 }

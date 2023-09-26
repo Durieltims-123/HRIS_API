@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('position_id')->constrained();
             $table->string('item_number')->nullable();
             $table->string('place_of_assignment')->nullable();
-            $table->enum('position_status', ['Permanent', 'Casual', 'Elective', 'Coterminous', 'Contractual']);
+            $table->enum('position_status', ['permanent', 'casual', 'coterminous', 'fixed term', 'contractual', 'substitute', 'provisional']);
             $table->enum('status', ['Active', 'Abolished']);
             $table->integer('year');
             $table->timestamps();

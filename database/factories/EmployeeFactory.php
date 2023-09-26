@@ -32,7 +32,7 @@ class EmployeeFactory extends Factory
             'email_address' => $this->faker->safeEmail(),
             'lgu_position_id' =>  $lgu_position->id,
             'employee_status' => $this->faker->randomElement(['Active', 'Terminated', 'Resigned', 'Retired', 'Suspended', 'On-Leave']),
-            'employee_type' => $this->faker->randomElement(['Permanent', 'Casual', 'Elective', 'Coterminous', 'Contractual']),
+            'employment_status' => $this->faker->randomElement(['permanent', 'casual', 'coterminous', 'fixed term', 'contractual', 'substitute', 'provisional']),
             'orientation_status' => $this->faker->randomElement(['Pending', 'Completed']),
         ];
     }
