@@ -51,7 +51,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/search-users', [UserController::class, 'search']);
 
 
-    //alfy
+
     Route::resource('/salary-grade', SalaryGradeController::class);
     Route::post('/search-salary-grade', [SalaryGradeController::class, 'search']);
 
@@ -65,8 +65,12 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/personal-data-sheet', PersonalDataSheetController::class);
     Route::resource('/province', ProvinceController::class);
     Route::resource('/applicant', ApplicantController::class);
+
     Route::resource('/employee', EmployeeController::class);
     Route::post('/search-employee', [EmployeeController::class, 'search']);
+    Route::post('/employee-validation', [EmployeeController::class, 'validation']);
+
+
     Route::post('/search-cos', [EmployeeController::class, 'searchCos']);
     Route::resource('/question', QuestionController::class);
     Route::resource('/service-record-form', ServiceRecordFormController::class);

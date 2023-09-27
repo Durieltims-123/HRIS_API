@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreEmployeeRequest extends FormRequest
+class StoreEmployeePersonalRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -19,21 +19,11 @@ class StoreEmployeeRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
+
+
     public function rules(): array
     {
         return [
-            // 'division_id' => ['required'],
-            // 'first_name' => ['required', 'string', 'max:255'],
-            // 'middle_name' => ['required', 'string', 'max:255'],
-            // 'last_name' => ['required', 'string', 'max:255'],
-            // 'suffix_name' => ['nullable'],
-            // 'contact_number' => ['required', 'string', 'max:255'],
-            // 'email_address' => ['required', 'string', 'max:255'],
-            // 'current_position' => ['required', 'string', 'max:255'],
-            // 'employment_status' => ['required', 'string', 'max:255'],
-            // 'employee_status' => ['required', 'string', 'max:255'],
-            // 'orientation_status' => ['required', 'string', 'max:255']
-
             'employee_id'  => ['required', 'string', 'max:15'],
             'employment_status' =>  ['required', 'string'],
             'division_id' =>  ['required'],
@@ -75,39 +65,6 @@ class StoreEmployeeRequest extends FormRequest
             'telephone' =>  ['nullable', 'string'],
             'mobile' =>  ['required'],
             'email' =>  ['nullable', 'email'],
-
-
-            'spouse_first_name' =>  ['nullable'],
-            'spouse_middle_name' =>  ['nullable'],
-            'spouse_last_name' =>  ['nullable'],
-            'spouse_suffix' =>  ['nullable'],
-            'spouse_occupation' =>  ['nullable'],
-            'spouse_employer' =>  ['nullable'],
-            'spouse_employer_address' =>  ['nullable'],
-            'spouse_employer_telephone' =>  ['nullable'],
-
-
-            'children' => ['required', 'array'], 
-
-
-            'father_first_name' =>  ['required'],
-            'father_middle_name' =>  ['required'],
-            'father_last_name' =>  ['required'],
-            'father_suffix' =>  ['required'],
-            'mother_first_name' =>  ['required'],
-            'mother_middle_name' =>  ['required'],
-            'mother_last_name' =>  ['required'],
-            'mother_suffix' =>  ['required'],
-            'schools' =>  ['required'],
-            'eligibilities' =>  ['required'],
-            'workExperiences' =>  ['required'],
-            'voluntaryWorks' =>  ['required'],
-            'trainings' =>  ['required'],
-            'skills' =>  ['required'],
-            'recognitions' =>  ['required'],
-            'memberships' =>  ['required'],
-            'answers' =>  ['required'],
-            'characterReferences' =>  ['required']
         ];
     }
 }
