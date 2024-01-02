@@ -22,7 +22,7 @@ class StorePublicationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'opening_date' => ['required', 'date'],
+            'posting_date' => ['required', 'date'],
             'closing_date' => ['required', 'date'],
             
         ];

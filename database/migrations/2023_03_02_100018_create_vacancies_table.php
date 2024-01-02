@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('vacancies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('plantilla_id')->constrained();
+            $table->foreignId('lgu_position_id')->constrained();
             $table->date('date_submitted');
             $table->date('date_queued')->nullable();
             $table->date('date_approved')->nullable();
-            $table->string('status');
+            $table->enum('status',['Active','Approved','Queued']);
             $table->timestamps();
         });
     }

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('position_descriptions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('plantilla_id')->constrained();
-            $table->string('description');
+            $table->foreignId('lgu_position_id')->constrained();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

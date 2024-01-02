@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('plantillas', function (Blueprint $table) {
+        Schema::create('lgu_positions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('office_id')->constrained();
+            $table->foreignId('division_id')->constrained();
             $table->foreignId('position_id')->constrained();
-            $table->string('item_number');
-            $table->unique('item_number');
+            $table->string('item_number')->nullable();
             $table->string('place_of_assignment')->nullable();
-            $table->string('year');
+            $table->enum('position_status', ['permanent', 'casual', 'coterminous', 'fixed term', 'contractual', 'substitute', 'provisional']);
+            $table->enum('status', ['Active', 'Abolished']);
+            $table->integer('year');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('plantillas');
+        Schema::dropIfExists('lgu_positions');
     }
 };

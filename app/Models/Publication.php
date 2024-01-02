@@ -26,7 +26,7 @@ class Publication extends Model
 
     protected $fillable = [
         'vacancy_id',
-        'opening_date',
+        'posting_date',
         'closing_date'
     ];
 }

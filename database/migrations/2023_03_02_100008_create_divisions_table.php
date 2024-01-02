@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('offices', function (Blueprint $table) {
+        Schema::create('divisions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('department_id')->constrained()->onDelete('cascade');
-            $table->string('office_code');
-            $table->string('office_name');
+            $table->foreignId('office_id')->constrained()->onDelete('cascade');
+            $table->string('division_code');
+            $table->string('division_name');
+            $table->enum('division_type', ['Division', 'Section', 'Unit']);
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('offices');
+        Schema::dropIfExists('divisions');
     }
 };

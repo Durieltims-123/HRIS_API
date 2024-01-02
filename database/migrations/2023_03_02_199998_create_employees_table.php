@@ -13,15 +13,16 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('office_id')->constrained('offices');
+            $table->foreignId('division_id')->constrained('divisions');
+            $table->string('employee_id')->unique();
             $table->string('first_name');
             $table->string('middle_name');
             $table->string('last_name');
             $table->string('suffix_name')->nullable();
             $table->string('contact_number');
             $table->string('email_address');
-            $table->string('current_position');
-            $table->string('employment_status');
+            $table->foreignId('lgu_position_id')->constrained('lgu_positions');
+            $table->enum('employment_status', ['permanent', 'casual', 'coterminous', 'fixed term', 'contractual', 'substitute', 'provisional']);
             $table->string('employee_status');
             $table->string('orientation_status');
             $table->timestamps();

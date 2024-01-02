@@ -14,7 +14,7 @@ class WorkExperience extends Model
     protected $fillable = [
         'personal_data_sheet_id',
         'position_title',
-        'department',
+        'office',
         'monthly_salary',
         'salary',
         'status_appointment',

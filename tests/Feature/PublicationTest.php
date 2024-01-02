@@ -33,7 +33,7 @@ class PublicationTest extends TestCase
     public function test_add_publication(): void
     {
         $formData = [
-            "opening_date" => "2023-03-05",
+            "posting_date" => "2023-03-05",
             'closing_date' => "2023-04-01",
             "vacancy_id" => 1,
         ];
@@ -50,7 +50,7 @@ class PublicationTest extends TestCase
     public function test_edit_publication(): void
     {
         $formData = [
-            "opening_date" => "2023-10-05",
+            "posting_date" => "2023-10-05",
             'closing_date' => "2023-10-12",
             "vacancy_id" => 1,
         ];
@@ -69,11 +69,11 @@ class PublicationTest extends TestCase
     public function test_delete_publication(): void
     {
         $formData = [
-            "opening_date" => "2023-10-06",
+            "posting_date" => "2023-10-06",
             'closing_date' => "2023-10-11",
             "vacancy_id" => 1,
         ];
-        $dept = Publication::where([['vacancy_id',1],["opening_date", "2023-10-05"], ["closing_date", "2023-10-12"]])->first();
+        $dept = Publication::where([['vacancy_id',1],["posting_date", "2023-10-05"], ["closing_date", "2023-10-12"]])->first();
         $user = User::factory()->create();
         $this->assertCount(0, $user->tokens);
         $this->actingAs($user);

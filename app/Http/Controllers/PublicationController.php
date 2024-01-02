@@ -39,7 +39,7 @@ class PublicationController extends Controller
 
         Publication::create([
             "vacancy_id" => $request->vacancy_id,
-            "opening_date" => $request->opening_date,
+            "posting_date" => $request->posting_date,
             "closing_date" => $request->closing_date
         ]);
         $today = Carbon::today()->toDateString();
@@ -73,7 +73,7 @@ class PublicationController extends Controller
      */
     public function update(Request $request, Publication $publication)
     {
-        $publication->opening_date = $request->opening_date;
+        $publication->posting_date = $request->posting_date;
         $publication->closing_date = $request->closing_date;
         $publication->vacancy_id = $request->vacancy_id;
 
@@ -92,7 +92,7 @@ class PublicationController extends Controller
 
     public function searchClosingDate(Request $request){
 
-        $date = Carbon::createFromFormat('Y-m-d', $request->opening_date); // Convert input date to Carbon instance
+        $date = Carbon::createFromFormat('Y-m-d', $request->posting_date); // Convert input date to Carbon instance
 
         $closingDate = $date->copy()->addDays(15); // Add 14 days to the input date to get the 15th date
 

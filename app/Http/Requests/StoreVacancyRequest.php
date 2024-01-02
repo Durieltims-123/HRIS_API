@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreVacancyRequest extends FormRequest
 {
@@ -22,10 +23,13 @@ class StoreVacancyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'plantilla_id' => ['required'],
+            'position' => ['required'],
+            'position_id' => ['required'],
             'date_submitted' => ['required', 'date'],
-            'date_queued' => ['nullable','date'],
-            'date_approved' => ['nullable','date'],
+            'date_approved' => ['required_if:process,Approve', 'nullable', 'date', 'after_or_equal:date_submitted'],
+            'posting_date' => ['required_if:process,Approve', 'nullable', 'date', 'after_or_equal:date_approved'],
+            'closing_date' => ['required_if:process,Approve', 'nullable', 'date', 'after_or_equal:posting_date'],
+            'date_queued' => ['required_if:process,Queue', 'nullable', 'date', 'after_or_equal:date_submitted'],
             'status' => ['required', 'string', 'max:255'],
         ];
     }

@@ -47,7 +47,7 @@ class ServiceRecordFormController extends Controller
             "civil_status" => $request->civil_status,
             "designation" => $request->designation,
             "salary_annum" => $request->salary_annum,
-            "office_department" => $request->office_department
+            "division_office" => $request->division_office
         ]);
 
         // return message
@@ -83,7 +83,7 @@ class ServiceRecordFormController extends Controller
         $serviceRecordForm->civil_status = $request->civil_status;
         $serviceRecordForm->designation = $request->designation;
         $serviceRecordForm->salary_annum = $request->salary_annum;
-        $serviceRecordForm->office_department = $request->office_department;
+        $serviceRecordForm->division_office = $request->division_office;
         $serviceRecordForm->save();
 
         // $holiday->update($request->all());

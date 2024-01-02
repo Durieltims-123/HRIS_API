@@ -19,8 +19,16 @@ class OfficeResource extends JsonResource
             "attributes" => [
                 "office_code" => (string)$this->office_code,
                 "office_name" => (string)$this->office_name,
-                "department" => $this->whenLoaded('belongsToDepartment')->department_name
-            ]
+                "divisions" => $this->divisions
+                // 'divisions' => $this->hasManyDivisions->map(function ($divisions) {
+                //     return [
+                //         'division_code' => $divisions->division_code,
+                //         'division_name' => $divisions->division_name,
+                //     ];
+                // }),
+
+            ],
+
 
         ];
     }

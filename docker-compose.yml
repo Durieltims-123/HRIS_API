@@ -1,0 +1,32 @@
+version: '3.0'
+volumes:
+  data:
+services:
+
+  #php
+  php:
+    container_name: php
+    build:
+      context: .
+      target: php
+    working_dir: /var/www
+    volumes: 
+        - ./:/var/www
+    ports:
+        - "8000:8000"
+    depends_on:
+      - db
+
+  # database
+  db:
+    container_name: database
+    image: mariadb:10
+    environment:
+      MYSQL_ROOT_PASSWORD: hris1234!
+      MYSQL_DATABASE: db_hris
+      MYSQL_USER: hris
+      MYSQL_PASSWORD: hris1234!
+    volumes:
+      - data:/var/lib/mysql
+    ports:
+      - "3306:3306"

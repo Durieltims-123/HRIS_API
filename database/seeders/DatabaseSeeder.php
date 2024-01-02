@@ -29,9 +29,10 @@ use App\Models\PersonalInformation;
 use App\Models\EducationalBackground;
 use App\Models\MembershipAssociation;
 use App\Models\QualificationStandard;
-use Database\Seeders\PlantillaSeeder;
+use Database\Seeders\LguPositionSeeder;
 use App\Models\CivilServiceEligibility;
 use App\Models\Disqualification;
+use App\Models\LguPosition;
 use App\Models\PersonnelSelectionBoard;
 use App\Models\PublicationInterview;
 use App\Models\TrainingProgramAttended;
@@ -50,45 +51,50 @@ class DatabaseSeeder extends Seeder
         // ]);
         User::factory(100)->create();
         Holiday::factory(10)->create();
-        SalaryGrade::factory(33)->create();
-        Position::factory(33)->create();
-        QualificationStandard::factory(33)->create();
+        // SalaryGrade::factory(33)->create();
+        // Position::factory(33)->create();
+        // QualificationStandard::factory(33)->create();
+        $this->call([
+            SalaryGradeSeeder::class,
+            PositionSeeder::class,
+        ]);
+
         PersonnelSelectionBoard::factory(5)
             ->has(PsbMember::factory()->count(5))
             ->create();
-        
+
         // Applicant::factory(5)->create();
         //
-        
-        
+
+
         // Reference::factory(10)
 
         $this->call([
-            DepartmentSeeder::class,
             OfficeSeeder::class,
-            PlantillaSeeder::class,
-            PositionDescriptionSeeder::class,
+            DivisionSeeder::class,
             ProvinceSeeder::class,
             MunicipalitySeeder::class,
             BarangaySeeder::class,
             QuestionSeeder::class,
         ]);
+        
+        LguPosition::factory(11)->create();
+        $this->call([PositionDescriptionSeeder::class]);
+        Employee::factory(11)->create();
         Vacancy::factory(2)->create();
         Publication::factory(2)->create();
-        Employee::factory(5)->create();
         Applicant::factory(10)->create();
         Application::factory(10)->create();
         $this->call([
             PersonalDataSheetSeeder::class,
-
         ]);
         Assessment::factory(5)->create();
         Interview::factory(5)
-        ->has(PublicationInterview::factory()->count(5)) //I stopped here
-        ->create();
+            ->has(PublicationInterview::factory()->count(5)) //I stopped here
+            ->create();
         Disqualification::factory(5)->create();
         Appointment::factory(5)->create();
-        
+
         // PersonalDataSheet::factory(5)->create();
         PersonalInformation::factory(5)->create();
         FamilyBackground::factory(5)->create();
@@ -99,12 +105,13 @@ class DatabaseSeeder extends Seeder
         VoluntaryWork::factory(20)->create();
         TrainingProgramAttended::factory(20)->create();
         SpecialSkillHobby::factory(20)->create();
-        Recognition ::factory(20)->create();
+        Recognition::factory(20)->create();
         MembershipAssociation::factory(20)->create();
 
         $this->call([
             ReferenceSeeder::class,
-            AnswerSeeder::class
+            AnswerSeeder::class,
+            UserSeeder::class
         ]);
     }
 }

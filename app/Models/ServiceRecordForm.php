@@ -25,6 +25,6 @@ class ServiceRecordForm extends Model
         'civil_status',
         'designation',
         'salary_annum',
-        'office_department',
+        'division_office',
     ];
 }

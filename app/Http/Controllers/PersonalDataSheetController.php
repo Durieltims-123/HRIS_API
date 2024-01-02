@@ -205,7 +205,7 @@ class PersonalDataSheetController extends Controller
 
         //work experience
         $positionTitles = $request->input('position_title');
-        $departments = $request->input('department');
+        $offices = $request->input('office');
         $monthlySalarys = $request->input('monthly_salary');
         $salarys = $request->input('salary');
         $statusAppointments = $request->input('status_appointment');
@@ -213,11 +213,11 @@ class PersonalDataSheetController extends Controller
         $inclusiveFroms = $request->input('inclusive_dates_from');
         $inclusiveTos = $request->input('inclusive_dates_to');
 
-        foreach ($departments as $b => $department) {
+        foreach ($offices as $b => $office) {
             WorkExperience::create([
                 "personal_data_sheet_id" => $personalDataSheet->id,
                 "position_title" => $positionTitles[$b],
-                "department" => $department,
+                "office" => $office,
                 "monthly_salary" => $monthlySalarys[$b],
                 "salary" => $salarys[$b],
                 "status_appointment" => $statusAppointments[$b],
@@ -519,7 +519,7 @@ class PersonalDataSheetController extends Controller
 
         //WORK EXPERIENCE
         $positionTitles = $request->input('position_title');
-        $departments = $request->input('department');
+        $offices = $request->input('office');
         $monthlySalarys = $request->input('monthly_salary');
         $salarys = $request->input('salary');
         $statusAppointments = $request->input('status_appointment');
@@ -537,7 +537,7 @@ class PersonalDataSheetController extends Controller
                     ->update([
                         "personal_data_sheet_id" => $personalDataSheet->id,
                         "position_title" => $positionTitles[$b],
-                        "department" => $departments[$b],
+                        "office" => $offices[$b],
                         "monthly_salary" => $monthlySalarys[$b],
                         "salary" => $salarys[$b],
                         "status_appointment" => $statusAppointments[$b],
@@ -550,7 +550,7 @@ class PersonalDataSheetController extends Controller
                 WorkExperience::create([
                     "personal_data_sheet_id" => $personalDataSheet->id,
                     "position_title" => $positionTitle,
-                    "department" => $departments[$b],
+                    "office" => $offices[$b],
                     "monthly_salary" => $monthlySalarys[$b],
                     "salary" => $salarys[$b],
                     "status_appointment" => $statusAppointments[$b],

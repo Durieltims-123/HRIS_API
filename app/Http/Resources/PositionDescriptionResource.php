@@ -14,14 +14,14 @@ class PositionDescriptionResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $plantilla = $this->whenLoaded('belongsToPlantilla');
+        $plantilla = $this->whenLoaded('belongsToLguPosition');
 
         return [
             "id" => (string)$this->id,
             "attributes"=>[
                 "description" => (string)$this->description,
             ],
-            "plantilla" => new PlantillaResource($plantilla),
+            "plantilla" => new LguPositionResource($plantilla),
             
         ];
     }

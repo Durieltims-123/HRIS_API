@@ -23,7 +23,7 @@ class StoreWorkExperienceRequest extends FormRequest
     {
         return [
             'position_title' => ['required', 'string', 'max:255'],
-            'department' => ['required', 'string', 'max:255'],
+            'office' => ['required', 'string', 'max:255'],
             'monthly_salary' => ['required', 'string', 'max:255'],
             'salary' => ['required', 'string', 'max:255'],
             'status_appointment' => ['required', 'string', 'max:255'],

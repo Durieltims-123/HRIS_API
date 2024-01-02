@@ -4,40 +4,43 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Office;
+use App\Models\Division;
 use App\Models\Position;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Plantilla extends Model
+class LguPosition extends Model
 {
     use HasFactory;
 
-    public function hasOneOffice ():HasOne
+    public function hasOneDivision(): HasOne
     {
-        return $this->hasOne(Office::class);
+        return $this->hasOne(Division::class);
     }
-    public function belongsToPosition ():BelongsTo
+    public function belongsToPosition(): BelongsTo
     {
         return $this->belongsTo(Position::class, 'position_id');
     }
-    public function hasManyPositionDescription (): HasMany
+    public function hasManyPositionDescription(): HasMany
     {
-        return $this->hasMany(PositionDescription::class, 'plantilla_id');
+        return $this->hasMany(PositionDescription::class, 'lgu_position_id');
     }
-    public function hasOneVacancy (): HasOne
+    public function hasOneVacancy(): HasOne
     {
-        return $this->hasOne(Vacancy::class, 'plantilla_id');
+        return $this->hasOne(Vacancy::class, 'lgu_position_id');
     }
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'office_id',
+        'division_id',
         'position_id',
         'item_number',
         'place_of_assignment',
-        'year'
+        'year',
+        'position_status',
+        'status'
+
     ];
 }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('appointment_id')->constrained();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('department');
+            $table->string('office');
             $table->string('job_title');
             $table->string('date_appointed');
             

@@ -27,25 +27,32 @@ class SalaryGradeController extends Controller
     public function search(Request $request)
     {
         $activePage = $request->activePage;
-        $searchKeyword = $request->searchKeyword;
         $orderAscending = $request->orderAscending;
         $orderBy = $request->orderBy;
         $orderAscending  ? $orderAscending = "asc" : $orderAscending = "desc";
-        $searchKeyword == null ? $searchKeyword = "" : $searchKeyword = $searchKeyword;
         $orderBy == null ? $orderBy = "id" : $orderBy = $orderBy;
+        $filters = $request->filters;
+        if (!is_null($filters)) {
+            $filters =  array_map(function ($filter) {
+                if ($filter['column'] === "id") {
+                    return ['salary_grades.id', 'like', '%' . $filter['value'] . '%'];
+                } else {
+                    return [$filter['column'], 'like', '%' . $filter['value'] . '%'];
+                }
+            }, $filters);
+        } else {
+            $filters = [['salary_grades.id', 'like', '%']];
+        }
 
         $data = SalaryGradeResource::collection(
-            SalaryGrade::where("id", "like", "%" . $searchKeyword . "%")
-                ->orWhere("number", "like", "%" . $searchKeyword . "%")
-                ->orWhere("amount", "like", "%" . $searchKeyword . "%")
+            SalaryGrade::where($filters)
                 ->skip(($activePage - 1) * 10)
                 ->orderBy($orderBy, $orderAscending)
                 ->take(10)
                 ->get()
         );
-        $pages = SalaryGrade::where("id", "like", "%" . $searchKeyword . "%")
-            ->orWhere("number", "like", "%" . $searchKeyword . "%")
-            ->orWhere("amount", "like", "%" . $searchKeyword . "%")
+        $pages =
+            SalaryGrade::where($filters)
             ->orderBy($orderBy, $orderAscending)
             ->count();
 
@@ -103,7 +110,7 @@ class SalaryGradeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SalaryGrade $salaryGrade)
+    public function update(StoreSalaryGradeRequest $request, SalaryGrade $salaryGrade)
     {
         $duplicate = SalaryGrade::where([["number", $request->number], ['id', '<>', $salaryGrade->id]])->exists();
         if ($duplicate) {
@@ -120,7 +127,7 @@ class SalaryGradeController extends Controller
      */
     public function destroy(SalaryGrade $salaryGrade)
     {
-        $positionExist=Position::where('salary_grade_id',$salaryGrade->id)->exists();
+        $positionExist = Position::where('salary_grade_id', $salaryGrade->id)->exists();
         if ($positionExist) {
             return $this->error('', 'You cannot delete Salary Grade  connected to a position.', 400);
         } else {

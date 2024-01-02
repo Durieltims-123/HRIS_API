@@ -18,7 +18,7 @@ class WorkExperienceResource extends JsonResource
             "id" => (string)$this->id,
             "attributes"=>[
                 "position_title" => (string)$this->position_title,
-                "department" => (string)$this->department,
+                "office" => (string)$this->office,
                 "monthly_salary" => (string)$this->monthly_salary,
                 "salary" => (string)$this->salary,
                 "status_appointment" => (string)$this->status_appointment,

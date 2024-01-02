@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('civil_status');
             $table->string('designation');
             $table->string('salary_annum');
-            $table->string('office_department');
+            $table->string('division_office');
             $table->timestamps();
         });
     }

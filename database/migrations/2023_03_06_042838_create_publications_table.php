@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('publications', function (Blueprint $table) {
             $table->id();
             $table->foreignId('vacancy_id')->constrained();
-            $table->date('opening_date');
+            $table->date('posting_date');
             $table->date('closing_date');
+            $table->enum('publication_status', ['Active', 'Closed']);
             $table->timestamps();
         });
     }

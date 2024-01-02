@@ -10,32 +10,39 @@ class Employee extends Model
 {
     use HasFactory;
 
-    public function hasOneApplication ()
+    public function hasManyApplication()
     {
-        return $this -> hasOne(Application::class);
+        return $this->hasMany(Application::class);
     }
-    
+
     public function hasOnePersonnalDataSheet()
     {
         return $this->hasOne(PersonnalDataSheet::class);
     }
 
-    public function hasOneServiceRecordForm()
+    public function hasManyServiceRecordForm()
     {
-        return $this->hasOne(ServiceRecordForm::class);
+        return $this->hasMany(ServiceRecordForm::class);
     }
-    
-    public function hasManyEmployeeOrientation() : HasMany{
+
+    public function hasManyEmployeeOrientation(): HasMany
+    {
         return $this->hasMany(EmployeeOrientation::class, 'orientation_id');
     }
-     public function belongsToOffice()
-     {
-        return $this->belongsTo(Office::class, 'office_id');
-     }
+    public function belongsToDivision()
+    {
+        return $this->belongsTo(Division::class, 'division_id');
+    }
 
-protected $fillable = 
+    public function belongsToLGUPosition()
+    {
+        return $this->belongsTo(LguPosition::class, 'lgu_position_id');
+    }
+
+    protected $fillable =
     [
-        'office_id',
+        'division_id',
+        'lgu_position_id',
         'first_name',
         'middle_name',
         'last_name',
@@ -43,7 +50,6 @@ protected $fillable =
         'contact_number',
         'email_address',
         'current_position',
-        'employment_status',
         'employee_status',
         'orientation_status',
     ];
