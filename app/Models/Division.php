@@ -12,15 +12,15 @@ class Division extends Model
 {
     use HasFactory;
 
-    public function belongsToLguPosition (): BelongsTo
-    {
-        return $this->belongsTo(LguPosition::class);
-    }
-    public function hasManyEmployee (): HasMany
+    // public function belongsToLguPosition (): BelongsTo
+    // {
+    //     return $this->belongsTo(LguPosition::class);
+    // }
+    public function employee (): HasMany
     {
         return $this->hasMany(Employee::class);
     }
-    public function belongsToOffice():BelongsTo
+    public function office():BelongsTo
     {
         return $this->belongsTo(Office::class, 'office_id');
     }

@@ -14,21 +14,21 @@ class LguPosition extends Model
 {
     use HasFactory;
 
-    public function hasOneDivision(): HasOne
+    public function division(): HasOne
     {
         return $this->hasOne(Division::class);
     }
-    public function belongsToPosition(): BelongsTo
+    public function position(): BelongsTo
     {
         return $this->belongsTo(Position::class, 'position_id');
     }
-    public function hasManyPositionDescription(): HasMany
+    public function positionDescription(): HasMany
     {
         return $this->hasMany(PositionDescription::class, 'lgu_position_id');
     }
-    public function hasOneVacancy(): HasOne
+    public function vacancy(): HasMany
     {
-        return $this->hasOne(Vacancy::class, 'lgu_position_id');
+        return $this->hasMany(Vacancy::class, 'lgu_position_id');
     }
 
     protected $primaryKey = 'id';

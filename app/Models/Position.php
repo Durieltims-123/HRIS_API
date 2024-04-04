@@ -12,7 +12,7 @@ class Position extends Model
 {
     use HasFactory;
     
-    public function belongsToSalaryGrade (): BelongsTo
+    public function salaryGrade (): BelongsTo
     {
         return $this->belongsTo(SalaryGrade::class,'salary_grade_id');
     }

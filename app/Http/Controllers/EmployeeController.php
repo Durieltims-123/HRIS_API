@@ -50,25 +50,27 @@ class EmployeeController extends Controller
 
         $data = EmployeeResource::collection(
             Employee::select(
-                'employees.id',
-                'employee_id',
-                'lgu_positions.division_id',
-                'first_name',
-                'middle_name',
-                'last_name',
-                'suffix_name',
-                'contact_number',
-                'email_address',
-                'title',
-                'item_number',
-                'employee_status'
+                '*'
+                // 'employees.id',
+                // 'employee_id',
+                // 'lgu_positions.division_id',
+                // 'first_name',
+                // 'middle_name',
+                // 'last_name',
+                // 'suffix_name',
+                // 'contact_number',
+                // 'email_address',
+                // 'title',
+                // 'item_number',
+                // 'employee_status'
             )
-                ->join('lgu_positions', 'lgu_positions.id', 'employees.lgu_position_id')
-                ->join('positions', 'positions.id', 'lgu_positions.position_id')
-                ->join('divisions', 'lgu_positions.division_id', 'divisions.id')
-                ->join('offices', 'offices.id', 'divisions.office_id')
-                ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
-                ->where($filters)
+                ->with('lguPosition', 'lguPosition.position', 'lguPosition.position.salaryGrade', 'division', 'division.office')
+                // ->join('lgu_positions', 'lgu_positions.id', 'employees.lgu_position_id')
+                // ->join('positions', 'positions.id', 'lgu_positions.position_id')
+                // ->join('divisions', 'lgu_positions.division_id', 'divisions.id')
+                // ->join('offices', 'offices.id', 'divisions.office_id')
+                // ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
+                // ->where($filters)
                 ->skip(($activePage - 1) * 10)
                 ->orderBy($orderBy, $orderAscending)
                 ->take(10)
@@ -100,10 +102,18 @@ class EmployeeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreEmployeeRequest $request)
+    public function store(Request $request)
     {
+
+        $validation_request = $request->input('validation_request');
+        if ($validation_request === "Personal") {
+            $request->validate(StoreEmployeeRequest::rules());
+            // StoreEmployeeRequest::validate($request);
+            return "Validated";
+        }
+
         // validate input fields
-        $request->validated($request->all());
+        // $request->validated($request->all());
 
         $employeeExist = Employee::where([['first_name', $request->first_name], ['middle_name', $request->middle_name], ['last_name', $request->last_name]])->exists();
         if ($employeeExist) {

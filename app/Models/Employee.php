@@ -10,31 +10,31 @@ class Employee extends Model
 {
     use HasFactory;
 
-    public function hasManyApplication()
+    public function application()
     {
         return $this->hasMany(Application::class);
     }
 
-    public function hasOnePersonnalDataSheet()
+    public function personalDataSheet()
     {
-        return $this->hasOne(PersonnalDataSheet::class);
+        return $this->hasOne(PersonalDataSheet::class);
     }
 
-    public function hasManyServiceRecordForm()
+    public function serviceRecordForm()
     {
         return $this->hasMany(ServiceRecordForm::class);
     }
 
-    public function hasManyEmployeeOrientation(): HasMany
+    public function employeeOrientation(): HasMany
     {
         return $this->hasMany(EmployeeOrientation::class, 'orientation_id');
     }
-    public function belongsToDivision()
+    public function division()
     {
         return $this->belongsTo(Division::class, 'division_id');
     }
 
-    public function belongsToLGUPosition()
+    public function lguPosition()
     {
         return $this->belongsTo(LguPosition::class, 'lgu_position_id');
     }
