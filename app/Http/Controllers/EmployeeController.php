@@ -102,19 +102,10 @@ class EmployeeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreEmployeeRequest $request)
     {
-
-        $validation_request = $request->input('validation_request');
-        if ($validation_request === "Personal") {
-            $request->validate(StoreEmployeeRequest::rules());
-            // StoreEmployeeRequest::validate($request);
-            return "Validated";
-        }
-
         // validate input fields
-        // $request->validated($request->all());
-
+        $request->validated($request->all());
         $employeeExist = Employee::where([['first_name', $request->first_name], ['middle_name', $request->middle_name], ['last_name', $request->last_name]])->exists();
         if ($employeeExist) {
             return $this->error('', 'Duplicate Entry', 400);
