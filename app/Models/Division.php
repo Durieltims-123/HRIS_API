@@ -12,7 +12,7 @@ class Division extends Model
 {
     use HasFactory;
 
-    // public function belongsToLguPosition (): BelongsTo
+    // public function lguPosition (): BelongsTo
     // {
     //     return $this->belongsTo(LguPosition::class);
     // }

@@ -14,7 +14,7 @@ class PositionDescriptionResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $plantilla = $this->whenLoaded('belongsToLguPosition');
+        $plantilla = $this->whenLoaded('lguPosition');
 
         return [
             "id" => (string)$this->id,

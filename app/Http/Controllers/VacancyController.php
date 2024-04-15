@@ -21,11 +21,11 @@ class VacancyController extends Controller
     {
         return VacancyResource::collection(
             Vacancy::with([
-                'belongsToLguPosition.belongsToPosition',
-                'belongsToLguPosition.belongsToPosition.belongsToSalaryGrade',
-                'belongsToLguPosition.belongsToPosition.hasManyQualificationStandard',
+                'lguPosition',
+                'lguPosition.position.salaryGrade',
+                'lguPosition.position.qualificationStandards',
             ])->get()
-        );
+        )->toJson();
     }
 
     /**

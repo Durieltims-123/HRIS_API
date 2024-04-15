@@ -16,7 +16,7 @@ class Position extends Model
     {
         return $this->belongsTo(SalaryGrade::class,'salary_grade_id');
     }
-    public function hasManyQualificationStandard (): HasMany
+    public function qualificationStandards (): HasMany
     {
         return $this->hasMany(QualificationStandard::class);
     }

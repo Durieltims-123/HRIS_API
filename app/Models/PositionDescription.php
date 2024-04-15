@@ -10,7 +10,7 @@ class PositionDescription extends Model
 {
     use HasFactory;
 
-    public function belongsToLguPosition (): BelongsTo
+    public function lguPosition (): BelongsTo
     {
         return $this->belongsTo(LguPosition::class, 'lgu_position_id');
     }
