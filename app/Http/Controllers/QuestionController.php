@@ -39,8 +39,7 @@ class QuestionController extends Controller
 
         Question::create([
             "number" => $request->number,
-            "questions" => $request->questions,
-
+            "question" => $request->question,
         ]);
 
 
@@ -54,9 +53,9 @@ class QuestionController extends Controller
     public function show(Question $question)
     {
         return QuestionResource::collection(
-            Question::where('id',$question->id)
-            ->get()
-            );
+            Question::where('id', $question->id)
+                ->get()
+        );
     }
 
     /**
@@ -73,7 +72,7 @@ class QuestionController extends Controller
     public function update(Request $request, Question $question)
     {
         $question->number = $request->number;
-        $question->questions = $request->questions;
+        $question->question = $request->question;
         $question->save();
 
         return new QuestionResource($question);

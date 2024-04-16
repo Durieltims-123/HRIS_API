@@ -183,6 +183,7 @@ class VacancyController extends Controller
     public function destroy(Vacancy $vacancy)
     {
         $publicationExists = Publication::where('vacancy_id', $vacancy->id)->exists();
+        
         if ($publicationExists) {
             return $this->error('', 'You cannot delete Vacancy with Publication.', 400);
         } else {

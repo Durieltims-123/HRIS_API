@@ -25,6 +25,7 @@ class StoreLguPositionRequest extends FormRequest
             'division_id' => ['required'],
             'position_id' => ['required'],
             'item_number' => ['required_if:position_status,==,Permanent','max:255'],
+            'description' => ['nullable', 'string', 'max:255'],
             'place_of_assignment' => ['nullable', 'string', 'max:255'],
             'year' => ['required'],
             'position_status' => ['required', 'string'],

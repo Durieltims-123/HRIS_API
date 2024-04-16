@@ -22,7 +22,7 @@ class LguPositionController extends Controller
     public function index()
     {
 
-        $lguPosition = LguPosition::with(['hasOneVacancy'])->get();
+        $lguPosition = LguPosition::with(['vacancy'])->get();
 
         return LguPositionResource::collection($lguPosition);
         //    return $lguPosition->mapInto(VacancyResource::class);
@@ -41,7 +41,7 @@ class LguPositionController extends Controller
      */
     public function store(StoreLguPositionRequest $request)
     {
-        $request->validated($request->all());
+        // $request->validated($request->all());
 
         $lguPositionExist = LguPosition::where([['item_number', $request->item_number], ['position_status', $request->position_status]])->exists();
         if ($lguPositionExist) {

@@ -41,6 +41,5 @@ class LguPosition extends Model
         'year',
         'position_status',
         'status'
-
     ];
 }

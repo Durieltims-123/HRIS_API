@@ -8,6 +8,8 @@ use App\Models\Vacancy;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
+use function PHPUnit\Framework\isNull;
+
 class VacancyTest extends TestCase
 {
 
@@ -28,16 +30,16 @@ class VacancyTest extends TestCase
     }
 
     // add
-    public function test_add_vacancy(): void
+    public function test_add_active_vacancy(): void
     {
         $formData = [
-            'position' => 'Test Position',
+            'position' => 'Active Vacancy',
             'position_id' => 1,
             'date_submitted' => '2023-01-01',
-            'posting_date' => '2023-01-18',
-            'closing_date' => '2023-01-22',
+            'posting_date' => null,
+            'closing_date' => null,
             'date_queued' => null,
-            'date_approved' => '2023-01-11',
+            'date_approved' => null,
             'status' => 'Active',
         ];
 
@@ -58,33 +60,65 @@ class VacancyTest extends TestCase
         $response = $this->assertDatabaseHas('vacancies', $checkData);
     }
 
-    // edit 
-    public function test_edit_vacancy(): void
+    public function test_add_approved_vacancy(): void
     {
         $formData = [
-            'position' => 'Test Position Edit',
+            'position' => 'Approved Vacancy',
             'position_id' => 1,
-            'date_submitted' => '2023-01-02',
-            'date_approved' => '2023-01-11',
-            'posting_date' => '2023-01-18',
-            'closing_date' => '2023-01-22',
+            'date_submitted' => '2023-02-01',
+            'date_approved' => '2023-02-11',
+            'posting_date' => '2023-02-18',
+            'closing_date' => '2023-02-22',
             'date_queued' => null,
-            'status' => 'Active',
+            'status' => 'Approved',
         ];
 
 
         $checkData = [
             'lgu_position_id' => 1,
-            'date_submitted' => '2023-01-02',
-            'status' => 'Active',
+            'date_submitted' => '2023-02-01',
+            'status' => 'Approved',
         ];
 
-        $sg = Vacancy::where([["date_submitted", "2023-01-01"], ["status", "Active"]])->first();
+
+        $user = User::factory()->create();
+        $this->assertCount(0, $user->tokens);
+        $this->actingAs($user);
+        $this->post('/api/vacancy', $formData);
+
+        // this will check if it is inserted in the database
+        $response = $this->assertDatabaseHas('vacancies', $checkData);
+    }
+
+
+    // edit 
+    public function test_edit_vacancy(): void
+    {
+        $formData = [
+            'position' => 'Update Vacancy',
+            'position_id' => 1,
+            'date_submitted' => '2023-02-02',
+            'date_approved' => '2023-02-11',
+            'posting_date' => '2023-02-18',
+            'closing_date' => '2023-02-22',
+            'date_queued' => null,
+            'status' => 'Approved',
+        ];
+
+
+        $checkData = [
+            'lgu_position_id' => 1,
+            'date_submitted' => '2023-02-02',
+            'status' => 'Approved'
+        ];
+
+        $sg = Vacancy::where([["date_submitted", "2023-02-01"], ["status", "Approved"]])->first();
 
         $user = User::factory()->create();
         $this->assertCount(0, $user->tokens);
         $this->actingAs($user);
         $this->patch('/api/vacancy/' . $sg->id, $formData);
+
 
         // this check if it updated in the database 
         $response = $this->assertDatabaseHas('vacancies', $checkData);
@@ -95,18 +129,31 @@ class VacancyTest extends TestCase
     {
         $checkData = [
             'lgu_position_id' => 1,
-            'date_submitted' => '2023-01-02',
+            'date_submitted' => '2023-01-01',
             'status' => 'Active',
         ];
 
-
-        $vacancy = Vacancy::where([["date_submitted", "2023-01-02"], ["status", "Active"]])->first();
-
+        $vacancy = Vacancy::where([["date_submitted", "2023-01-01"], ["status", "Active"]])->first();
         $user = User::factory()->create();
         $this->assertCount(0, $user->tokens);
         $this->actingAs($user);
         $this->delete('/api/vacancy/' . $vacancy->id);
-        var_dump($vacancy);
         $response = $this->assertDatabaseMissing('vacancies', $checkData);
+    }
+
+    public function test_delete_vacancy_with_publication(): void
+    {
+        $checkData = [
+            'lgu_position_id' => 1,
+            'date_submitted' => '2023-02-02',
+            'status' => 'Approved',
+        ];
+
+        $vacancy = Vacancy::where([["date_submitted", "2023-02-02"], ["status", "Approved"]])->first();
+        $user = User::factory()->create();
+        $this->assertCount(0, $user->tokens);
+        $this->actingAs($user);
+        $this->delete('/api/vacancy/' . $vacancy->id);
+        $response = $this->assertDatabaseHas('vacancies', $checkData);
     }
 }

@@ -13,6 +13,6 @@ class Question extends Model
 
     protected $fillable = [
         'number',
-        'questions',
+        'question',
     ];
 }

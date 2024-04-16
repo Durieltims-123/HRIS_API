@@ -18,7 +18,7 @@ class DivisionController extends Controller
     public function index()
     {
         return DivisionResource::collection(
-            Division::with('belongsToOffice')
+            Division::with('office')
                 ->join('offices', 'offices.id', 'divisions.office_id')
                 ->orderBy('office_name', 'asc')
                 ->get()

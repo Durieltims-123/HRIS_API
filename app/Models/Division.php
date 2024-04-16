@@ -16,11 +16,11 @@ class Division extends Model
     // {
     //     return $this->belongsTo(LguPosition::class);
     // }
-    public function employee (): HasMany
+    public function employee(): HasMany
     {
         return $this->hasMany(Employee::class);
     }
-    public function office():BelongsTo
+    public function office(): BelongsTo
     {
         return $this->belongsTo(Office::class, 'office_id');
     }
@@ -31,5 +31,6 @@ class Division extends Model
         'office_id',
         'division_code',
         'division_name',
+        'division_type',
     ];
 }
