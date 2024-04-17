@@ -73,6 +73,7 @@ class LguPositionTest extends TestCase
             "position_status" => "permanent",
             "status" => "Active"
         ];
+        
         $lgu_positionData = [
             "division_id" => 2,
             "position_id" => 2,

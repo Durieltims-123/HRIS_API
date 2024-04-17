@@ -14,49 +14,42 @@ return new class extends Migration
         Schema::create('personal_information', function (Blueprint $table) {
             $table->id();
 
-             // $table->foreignId('personal_data_sheet_id')->constrained('personal_data_sheets');
-             $table->foreignId('personal_data_sheet_id')->constrained()->onDelete('cascade');
+            // $table->foreignId('personal_data_sheet_id')->constrained('personal_data_sheets');
+            $table->foreignId('personal_data_sheet_id')->constrained()->onDelete('cascade');
 
-             $table->string('mobile_number');
-             $table->string('telephone_number');
-             $table->string('permanent_house_number');
-             $table->string('permanent_subdivision_village');
-             $table->string('permanent_street');
- 
-             $table->foreignId('barangay_id')->constrained('barangays');
- 
-             $table->foreignId('municipality_id')->constrained('municipalities');
- 
-             $table->foreignId('province_id')->constrained('provinces');
-            //  $table->foreignId('permanent_zip_code')->constrained('municipalities');
- 
-             $table->string('permanent_zip_code');
-             $table->string('residential_house_number');
-             $table->string('residential_subdivision_village');
-             $table->string('residential_street');
- 
-             $table->foreignId('r_barangay_id')->constrained('barangays');
- 
-             $table->foreignId('r_municipality_id')->constrained('municipalities');
- 
-             $table->foreignId('r_province_id')->constrained('provinces');
-            //  $table->foreignId('residential_zip_code')->constrained('municipalities');
- 
-             $table->string('residential_zip_code');
-             $table->string('citizenship');
-             $table->string('agency_employee');
-             $table->string('tin_number');
-             $table->string('sss_number');
-             $table->string('philhealth_number');
-             $table->string('pag_ibig_number');
-             $table->string('gsis_number');
-             $table->string('blood_type');
-             $table->string('weight');
-             $table->string('height');
-             $table->string('civil_status');
-             $table->string('sex');
-             $table->string('birthplace');
-             $table->date('birthdate');
+            $table->string('birthplace');
+            $table->date('birthdate');
+            $table->integer('age');
+            $table->string('sex');
+            $table->string('height');
+            $table->string('weight');
+            $table->string('citizenship');
+            $table->enum('citizenship_type', ["By Birth", "By Naturalization"]);
+            $table->string('country')->nullable();
+            $table->string('blood_type');
+            $table->enum('civil_status',['Single', 'Married', 'Divorced', 'Widowed']);
+            $table->string('tin');
+            $table->string('gsis');
+            $table->string('pagibig');
+            $table->string('philhealth');
+            $table->string('sss');
+            $table->string('residential_province');
+            $table->string('residential_municipality');
+            $table->string('residential_barangay');
+            $table->string('residential_house');
+            $table->string('residential_subdivision');
+            $table->string('residential_street');
+            $table->string('residential_zipcode');
+            $table->string('permanent_province');
+            $table->string('permanent_municipality');
+            $table->string('permanent_barangay');
+            $table->string('permanent_house');
+            $table->string('permanent_subdivision');
+            $table->string('permanent_street');
+            $table->string('permanent_zipcode');
+            $table->string('telephone');
+            $table->string('mobile_number');
+            $table->string('email');
             $table->timestamps();
         });
     }

@@ -11,11 +11,11 @@ class PersonalInformation extends Model
 {
     use HasFactory;
 
-    public function belongsToPersonalDataSheet ():BelongsTo
+    public function belongsToPersonalDataSheet(): BelongsTo
     {
         return $this->belongsTo(PersonalDataSheet::class, 'personal_data_sheet_id');
     }
-    public function belongsToProvince ():BelongsTo
+    public function belongsToProvince(): BelongsTo
     {
         return $this->belongsTo(Province::class, 'province_id');
     }
@@ -23,38 +23,38 @@ class PersonalInformation extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'personal_data_sheet_id',
-        'mobile_number',
-        'telephone_number',
-        'permanent_house_number',
-        'permanent_subdivision_village',
-        'permanent_street',
-        'barangay_id',
-        'municipality_id',
-        'province_id',
-
-        'permanent_zip_code',
-        'residential_house_number',
-        'residential_subdivision_village',
-        'residential_street',
-        'r_barangay_id',
-        'r_municipality_id',
-        'r_province_id',
-
-        'residential_zip_code',
-        'citizenship',
-        'agency_employee',
-        'tin_number',
-        'sss_number',
-        'philhealth_number',
-        'pag_ibig_number',
-        'gsis_number',
-        'blood_type',
-        'weight',
-        'height',
-        'civil_status',
+        'birth_place',
+        'birth_date',
+        'age',
         'sex',
-        'birthplace',
-        'birthdate',
+        'height',
+        'weight',
+        'citizenship',
+        'citizenship_type',
+        'country',
+        'blood_type',
+        'civil_status',
+        'tin',
+        'gsis',
+        'pagibig',
+        'philhealth',
+        'sss',
+        'residential_province',
+        'residential_municipality',
+        'residential_barangay',
+        'residential_house',
+        'residential_subdivision',
+        'residential_street',
+        'residential_zipcode',
+        'permanent_province',
+        'permanent_municipality',
+        'permanent_barangay',
+        'permanent_house',
+        'permanent_subdivision',
+        'permanent_street',
+        'permanent_zipcode',
+        'telephone',
+        'mobile_number',
+        'email',
     ];
 }

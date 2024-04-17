@@ -42,14 +42,15 @@ class Employee extends Model
     protected $fillable =
     [
         'division_id',
-        'lgu_position_id',
+        'employee_id',
         'first_name',
         'middle_name',
         'last_name',
         'suffix_name',
         'contact_number',
         'email_address',
-        'current_position',
+        'lgu_position_id',
+        'employment_status',
         'employee_status',
         'orientation_status',
     ];

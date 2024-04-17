@@ -22,23 +22,16 @@ class StoreEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'division_id' => ['required'],
-            // 'first_name' => ['required', 'string', 'max:255'],
-            // 'middle_name' => ['required', 'string', 'max:255'],
-            // 'last_name' => ['required', 'string', 'max:255'],
-            // 'suffix_name' => ['nullable'],
-            // 'contact_number' => ['required', 'string', 'max:255'],
-            // 'email_address' => ['required', 'string', 'max:255'],
-            // 'current_position' => ['required', 'string', 'max:255'],
-            // 'employment_status' => ['required', 'string', 'max:255'],
-            // 'employee_status' => ['required', 'string', 'max:255'],
-            // 'orientation_status' => ['required', 'string', 'max:255']
 
             'employee_id'  => ['required', 'string', 'max:15'],
             'employment_status' =>  ['required', 'string', 'max:255'],
             'division_id' =>  ['required'],
             'division' =>  ['required'],
             'division_autosuggest' =>  ['required'],
+            'lgu_position_id' => ['required'],
+            'lgu_position' => ['required'],
+            'lgu_position_autosuggest' => ['required'],
+            'employee_status' => ['required'],
             'first_name' =>  ['required', 'string', 'max:255'],
             'middle_name' =>  ['max:255'],
             'last_name' =>  ['required', 'string', 'max:255'],
@@ -74,7 +67,7 @@ class StoreEmployeeRequest extends FormRequest
             'permanent_street' =>  ['nullable', 'max:255'],
             'permanent_zipcode' =>  ['required', 'max:4'],
             'telephone' =>  ['nullable', 'string', 'max:255'],
-            'mobile' =>  ['required', 'max:11'],
+            'mobile_number' =>  ['required', 'max:11'],
             'email' =>  ['nullable', 'email', 'max:255'],
 
 

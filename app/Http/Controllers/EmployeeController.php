@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreEmployeePersonalRequest;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Resources\EmployeeResource;
+use App\Models\PersonalDataSheet;
 use App\Models\Employee;
 use App\Models\Vacancy;
 use App\Traits\HttpResponses;
@@ -32,44 +33,44 @@ class EmployeeController extends Controller
         $orderBy = $request->orderBy;
         $year = $request->year;
         $filter = $request->filter;
-        $orderAscending  ? $orderAscending = 'asc' : $orderAscending = 'desc';
+        $orderAscending  ? $orderAscending = "asc" : $orderAscending = "desc";
 
-        ($orderBy == null || $orderBy == 'id') ? $orderBy = 'employees.id' : $orderBy = $orderBy;
+        ($orderBy == null || $orderBy == "id") ? $orderBy = "employees.id" : $orderBy = $orderBy;
         $filters = $request->filters;
         if (!is_null($filters)) {
             $filters =  array_map(function ($filter) {
-                if ($filter['column'] === "id") {
-                    return ['positions.id', 'like', '%' . $filter['value'] . '%'];
+                if ($filter["column"] === "id") {
+                    return ["positions.id", "like", "%" . $filter["value"] . "%"];
                 } else {
-                    return [$filter['column'], 'like', '%' . $filter['value'] . '%'];
+                    return [$filter["column"], "like", "%" . $filter["value"] . "%"];
                 }
             }, $filters);
         } else {
-            $filters = [['positions.id', 'like', '%']];
+            $filters = [["positions.id", "like", "%"]];
         }
 
         $data = EmployeeResource::collection(
             Employee::select(
-                '*'
-                // 'employees.id',
-                // 'employee_id',
-                // 'lgu_positions.division_id',
-                // 'first_name',
-                // 'middle_name',
-                // 'last_name',
-                // 'suffix_name',
-                // 'contact_number',
-                // 'email_address',
-                // 'title',
-                // 'item_number',
-                // 'employee_status'
+                "*"
+                // "employees.id",
+                // "employee_id",
+                // "lgu_positions.division_id",
+                // "first_name",
+                // "middle_name",
+                // "last_name",
+                // "suffix_name",
+                // "contact_number",
+                // "email_address",
+                // "title",
+                // "item_number",
+                // "employee_status"
             )
-                ->with('lguPosition', 'lguPosition.position', 'lguPosition.position.salaryGrade', 'division', 'division.office')
-                // ->join('lgu_positions', 'lgu_positions.id', 'employees.lgu_position_id')
-                // ->join('positions', 'positions.id', 'lgu_positions.position_id')
-                // ->join('divisions', 'lgu_positions.division_id', 'divisions.id')
-                // ->join('offices', 'offices.id', 'divisions.office_id')
-                // ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
+                ->with("lguPosition", "lguPosition.position", "lguPosition.position.salaryGrade", "division", "division.office")
+                // ->join("lgu_positions", "lgu_positions.id", "employees.lgu_position_id")
+                // ->join("positions", "positions.id", "lgu_positions.position_id")
+                // ->join("divisions", "lgu_positions.division_id", "divisions.id")
+                // ->join("offices", "offices.id", "divisions.office_id")
+                // ->join("salary_grades", "positions.salary_grade_id", "salary_grades.id")
                 // ->where($filters)
                 ->skip(($activePage - 1) * 10)
                 ->orderBy($orderBy, $orderAscending)
@@ -78,17 +79,17 @@ class EmployeeController extends Controller
         );
         $pages =
             Employee::select(
-                'employees.id'
+                "employees.id"
             )
-            ->join('lgu_positions', 'lgu_positions.id', 'employees.lgu_position_id')
-            ->join('positions', 'positions.id', 'lgu_positions.position_id')
-            ->join('divisions', 'lgu_positions.division_id', 'divisions.id')
-            ->join('offices', 'offices.id', 'divisions.office_id')
-            ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
+            ->join("lgu_positions", "lgu_positions.id", "employees.lgu_position_id")
+            ->join("positions", "positions.id", "lgu_positions.position_id")
+            ->join("divisions", "lgu_positions.division_id", "divisions.id")
+            ->join("offices", "offices.id", "divisions.office_id")
+            ->join("salary_grades", "positions.salary_grade_id", "salary_grades.id")
             ->where($filters)
             ->count();
 
-        return compact('pages', 'data');
+        return compact("pages", "data");
     }
 
     /**
@@ -106,28 +107,160 @@ class EmployeeController extends Controller
     {
         // validate input fields
         $request->validated($request->all());
-        $employeeExist = Employee::where([['first_name', $request->first_name], ['middle_name', $request->middle_name], ['last_name', $request->last_name]])->exists();
-        if ($employeeExist) {
-            return $this->error('', 'Duplicate Entry', 400);
-        }
 
-        Employee::create([
-            "division_id" => $request->division_id,
-            "first_name" => $request->first_name,
-            "middle_name" => $request->middle_name,
-            "last_name" => $request->last_name,
-            "suffix_name" => $request->suffix_name,
-            "contact_number" => $request->contact_number,
-            "email_address" => $request->email_address,
-            "current_position" => $request->current_position,
-            "employment_status" => $request->employment_status,
-            "employee_status" => $request->employee_status,
-            "orientation_status" => $request->orientation_status
-        ]);
+
+        $employeeExist = Employee::where([["employee_id", $request->employee_id], ["first_name", $request->first_name], ["middle_name", $request->middle_name], ["last_name", $request->last_name]])->exists();
+
+        if ($employeeExist) {
+            return $this->error("", "Duplicate Entry", 400);
+        } else {
+
+            // Employee Details
+
+            $employee = Employee::create([
+                "division_id" => $request->division_id,
+                "employee_id" => $request->first_name,
+                "first_name" => $request->first_name,
+                "middle_name" => $request->middle_name,
+                "last_name" => $request->last_name,
+                "suffix_name" => $request->suffix_name,
+                "contact_number" => $request->contact_number,
+                "email_address" => $request->email_address,
+                "lgu_position_id" => $request->lgu_position_id,
+                "employment_status" => $request->employment_status,
+                "employee_status" => $request->employee_status
+            ]);
+
+            // Personal Information
+            PersonalDataSheet::create([]);
+
+
+
+            // "employee_id"  => ["required", "string", "max:15"],
+            // "employment_status" =>  ["required", "string", "max:255"],
+            // "division_id" =>  ["required"],
+            // "division" =>  ["required"],
+            // "division_autosuggest" =>  ["required"],
+            // "first_name" =>  ["required", "string", "max:255"],
+            // "middle_name" =>  ["max:255"],
+            // "last_name" =>  ["required", "string", "max:255"],
+            // "suffix" =>  ["string", "max:255"],
+            // "birth_place" =>  ["required", "string", "max:255"],
+            // "birth_date" =>  ["required", "max:255"],
+            // "age" =>  ["required", "gt:0", "digits_between:2,65"],
+            // "sex" =>  ["required"],
+            // "height" =>  ["required", "gt:0", "lt:8"],
+            // "weight" =>  ["required", "gt:0", "lt:1000"],
+            // "citizenship" =>  ["required"],
+            // "citizenship_type" =>  ["required_if:citizenship,==,Dual Citizenship"],
+            // "country" =>   ["required_if:citizenship,==,Dual Citizenship"],
+            // "blood_type" =>  ["required"],
+            // "civil_status" =>  ["required"],
+            // "tin" =>  ["required", "max:12"],
+            // "gsis" =>  ["required", "max:11", "min:12"],
+            // "pagibig" =>  ["required", "max:12", "min:12"],
+            // "philhealth" =>  ["required", "max:12", "min:12"],
+            // "sss" =>  ["nullable", "string", "max:20",],
+            // "residential_province" =>  ["required", "max:255"],
+            // "residential_municipality" =>  ["required", "max:255"],
+            // "residential_barangay" =>  ["required", "max:255"],
+            // "residential_house" =>  ["nullable", "max:255"],
+            // "residential_subdivision" =>  ["nullable", "max:255"],
+            // "residential_street" =>  ["nullable", "max:255"],
+            // "residential_zipcode" =>  ["required", "max:4"],
+            // "permanent_province" =>  ["required", "max:255"],
+            // "permanent_municipality" =>  ["required", "max:255"],
+            // "permanent_barangay" =>  ["required", "max:255"],
+            // "permanent_house" =>  ["nullable", "max:255"],
+            // "permanent_subdivision" =>  ["nullable", "max:255"],
+            // "permanent_street" =>  ["nullable", "max:255"],
+            // "permanent_zipcode" =>  ["required", "max:4"],
+            // "telephone" =>  ["nullable", "string", "max:255"],
+            // "mobile" =>  ["required", "max:11"],
+            // "email" =>  ["nullable", "email", "max:255"],
+
+            // "spouse_first_name" =>  ["required_with:spouse_last_name", "nullable", "max:255"],
+            // "spouse_middle_name" =>  ["nullable", "max:255"],
+            // "spouse_last_name" =>  ["required_with:spouse_first_name", "nullable", "max:255"],
+            // "spouse_suffix" =>  ["nullable", "max:255"],
+            // "spouse_employer" =>  ["required_with:spouse_employer_address", "required_with:spouse_employer_telephone", "nullable", "max:255"],
+            // "spouse_employer_address" =>  ["required_with:spouse_employer", "nullable", "max:255"],
+            // "spouse_employer_telephone" =>  ["required_with:spouse_employer", "nullable", "max:255"],
+
+
+            // "children.*.name" => ["required", "max:255"],
+            // "children.*.birthday" => ["required", "max:255"],
+
+
+            // "father_first_name" =>  ["required", "max:255"],
+            // "father_middle_name" =>  ["nullable", "max:255"],
+            // "father_last_name" =>  ["required", "max:255"],
+            // "father_suffix" =>  ["nullable", "max:255"],
+            // "mother_first_name" =>  ["required", "max:255"],
+            // "mother_middle_name" =>  ["nullable", "max:255"],
+            // "mother_last_name" =>  ["required", "max:255"],
+            // "mother_suffix" =>  ["nullable", "max:255"],
+
+
+            // "schools.*.level" => ["required", "max:255"],
+            // "schools.*.name" => ["required", "max:255"],
+            // "schools.*.degree" => ["nullable", "max:255", "required_if:schools.*.level,==,Vocational/Trade Course", "required_if:schools.*.level,==,College", "required_if:schools.*.level,==,Masters", "required_if:schools.*.level,==,Doctorate"],
+            // "schools.*.period_from" => ["required", "max:4"],
+            // "schools.*.period_to" => ["required", "max:4", "after:schools.*.period_from"],
+            // "schools.*.highest_unit_earned" => ["nullable", "max:255", "required_if:schools.*.level,==,Vocational/Trade Course", "required_if:schools.*.level,==,College"],
+            // "schools.*.year_graduated" => ["nullable", "max:255"],
+            // "schools.*.scholarship_academic_awards" => ["nullable", "max:255"],
+
+            // "eligibilities.*.eligibility_title" => ["required", "max:255"],
+            // "eligibilities.*.rating" => ["required", "max:255", "gte:75"],
+            // "eligibilities.*.date_of_examination_conferment" => ["required", "max:255"],
+            // "eligibilities.*.place_of_examination_conferment" => ["required", "max:255"],
+            // "eligibilities.*.license_number" => ["required", "max:255"],
+            // "eligibilities.*.license_date_validity" => ["required", "max:255"],
+
+            // "workExperiences.*.date_from" => ["required", "max:255"],
+            // "workExperiences.*.date_to" => ["required", "max:255", "after:workExperiences.*.date_from"],
+            // "workExperiences.*.position_title" => ["required", "max:255"],
+            // "workExperiences.*.office_company" => ["required", "max:255"],
+            // "workExperiences.*.monthly_salary" => ["required", "max:255"],
+            // "workExperiences.*.salary_grade" => ["nullable", "max:255"],
+            // "workExperiences.*.status_of_appointment" => ["required", "max:255"],
+            // "workExperiences.*.government_service" => ["required", "max:255"],
+
+
+
+            // "voluntaryWorks.*.organization_name" => ["required", "max:255"],
+            // "voluntaryWorks.*.organization_address" => ["required", "max:255"],
+            // "voluntaryWorks.*.date_from" => ["required", "max:255"],
+            // "voluntaryWorks.*.date_to" => ["required", "max:255", "after:voluntaryWorks.*.date_from"],
+            // "voluntaryWorks.*.number_of_hours" => ["required", "max:255"],
+            // "voluntaryWorks.*.position_nature_of_work" => ["required", "max:255"],
+
+            // "trainings.*.training_title" => ["required", "max:255"],
+            // "trainings.*.attendance_from" => ["required", "max:255"],
+            // "trainings.*.attendance_to" => ["required", "max:255", "after:trainings.*.attendance_from"],
+            // "trainings.*.number_of_hours" => ["required", "max:255", "lt:1000"],
+            // "trainings.*.training_type" => ["required", "max:255"],
+            // "trainings.*.conducted_sponsored_by" => ["required", "max:255"],
+
+            // "skills.*.name" =>  ["required", "max:255"],
+            // "recognitions.*.title" =>  ["required", "max:255"],
+            // "memberships.*.title" =>  ["required", "max:255"],
+
+            // "characterReferences.*.name" =>  ["required", "max:255"],
+            // "characterReferences.*.address" =>  ["required", "max:255"],
+            // "characterReferences.*.number" =>  ["required", "max:11"],
+
+            // "answers.*.details" =>  ["nullable", "max:255"],
+
+
+
+
+        }
 
 
         // return message
-        return $this->success('', 'Successfully Saved', 200);
+        return $this->success("", "Successfully Saved", 200);
     }
 
     /**
@@ -136,7 +269,7 @@ class EmployeeController extends Controller
     public function show(Employee $employee)
     {
         return EmployeeResource::collection(
-            Employee::where('id', $employee->id)
+            Employee::where("id", $employee->id)
                 ->get()
         );
     }
@@ -172,74 +305,74 @@ class EmployeeController extends Controller
     public function validation(Request $request)
     {
         $messages = [
-            'required' => 'This field is required.'
+            "required" => "This field is required."
         ];
 
         if ($request->validation_request === "Personal") {
             // $validator = $request->validate([
-            //     'employee_id'  => ['required', 'string', 'max:15'],
-            //     'employment_status' =>  ['required', 'string'],
-            //     'division_id' =>  ['required'],
-            //     'division' =>  ['required'],
-            //     'division_autosuggest' =>  ['required'],
-            //     'first_name' =>  ['required'],
-            //     'last_name' =>  ['required'],
-            //     'suffix' =>  ['string'],
-            //     'birth_place' =>  ['required'],
-            //     'birth_date' =>  ['required'],
-            //     'age' =>  ['required', 'gt:0'],
-            //     'sex' =>  ['required'],
-            //     'height' =>  ['required', 'gt:0'],
-            //     'weight' =>  ['required', 'gt:0'],
-            //     'citizenship' =>  ['required'],
-            //     'citizenship_type' =>  ['required_if:citizenship,==,Dual Citizenship'],
-            //     'country' =>   ['required_if:citizenship,==,Dual Citizenship'],
-            //     'blood_type' =>  ['required'],
-            //     'civil_status' =>  ['required'],
-            //     'tin' =>  ['required'],
-            //     'gsis' =>  ['required'],
-            //     'pagibig' =>  ['required'],
-            //     'philhealth' =>  ['required'],
-            //     'sss' =>  ['nullable', 'string'],
-            //     'residential_province' =>  ['required'],
-            //     'residential_municipality' =>  ['required'],
-            //     'residential_barangay' =>  ['required'],
-            //     'residential_house' =>  ['required'],
-            //     'residential_subdivision' =>  ['required'],
-            //     'residential_street' =>  ['required'],
-            //     'residential_zipcode' =>  ['required'],
-            //     'permanent_province' =>  ['required'],
-            //     'permanent_municipality' =>  ['required'],
-            //     'permanent_barangay' =>  ['required'],
-            //     'permanent_house' =>  ['required'],
-            //     'permanent_subdivision' =>  ['required'],
-            //     'permanent_street' =>  ['required'],
-            //     'permanent_zipcode' =>  ['required'],
-            //     'telephone' =>  ['nullable', 'string'],
-            //     'mobile' =>  ['required'],
-            //     'email' =>  ['nullable', 'email'],
+            //     "employee_id"  => ["required", "string", "max:15"],
+            //     "employment_status" =>  ["required", "string"],
+            //     "division_id" =>  ["required"],
+            //     "division" =>  ["required"],
+            //     "division_autosuggest" =>  ["required"],
+            //     "first_name" =>  ["required"],
+            //     "last_name" =>  ["required"],
+            //     "suffix" =>  ["string"],
+            //     "birth_place" =>  ["required"],
+            //     "birth_date" =>  ["required"],
+            //     "age" =>  ["required", "gt:0"],
+            //     "sex" =>  ["required"],
+            //     "height" =>  ["required", "gt:0"],
+            //     "weight" =>  ["required", "gt:0"],
+            //     "citizenship" =>  ["required"],
+            //     "citizenship_type" =>  ["required_if:citizenship,==,Dual Citizenship"],
+            //     "country" =>   ["required_if:citizenship,==,Dual Citizenship"],
+            //     "blood_type" =>  ["required"],
+            //     "civil_status" =>  ["required"],
+            //     "tin" =>  ["required"],
+            //     "gsis" =>  ["required"],
+            //     "pagibig" =>  ["required"],
+            //     "philhealth" =>  ["required"],
+            //     "sss" =>  ["nullable", "string"],
+            //     "residential_province" =>  ["required"],
+            //     "residential_municipality" =>  ["required"],
+            //     "residential_barangay" =>  ["required"],
+            //     "residential_house" =>  ["required"],
+            //     "residential_subdivision" =>  ["required"],
+            //     "residential_street" =>  ["required"],
+            //     "residential_zipcode" =>  ["required"],
+            //     "permanent_province" =>  ["required"],
+            //     "permanent_municipality" =>  ["required"],
+            //     "permanent_barangay" =>  ["required"],
+            //     "permanent_house" =>  ["required"],
+            //     "permanent_subdivision" =>  ["required"],
+            //     "permanent_street" =>  ["required"],
+            //     "permanent_zipcode" =>  ["required"],
+            //     "telephone" =>  ["nullable", "string"],
+            //     "mobile" =>  ["required"],
+            //     "email" =>  ["nullable", "email"],
             // ]);
         }
         if ($request->validation_request === "Family") {
             $validator = $request->validate([
-                'spouse_first_name' =>  ['nullable'],
-                'spouse_middle_name' =>  ['nullable'],
-                'spouse_last_name' =>  ['nullable', 'required_with:spouse_first_name'],
-                'spouse_suffix' =>   ['nullable', 'required_with:spouse_first_name'],
-                'spouse_occupation' =>   ['nullable', 'required_with:spouse_first_name'],
-                'spouse_employer' =>   ['nullable'],
-                'spouse_employer_address' =>   ['nullable', 'required_with:spouse_employer'],
-                'spouse_employer_telephone' =>   ['nullable', 'required_with:spouse_employer'],
-                'children.*.name' => ['required'],
-                'father_first_name' =>  ['required'],
-                'father_middle_name' =>  ['nullable'],
-                'father_last_name' =>  ['required'],
-                'father_suffix' =>  ['nullable'],
-                'mother_first_name' =>  ['required'],
-                'mother_middle_name' =>  ['nullable'],
-                'mother_last_name' =>  ['required'],
-                'mother_suffix' =>  ['nullable']
-            ], ['children.*.name.required' => 'Child name is required']);
+                "spouse_first_name" =>  ["nullable"],
+                "spouse_middle_name" =>  ["nullable"],
+                "spouse_last_name" =>  ["nullable", "required_with:spouse_first_name"],
+                "spouse_suffix" =>   ["nullable", "required_with:spouse_first_name"],
+                "spouse_occupation" =>   ["nullable", "required_with:spouse_first_name"],
+                "spouse_employer" =>   ["nullable"],
+                "spouse_employer_address" =>   ["nullable", "required_with:spouse_employer"],
+                "spouse_employer_telephone" =>   ["nullable", "required_with:spouse_employer"],
+                "children.*.name" => ["required"],
+                "father_first_name" =>  ["required"],
+                "father_middle_name" =>  ["nullable"],
+                "father_last_name" =>  ["required"],
+                "father_suffix" =>  ["nullable"],
+                "mother_first_name" =>  ["required"],
+                "mother_middle_name" =>  ["nullable"],
+                "mother_last_name" =>  ["required"],
+                "mother_suffix" =>  ["nullable"]
+            ], ["children.*.name.required" => "Child name is required"]);
         }
         if ($request->validation_request === "Education") {
         }
@@ -250,7 +383,7 @@ class EmployeeController extends Controller
         if ($request->validation_request === "Other Information") {
         }
 
-        return $this->success('true', '', 200);
+        return $this->success("true", "", 200);
     }
 
 
@@ -261,6 +394,6 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         $employee->delete();
-        return $this->success('', 'Successfully Deleted', 200);
+        return $this->success("", "Successfully Deleted", 200);
     }
 }
