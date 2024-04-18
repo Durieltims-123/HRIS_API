@@ -75,6 +75,7 @@ class StoreEmployeeRequest extends FormRequest
             'spouse_middle_name' =>  ['nullable', 'max:255'],
             'spouse_last_name' =>  ['required_with:spouse_first_name', 'nullable', 'max:255'],
             'spouse_suffix' =>  ['nullable', 'max:255'],
+            'spouse_occupation' =>  ['nullable', 'max:255'],
             'spouse_employer' =>  ['required_with:spouse_employer_address', 'required_with:spouse_employer_telephone', 'nullable', 'max:255'],
             'spouse_employer_address' =>  ['required_with:spouse_employer', 'nullable', 'max:255'],
             'spouse_employer_telephone' =>  ['required_with:spouse_employer', 'nullable', 'max:255'],

@@ -16,13 +16,13 @@ return new class extends Migration
 
             $table->foreignId('personal_data_sheet_id')->constrained()->onDelete('cascade');
             $table->string('position_title');
-            $table->string('office');
+            $table->string('office_company');
             $table->string('monthly_salary');
-            $table->string('salary');
-            $table->string('status_appointment');
+            $table->string('salary_grade');
+            $table->string('status_of_appointment');
             $table->string('government_service');
-            $table->date('inclusive_dates_from');
-            $table->date('inclusive_dates_to');
+            $table->date('date_from');
+            $table->date('date_to');
             $table->timestamps();
         });
     }

@@ -10,10 +10,10 @@ class Reference extends Model
 {
     use HasFactory;
 
-    public function belongsToPersonalDataSheet ():BelongsTo
+    public function belongsToPersonalDataSheet(): BelongsTo
     {
         return $this->belongsTo(PersonalDataSheet::class, 'personal_data_sheet_id');
-}
+    }
 
     protected $primaryKey = 'id';
 
@@ -21,12 +21,6 @@ class Reference extends Model
         'personal_data_sheet_id',
         'name',
         'address',
-        'telephone_number',
-        'name2',
-        'address2',
-        'telephone_number2',
-        'name3',
-        'address3',
-        'telephone_number3'
+        'number'
     ];
 }

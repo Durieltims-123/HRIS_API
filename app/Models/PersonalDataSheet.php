@@ -6,27 +6,33 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class PersonalDataSheet extends Model
 {
     use HasFactory;
 
-    public function belongsToApplicant(): BelongsTo
+    // public function belongsToApplicant(): BelongsTo
+    // {
+    //     return $this->belongsTo(Applicant::class, 'applicant_id');
+    // }
+    // public function belongsToEmployee(): BelongsTo
+    // {
+    //     return $this->belongsTo(Employee::class, 'employee_id');
+    // }
+
+    public function personalInformation(): HasOne
     {
-        return $this->belongsTo(Applicant::class,'applicant_id');
+        return $this->hasOne(PersonalInformation::class);
     }
-    public function belongsToEmployee(): BelongsTo
+
+    public function familyBackGround(): HasOne
     {
-        return $this->belongsTo(Employee::class,'employee_id');
+        return $this->hasOne(FamilyBackground::class);
     }
-    public function hasManyPersonalInformation(): HasMany
-    {
-        return $this->hasMany(PersonalInformation::class);
-    }
-    public function hasManyFamilyBackground(): HasMany
-    {
-        return $this->hasMany(FamilyBackground::class);
-    }
+
+
+
     public function hasManyChildrenInformation(): HasMany
     {
         return $this->hasMany(ChildrenInformation::class);
@@ -72,10 +78,22 @@ class PersonalDataSheet extends Model
         return $this->hasMany(Reference::class);
     }
 
+    public function PDSable()
+    {
+        return $this->morphTo();
+    }
+
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'applicant_id',
-        'employee_id'
+        'individual_id',
+        'individual'
     ];
+
+    // protected $fillable = [
+    //     'applicant_id',
+    //     'employee_id'
+    // ];
+
+
 }

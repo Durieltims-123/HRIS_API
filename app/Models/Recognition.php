@@ -10,7 +10,7 @@ class Recognition extends Model
 {
     use HasFactory;
 
-    public function belongsToPersonalDataSheet ():BelongsTo
+    public function belongsToPersonalDataSheet(): BelongsTo
     {
         return $this->belongsTo(PersonalDataSheet::class);
     }
@@ -19,6 +19,6 @@ class Recognition extends Model
 
     protected $fillable = [
         'personal_data_sheet_id',
-        'recognition_title',
+        'title',
     ];
 }

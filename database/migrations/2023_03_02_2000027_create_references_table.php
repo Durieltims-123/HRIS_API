@@ -16,15 +16,7 @@ return new class extends Migration
             $table->foreignId('personal_data_sheet_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->string('address');
-            $table->string('telephone_number');
-
-            $table->string('name2');
-            $table->string('address2');
-            $table->string('telephone_number2');
-
-            $table->string('name3');
-            $table->string('address3');
-            $table->string('telephone_number3');
+            $table->string('number');
             $table->timestamps();
 
             // $table->foreign('pds_id')->references('id')->on('personal_data_sheets');

@@ -10,12 +10,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class FamilyBackground extends Model
 {
     use HasFactory;
-    public function belongsToPersonalDataSheet ():BelongsTo
+    public function belongsToPersonalDataSheet(): BelongsTo
     {
         return $this->belongsTo(PersonalDataSheet::class, 'personal_data_sheet_id');
     }
 
-    public function hasManyChildrenInformation (): HasMany
+    public function hasManyChildrenInformation(): HasMany
     {
         return $this->hasMany(ChildrenInformation::class);
     }
@@ -24,20 +24,20 @@ class FamilyBackground extends Model
 
     protected $fillable = [
         'personal_data_sheet_id',
-        'spouse_surname',
         'spouse_first_name',
         'spouse_middle_name',
-        'suffix_name',
-        'occupation',
-        'employee_business_name',
-        'business_address',
-        'telephone_number',
-        'father_surname',
+        'spouse_last_name',
+        'spouse_suffix',
+        'spouse_employer',
+        'spouse_employer_address',
+        'spouse_employer_telephone',
         'father_first_name',
         'father_middle_name',
-        'father_extension_name',
-        'mother_maiden_surname',
+        'father_last_name',
+        'father_suffix',
         'mother_first_name',
-        'mother_maiden_middle_name'
+        'mother_middle_name',
+        'mother_last_name',
+        'mother_suffix',
     ];
 }

@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('personal_data_sheets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('applicant_id')->nullable()->constrained('applicants');
-            $table->foreignId('employee_id')->nullable()->constrained('employees');
+            $table->morphs('individual');
             $table->timestamps();
         });
     }

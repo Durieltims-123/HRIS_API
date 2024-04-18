@@ -13,23 +13,23 @@ return new class extends Migration
     {
         Schema::create('family_backgrounds', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('personal_data_sheet_id')->constrained('personal_data_sheets');
             $table->foreignId('personal_data_sheet_id')->constrained()->onDelete('cascade');
-            $table->string('spouse_surname');
             $table->string('spouse_first_name')->nullable();
-            $table->string('spouse_middle_name');
-            $table->string('suffix_name');
-            $table->string('occupation');
-            $table->string('employee_business_name');
-            $table->string('business_address');
-            $table->string('telephone_number');
-            $table->string('father_surname');
+            $table->string('spouse_middle_name')->nullable();
+            $table->string('spouse_last_name')->nullable();
+            $table->string('spouse_suffix')->nullable();
+            $table->string('spouse_occupation')->nullable();
+            $table->string('spouse_employer')->nullable();
+            $table->string('spouse_employer_address')->nullable();
+            $table->string('spouse_employer_telephone')->nullable();
             $table->string('father_first_name');
-            $table->string('father_middle_name');  
-            $table->string('father_extension_name')->nullable(); 
-            $table->string('mother_maiden_surname'); 
-            $table->string('mother_first_name'); 
-            $table->string('mother_maiden_middle_name');    
+            $table->string('father_middle_name')->nullable();
+            $table->string('father_last_name');
+            $table->string('father_suffix')->nullable();
+            $table->string('mother_first_name');
+            $table->string('mother_middle_name')->nullable();
+            $table->string('mother_last_name');
+            $table->string('mother_suffix')->nullable();
             $table->timestamps();
         });
     }

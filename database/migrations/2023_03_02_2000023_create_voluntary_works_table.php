@@ -13,17 +13,14 @@ return new class extends Migration
     {
         Schema::create('voluntary_works', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('personal_data_sheet_id')->constrained('personal_data_sheets');
             $table->foreignId('personal_data_sheet_id')->constrained()->onDelete('cascade');
             $table->string('organization_name');
             $table->string('organization_address');
-            $table->string('position');
-            $table->string('number_hours');
-            $table->date('vw_inclusive_dates_from');
-            $table->date('vw_inclusive_dates_to');
+            $table->date('date_from');
+            $table->date('date_to');
+            $table->integer('number_of_hours');
+            $table->string('position_nature_of_work');
             $table->timestamps();
-
-            // $table->foreign('pds_id')->references('id')->on('personal_data_sheets');
         });
     }
 

@@ -10,11 +10,11 @@ class ChildrenInformation extends Model
 {
     use HasFactory;
 
-    public function belongsToFamilyBackground ():BelongsTo
+    public function belongsToFamilyBackground(): BelongsTo
     {
         return $this->belongsTo(FamilyBackground::class);
     }
-    public function belongsToPersonalDataSheet ():BelongsTo
+    public function belongsToPersonalDataSheet(): BelongsTo
     {
         return $this->belongsTo(PersonalDataSheet::class);
     }
@@ -24,7 +24,7 @@ class ChildrenInformation extends Model
     protected $fillable = [
         'personal_data_sheet_id',
         'family_background_id',
-        'children_name',
-        'children_birthdate'
+        'name',
+        'birthday'
     ];
 }

@@ -19,8 +19,8 @@ class PersonalDataSheetFactory extends Factory
     {
        static $number = 1;
         return [
-           'applicant_id' => null,
-            'employee_id' => $number++,
+            'individual_id' => $number++,
+            'individual_type' => "employee",
         ];
     }
 }

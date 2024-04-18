@@ -15,33 +15,32 @@ class PersonalDataSheetSeeder extends Seeder
     {
         $personalDataSheets = [
             [
-                'applicant_id' => 1,
-                'employee_id' => null,
+                'individual_id' => 1,
+                'individual_type' => "applicant",
             ],
             [
-                'applicant_id' => 2,
-                'employee_id' => null,
+                'individual_id' => 2,
+                'individual_type' => "applicant",
             ],
             [
-                'applicant_id' => null,
-                'employee_id' => 3,
+                'individual_id' => 3,
+                'individual_type' => "employee",
             ],
             [
-                'applicant_id' => null,
-                'employee_id' => 4,
+                'individual_id' => 4,
+                'individual_type' => "employee",
             ],
             [
-                'applicant_id' => 3,
-                'employee_id' => null,
+                'individual_id' => 3,
+                'individual_type' => "applicant",
             ],
         ];
 
-        foreach($personalDataSheets as $personalDataSheet){
+        foreach ($personalDataSheets as $personalDataSheet) {
             PersonalDataSheet::create([
-                'applicant_id' => $personalDataSheet['applicant_id'],
-                'employee_id' => $personalDataSheet['employee_id']
+                'individual_id' => $personalDataSheet['individual_id'],
+                'individual_type' => $personalDataSheet['individual_type']
             ]);
         }
-
     }
 }

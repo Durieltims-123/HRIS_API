@@ -14,13 +14,12 @@ return new class extends Migration
         Schema::create('training_program_attendeds', function (Blueprint $table) {
             $table->id();
             $table->foreignId('personal_data_sheet_id')->constrained()->onDelete('cascade');
-            // $table->foreignId('personal_data_sheet_id')->constrained('personal_data_sheets');
-            $table->string('program_title');
-            $table->string('hours');
-            $table->string('type');
-            $table->string('conducted_by');
-            $table->date('tp_inclusive_dates_from');
-            $table->date('tp_inclusive_dates_to');
+            $table->string('training_title');
+            $table->date('attendance_from');
+            $table->date('attendance_to');
+            $table->string('number_of_hours');
+            $table->string('training_type');
+            $table->string('conducted_sponsored_by');
             $table->timestamps();
 
             // $table->foreign('pds_id')->references('id')->on('personal_data_sheets');

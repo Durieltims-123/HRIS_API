@@ -15,14 +15,12 @@ return new class extends Migration
             $table->id();
             // $table->foreignId('personal_data_sheet_id')->constrained('personal_data_sheets');
             $table->foreignId('personal_data_sheet_id')->constrained()->onDelete('cascade');
-            $table->string('level');
-            $table->string('school_name');
-            $table->string('basic_education');
-            $table->string('scholarship_honor');
-            $table->string('highest_level');
-            $table->string('year_graduated');
-            $table->date('eb_inclusive_dates_from');
-            $table->date('eb_inclusive_dates_to');
+            $table->string('degree')->nullable();
+            $table->string('period_to');
+            $table->string('period_from');
+            $table->string('highest_unit_earned')->nullable();
+            $table->string('year_graduated')->nullable();
+            $table->date('scholarship_academic_awards')->nullable();
             $table->timestamps();
 
             // $table->foreign('pds_id')->references('id')->on('personal_data_sheets');

@@ -17,7 +17,7 @@ return new class extends Migration
             // $table->foreignId('personal_data_sheet_id')->constrained('personal_data_sheets');
             $table->foreignId('personal_data_sheet_id')->constrained()->onDelete('cascade');
 
-            $table->string('recognition_title');
+            $table->string('title');
             $table->timestamps();
         });
     }

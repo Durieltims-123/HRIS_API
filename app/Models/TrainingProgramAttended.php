@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TrainingProgramAttended extends Model
 {
@@ -11,13 +12,18 @@ class TrainingProgramAttended extends Model
 
     protected $primaryKey = 'id';
 
+    public function belongsToPersonalDataSheet(): BelongsTo
+    {
+        return $this->belongsTo(PersonalDataSheet::class, 'personal_data_sheet_id');
+    }
+
     protected $fillable = [
         'personal_data_sheet_id',
-        'program_title',
-        'hours',
-        'type',
-        'conducted_by',
-        'tp_inclusive_dates_from',
-        'tp_inclusive_dates_to'
+        'training_title',
+        'attendance_from',
+        'attendance_to',
+        'number_of_hours',
+        'training_type',
+        'conducted_sponsored_by'
     ];
 }

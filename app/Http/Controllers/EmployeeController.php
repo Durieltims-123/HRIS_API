@@ -7,6 +7,7 @@ use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Resources\EmployeeResource;
 use App\Models\PersonalDataSheet;
 use App\Models\Employee;
+use App\Models\PersonalInformation;
 use App\Models\Vacancy;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
@@ -131,8 +132,57 @@ class EmployeeController extends Controller
                 "employee_status" => $request->employee_status
             ]);
 
+
+            $pds=PersonalDataSheet::create([
+                'applicant_id'=>null,
+                'employee_id' => $employee->id
+            ]);
+
             // Personal Information
-            PersonalDataSheet::create([]);
+            PersonalInformation::create([
+            ]);
+
+// first_name
+// middle_name
+// last_name
+// suffix
+// birth_place
+// birth_date
+// age
+// sex
+// height
+// weight
+// citizenship
+// citizenship_type
+// country
+// blood_type
+// civil_status
+// tin
+// gsis
+// pagibig
+// philhealth
+// sss
+// residential_province
+// residential_municipality
+// residential_barangay
+// residential_house
+// residential_subdivision
+// residential_street
+// residential_zipcode
+// permanent_province
+// permanent_municipality
+// permanent_barangay
+// permanent_house
+// permanent_subdivision
+// permanent_street
+// permanent_zipcode
+// telephone
+// mobile_number
+// email
+
+
+
+//             ]);
 
 
 
