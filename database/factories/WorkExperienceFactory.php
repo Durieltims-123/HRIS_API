@@ -21,13 +21,13 @@ class WorkExperienceFactory extends Factory
         return [
             'personal_data_sheet_id' => $personal_data_sheets->random()->id,
             'position_title' => $this->faker->sentence(),
-            'office' => $this->faker->sentence(),
+            'office_company' => $this->faker->sentence(),
             'monthly_salary' => $this->faker->randomNumber(),
-            'salary' => $this->faker->randomNumber(),
-            'status_appointment' => $this->faker->sentence(),
+            'salary_grade' => $this->faker->randomNumber(),
+            'status_of_appointment' => $this->faker->sentence(),
             'government_service' => $this->faker->sentence(),
-            'inclusive_dates_from' => $this->faker->date('Y-m-d'),
-            'inclusive_dates_to' => $this->faker->date('Y-m-d'),
+            'date_from' => $this->faker->date('Y-m-d'),
+            'date_to' => $this->faker->date('Y-m-d')
         ];
     }
 }

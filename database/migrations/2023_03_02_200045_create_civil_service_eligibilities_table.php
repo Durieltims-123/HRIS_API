@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('civil_service_eligibilities', function (Blueprint $table) {
             $table->id();
             $table->foreignId('personal_data_sheet_id')->constrained()->onDelete('cascade');
-            $table->string('personal_data_sheet_id');
             $table->string('eligibility_title');
-            $table->date('rating')->nullable();
+            $table->decimal('rating', total: 4, places: 2)->nullable();
             $table->string('date_of_examination_conferment');
             $table->string('place_of_examination_conferment');
+            $table->string('license_number')->nullable();
             $table->date('license_date_validity')->nullable();
             $table->timestamps();
         });

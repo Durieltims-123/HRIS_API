@@ -18,12 +18,13 @@ class EducationalBackground extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'personal_data_sheet_id',
+        'level',
+        'school_name',
         'degree',
         'period_to',
         'period_from',
         'highest_unit_earned',
         'year_graduated',
-        'scholarship_academic_awards'
+        'scholarship_academic_awards',
     ];
 }

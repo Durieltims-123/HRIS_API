@@ -22,10 +22,10 @@ class VoluntaryWorkFactory extends Factory
             'personal_data_sheet_id' => $personal_data_sheets->random()->id,
             'organization_name' => $this->faker->sentence(),
             'organization_address' => $this->faker->address(),
-            'position' => $this->faker->sentence(),
-            'number_hours' => $this->faker->randomDigit(),
-            'vw_inclusive_dates_from' => $this->faker->date('Y-m-d'),
-            'vw_inclusive_dates_to'  => $this->faker->date('Y-m-d'),
+            'number_of_hours' => $this->faker->randomDigit(),
+            'position_nature_of_work' => $this->faker->sentence(),
+            'date_from' => $this->faker->date('Y-m-d'),
+            'date_to'  => $this->faker->date('Y-m-d'),
         ];
     }
 }

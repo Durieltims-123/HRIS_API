@@ -19,21 +19,22 @@ class FamilyBackgroundFactory extends Factory
         static $number = 1;
         return [
             'personal_data_sheet_id' => $number++,
-            'spouse_surname' => $this->faker->name(),
-            'spouse_first_name' => $this->faker->name(),
-            'spouse_middle_name' => $this->faker->name(),
-            'suffix_name' => $this->faker->randomElement(['Jr','Sr.','II','III']),
-            'occupation' => $this->faker->unique()->text(),
-            'employee_business_name' => $this->faker->unique()->text(),
-            'business_address'=> $this->faker->unique()->text(),
-            'telephone_number'=> $this->faker->phoneNumber(),
-            'father_surname' => $this->faker->lastName(),
-            'father_first_name'  => $this->faker->firstNameMale(),
-            'father_middle_name'  => $this->faker->lastName(),
-            'father_extension_name'  => $this->faker->randomElement(['Jr','Sr.','II','III']),
-            'mother_maiden_surname' => $this->faker->lastName(),
-            'mother_first_name' => $this->faker->firstNameFemale(),
-            'mother_maiden_middle_name' => $this->faker->lastName(),
+            'spouse_first_name' => $this->faker->lastName(),
+            'spouse_middle_name' => $this->faker->lastName(),
+            'spouse_last_name' => $this->faker->name(),
+            'spouse_suffix' => $this->faker->randomElement(['Jr', 'Sr.', 'II', 'III']),
+            'spouse_occupation' => $this->faker->unique()->text(),
+            'spouse_employer' => $this->faker->unique()->text(),
+            'spouse_employer_address' => $this->faker->unique()->text(),
+            'spouse_employer_telephone' => $this->faker->phoneNumber(),
+            'father_first_name' => $this->faker->lastName(),
+            'father_middle_name'  => $this->faker->firstNameMale(),
+            'father_last_name'  => $this->faker->lastName(),
+            'father_suffix'  => $this->faker->randomElement(['Jr', 'Sr.', 'II', 'III']),
+            'mother_first_name' => $this->faker->lastName(),
+            'mother_middle_name' => $this->faker->firstNameFemale(),
+            'mother_last_name' => $this->faker->lastName(),
+            'mother_suffix'  => $this->faker->randomElement(['Jr', 'Sr.', 'II', 'III'])
         ];
     }
 }

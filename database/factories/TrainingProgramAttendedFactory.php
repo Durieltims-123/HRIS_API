@@ -20,12 +20,15 @@ class TrainingProgramAttendedFactory extends Factory
         $personal_data_sheets = PersonalDataSheet::all();
         return [
             'personal_data_sheet_id' => $personal_data_sheets->random()->id,
-            'program_title' => $this->faker->sentence(),
-            'hours' => $this->faker->randomNumber(),
-            'type' => $this->faker->word(),
-            'conducted_by' => $this->faker->name(),
-            'tp_inclusive_dates_from' => $this->faker->date('Y-m-d'),
-            'tp_inclusive_dates_to' => $this->faker->date('Y-m-d')
+            'training_title' => $this->faker->sentence(),
+            'attendance_from' => $this->faker->date('Y-m-d'),
+            'attendance_to' => $this->faker->date('Y-m-d'),
+            'number_of_hours' => $this->faker->randomNumber(),
+            'training_type' => $this->faker->word(),
+            'conducted_sponsored_by' => $this->faker->name()
+
+
+
         ];
     }
 }

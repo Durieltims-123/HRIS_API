@@ -20,7 +20,7 @@ class SpecialSkillHobbyFactory extends Factory
         $personal_data_sheets = PersonalDataSheet::all();
         return [
             'personal_data_sheet_id' => $personal_data_sheets->random()->id,
-            'special_skills' => $this->faker->sentence(),
+            'special_skill' => $this->faker->sentence(),
         ];
     }
 }

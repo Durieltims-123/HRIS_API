@@ -35,7 +35,7 @@ class StoreEmployeeRequest extends FormRequest
             'first_name' =>  ['required', 'string', 'max:255'],
             'middle_name' =>  ['max:255'],
             'last_name' =>  ['required', 'string', 'max:255'],
-            'suffix' =>  ['string', 'max:255'],
+            'suffix' =>  ['nullable','string', 'max:255'],
             'birth_place' =>  ['required', 'string', 'max:255'],
             'birth_date' =>  ['required', 'max:255'],
             'age' =>  ['required', 'gt:0', 'digits_between:2,65'],
@@ -68,7 +68,7 @@ class StoreEmployeeRequest extends FormRequest
             'permanent_zipcode' =>  ['required', 'max:4'],
             'telephone' =>  ['nullable', 'string', 'max:255'],
             'mobile_number' =>  ['required', 'max:11'],
-            'email' =>  ['nullable', 'email', 'max:255'],
+            'email_address' =>  ['nullable', 'email', 'max:255'],
 
 
             'spouse_first_name' =>  ['required_with:spouse_last_name', 'nullable', 'max:255'],
@@ -120,8 +120,6 @@ class StoreEmployeeRequest extends FormRequest
             'workExperiences.*.status_of_appointment' => ['required', 'max:255'],
             'workExperiences.*.government_service' => ['required', 'max:255'],
 
-
-
             'voluntaryWorks.*.organization_name' => ['required', 'max:255'],
             'voluntaryWorks.*.organization_address' => ['required', 'max:255'],
             'voluntaryWorks.*.date_from' => ['required', 'max:255'],
@@ -136,8 +134,8 @@ class StoreEmployeeRequest extends FormRequest
             'trainings.*.training_type' => ['required', 'max:255'],
             'trainings.*.conducted_sponsored_by' => ['required', 'max:255'],
 
-            'skills.*.name' =>  ['required', 'max:255'],
-            'recognitions.*.title' =>  ['required', 'max:255'],
+            'skills.*.special_skill' =>  ['required', 'max:255'],
+            'recognitions.*.recognition_title' =>  ['required', 'max:255'],
             'memberships.*.title' =>  ['required', 'max:255'],
 
             'characterReferences.*.name' =>  ['required', 'max:255'],

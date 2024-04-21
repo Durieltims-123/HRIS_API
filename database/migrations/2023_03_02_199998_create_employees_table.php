@@ -16,11 +16,11 @@ return new class extends Migration
             $table->foreignId('division_id')->constrained('divisions');
             $table->string('employee_id')->unique();
             $table->string('first_name');
-            $table->string('middle_name');
+            $table->string('middle_name')->nullable();
             $table->string('last_name');
-            $table->string('suffix_name')->nullable();
-            $table->string('contact_number');
-            $table->string('email_address');
+            $table->string('suffix')->nullable();
+            $table->string('mobile_number');
+            $table->string('email_address')->nullable();
             $table->foreignId('lgu_position_id')->constrained('lgu_positions');
             $table->enum('employment_status', ['permanent', 'casual', 'coterminous', 'fixed term', 'contractual', 'substitute', 'provisional']);
             $table->string('employee_status');

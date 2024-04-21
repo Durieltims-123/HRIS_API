@@ -23,8 +23,8 @@ class ChildrenInformationFactory extends Factory
         return [
             'personal_data_sheet_id' => $number++,
             'family_background_id' =>  $num++,
-            'children_name' => $this->faker->name(),
-            'children_birthdate' => $this->faker->date('Y-m-d')
+            'name' => $this->faker->name(),
+            'birthday' => $this->faker->date('Y-m-d')
         ];
     }
 }

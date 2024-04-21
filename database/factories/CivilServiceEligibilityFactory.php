@@ -19,12 +19,12 @@ class CivilServiceEligibilityFactory extends Factory
         static $number = 1;
         return [
             'personal_data_sheet_id' => $number++,
-            'career_service' => $this->faker->sentence(),
+            'eligibility_title' => $this->faker->sentence(),
             'rating' => $this->faker->randomDigit(),
-            'examination_date' => $this->faker->date('Y-m-d'),
-            'place_examination' => $this->faker->address(),
+            'date_of_examination_conferment' => $this->faker->date('Y-m-d'),
+            'place_of_examination_conferment' => $this->faker->address(),
             'license_number' => $this->faker->randomNumber(),
-            'date_validity' => $this->faker->date('Y-m-d'),
+            'license_date_validity' => $this->faker->date('Y-m-d'),
         ];
     }
 }

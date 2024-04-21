@@ -23,6 +23,7 @@ class CivilServiceEligibility extends Model
         'rating',
         'date_of_examination_conferment',
         'place_of_examination_conferment',
+        'license_number',
         'license_date_validity',
     ];
 }
