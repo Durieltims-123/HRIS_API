@@ -20,7 +20,7 @@ class MembershipAssociationFactory extends Factory
         $personal_data_sheets = PersonalDataSheet::all();
         return [
             'personal_data_sheet_id' => $personal_data_sheets->random()->id,
-            'title' => $this->faker->sentence(),
+            'organization' => $this->faker->sentence(),
         ];
     }
 }

@@ -78,7 +78,7 @@ class PersonalDataSheet extends Model
         return $this->hasMany(Reference::class);
     }
 
-    public function PDSable()
+    public function individual()
     {
         return $this->morphTo();
     }
@@ -87,7 +87,8 @@ class PersonalDataSheet extends Model
 
     protected $fillable = [
         'individual_id',
-        'individual'
+        'individual_type',
+        'pds_date'
     ];
 
     // protected $fillable = [

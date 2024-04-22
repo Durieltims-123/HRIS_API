@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             // $table->foreignId('personal_data_sheet_id')->constrained('personal_data_sheets');
             $table->foreignId('personal_data_sheet_id')->constrained()->onDelete('cascade');
-            $table->string('title')->nullable();
+            $table->string('organization')->nullable();
             $table->timestamps();
 
             // $table->foreign('pds_id')->references('id')->on('personal_data_sheets');

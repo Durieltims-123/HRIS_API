@@ -19,6 +19,6 @@ class Recognition extends Model
 
     protected $fillable = [
         'personal_data_sheet_id',
-        'title',
+        'recognition_title',
     ];
 }

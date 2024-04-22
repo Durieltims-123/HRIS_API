@@ -48,7 +48,7 @@ class StoreEmployeeRequest extends FormRequest
             'blood_type' =>  ['required'],
             'civil_status' =>  ['required'],
             'tin' =>  ['required', 'max:12'],
-            'gsis' =>  ['required', 'max:11', 'min:12'],
+            'gsis' =>  ['required', 'max:12', 'min:12'],
             'pagibig' =>  ['required', 'max:12', 'min:12'],
             'philhealth' =>  ['required', 'max:12', 'min:12'],
             'sss' =>  ['nullable', 'string', 'max:20',],
@@ -108,8 +108,8 @@ class StoreEmployeeRequest extends FormRequest
             'eligibilities.*.rating' => ['required', 'max:255', 'gte:75'],
             'eligibilities.*.date_of_examination_conferment' => ['required', 'max:255'],
             'eligibilities.*.place_of_examination_conferment' => ['required', 'max:255'],
-            'eligibilities.*.license_number' => ['required', 'max:255'],
-            'eligibilities.*.license_date_validity' => ['required', 'max:255'],
+            'eligibilities.*.license_number' => ['nullable', 'max:255'],
+            'eligibilities.*.license_date_validity' => ['nullable', 'max:255'],
 
             'workExperiences.*.date_from' => ['required', 'max:255'],
             'workExperiences.*.date_to' => ['required', 'max:255', 'after:workExperiences.*.date_from'],
@@ -136,7 +136,7 @@ class StoreEmployeeRequest extends FormRequest
 
             'skills.*.special_skill' =>  ['required', 'max:255'],
             'recognitions.*.recognition_title' =>  ['required', 'max:255'],
-            'memberships.*.title' =>  ['required', 'max:255'],
+            'memberships.*.organization' =>  ['required', 'max:255'],
 
             'characterReferences.*.name' =>  ['required', 'max:255'],
             'characterReferences.*.address' =>  ['required', 'max:255'],

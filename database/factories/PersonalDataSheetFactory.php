@@ -21,6 +21,7 @@ class PersonalDataSheetFactory extends Factory
         return [
             'individual_id' => $number++,
             'individual_type' => "employee",
+            'individual_type' => date('Y-m-d'),
         ];
     }
 }

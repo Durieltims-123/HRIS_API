@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('personal_data_sheets', function (Blueprint $table) {
             $table->id();
             $table->morphs('individual');
+            $table->date('pds_date');
             $table->timestamps();
         });
     }

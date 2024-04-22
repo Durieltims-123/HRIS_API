@@ -19,6 +19,6 @@ class MembershipAssociation extends Model
 
     protected $fillable = [
         'personal_data_sheet_id',
-        'title'
+        'organization'
     ];
 }

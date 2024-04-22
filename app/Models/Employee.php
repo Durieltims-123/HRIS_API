@@ -24,7 +24,7 @@ class Employee extends Model
 
     public function personalDataSheets(): MorphMany
     {
-        return $this->morphMany(PersonalDataSheet::class, 'individual_id');
+        return $this->morphMany(PersonalDataSheet::class, 'individual');
     }
 
     public function latestPersonalDataSheet(): MorphOne
