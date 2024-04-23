@@ -53,7 +53,7 @@ class StorePersonalInformationRequest extends FormRequest
             'civil_status' => ['required', 'string', 'max:255'],
             'sex' => ['required', 'string', 'max:255'],
             'birthplace' => ['required', 'string', 'max:255'],
-            'birthdate' => ['required', 'date'],
+            'birth_date' => ['required', 'date'],
 
             //Recognition
             // 'pds_id' =>['required'],

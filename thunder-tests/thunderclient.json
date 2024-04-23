@@ -1060,7 +1060,7 @@
           "value": "Buguias"
         },
         {
-          "name": "birthdate",
+          "name": "birth_date",
           "value": "10/10/2020"
         },
         {
@@ -1828,7 +1828,7 @@
           "value": "Atok"
         },
         {
-          "name": "birthdate",
+          "name": "birth_date",
           "value": "2023-10-10"
         }
       ]
@@ -2680,7 +2680,7 @@
           "value": "a"
         },
         {
-          "name": "birthdate",
+          "name": "birth_date",
           "value": "2011-11-11"
         },
         {

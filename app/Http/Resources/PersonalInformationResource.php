@@ -40,7 +40,7 @@ class PersonalInformationResource extends JsonResource
                 "civil_status" => (string)$this->civil_status,
                 "sex" => (string)$this->sex,
                 "birthplace" => (string)$this->birthplace,
-                "birthdate" => (string)$this->birthdate,
+                "birth_date" => (string)$this->birthdate,
             ]
             
         ];

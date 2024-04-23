@@ -10,11 +10,11 @@ class Answer extends Model
 {
     use HasFactory;
 
-    public function belongsToPersonalDataSheet ():BelongsTo
+    public function belongsToPersonalDataSheet(): BelongsTo
     {
         return $this->belongsTo(PersonalDataSheet::class, 'personal_data_sheet_id');
     }
-    public function belongsToQuestion ():BelongsTo
+    public function belongsToQuestion(): BelongsTo
     {
         return $this->belongsTo(Question::class, 'question_id');
     }
@@ -24,10 +24,7 @@ class Answer extends Model
     protected $fillable = [
         'personal_data_sheet_id',
         'question_id',
-        'choice',
+        'answer',
         'details',
-        'date_filed',
-        'case_status'
     ];
-
 }

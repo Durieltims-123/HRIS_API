@@ -57,7 +57,7 @@ class PersonalDataSheetResource extends JsonResource
                 "civil_status" => (string)$this->hasManyPersonalInformation[0]->civil_status,
                 "sex" => (string)$this->hasManyPersonalInformation[0]->sex,
                 "birthplace" => (string)$this->hasManyPersonalInformation[0]->birthplace,
-                "birthdate" => (string)$this->hasManyPersonalInformation[0]->birthdate,
+                "birth_date" => (string)$this->hasManyPersonalInformation[0]->birthdate,
 
                 //family background & children information
                 "spouse_surname" => (string)$this->hasManyFamilyBackground[0]->spouse_surname,

@@ -45,7 +45,7 @@ class employeeTest extends TestCase
             "last_name" => "Timatim",
             "suffix" => null,
             "birth_place" => "Kapangan, Benguet",
-            "birth_date" => "1996-04-02T16=>00=>00.000Z",
+            "birth_date" => "1996-04-02",
             "age" => 26,
             "sex" => "Male",
             "height" => 1.5,
@@ -86,7 +86,18 @@ class employeeTest extends TestCase
             "spouse_employer" => "Valley Bread",
             "spouse_employer_address" => "La Trinidad, Benguet",
             "spouse_employer_telephone" => "0123565897",
-            "children" => [],
+            "children" => [
+                [
+                    "number" => 1,
+                    "name" => "ONE",
+                    "birthday" => "2024-04-10"
+                ],
+                [
+                    "number" => 1,
+                    "name" => "TWO",
+                    "birthday" => "2024-04-16"
+                ]
+            ],
             "father_first_name" => "Fernando",
             "father_middle_name" => "Menzi",
             "father_last_name" => "Timatim",
@@ -98,7 +109,7 @@ class employeeTest extends TestCase
             "schools" => [
                 [
                     "level" => "Elementary",
-                    "name" => "SES",
+                    "school_name" => "SES",
                     "degree" => null,
                     "period_from" => 2004,
                     "period_to" => 2010,
@@ -108,7 +119,7 @@ class employeeTest extends TestCase
                 ],
                 [
                     "level" => "Secondary",
-                    "name" => "KNHS",
+                    "school_name" => "KNHS",
                     "degree" => null,
                     "period_from" => 2010,
                     "period_to" => 2015,
@@ -118,7 +129,7 @@ class employeeTest extends TestCase
                 ],
                 [
                     "level" => "College",
-                    "name" => "BSU",
+                    "school_name" => "BSU",
                     "degree" => "BSIT",
                     "period_from" => 2015,
                     "period_to" => 2019,
@@ -131,7 +142,7 @@ class employeeTest extends TestCase
                 [
                     "eligibility_title" => "CSC",
                     "rating" => "85.23",
-                    "date_of_examination_conferment" => "2024-04-02T16=>00=>00.000Z",
+                    "date_of_examination_conferment" => "2024-04-02",
                     "place_of_examination_conferment" => "Baguio City",
                     "license_number" => null,
                     "license_date_validity" => null
@@ -139,10 +150,10 @@ class employeeTest extends TestCase
                 [
                     "eligibility_title" => "LPT",
                     "rating" => "90.00",
-                    "date_of_examination_conferment" => "2024-03-04T16=>00=>00.000Z",
+                    "date_of_examination_conferment" => "2024-03-04",
                     "place_of_examination_conferment" => "BSU",
                     "license_number" => "213155456",
-                    "license_date_validity" => "2025-04-03T16=>00=>00.000Z"
+                    "license_date_validity" => "2025-04-03"
                 ]
             ],
             "workExperiences" => [
@@ -311,6 +322,133 @@ class employeeTest extends TestCase
             "employee_status" => "Active"
         ];
 
+        $personalInformationCheck = [
+            'birth_place',
+            'birth_date',
+            'age',
+            'sex',
+            'height',
+            'weight',
+            'citizenship',
+            'citizenship_type',
+            'country',
+            'blood_type',
+            'civil_status',
+            'tin',
+            'gsis',
+            'pagibig',
+            'philhealth',
+            'sss',
+            'residential_province',
+            'residential_municipality',
+            'residential_barangay',
+            'residential_house',
+            'residential_subdivision',
+            'residential_street',
+            'residential_zipcode',
+            'permanent_province',
+            'permanent_municipality',
+            'permanent_barangay',
+            'permanent_house',
+            'permanent_subdivision',
+            'permanent_street',
+            'permanent_zipcode',
+            'telephone',
+            'mobile_number',
+            'email',
+        ];
+        $familyBackGroundCheck = [
+            'personal_data_sheet_id',
+            'spouse_first_name',
+            'spouse_middle_name',
+            'spouse_last_name',
+            'spouse_suffix',
+            'spouse_employer',
+            'spouse_employer_address',
+            'spouse_employer_telephone',
+            'father_first_name',
+            'father_middle_name',
+            'father_last_name',
+            'father_suffix',
+            'mother_first_name',
+            'mother_middle_name',
+            'mother_last_name',
+            'mother_suffix',
+        ];
+        $childrenInformationsCheck = [
+            'personal_data_sheet_id',
+            'family_background_id',
+            'name',
+            'birthday'
+        ];
+        $educationalBackgroundsCheck = [
+            'level',
+            'school_name',
+            'degree',
+            'period_to',
+            'period_from',
+            'highest_unit_earned',
+            'year_graduated',
+            'scholarship_academic_awards',
+        ];
+        $civilServiceEligibilitiesCheck = [
+            'personal_data_sheet_id',
+            'eligibility_title',
+            'rating',
+            'date_of_examination_conferment',
+            'place_of_examination_conferment',
+            'license_number',
+            'license_date_validity',
+        ];
+        $workExperiencesCheck = [
+            'personal_data_sheet_id',
+            'position_title',
+            'office_company',
+            'monthly_salary',
+            'salary_grade',
+            'status_of_appointment',
+            'government_service',
+            'date_from',
+            'date_to',
+        ];
+        $voluntaryWorksCheck = [
+            'personal_data_sheet_id',
+            'organization_name',
+            'organization_address',
+            'date_from',
+            'date_to',
+            'number_of_hours',
+            'position_nature_of_work',
+        ];
+        $trainingProgramsCheck = [
+            'personal_data_sheet_id',
+            'training_title',
+            'attendance_from',
+            'attendance_to',
+            'number_of_hours',
+            'training_type',
+            'conducted_sponsored_by'
+        ];
+        $specialSkillHobiesCheck = [
+            'personal_data_sheet_id',
+            'name'
+        ];
+        $recognitionsCheck = [
+            'personal_data_sheet_id',
+            'recognition_title',
+        ];
+        $MembershipAssociationsCheck = [
+            'personal_data_sheet_id',
+            'organization'
+        ];
+        $answersCheck = [
+            'question_id',
+            'answer',
+            'details',
+        ];
+
+
+
 
 
         $user = User::factory()->create();
@@ -352,28 +490,28 @@ class employeeTest extends TestCase
     // }
 
     // delete 
-    // public function test_delete_employee(): void
-    // {
+    public function test_delete_employee(): void
+    {
 
-    //     $employeeCheck = [
-    //         "division_id" => "3",
-    //         "employee_id" => "1234568",
-    //         "first_name" => "Duriel",
-    //         "middle_name" => "Alutang",
-    //         "last_name" => "Timatim",
-    //         "suffix" => null,
-    //         "mobile_number" => "09503279274",
-    //         "email_address" => "durieltims@gmail.com",
-    //         "lgu_position_id" => "2",
-    //         "employment_status" => "Permanent",
-    //         "employee_status" => "Active"
-    //     ];
+        $employeeCheck = [
+            "division_id" => "3",
+            "employee_id" => "1234568",
+            "first_name" => "Duriel",
+            "middle_name" => "Alutang",
+            "last_name" => "Timatim",
+            "suffix" => null,
+            "mobile_number" => "09503279274",
+            "email_address" => "durieltims@gmail.com",
+            "lgu_position_id" => "2",
+            "employment_status" => "Permanent",
+            "employee_status" => "Active"
+        ];
 
-    //     $data = Employee::where($employeeCheck)->first();
-    //     $user = User::factory()->create();
-    //     $this->assertCount(0, $user->tokens);
-    //     $this->actingAs($user);
-    //     $this->delete("/api/employee/" . $data->id);
-    //     $response = $this->assertDatabaseMissing("employees", $employeeCheck);
-    // }
+        $data = Employee::where($employeeCheck)->first();
+        $user = User::factory()->create();
+        $this->assertCount(0, $user->tokens);
+        $this->actingAs($user);
+        $this->delete("/api/employee/" . $data->id);
+        $response = $this->assertDatabaseMissing("employees", $employeeCheck);
+    }
 }

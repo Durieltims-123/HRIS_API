@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('children_information', function (Blueprint $table) {
             $table->id();
             $table->foreignId('personal_data_sheet_id')->constrained()->onDelete('cascade');
-            $table->foreignId('family_background_id')->constrained('family_backgrounds');
+            $table->foreignId('family_background_id')->constrained()->onDelete('cascade');;
             $table->string('name')->nullable();
             $table->date('birthday')->nullable();
             $table->timestamps();

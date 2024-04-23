@@ -55,6 +55,6 @@ class PersonalInformation extends Model
         'permanent_zipcode',
         'telephone',
         'mobile_number',
-        'email',
+        'email_address',
     ];
 }

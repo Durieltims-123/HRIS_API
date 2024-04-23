@@ -70,7 +70,7 @@ $applicant = Applicant::first();
         'civil_status' => "aw",
         'sex' => "aw",
         'birthplace' => "aw",
-        'birthdate' => "2020-10-10",
+        'birth_date' => "2020-10-10",
 
 
         //family background
@@ -232,7 +232,7 @@ public function test_edit_personal_data_sheet(): void
         'civil_status' => "aw",
         'sex' => "aw",
         'birthplace' => "aw",
-        'birthdate' => "2020-10-10",
+        'birth_date' => "2020-10-10",
 
 
         //family background

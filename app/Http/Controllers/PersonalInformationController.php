@@ -61,7 +61,7 @@ class PersonalInformationController extends Controller
              "civil_status" => $request->civil_status,
              "sex" => $request->sex,
              "birthplace" => $request->birthplace,
-             "birthdate" => Date('Y-m-d', strtotime($request->birthdate)),
+             "birth_date" => Date('Y-m-d', strtotime($request->birthdate)),
           ]);
  
  

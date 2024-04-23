@@ -15,10 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('personal_data_sheet_id')->constrained()->onDelete('cascade');
             $table->foreignId('question_id')->constrained('questions');
-            $table->string('choice');
+            $table->string('answer');
             $table->string('details')->nullable();
-            $table->string('date_filed')->nullable();
-            $table->string('case_status')->nullable();
             $table->timestamps();
         });
     }

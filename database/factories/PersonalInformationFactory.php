@@ -20,8 +20,8 @@ class PersonalInformationFactory extends Factory
         static $number = 1;
         return [
             'personal_data_sheet_id' => $number++,
-            'birthplace' => $this->faker->city(),
-            'birthdate' => $this->faker->date('Y-m-d'),
+            'birth_place' => $this->faker->city(),
+            'birth_date' => $this->faker->date('Y-m-d'),
             'age' => $this->faker->randomNumber(),
             'sex' => $this->faker->randomElement(['Female', 'Male']),
             'height' => $this->faker->randomNumber(),
@@ -52,7 +52,7 @@ class PersonalInformationFactory extends Factory
             'permanent_zipcode' => $this->faker->randomNumber(),
             'mobile_number' => $this->faker->phoneNumber(),
             'telephone' => $this->faker->phoneNumber(),
-            'email' => $this->faker->email(),
+            'email_address' => $this->faker->email(),
         ];
     }
 }

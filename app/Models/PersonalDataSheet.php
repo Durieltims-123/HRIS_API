@@ -12,15 +12,6 @@ class PersonalDataSheet extends Model
 {
     use HasFactory;
 
-    // public function belongsToApplicant(): BelongsTo
-    // {
-    //     return $this->belongsTo(Applicant::class, 'applicant_id');
-    // }
-    // public function belongsToEmployee(): BelongsTo
-    // {
-    //     return $this->belongsTo(Employee::class, 'employee_id');
-    // }
-
     public function personalInformation(): HasOne
     {
         return $this->hasOne(PersonalInformation::class);
@@ -31,49 +22,56 @@ class PersonalDataSheet extends Model
         return $this->hasOne(FamilyBackground::class);
     }
 
-
-
-    public function hasManyChildrenInformation(): HasMany
+    public function childrenInformations(): HasMany
     {
         return $this->hasMany(ChildrenInformation::class);
     }
-    public function hasManyEducationalBackground(): HasMany
+
+    public function educationalBackgrounds(): HasMany
     {
         return $this->hasMany(EducationalBackground::class);
     }
-    public function hasManyCivilServiceEligibility(): HasMany
+
+    public function civilServiceEligibilities(): HasMany
     {
         return $this->hasMany(CivilServiceEligibility::class);
     }
-    public function hasManyWorkExperience(): HasMany
+
+    public function workExperiences(): HasMany
     {
         return $this->hasMany(WorkExperience::class);
     }
-    public function hasManyVoluntaryWork(): HasMany
+
+    public function voluntaryWorks(): HasMany
     {
         return $this->hasMany(VoluntaryWork::class);
     }
-    public function hasManyTrainingProgramAttended(): HasMany
+
+    public function trainingPrograms(): HasMany
     {
         return $this->hasMany(TrainingProgramAttended::class);
     }
-    public function hasManySpecialSkillHobby(): HasMany
+
+    public function specialSkillHobies(): HasMany
     {
         return $this->hasMany(SpecialSkillHobby::class);
     }
-    public function hasManyRecognition(): HasMany
+
+    public function recognitions(): HasMany
     {
         return $this->hasMany(Recognition::class);
     }
-    public function hasManyMembershipAssociation(): HasMany
+
+    public function MembershipAssociations(): HasMany
     {
         return $this->hasMany(MembershipAssociation::class);
     }
-    public function hasManyAnswer(): HasMany
+
+    public function answers(): HasMany
     {
         return $this->hasMany(Answer::class);
     }
-    public function hasManyReference(): HasMany
+    public function references(): HasMany
     {
         return $this->hasMany(Reference::class);
     }

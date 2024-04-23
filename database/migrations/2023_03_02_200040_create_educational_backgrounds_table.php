@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('level')->nullable();
             $table->string('school_name')->nullable();
             $table->string('degree')->nullable();
-            $table->date('period_to');
-            $table->date('period_from');
+            $table->string('period_to');
+            $table->string('period_from');
             $table->string('highest_unit_earned')->nullable();
             $table->string('year_graduated')->nullable();
             $table->string('scholarship_academic_awards')->nullable();
