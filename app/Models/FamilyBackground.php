@@ -28,6 +28,7 @@ class FamilyBackground extends Model
         'spouse_middle_name',
         'spouse_last_name',
         'spouse_suffix',
+        'spouse_occupation',
         'spouse_employer',
         'spouse_employer_address',
         'spouse_employer_telephone',

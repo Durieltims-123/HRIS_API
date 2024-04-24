@@ -16,21 +16,21 @@ class EmployeeResource extends JsonResource
     {
         return [
             "id" => (string)$this->id,
-            "attributes" => 
+            "attributes" =>
             [
                 "employee_id" => (string)$this->employee_id,
                 "first_name" => (string)$this->first_name,
                 "middle_name" => (string)$this->middle_name,
                 "last_name" => (string)$this->last_name,
-                "suffix_name" => (string)$this->suffix_name,
-                "contact_number" => (string)$this->contact_number,
-                "email_address" =>(string)$this->email_address,
+                "suffix" => (string)$this->suffix,
+                "mobile_number" => (string)$this->mobile_number,
+                "email_address" => (string)$this->email_address,
                 "title" => (string)$this->title,
                 "position_status" => (string)$this->position_status,
                 "employee_status" => (string)$this->employee_status,
                 "orientation_status" => (string)$this->orientation_status,
                 "item_number" => (string)$this->item_number
             ]
-            ];
+        ];
     }
 }

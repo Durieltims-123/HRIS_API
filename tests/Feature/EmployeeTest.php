@@ -52,7 +52,7 @@ class employeeTest extends TestCase
             "weight" => 75,
             "citizenship" => "Filipino",
             "citizenship_type" => null,
-            "country" => null,
+            "country" => "Philippines",
             "blood_type" => "B+",
             "civil_status" => "Married",
             "tin" => "123444444444",
@@ -93,7 +93,7 @@ class employeeTest extends TestCase
                     "birthday" => "2024-04-10"
                 ],
                 [
-                    "number" => 1,
+                    "number" => 2,
                     "name" => "TWO",
                     "birthday" => "2024-04-16"
                 ]
@@ -205,87 +205,87 @@ class employeeTest extends TestCase
             ],
             "answers" => [
                 [
-                    "id" => "1",
+                    "question_id" => "1",
                     "number" => "34a",
                     "question" => "Are you related by consanguinity or affinity to the appointing or recommending authority, or to the\t\t\t\n                            chief of bureau or division or to the person who has immediate supervision over you in the Division, \t\t\t\n                            Bureau or Office where you will be apppointed,\t\t\t\n                            a. within the third degree?",
-                    "answer" => null,
+                    "answer" => "false",
                     "details" => null
                 ],
                 [
-                    "id" => "2",
+                    "question_id" => "2",
                     "number" => "34b",
                     "question" => "b. within the fourth degree (for Local Government Unit - Career Employees)?",
-                    "answer" => null,
+                    "answer" => "false",
                     "details" => null
                 ],
                 [
-                    "id" => "3",
+                    "question_id" => "3",
                     "number" => "35a",
                     "question" => "a. Have you ever been found guilty of any administrative offense?",
-                    "answer" => null,
+                    "answer" => "false",
                     "details" => null
                 ],
                 [
-                    "id" => "4",
+                    "question_id" => "4",
                     "number" => "35b",
                     "question" => "b. Have you been criminally charged before any court?",
-                    "answer" => null,
+                    "answer" => "false",
                     "details" => null
                 ],
                 [
-                    "id" => "5",
+                    "question_id" => "5",
                     "number" => "36",
                     "question" => "Have you ever been convicted of any crime or violation of any law, decree, ordinance or regulation by any court or tribunal?",
-                    "answer" => null,
+                    "answer" => "false",
                     "details" => null
                 ],
                 [
-                    "id" => "6",
+                    "question_id" => "6",
                     "number" => "37",
                     "question" => "Have you ever been separated from the service in any of the following modes=> resignation, retirement, dropped from the rolls, dismissal, termination, end of term, finished contract or phased out (abolition) in the public or private sector?",
-                    "answer" => null,
+                    "answer" => "false",
                     "details" => null
                 ],
                 [
-                    "id" => "7",
+                    "question_id" => "7",
                     "number" => "38a",
                     "question" => "a. Have you ever been a candidate in a national or local election held within the last year (except Barangay election)?",
-                    "answer" => null,
+                    "answer" => "false",
                     "details" => null
                 ],
                 [
-                    "id" => "8",
+                    "question_id" => "8",
                     "number" => "38b",
                     "question" => "b. Have you resigned from the government service during the three (3)-month period before the last election to promote/actively campaign for a national or local candidate?",
-                    "answer" => null,
+                    "answer" => "false",
                     "details" => null
                 ],
                 [
-                    "id" => "9",
+                    "question_id" => "9",
                     "number" => "39",
                     "question" => "Have you acquired the status of an immigrant or permanent resident of another country?",
-                    "answer" => null,
+                    "answer" => "false",
                     "details" => null
                 ],
                 [
-                    "id" => "10",
+                    "question_id" => "10",
                     "number" => "40a",
                     "question" => "Pursuant to=> (a) Indigenous People's Act (RA 8371); (b) Magna Carta for Disabled Persons (RA 7277); and (c) Solo Parents Welfare Act of 2000 (RA 8972), please answer the following items=>\n                                a. Are you a member of any indigenous group?",
-                    "answer" => null,
+                    "answer" => "false",
                     "details" => null
                 ],
                 [
-                    "id" => "11",
+                    "question_id" => "11",
                     "number" => "40b",
                     "question" => "Are you a person with disability?",
-                    "answer" => null,
+                    "answer" => "false",
                     "details" => null
                 ],
                 [
-                    "id" => "12",
+                    "question_id" => "12",
                     "number" => "40c",
                     "question" => "Are you a solo parent?",
-                    "answer" => null,
+                    "answer" => "false",
                     "details" => null
                 ]
             ],
@@ -323,83 +323,60 @@ class employeeTest extends TestCase
         ];
 
         $personalInformationCheck = [
-            'birth_place',
-            'birth_date',
-            'age',
-            'sex',
-            'height',
-            'weight',
-            'citizenship',
-            'citizenship_type',
-            'country',
-            'blood_type',
-            'civil_status',
-            'tin',
-            'gsis',
-            'pagibig',
-            'philhealth',
-            'sss',
-            'residential_province',
-            'residential_municipality',
-            'residential_barangay',
-            'residential_house',
-            'residential_subdivision',
-            'residential_street',
-            'residential_zipcode',
-            'permanent_province',
-            'permanent_municipality',
-            'permanent_barangay',
-            'permanent_house',
-            'permanent_subdivision',
-            'permanent_street',
-            'permanent_zipcode',
-            'telephone',
-            'mobile_number',
-            'email',
+            "birth_place" => "Kapangan, Benguet",
+            "birth_date" => "1996-04-02",
+            "age" => 26,
+            "sex" => "Male",
+            "height" => 1.5,
+            "weight" => 75,
+            "citizenship" => "Filipino",
+            "citizenship_type" => null,
+            "country" => "Philippines",
+            "blood_type" => "B+",
+            "civil_status" => "Married",
+            "tin" => "123444444444",
+            "gsis" => "122333333333",
+            "pagibig" => "123123333333",
+            "philhealth" => "123123333333",
+            "sss" => "12312333333333",
+            "residential_province" => "BENGUET",
+            "residential_municipality" => "LA TRINIDAD (Capital)",
+            "residential_barangay" => "Alapang",
+            "residential_house" => "FB 075",
+            "residential_subdivision" => "Some Subdivision",
+            "residential_street" => "Some Street",
+            "residential_zipcode" => "2601",
+            "permanent_province" => "BENGUET",
+            "permanent_municipality" => "LA TRINIDAD (Capital)",
+            "permanent_barangay" => "Alapang",
+            "permanent_house" => "FB 075",
+            "permanent_subdivision" => "Some Subdivision",
+            "permanent_street" => "Some Street",
+            "permanent_zipcode" => "2601",
+            "telephone" => "13546355",
+            "mobile_number" => "09503279274",
+            "email_address" => "durieltims@gmail.com",
         ];
+
         $familyBackGroundCheck = [
-            'personal_data_sheet_id',
-            'spouse_first_name',
-            'spouse_middle_name',
-            'spouse_last_name',
-            'spouse_suffix',
-            'spouse_employer',
-            'spouse_employer_address',
-            'spouse_employer_telephone',
-            'father_first_name',
-            'father_middle_name',
-            'father_last_name',
-            'father_suffix',
-            'mother_first_name',
-            'mother_middle_name',
-            'mother_last_name',
-            'mother_suffix',
+            "spouse_first_name" => "Someone",
+            "spouse_middle_name" => "someone m_mname",
+            "spouse_last_name" => "someone_lname",
+            "spouse_suffix" => "Mar.",
+            "spouse_occupation" => "Farming",
+            "spouse_employer" => "Valley Bread",
+            "spouse_employer_address" => "La Trinidad, Benguet",
+            "spouse_employer_telephone" => "0123565897",
+            "father_first_name" => "Fernando",
+            "father_middle_name" => "Menzi",
+            "father_last_name" => "Timatim",
+            "father_suffix" => "Jr.",
+            "mother_first_name" => "Elena",
+            "mother_middle_name" => "Ipan",
+            "mother_last_name" => "Alutang",
+            "mother_suffix" => null,
         ];
-        $childrenInformationsCheck = [
-            'personal_data_sheet_id',
-            'family_background_id',
-            'name',
-            'birthday'
-        ];
-        $educationalBackgroundsCheck = [
-            'level',
-            'school_name',
-            'degree',
-            'period_to',
-            'period_from',
-            'highest_unit_earned',
-            'year_graduated',
-            'scholarship_academic_awards',
-        ];
-        $civilServiceEligibilitiesCheck = [
-            'personal_data_sheet_id',
-            'eligibility_title',
-            'rating',
-            'date_of_examination_conferment',
-            'place_of_examination_conferment',
-            'license_number',
-            'license_date_validity',
-        ];
+
         $workExperiencesCheck = [
             'personal_data_sheet_id',
             'position_title',
@@ -457,7 +434,62 @@ class employeeTest extends TestCase
         $this->post("/api/employee", $formData);
 
         // this will check if it is inserted in the database
-        $response = $this->assertDatabaseHas("employees", $employeeCheck);
+        $this->assertDatabaseHas("employees", $employeeCheck);
+
+        $this->assertDatabaseHas("family_backgrounds", $familyBackGroundCheck);
+
+        $this->assertDatabaseHas("personal_information", $personalInformationCheck);
+
+        foreach ($formData['children'] as $data) {
+            $this->assertDatabaseHas("children_information", $data);
+        }
+
+        foreach ($formData['schools'] as $data) {
+            $this->assertDatabaseHas("educational_backgrounds", $data);
+        }
+
+        foreach ($formData['eligibilities'] as $data) {
+            $this->assertDatabaseHas("civil_service_eligibilities", $data);
+        }
+
+        foreach ($formData['workExperiences'] as $data) {
+            $this->assertDatabaseHas("work_experiences", $data);
+        }
+
+        foreach ($formData['voluntaryWorks'] as $data) {
+            $this->assertDatabaseHas("voluntary_works", $data);
+        }
+
+        foreach ($formData['trainings'] as $data) {
+            $this->assertDatabaseHas("training_programs_attended", $data);
+        }
+
+        foreach ($formData['skills'] as $data) {
+            $this->assertDatabaseHas("special_skill_hobbies", $data);
+        }
+
+        foreach ($formData['recognitions'] as $data) {
+            $this->assertDatabaseHas("recognitions", $data);
+        }
+
+        foreach ($formData['memberships'] as $data) {
+            $this->assertDatabaseHas("membership_associations", $data);
+        }
+
+
+        foreach ($formData['answers'] as $data) {
+            $data = [
+                'question_id' => $data['question_id'],
+                'answer' => $data['answer'],
+                'details' => $data['details']
+            ];
+
+            $this->assertDatabaseHas("answers", $data);
+        }
+
+        foreach ($formData['characterReferences'] as $data) {
+            $this->assertDatabaseHas("references", $data);
+        }
     }
 
 

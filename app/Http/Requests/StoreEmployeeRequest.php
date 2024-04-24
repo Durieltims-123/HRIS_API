@@ -96,7 +96,7 @@ class StoreEmployeeRequest extends FormRequest
 
 
             'schools.*.level' => ['required', 'max:255'],
-            'schools.*.name' => ['required', 'max:255'],
+            'schools.*.school_name' => ['required', 'max:255'],
             'schools.*.degree' => ['nullable', 'max:255', 'required_if:schools.*.level,==,Vocational/Trade Course', 'required_if:schools.*.level,==,College', 'required_if:schools.*.level,==,Masters', 'required_if:schools.*.level,==,Doctorate'],
             'schools.*.period_from' => ['required', 'max:4'],
             'schools.*.period_to' => ['required', 'max:4', 'after:schools.*.period_from'],

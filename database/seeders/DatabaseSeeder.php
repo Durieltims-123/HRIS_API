@@ -80,37 +80,37 @@ class DatabaseSeeder extends Seeder
         
         LguPosition::factory(11)->create();
         $this->call([PositionDescriptionSeeder::class]);
-        Employee::factory(11)->create();
+        // Employee::factory(11)->create();
         Vacancy::factory(2)->create();
         Publication::factory(2)->create();
-        Applicant::factory(10)->create();
-        Application::factory(10)->create();
-        $this->call([
-            PersonalDataSheetSeeder::class,
-        ]);
-        Assessment::factory(5)->create();
-        Interview::factory(5)
-            ->has(PublicationInterview::factory()->count(5)) //I stopped here
-            ->create();
-        Disqualification::factory(5)->create();
-        Appointment::factory(5)->create();
+        // Applicant::factory(10)->create();
+        // Application::factory(10)->create();
+        // $this->call([
+        //     PersonalDataSheetSeeder::class,
+        // ]);
+        // Assessment::factory(5)->create();
+        // Interview::factory(5)
+        //     ->has(PublicationInterview::factory()->count(5)) //I stopped here
+        //     ->create();
+        // Disqualification::factory(5)->create();
+        // Appointment::factory(5)->create();
 
-        // PersonalDataSheet::factory(5)->create();
-        PersonalInformation::factory(5)->create();
-        FamilyBackground::factory(5)->create();
-        ChildrenInformation::factory(5)->create();
-        EducationalBackground::factory(10)->create();
-        CivilServiceEligibility::factory(5)->create();
-        WorkExperience::factory(20)->create();
-        VoluntaryWork::factory(20)->create();
-        TrainingProgramAttended::factory(20)->create();
-        SpecialSkillHobby::factory(20)->create();
-        Recognition::factory(20)->create();
-        MembershipAssociation::factory(20)->create();
+        // // PersonalDataSheet::factory(5)->create();
+        // PersonalInformation::factory(5)->create();
+        // FamilyBackground::factory(5)->create();
+        // ChildrenInformation::factory(5)->create();
+        // EducationalBackground::factory(10)->create();
+        // CivilServiceEligibility::factory(5)->create();
+        // WorkExperience::factory(20)->create();
+        // VoluntaryWork::factory(20)->create();
+        // TrainingProgramAttended::factory(20)->create();
+        // SpecialSkillHobby::factory(20)->create();
+        // Recognition::factory(20)->create();
+        // MembershipAssociation::factory(20)->create();
 
         $this->call([
-            ReferenceSeeder::class,
-            AnswerSeeder::class,
+            // ReferenceSeeder::class,
+            // AnswerSeeder::class,
             UserSeeder::class
         ]);
     }

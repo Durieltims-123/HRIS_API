@@ -11,6 +11,7 @@ class TrainingProgramAttended extends Model
     use HasFactory;
 
     protected $primaryKey = 'id';
+    protected $table = 'training_programs_attended';
 
     public function belongsToPersonalDataSheet(): BelongsTo
     {

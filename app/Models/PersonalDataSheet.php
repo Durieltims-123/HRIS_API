@@ -62,7 +62,7 @@ class PersonalDataSheet extends Model
         return $this->hasMany(Recognition::class);
     }
 
-    public function MembershipAssociations(): HasMany
+    public function membershipAssociations(): HasMany
     {
         return $this->hasMany(MembershipAssociation::class);
     }
@@ -71,6 +71,7 @@ class PersonalDataSheet extends Model
     {
         return $this->hasMany(Answer::class);
     }
+    
     public function references(): HasMany
     {
         return $this->hasMany(Reference::class);

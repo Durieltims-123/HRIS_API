@@ -19,6 +19,6 @@ class SpecialSkillHobby extends Model
 
     protected $fillable = [
         'personal_data_sheet_id',
-        'name'
+        'special_skill'
     ];
 }

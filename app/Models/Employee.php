@@ -29,7 +29,7 @@ class Employee extends Model
 
     public function latestPersonalDataSheet(): MorphOne
     {
-        return $this->morphOne(PersonalDataSheet::class, 'individual_id')->latestOfMany();
+        return $this->morphOne(PersonalDataSheet::class, 'individual')->latestOfMany()->take(1);
     }
 
     public function serviceRecordForm()
