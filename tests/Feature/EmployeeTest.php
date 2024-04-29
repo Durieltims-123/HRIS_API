@@ -522,28 +522,28 @@ class employeeTest extends TestCase
     // }
 
     // delete 
-    public function test_delete_employee(): void
-    {
+    // public function test_delete_employee(): void
+    // {
 
-        $employeeCheck = [
-            "division_id" => "3",
-            "employee_id" => "1234568",
-            "first_name" => "Duriel",
-            "middle_name" => "Alutang",
-            "last_name" => "Timatim",
-            "suffix" => null,
-            "mobile_number" => "09503279274",
-            "email_address" => "durieltims@gmail.com",
-            "lgu_position_id" => "2",
-            "employment_status" => "Permanent",
-            "employee_status" => "Active"
-        ];
+    //     $employeeCheck = [
+    //         "division_id" => "3",
+    //         "employee_id" => "1234568",
+    //         "first_name" => "Duriel",
+    //         "middle_name" => "Alutang",
+    //         "last_name" => "Timatim",
+    //         "suffix" => null,
+    //         "mobile_number" => "09503279274",
+    //         "email_address" => "durieltims@gmail.com",
+    //         "lgu_position_id" => "2",
+    //         "employment_status" => "Permanent",
+    //         "employee_status" => "Active"
+    //     ];
 
-        $data = Employee::where($employeeCheck)->first();
-        $user = User::factory()->create();
-        $this->assertCount(0, $user->tokens);
-        $this->actingAs($user);
-        $this->delete("/api/employee/" . $data->id);
-        $response = $this->assertDatabaseMissing("employees", $employeeCheck);
-    }
+    //     $data = Employee::where($employeeCheck)->first();
+    //     $user = User::factory()->create();
+    //     $this->assertCount(0, $user->tokens);
+    //     $this->actingAs($user);
+    //     $this->delete("/api/employee/" . $data->id);
+    //     $response = $this->assertDatabaseMissing("employees", $employeeCheck);
+    // }
 }

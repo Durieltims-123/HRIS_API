@@ -279,6 +279,7 @@ class EmployeeController extends Controller
         $children = $pds->childrenInformations;
         $schools = $pds->educationalBackgrounds;
         $eligibilities = $pds->civilServiceEligibilities;
+        $workExperiences = $pds->workExperiences;
         $voluntaryWorks = $pds->voluntaryWorks;
         $trainings = $pds->trainingPrograms;
         $skills = $pds->specialSkillHobies;
@@ -288,12 +289,14 @@ class EmployeeController extends Controller
         $characterReferences = $pds->references;
 
         return compact(
+            'employee',
             'pds',
             'personalInformation',
             'familyBackground',
             'children',
             'schools',
             'eligibilities',
+            'workExperiences',
             'voluntaryWorks',
             'trainings',
             'skills',
