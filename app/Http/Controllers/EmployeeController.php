@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Resources\EmployeeResource;
+use App\Models\Division;
 use App\Models\PersonalDataSheet;
 use App\Models\Employee;
+use App\Models\LguPosition;
+use App\Models\Office;
 use App\Models\PersonalInformation;
 use App\Models\Vacancy;
 use App\Traits\HttpResponses;
@@ -284,13 +287,18 @@ class EmployeeController extends Controller
         $trainings = $pds->trainingPrograms;
         $skills = $pds->specialSkillHobies;
         $recognitions = $pds->recognitions;
-        $memberships = $pds->answers;
+        $memberships = $pds->membershipAssociations;
         $answers = $pds->answers;
         $characterReferences = $pds->references;
+        $division = Division::find($employee->division_id);
+        $lguPositionData = LguPosition::find($employee->lgu_position_id);
+        $lguPosition = $lguPositionData->position->title . '-' . $lguPositionData->item_number;
 
         return compact(
             'employee',
             'pds',
+            'division',
+            'lguPosition',
             'personalInformation',
             'familyBackground',
             'children',
