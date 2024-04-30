@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('date_sent');
             $table->date('date_received')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

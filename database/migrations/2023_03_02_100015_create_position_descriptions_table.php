@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('lgu_position_id')->constrained();
             $table->string('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -4,12 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Disqualification extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
-    public function belongsToApplication(){
+    public function belongsToApplication()
+    {
         return $this->belongsTo(Application::class, 'application_id');
     }
 

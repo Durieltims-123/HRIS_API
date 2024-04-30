@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('closing_date');
             $table->enum('publication_status', ['Active', 'Closed']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

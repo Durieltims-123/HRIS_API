@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('training_type');
             $table->string('conducted_sponsored_by');
             $table->timestamps();
-
+            $table->softDeletes();
             // $table->foreign('pds_id')->references('id')->on('personal_data_sheets');
         });
     }

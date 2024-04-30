@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('date_approved')->nullable();
             $table->enum('status',['Active','Approved','Queued']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

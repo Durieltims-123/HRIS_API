@@ -6,16 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Appointment extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
-    public function belongsToApplication():BelongsTo{
-        return $this->belongsTo(Application::class,'application_id');
+    public function belongsToApplication(): BelongsTo
+    {
+        return $this->belongsTo(Application::class, 'application_id');
     }
-    public function belongsToReportOfAppointment():BelongsTo{
-        return $this->belongsTo(ReportOfAppointment::class,'roa_id');
+    public function belongsToReportOfAppointment(): BelongsTo
+    {
+        return $this->belongsTo(ReportOfAppointment::class, 'roa_id');
     }
     // public function hasManyOathTaker():HasMany{
     //     return $this->hasMany(OathTakers::class);

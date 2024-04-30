@@ -16,6 +16,7 @@ return new class extends Migration
             $table->morphs('individual');
             $table->date('pds_date');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string("reports");
             $table->string("report_date");
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

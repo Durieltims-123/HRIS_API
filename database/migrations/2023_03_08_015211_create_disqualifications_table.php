@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('date_disqualified');
             $table->string('reason');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

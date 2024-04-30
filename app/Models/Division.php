@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Division extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     // public function lguPosition (): BelongsTo
     // {

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('end_date');
             $table->string('venue');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

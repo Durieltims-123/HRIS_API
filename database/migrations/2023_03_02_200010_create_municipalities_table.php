@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('municipality_name');
             $table->string('municipality_code')->unique()->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

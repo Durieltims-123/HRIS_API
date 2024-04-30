@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('status', ['Active', 'Abolished']);
             $table->integer('year');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

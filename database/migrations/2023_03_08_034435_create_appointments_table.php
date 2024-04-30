@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId("application_id")->constrained();
             $table->date("appointment_date");
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

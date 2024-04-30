@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('eligibility');
             $table->string('competency');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

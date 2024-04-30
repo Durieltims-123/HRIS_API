@@ -18,12 +18,13 @@ return new class extends Migration
             $table->date('date_to');
             $table->string('appointment_records');
             $table->string('leave_without_pay');
-            $table->string('remarks');  
+            $table->string('remarks');
             $table->string('civil_status');
             $table->string('designation');
             $table->string('salary_annum');
             $table->string('division_office');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

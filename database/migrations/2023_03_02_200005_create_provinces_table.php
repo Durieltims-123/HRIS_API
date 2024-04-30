@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('province_name');
             $table->string('province_code')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

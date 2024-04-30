@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PublicationInterview extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     public function belongsToPublication() : BelongsTo{
         return $this->belongsTo(Publication::class,'publication_id');

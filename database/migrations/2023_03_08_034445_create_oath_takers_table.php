@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('office');
             $table->string('job_title');
             $table->string('date_appointed');
-            
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

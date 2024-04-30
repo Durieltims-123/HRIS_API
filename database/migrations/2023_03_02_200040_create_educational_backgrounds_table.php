@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('year_graduated')->nullable();
             $table->string('scholarship_academic_awards')->nullable();
             $table->timestamps();
-
+            $table->softDeletes();
             // $table->foreign('pds_id')->references('id')->on('personal_data_sheets');
         });
     }

@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Interview extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     public function publicationInterview() : HasMany{
         return $this->hasMany(PublicationInterview::class,'interview_id');

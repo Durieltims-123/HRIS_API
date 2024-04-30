@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('barangay_name');
             $table->string('barangay_code')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

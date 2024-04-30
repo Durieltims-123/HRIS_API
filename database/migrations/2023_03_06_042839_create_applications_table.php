@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('application_type');
             $table->string('status');
             $table->timestamps();
+            $table->softDeletes();
 
             // $table->foreign('applicant_id')->references('id')->on('applicants');
             // $table->foreign('employee_id')->references('id')->on('employees');

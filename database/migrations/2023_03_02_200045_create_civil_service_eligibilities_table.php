@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('license_number')->nullable();
             $table->date('license_date_validity')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

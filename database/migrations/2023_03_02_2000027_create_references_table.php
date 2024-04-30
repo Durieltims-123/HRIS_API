@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('number');
             $table->timestamps();
+            $table->softDeletes();
 
             // $table->foreign('pds_id')->references('id')->on('personal_data_sheets');
         });

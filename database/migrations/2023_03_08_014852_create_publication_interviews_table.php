@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('publication_id')->nullable()->constrained()->onDelete('cascade');
             $table->foreignId('interview_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

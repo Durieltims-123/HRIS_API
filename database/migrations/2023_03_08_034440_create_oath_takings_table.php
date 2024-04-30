@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date("oath_date");
             $table->date("date_generated");
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

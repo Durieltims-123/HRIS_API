@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('personal_data_sheet_id')->constrained()->onDelete('cascade');
             $table->string('organization')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             // $table->foreign('pds_id')->references('id')->on('personal_data_sheets');
         });

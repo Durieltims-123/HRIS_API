@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('employee_status');
             $table->string('orientation_status');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

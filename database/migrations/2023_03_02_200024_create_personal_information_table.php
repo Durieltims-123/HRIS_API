@@ -27,7 +27,7 @@ return new class extends Migration
             $table->enum('citizenship_type', ["By Birth", "By Naturalization"])->nullable();
             $table->string('country')->nullable();
             $table->string('blood_type');
-            $table->enum('civil_status',['Single', 'Married', 'Divorced', 'Widowed']);
+            $table->enum('civil_status', ['Single', 'Married', 'Divorced', 'Widowed']);
             $table->string('tin')->nullable();
             $table->string('gsis')->nullable();
             $table->string('pagibig')->nullable();
@@ -51,6 +51,7 @@ return new class extends Migration
             $table->string('mobile_number');
             $table->string('email_address')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

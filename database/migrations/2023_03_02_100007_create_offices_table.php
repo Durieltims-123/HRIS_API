@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('office_code');
             $table->string('office_name');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('mother_last_name');
             $table->string('mother_suffix')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

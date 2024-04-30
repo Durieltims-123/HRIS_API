@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('division_name');
             $table->enum('division_type', ['Division', 'Section', 'Unit']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

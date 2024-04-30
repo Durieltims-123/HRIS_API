@@ -7,20 +7,18 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Employee extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     public function application()
     {
         return $this->hasMany(Application::class);
     }
 
-    // public function personalDataSheet()
-    // {
-    //     return $this->hasOne(PersonalDataSheet::class);
-    // }
 
     public function personalDataSheets(): MorphMany
     {

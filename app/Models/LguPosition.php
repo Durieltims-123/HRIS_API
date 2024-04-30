@@ -9,10 +9,12 @@ use App\Models\Position;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LguPosition extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     public function division(): HasOne
     {

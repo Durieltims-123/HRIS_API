@@ -16,6 +16,7 @@ return new class extends Migration
             $table->date('interview_date');
             $table->string('venue');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

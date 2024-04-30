@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('number_of_hours');
             $table->string('position_nature_of_work');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

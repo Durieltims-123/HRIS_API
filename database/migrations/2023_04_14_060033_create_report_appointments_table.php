@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('roa_id')->constrained('report_of_appointments')->onDelete('cascade');
             $table->foreignId('appointment_id')->constrained()->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

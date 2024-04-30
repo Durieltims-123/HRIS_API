@@ -19,6 +19,7 @@ return new class extends Migration
 
             $table->string('recognition_title');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
