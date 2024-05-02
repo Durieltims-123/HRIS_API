@@ -410,56 +410,67 @@ class EmployeeController extends Controller
             'mother_suffix' => $request->mother_suffix,
         ]);
 
-
-        return $personalnformation;
+        $familyBackground = $pds->familyBackGround;
 
         //restructure and  insert children
         $children = array_map(function ($item) use ($familyBackground) {
             return ["number" => $item['number'], "name" => $item['name'], "birthday" => $item['birthday'], "family_background_id" => $familyBackground->id];
         }, $request->children);
 
+        $pds->childrenInformations()->forceDelete();
         $pds->childrenInformations()->createMany($children);
 
+
+
         // educational background
+        $pds->educationalBackgrounds()->forceDelete();
         $pds->educationalBackgrounds()->createMany($request->schools);
 
 
         // eligibilities
+        $pds->civilServiceEligibilities()->forceDelete();
         $pds->civilServiceEligibilities()->createMany(
             $request->eligibilities
         );
 
         // work experiences
+        $pds->workExperiences()->forceDelete();
         $pds->workExperiences()->createMany(
             $request->workExperiences
         );
 
         // voluntary works
+        $pds->voluntaryWorks()->forceDelete();
         $pds->voluntaryWorks()->createMany(
             $request->voluntaryWorks
         );
 
         // trainings
+        $pds->trainingPrograms()->forceDelete();
         $pds->trainingPrograms()->createMany(
             $request->trainings
         );
 
         // specialskills
+        $pds->specialSkillHobies()->forceDelete();
         $pds->specialSkillHobies()->createMany(
             $request->skills
         );
 
         // recognitions
+        $pds->recognitions()->forceDelete();
         $pds->recognitions()->createMany(
             $request->recognitions
         );
 
         // membership
+        $pds->membershipAssociations()->forceDelete();
         $pds->membershipAssociations()->createMany(
             $request->memberships
         );
 
         // references
+        $pds->references()->forceDelete();
         $pds->references()->createMany(
             $request->characterReferences
         );
@@ -469,6 +480,7 @@ class EmployeeController extends Controller
             return ["question_id" => $item['question_id'], "answer" => $item['answer'], "details" => $item['details']];
         }, $request->answers);
 
+        $pds->answers()->forceDelete();
         $pds->answers()->createMany(
             $answers
         );
