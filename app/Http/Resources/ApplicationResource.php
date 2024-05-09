@@ -24,7 +24,7 @@ class ApplicationResource extends JsonResource
                 "first_name" => (string)$this->first_name,
                 "middle_name" => (string)$this->middle_name,
                 "last_name" => (string)$this->last_name,
-                "suffix_name" => (string)$this->suffix_name,
+                "suffix" => (string)$this->suffix,
                 "application_type" => (string)$this->application_type,
                 "status" => (string)$this->status,
                 "notice" => new NoticeResource($this->whenLoaded('hasOneNotice')),

@@ -45,7 +45,7 @@ class Application extends Model
         'first_name',
         'middle_name',
         'last_name',
-        'suffix_name',
+        'suffix',
         'application_type',
         'status'
     ];

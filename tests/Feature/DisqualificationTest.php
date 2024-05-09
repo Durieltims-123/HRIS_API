@@ -90,6 +90,7 @@ class DisqualificationTest extends TestCase
             "reason" => 'UpdateTestReason',
             'application_id' => '5',
             'date_disqualified' => '2023-01-02',
+            'deleted_at' => null
         ];
         $dept = Disqualification::where([['application_id', '5'],['date_disqualified','2023-01-02']])->first();
         Assessment::where('application_id', 5)->delete();

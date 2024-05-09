@@ -93,6 +93,7 @@ class ServiceRecordFormTest extends TestCase
             'designation' => "yahoo",
             'salary_annum' => "yahoo",
             'division_office' => "yahoo",
+            'deleted_at' => null
         ];
         $sg = ServiceRecordForm::where([["employee_id", 1], ["appointment_records", "yahoo 2 3"]])->first();
         $user = User::factory()->create();

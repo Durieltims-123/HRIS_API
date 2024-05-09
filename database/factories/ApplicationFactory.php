@@ -27,7 +27,7 @@ class ApplicationFactory extends Factory
             'first_name' => fake()->firstName(),
             'middle_name' => fake()->lastName(),
             'last_name' => fake()->lastName(),
-            'suffix_name' => fake()->suffix(),
+            'suffix' => fake()->suffix(),
             'application_type' => fake()->word(),
             'status' => fake()->word(),
         ];

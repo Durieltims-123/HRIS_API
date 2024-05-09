@@ -118,14 +118,6 @@ class EmployeeController extends Controller
             return $this->error("", "Duplicate Entry", 400);
         } else {
 
-            $employee = Employee::where([["employee_id", $request->employee_id], ["first_name", $request->first_name], ["middle_name", $request->middle_name], ["last_name", $request->last_name]])->first();
-            if ($employee) {
-                $employee->personalDataSheets()->delete();
-
-
-                $delete = Employee::where([["employee_id", $request->employee_id], ["first_name", $request->first_name], ["middle_name", $request->middle_name], ["last_name", $request->last_name]])->delete();
-            }
-
             // create employee
 
             $employee = Employee::create([

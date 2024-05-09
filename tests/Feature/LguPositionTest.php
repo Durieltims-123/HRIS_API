@@ -73,7 +73,7 @@ class LguPositionTest extends TestCase
             "position_status" => "permanent",
             "status" => "Active"
         ];
-        
+
         $lgu_positionData = [
             "division_id" => 2,
             "position_id" => 2,
@@ -105,7 +105,8 @@ class LguPositionTest extends TestCase
             "place_of_assignment" => "PASSO",
             "year" =>  "2024",
             "position_status" => "permanent",
-            "status" => "Active"
+            "status" => "Active",
+            'deleted_at' => null
         ];
         $instance = LguPosition::where("item_number", "12345")->first();
         $user = User::factory()->create();

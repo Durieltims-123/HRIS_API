@@ -68,7 +68,8 @@ class SalaryGradeTest extends TestCase
     {
         $formData = [
             "number" => "100",
-            "amount" => 2.34
+            "amount" => 2.34,
+            'deleted_at' => null
         ];
         $sg = SalaryGrade::where([["number", "100"], ["amount", 2.34]])->first();
         $user = User::factory()->create();

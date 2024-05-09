@@ -13,15 +13,13 @@ return new class extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('applicant_id')->nullable()->constrained();
-            $table->foreignId('employee_id')->nullable()->constrained();
-            $table->foreignId('publication_id')->constrained();
-           
+            $table->morphs('individual');
+            $table->foreignId('vacancy_id')->constrained();
             $table->date('submission_date');
             $table->string('first_name');
             $table->string('middle_name');
             $table->string('last_name');
-            $table->string('suffix_name')->nullable();
+            $table->string('suffix')->nullable();
             $table->string('application_type');
             $table->string('status');
             $table->timestamps();

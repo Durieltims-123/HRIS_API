@@ -69,6 +69,7 @@ class QuestionsTest extends TestCase
         $formData = [
             'number' => "5 a",
             'question' => "third question",
+            'deleted_at' => null
         ];
         $sg = Question::where([["number", "5 a"], ["question", "third question"]])->first();
         $user = User::factory()->create();

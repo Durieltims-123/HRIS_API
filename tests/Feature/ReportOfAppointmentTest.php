@@ -82,6 +82,7 @@ class ReportOfAppointmentTest extends TestCase
         $ReportOfAppointmentData = [
             "reports" => "UpdateTestReport",
             "report_date" => "2023-03-05",
+            'deleted_at' => null
         ];
         $roa = ReportOfAppointment::where([['reports','UpdateTestReport'],['report_date','2023-03-05']])->first();
         $user = User::factory()->create();

@@ -20,8 +20,8 @@ class PersonalDataSheetFactory extends Factory
        static $number = 1;
         return [
             'individual_id' => $number++,
-            'individual_type' => "employee",
-            'individual_type' => date('Y-m-d'),
+            'individual_type' => "App\Models\Employee",
+            'pds_date' => date('Y-m-d'),
         ];
     }
 }

@@ -95,6 +95,7 @@ class OathTakingTest extends TestCase
             "venue" => "UpdateTestVenueOne",
             "oath_date" => "2023-04-07",
             "date_generated" => "2023-03-07",
+            'deleted_at' => null
         ];
         $ot = OathTaking::where([['venue', 'UpdateTestVenueOne'], ['oath_date', '2023-04-07']])->first();
         $user = User::factory()->create();

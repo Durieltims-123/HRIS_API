@@ -29,14 +29,14 @@ class NoticeTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_add_notice():void
+    public function test_add_notice(): void
     {
         $formData = [
             "application_id" => '3',
             'notice_type' => 'Email',
             'date_sent' => '2023-01-02',
             'date_received' => '2023-01-02',
-            
+
         ];
         $user = User::factory()->create();
         $this->assertCount(0, $user->tokens);
@@ -44,7 +44,7 @@ class NoticeTest extends TestCase
         $this->post('/api/notice', $formData);
 
         // this will check if it is inserted in the database
-        $response = $this->assertDatabaseHas('notices', $formData);   
+        $response = $this->assertDatabaseHas('notices', $formData);
     }
     // edit 
     public function test_edit_notice(): void
@@ -54,9 +54,9 @@ class NoticeTest extends TestCase
             'notice_type' => 'UpdateEmail',
             'date_sent' => '2023-01-02',
             'date_received' => '2023-01-02',
-            
+
         ];
-        $notice = Notice::where([['application_id', '3'],['notice_type','Email']])->first();
+        $notice = Notice::where([['application_id', '3'], ['notice_type', 'Email']])->first();
 
         $user = User::factory()->create();
         $this->assertCount(0, $user->tokens);
@@ -75,9 +75,10 @@ class NoticeTest extends TestCase
             'notice_type' => 'UpdateEmail',
             'date_sent' => '2023-01-02',
             'date_received' => '2023-01-02',
-            
+            'deleted_at' => null
+
         ];
-        $notice = Notice::where([['application_id', '3'],['notice_type','UpdateEmail']])->first();
+        $notice = Notice::where([['application_id', '3'], ['notice_type', 'UpdateEmail']])->first();
         $user = User::factory()->create();
         $this->assertCount(0, $user->tokens);
         $this->actingAs($user);

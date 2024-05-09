@@ -30,7 +30,7 @@ class ApplicationTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_add_application():void
+    public function test_add_application(): void
     {
         $formData = [
             "applicant_id" => null,
@@ -40,7 +40,7 @@ class ApplicationTest extends TestCase
             'first_name' => 'TestName',
             'middle_name' => 'TestMiddle',
             'last_name' => 'TestLast',
-            'suffix_name' => 'TestSuffix',
+            'suffix' => 'TestSuffix',
             'application_type' => 'Walk-in'
         ];
         $user = User::factory()->create();
@@ -49,7 +49,7 @@ class ApplicationTest extends TestCase
         $this->post('/api/application', $formData);
 
         // this will check if it is inserted in the database
-        $response = $this->assertDatabaseHas('applications', $formData);   
+        $response = $this->assertDatabaseHas('applications', $formData);
     }
     // edit 
     public function test_edit_application(): void
@@ -62,10 +62,10 @@ class ApplicationTest extends TestCase
             'first_name' => 'UpdateTestName',
             'middle_name' => 'UpdateTestMiddle',
             'last_name' => 'UpdateTestLast',
-            'suffix_name' => 'TestSuffix',
+            'suffix' => 'TestSuffix',
             'application_type' => 'UpdateWalk-in'
         ];
-        $application = Application::where([['publication_id', 2],['first_name','TestName']])->first();
+        $application = Application::where([['publication_id', 2], ['first_name', 'TestName']])->first();
 
         $user = User::factory()->create();
         $this->assertCount(0, $user->tokens);
@@ -87,10 +87,11 @@ class ApplicationTest extends TestCase
             'first_name' => 'UpdateTestName',
             'middle_name' => 'UpdateTestMiddle',
             'last_name' => 'UpdateTestLast',
-            'suffix_name' => 'UpdateTestSuffix',
-            'application_type' => 'UpdateWalk-in'
+            'suffix' => 'UpdateTestSuffix',
+            'application_type' => 'UpdateWalk-in',
+            'deleted_at' => null
         ];
-        $dept = Application::where([['publication_id', 2],['first_name','UpdateTestName'],['last_name','UpdateTestLast']])->first();
+        $dept = Application::where([['publication_id', 2], ['first_name', 'UpdateTestName'], ['last_name', 'UpdateTestLast']])->first();
         $user = User::factory()->create();
         $this->assertCount(0, $user->tokens);
         $this->actingAs($user);

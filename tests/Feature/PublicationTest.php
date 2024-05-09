@@ -72,6 +72,7 @@ class PublicationTest extends TestCase
             "posting_date" => "2023-10-06",
             'closing_date' => "2023-10-11",
             "vacancy_id" => 1,
+            'deleted_at' => null
         ];
         $dept = Publication::where([['vacancy_id',1],["posting_date", "2023-10-05"], ["closing_date", "2023-10-12"]])->first();
         $user = User::factory()->create();

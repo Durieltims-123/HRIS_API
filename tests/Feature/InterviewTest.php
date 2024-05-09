@@ -36,7 +36,7 @@ class InterviewTest extends TestCase
         $formData = [
             "interview_date" => "2023-03-05",
             'venue' => "testVenue",
-            "publication_id" => [1,2],
+            "publication_id" => [1, 2],
         ];
         $interviewData = [
             "interview_date" => "2023-03-05",
@@ -57,13 +57,13 @@ class InterviewTest extends TestCase
         $formData = [
             "interview_date" => "2023-03-08",
             'venue' => "testUpdatedVenue",
-            "publication_id" => [1,2],
+            "publication_id" => [1, 2],
         ];
         $interviewData = [
             "interview_date" => "2023-03-08",
             'venue' => "testUpdatedVenue",
         ];
-        $interview = Interview::where([['interview_date','2023-03-05'],['venue','testVenue']])->first();
+        $interview = Interview::where([['interview_date', '2023-03-05'], ['venue', 'testVenue']])->first();
 
         $user = User::factory()->create();
         $this->assertCount(0, $user->tokens);
@@ -80,8 +80,9 @@ class InterviewTest extends TestCase
         $interviewData = [
             "interview_date" => "2023-03-08",
             'venue' => "testUpdatedVenue",
+            'deleted_at' => null
         ];
-        $dept = Interview::where([['interview_date','2023-03-08'],['venue','testUpdatedVenue']])->first();
+        $dept = Interview::where([['interview_date', '2023-03-08'], ['venue', 'testUpdatedVenue']])->first();
         $user = User::factory()->create();
         $this->assertCount(0, $user->tokens);
         $this->actingAs($user);

@@ -1080,7 +1080,7 @@
           "value": "SpMiddlename"
         },
         {
-          "name": "suffix_name",
+          "name": "suffix",
           "value": "Jr."
         },
         {
@@ -2700,7 +2700,7 @@
           "value": "edited"
         },
         {
-          "name": "suffix_name",
+          "name": "suffix",
           "value": "edited"
         },
         {
@@ -3484,11 +3484,11 @@
           "value": "maga"
         },
         {
-          "name": "suffix_name",
+          "name": "suffix",
           "value": "jr"
         },
         {
-          "name": "contact_number",
+          "name": "mobile_number",
           "value": "0987654321"
         },
         {
@@ -3572,11 +3572,11 @@
           "value": "lName"
         },
         {
-          "name": "suffix_name",
+          "name": "suffix",
           "value": "Jr."
         },
         {
-          "name": "contact_number",
+          "name": "mobile_number",
           "value": "0909"
         },
         {
@@ -3672,11 +3672,11 @@
           "value": "aw"
         },
         {
-          "name": "suffix_name",
+          "name": "suffix",
           "value": "aw"
         },
         {
-          "name": "contact_number",
+          "name": "mobile_number",
           "value": "aw"
         },
         {
@@ -3738,11 +3738,11 @@
           "value": "aw"
         },
         {
-          "name": "suffix_name",
+          "name": "suffix",
           "value": "aw"
         },
         {
-          "name": "contact_number",
+          "name": "mobile_number",
           "value": "aw"
         },
         {
@@ -3954,7 +3954,7 @@
           "value": "wertw"
         },
         {
-          "name": "suffix_name",
+          "name": "suffix",
           "value": ""
         },
         {
@@ -4002,7 +4002,7 @@
           "value": "updated"
         },
         {
-          "name": "suffix_name",
+          "name": "suffix",
           "value": "updated"
         },
         {

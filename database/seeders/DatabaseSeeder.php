@@ -77,10 +77,10 @@ class DatabaseSeeder extends Seeder
             BarangaySeeder::class,
             QuestionSeeder::class,
         ]);
-        
+
         LguPosition::factory(11)->create();
         $this->call([PositionDescriptionSeeder::class]);
-        // Employee::factory(11)->create();
+        Employee::factory(11)->create();
         Vacancy::factory(2)->create();
         Publication::factory(2)->create();
         // Applicant::factory(10)->create();
@@ -95,18 +95,18 @@ class DatabaseSeeder extends Seeder
         // Disqualification::factory(5)->create();
         // Appointment::factory(5)->create();
 
-        // // PersonalDataSheet::factory(5)->create();
-        // PersonalInformation::factory(5)->create();
-        // FamilyBackground::factory(5)->create();
-        // ChildrenInformation::factory(5)->create();
-        // EducationalBackground::factory(10)->create();
-        // CivilServiceEligibility::factory(5)->create();
-        // WorkExperience::factory(20)->create();
-        // VoluntaryWork::factory(20)->create();
-        // TrainingProgramAttended::factory(20)->create();
-        // SpecialSkillHobby::factory(20)->create();
-        // Recognition::factory(20)->create();
-        // MembershipAssociation::factory(20)->create();
+        PersonalDataSheet::factory(11)->create();
+        PersonalInformation::factory(11)->create();
+        FamilyBackground::factory(11)->create();
+        ChildrenInformation::factory(11)->create();
+        EducationalBackground::factory(11)->create();
+        CivilServiceEligibility::factory(11)->create();
+        WorkExperience::factory(11)->create();
+        VoluntaryWork::factory(11)->create();
+        TrainingProgramAttended::factory(11)->create();
+        SpecialSkillHobby::factory(11)->create();
+        Recognition::factory(11)->create();
+        MembershipAssociation::factory(11)->create();
 
         $this->call([
             // ReferenceSeeder::class,

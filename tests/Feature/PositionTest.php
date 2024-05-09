@@ -94,7 +94,8 @@ class PositionTest extends TestCase
         $positionData = [
             "code" => "Test Code Edit",
             "title" => "Test Title Edit",
-            "salary_grade_id" => 1
+            "salary_grade_id" => 1,
+            'deleted_at' => null
         ];
 
         $instance = Position::where([["salary_grade_id", 1], ["title", "Test Title Edit"], "code" => "Test Code Edit",])->first();

@@ -63,7 +63,7 @@ class PersonalDataSheetResource extends JsonResource
                 "spouse_surname" => (string)$this->hasManyFamilyBackground[0]->spouse_surname,
                 "spouse_first_name" => (string)$this->hasManyFamilyBackground[0]->spouse_first_name,
                 "spouse_middle_name" => (string)$this->hasManyFamilyBackground[0]->spouse_middle_name,
-                "suffix_name" => (string)$this->hasManyFamilyBackground[0]->suffix_name,
+                "suffix" => (string)$this->hasManyFamilyBackground[0]->suffix,
                 "occupation" => (string)$this->hasManyFamilyBackground[0]->occupation,
                 "employee_business_name" => (string)$this->hasManyFamilyBackground[0]->employee_business_name,
                 "business_address" => (string)$this->hasManyFamilyBackground[0]->business_address,

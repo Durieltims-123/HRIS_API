@@ -29,7 +29,7 @@ class StoreApplicationRequest extends FormRequest
             'first_name' => ['required', 'string', 'max:255'],
             'middle_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'suffix_name' => ['nullable','string', 'max:255'],
+            'suffix' => ['nullable','string', 'max:255'],
             'application_type' => ['required', 'string', 'max:255'],
             // 'status' => ['required', 'string', 'max:255'],
         ];

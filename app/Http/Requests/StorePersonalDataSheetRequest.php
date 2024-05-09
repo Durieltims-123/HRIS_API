@@ -66,7 +66,7 @@ class StorePersonalDataSheetRequest extends FormRequest
             'spouse_surname' => ['required', 'string', 'max:255'],
             'spouse_first_name' => ['required', 'string', 'max:255'],
             'spouse_middle_name' => ['required', 'string', 'max:255'],
-            'suffix_name' => ['nullable'],
+            'suffix' => ['nullable'],
             'occupation' => ['required', 'string', 'max:255'],
             'employee_business_name' => ['required', 'string', 'max:255'],
             'business_address' => ['required', 'string', 'max:255'],

@@ -98,6 +98,7 @@ class PersonnelSelectionBoardTest extends TestCase
             "chairman" => "UpdateTestChairman",
             "position" => "UpdateTestPosition",
             "status" => "UpdateTestStatus",
+            'deleted_at' => null
         ];
         $dept = PersonnelSelectionBoard::where([['start_date','2023-03-05'],['chairman','UpdateTestChairman']])->first();
         $user = User::factory()->create();

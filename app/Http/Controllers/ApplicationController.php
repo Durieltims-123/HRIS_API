@@ -6,6 +6,9 @@ use App\Http\Requests\StoreApplicationRequest;
 use App\Http\Resources\ApplicationResource;
 use App\Models\Applicant;
 use App\Models\Application;
+use App\Models\Division;
+use App\Models\Employee;
+use App\Models\LguPosition;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 
@@ -18,7 +21,7 @@ class ApplicationController extends Controller
     public function index()
     {
         return ApplicationResource::collection(
-            Application:: all()
+            Application::all()
         );
     }
 
@@ -44,11 +47,11 @@ class ApplicationController extends Controller
             ['middle_name', $request->middle_name],
             ['last_name', $request->last_name]
         ])->exists();
-        
+
         if ($applicationExists) {
             return $this->error('', 'Duplicate Entry', 400);
-        }        
-        
+        }
+
         Application::create([
             "applicant_id" => $request->applicant_id,
             "employee_id" => $request->employee_id,
@@ -57,12 +60,12 @@ class ApplicationController extends Controller
             "first_name" => $request->first_name,
             "middle_name" => $request->middle_name,
             "last_name" => $request->last_name,
-            "suffix_name" => $request->suffix_name,
+            "suffix" => $request->suffix,
             "application_type" => $request->application_type,
             "status" => 'New'
         ]);
 
-        return $this->success('','Successfully Saved.', 200);
+        return $this->success('', 'Successfully Saved.', 200);
     }
 
     /**
@@ -90,7 +93,7 @@ class ApplicationController extends Controller
         $application->first_name = $request->first_name;
         $application->middle_name = $request->middle_name;
         $application->last_name = $request->last_name;
-        $application->suffix_name = $request->suffix_name;
+        $application->suffix = $request->suffix;
         $application->application_type = $request->application_type;
 
         $application->save();
@@ -106,5 +109,75 @@ class ApplicationController extends Controller
     {
         $application->delete();
         return $this->success('', 'Successfully Deleted', 200);
+    }
+
+
+    public function searchPerson(Request $request)
+    {
+
+        $employee = Employee::where([
+            ['employee_id', "like", "%" . $request->employee_id . "%"],
+            ['first_name', "like", "%" . $request->fist_name . "%"],
+            ['middle_name', "like", "%" . $request->middle_name . "%"],
+            ['last_name', "like", "%" . $request->last_name . "%"],
+            ['suffix', "like", "%" . $request->suffix . "%"]
+        ])->first();
+
+        if ($employee != null) {
+            $employee = Employee::find($employee->id);
+            $pds = $employee->latestPersonalDataSheet;
+            $personalInformation = $pds->personalInformation;
+            $familyBackground = $pds->familyBackGround;
+            $children = $pds->childrenInformations;
+            $schools = $pds->educationalBackgrounds;
+            $eligibilities = $pds->civilServiceEligibilities;
+            $workExperiences = $pds->workExperiences;
+            $voluntaryWorks = $pds->voluntaryWorks;
+            $trainings = $pds->trainingPrograms;
+            $skills = $pds->specialSkillHobies;
+            $recognitions = $pds->recognitions;
+            $memberships = $pds->membershipAssociations;
+            $answers = $pds->answers;
+            $characterReferences = $pds->references;
+            $division = Division::find($employee->division_id);
+            $lguPositionData = LguPosition::find($employee->lgu_position_id);
+            $lguPosition = $lguPositionData->position->title . '-' . $lguPositionData->item_number;
+        }
+
+        $applicant = Applicant::where([
+            ['first_name', "like", "%" . $request->fist_name . "%"],
+            ['middle_name', "like", "%" . $request->middle_name . "%"],
+            ['last_name', "like", "%" . $request->last_name . "%"],
+            ['suffix', "like", "%" . $request->suffix . "%"]
+        ])->first();
+
+
+        return $applicant;
+
+
+        // $employee = Applicant::find($employee->id);
+        // $pds = $employee->latestPersonalDataSheet;
+        // $personalInformation = $pds->personalInformation;
+        // $familyBackground = $pds->familyBackGround;
+        // $children = $pds->childrenInformations;
+        // $schools = $pds->educationalBackgrounds;
+        // $eligibilities = $pds->civilServiceEligibilities;
+        // $workExperiences = $pds->workExperiences;
+        // $voluntaryWorks = $pds->voluntaryWorks;
+        // $trainings = $pds->trainingPrograms;
+        // $skills = $pds->specialSkillHobies;
+        // $recognitions = $pds->recognitions;
+        // $memberships = $pds->membershipAssociations;
+        // $answers = $pds->answers;
+        // $characterReferences = $pds->references;
+        // $division = Division::find($employee->division_id);
+        // $lguPositionData = LguPosition::find($employee->lgu_position_id);
+        // $lguPosition = $lguPositionData->position->title . '-' . $lguPositionData->item_number;
+        // }
+
+
+
+
+        return "Hello there";
     }
 }

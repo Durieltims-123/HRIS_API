@@ -65,6 +65,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/personal-data-sheet', PersonalDataSheetController::class);
     Route::resource('/province', ProvinceController::class);
     Route::resource('/applicant', ApplicantController::class);
+    Route::post('/search-applicant', [ApplicantController::class, 'search']);
 
     Route::resource('/employee', EmployeeController::class);
     Route::post('/search-employee', [EmployeeController::class, 'search']);
@@ -89,6 +90,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/office', OfficeController::class);
     Route::resource('/publication', PublicationController::class);
     Route::resource('/application', ApplicationController::class);
+    Route::post('/search-person', [ApplicationController::class, 'searchPerson']);
+
     Route::resource('/disqualification', DisqualificationController::class);
     Route::get('/disqualification-reverse/{disqualification}', [DisqualificationController::class, 'reverseDisqualification']);
     Route::resource('/notice', NoticeController::class);

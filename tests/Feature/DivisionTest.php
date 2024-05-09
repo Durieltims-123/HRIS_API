@@ -84,6 +84,7 @@ class DivisionTest extends TestCase
             "division_name" => "Update Division Test",
             "office_id" => 15,
             "division_type" => "Division",
+            'deleted_at' => null
         ];
         $dept = Division::where([["division_code", "UDT"], ["division_name", "Update Division Test"]])->first();
         $user = User::factory()->create();

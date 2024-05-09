@@ -33,9 +33,9 @@ class OfficeTest extends TestCase
         $formData = [
             "office_code" => "456",
             "office_name" => "Test Dept",
-            'division_code' => ["TestOne",'TestTwo'],
+            'division_code' => ["TestOne", 'TestTwo'],
             'division_name' => ["Lorep One", "Ipsum Two"],
-                      
+
         ];
         $officeData = [
             "office_code" => "456",
@@ -56,9 +56,9 @@ class OfficeTest extends TestCase
         $formData = [
             "office_code" => "updated456",
             "office_name" => "updatedTest Dept",
-            'division_code' => ["updatedTestOne",'updatedTestTwo'],
+            'division_code' => ["updatedTestOne", 'updatedTestTwo'],
             'division_name' => ["updatedLorep One", "updatedIpsum Two"],
-                      
+
         ];
         $officeData = [
             "office_code" => "updated456",
@@ -81,6 +81,7 @@ class OfficeTest extends TestCase
         $formData = [
             "office_code" => "updated456",
             "office_name" => "updatedTest Dept",
+            'deleted_at' => null
         ];
         $dept = Office::where([["office_code", "updated456"], ["office_name", "updatedTest Dept"]])->first();
         $user = User::factory()->create();

@@ -131,6 +131,7 @@ class VacancyTest extends TestCase
             'lgu_position_id' => 1,
             'date_submitted' => '2023-01-01',
             'status' => 'Active',
+            'deleted_at' => null
         ];
 
         $vacancy = Vacancy::where([["date_submitted", "2023-01-01"], ["status", "Active"]])->first();
@@ -147,6 +148,7 @@ class VacancyTest extends TestCase
             'lgu_position_id' => 1,
             'date_submitted' => '2023-02-02',
             'status' => 'Approved',
+            'deleted_at' => null
         ];
 
         $vacancy = Vacancy::where([["date_submitted", "2023-02-02"], ["status", "Approved"]])->first();

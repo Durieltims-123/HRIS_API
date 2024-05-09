@@ -10,28 +10,24 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Applicant extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
-
-    public function hasOneApplication()
+    public function application()
     {
-        return $this->hasOne(Application::class);
+        return $this->hasMany(Application::class);
     }
-
-    // public function hasOnePersonnalDataSheet()
-    // {
-    //     return $this->hasOne(PersonalDataSheet::class);
-    // }
-
 
     public function personalDataSheets(): MorphMany
     {
-        return $this->morphMany(PersonalDataSheet::class, 'individual_id');
+        return $this->morphMany(PersonalDataSheet::class, 'individual');
     }
 
     public function latestPersonalDataSheet(): MorphOne
     {
-        return $this->morphOne(PersonalDataSheet::class, 'individual_id')->latestOfMany();
+        return $this->morphOne(PersonalDataSheet::class, 'individual')->latestOfMany()->take(1);
+    }
+
+    public function serviceRecordForm()
+    {
+        return $this->hasMany(ServiceRecordForm::class);
     }
 
     protected $primaryKey = 'id';
@@ -40,8 +36,8 @@ class Applicant extends Model
         'first_name',
         'middle_name',
         'last_name',
-        'suffix_name',
-        'contact_number',
+        'suffix',
+        'mobile_number',
         'email_address',
     ];
 }

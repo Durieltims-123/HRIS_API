@@ -105,7 +105,7 @@ class StoreEmployeeRequest extends FormRequest
             'schools.*.scholarship_academic_awards' => ['nullable', 'max:255'],
 
             'eligibilities.*.eligibility_title' => ['required', 'max:255'],
-            'eligibilities.*.rating' => ['required', 'max:255', 'gte:75'],
+            'eligibilities.*.rating' => ['required', 'max:255', 'gte:75','lte:100'],
             'eligibilities.*.date_of_examination_conferment' => ['required', 'max:255'],
             'eligibilities.*.place_of_examination_conferment' => ['required', 'max:255'],
             'eligibilities.*.license_number' => ['nullable', 'max:255'],

@@ -1204,7 +1204,7 @@
           "value": ""
         },
         {
-          "name": "suffix_name",
+          "name": "suffix",
           "value": ""
         },
         {
@@ -1252,7 +1252,7 @@
           "value": "updated"
         },
         {
-          "name": "suffix_name",
+          "name": "suffix",
           "value": "updated"
         },
         {
@@ -1300,7 +1300,7 @@
           "value": "updated"
         },
         {
-          "name": "suffix_name",
+          "name": "suffix",
           "value": "updated"
         },
         {

@@ -98,6 +98,7 @@ class AssessmentTest extends TestCase
             'additional_information' => ['UpdateTestAdditional', 'UpdateTestAdditionalTwo'],
             'remarks' => ['UpdateTestRemarks','UpdateTestRemarksTwo'],
             'date_of_assessment' => ['2023-01-02','2023,02-02'],
+            'deleted_at' => null
             
         ];
         
