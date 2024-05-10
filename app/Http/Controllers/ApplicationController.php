@@ -48,6 +48,8 @@ class ApplicationController extends Controller
             ['last_name', $request->last_name]
         ])->exists();
 
+
+
         if ($applicationExists) {
             return $this->error('', 'Duplicate Entry', 400);
         }
@@ -114,18 +116,40 @@ class ApplicationController extends Controller
 
     public function searchPerson(Request $request)
     {
+        $details = null;
+        $filters = [];
 
-        $employee = Employee::where([
-            ['employee_id', "like", "%" . $request->employee_id . "%"],
-            ['first_name', "like", "%" . $request->fist_name . "%"],
-            ['middle_name', "like", "%" . $request->middle_name . "%"],
-            ['last_name', "like", "%" . $request->last_name . "%"],
-            ['suffix', "like", "%" . $request->suffix . "%"]
-        ])->first();
+
+        // format filters
+        if ($request->suffix != "") {
+            $filters = [
+                ['employee_id', "like", "%" . $request->employee_id . "%"],
+                ['first_name', "like", "%" . $request->first_name . "%"],
+                ['middle_name', "like", "%" . $request->middle_name . "%"],
+                ['last_name', "like", "%" . $request->last_name . "%"],
+                ['suffix', "like", "%" . $request->suffix . "%"]
+            ];
+        } else {
+            $filters =   [
+                ['employee_id', "like", "%" . $request->employee_id . "%"],
+                ['first_name', "like", "%" . $request->first_name . "%"],
+                ['middle_name', "like", "%" . $request->middle_name . "%"],
+                ['last_name', "like", "%" . $request->last_name . "%"]
+            ];
+        }
+
+        // check middlename if has data
+        if ($request->middle_name != "") {
+            unset($filters[2]);
+        }
+
+        // check if employee exists
+        $employee = Employee::where($filters)->latest()->first();
+
 
         if ($employee != null) {
-            $employee = Employee::find($employee->id);
-            $pds = $employee->latestPersonalDataSheet;
+            $details = Employee::find($employee->id);
+            $pds = $details->latestPersonalDataSheet;
             $personalInformation = $pds->personalInformation;
             $familyBackground = $pds->familyBackGround;
             $children = $pds->childrenInformations;
@@ -142,42 +166,55 @@ class ApplicationController extends Controller
             $division = Division::find($employee->division_id);
             $lguPositionData = LguPosition::find($employee->lgu_position_id);
             $lguPosition = $lguPositionData->position->title . '-' . $lguPositionData->item_number;
+        } else {
+            unset($filters[0]);
+
+            $applicant = Applicant::where($filters)->latest()->first();
+
+            if ($applicant != null) {
+                $details = Applicant::find($applicant->id);
+                $pds = $details->latestPersonalDataSheet;
+                $personalInformation = $pds->personalInformation;
+                $familyBackground = $pds->familyBackGround;
+                $children = $pds->childrenInformations;
+                $schools = $pds->educationalBackgrounds;
+                $eligibilities = $pds->civilServiceEligibilities;
+                $workExperiences = $pds->workExperiences;
+                $voluntaryWorks = $pds->voluntaryWorks;
+                $trainings = $pds->trainingPrograms;
+                $skills = $pds->specialSkillHobies;
+                $recognitions = $pds->recognitions;
+                $memberships = $pds->membershipAssociations;
+                $answers = $pds->answers;
+                $characterReferences = $pds->references;
+                $division = "";
+                $lguPositionData = "";
+                $lguPosition = "";
+            }
         }
 
-        $applicant = Applicant::where([
-            ['first_name', "like", "%" . $request->fist_name . "%"],
-            ['middle_name', "like", "%" . $request->middle_name . "%"],
-            ['last_name', "like", "%" . $request->last_name . "%"],
-            ['suffix', "like", "%" . $request->suffix . "%"]
-        ])->first();
-
-
-        return $applicant;
-
-
-        // $employee = Applicant::find($employee->id);
-        // $pds = $employee->latestPersonalDataSheet;
-        // $personalInformation = $pds->personalInformation;
-        // $familyBackground = $pds->familyBackGround;
-        // $children = $pds->childrenInformations;
-        // $schools = $pds->educationalBackgrounds;
-        // $eligibilities = $pds->civilServiceEligibilities;
-        // $workExperiences = $pds->workExperiences;
-        // $voluntaryWorks = $pds->voluntaryWorks;
-        // $trainings = $pds->trainingPrograms;
-        // $skills = $pds->specialSkillHobies;
-        // $recognitions = $pds->recognitions;
-        // $memberships = $pds->membershipAssociations;
-        // $answers = $pds->answers;
-        // $characterReferences = $pds->references;
-        // $division = Division::find($employee->division_id);
-        // $lguPositionData = LguPosition::find($employee->lgu_position_id);
-        // $lguPosition = $lguPositionData->position->title . '-' . $lguPositionData->item_number;
-        // }
-
-
-
-
-        return "Hello there";
+        if ($details != null) {
+            return compact(
+                'details',
+                'pds',
+                'division',
+                'lguPosition',
+                'personalInformation',
+                'familyBackground',
+                'children',
+                'schools',
+                'eligibilities',
+                'workExperiences',
+                'voluntaryWorks',
+                'trainings',
+                'skills',
+                'recognitions',
+                'memberships',
+                'answers',
+                'characterReferences'
+            );
+        } else {
+            return [];
+        }
     }
 }
