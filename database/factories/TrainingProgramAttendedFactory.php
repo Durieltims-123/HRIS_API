@@ -23,7 +23,7 @@ class TrainingProgramAttendedFactory extends Factory
             'training_title' => $this->faker->sentence(),
             'attendance_from' => $this->faker->date('Y-m-d'),
             'attendance_to' => $this->faker->date('Y-m-d'),
-            'number_of_hours' => $this->faker->randomNumber(),
+            'number_of_hours' => $this->faker->numberBetween(1,255),
             'training_type' => $this->faker->word(),
             'conducted_sponsored_by' => $this->faker->name()
 

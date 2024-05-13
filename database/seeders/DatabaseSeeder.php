@@ -107,6 +107,7 @@ class DatabaseSeeder extends Seeder
         SpecialSkillHobby::factory(11)->create();
         Recognition::factory(11)->create();
         MembershipAssociation::factory(11)->create();
+        Reference::factory(11)->create();
 
         $this->call([
             // ReferenceSeeder::class,

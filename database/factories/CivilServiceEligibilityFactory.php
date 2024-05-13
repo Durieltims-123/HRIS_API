@@ -20,7 +20,7 @@ class CivilServiceEligibilityFactory extends Factory
         return [
             'personal_data_sheet_id' => $number++,
             'eligibility_title' => $this->faker->sentence(),
-            'rating' => $this->faker->randomDigit(),
+            'rating' => $this->faker->numberBetween(75,99),
             'date_of_examination_conferment' => $this->faker->date('Y-m-d'),
             'place_of_examination_conferment' => $this->faker->address(),
             'license_number' => $this->faker->randomNumber(),

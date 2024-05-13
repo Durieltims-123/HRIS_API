@@ -31,6 +31,7 @@ class VacancyResource extends JsonResource
                 "year" => (string)$this->year,
                 "division" => (string)$this->office_name . "-" . (string)$this->division_name,
                 "title" => (string)$this->title,
+                "label" => (string)$this->title . "-" . (string)$this->item_number,
                 "number" => (string)$this->number,
                 "amount" => (string)$this->amount,
                 "item_number" => (string)$this->item_number,
