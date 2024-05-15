@@ -40,32 +40,473 @@ class ApplicationController extends Controller
     {
         $request->validated($request->all());
 
-        $applicationExists = Application::where([
-            ['applicant_id', $request->applicant_id],
-            ['publication_id', $request->publication_id],
-            ['first_name', $request->first_name],
-            ['middle_name', $request->middle_name],
-            ['last_name', $request->last_name]
-        ])->exists();
+        // check if the applicant is an employee
+        $filters = [["first_name", $request->first_name], ["last_name", $request->last_name], ["employee_status", "Active"], ["middle_name", $request->middle_name], ["suffix", $request->suffix]];
 
-
-
-        if ($applicationExists) {
-            return $this->error('', 'Duplicate Entry', 400);
+        if ($request->middle_name == "") {
+            unset($filters[3]);
         }
 
-        Application::create([
-            "applicant_id" => $request->applicant_id,
-            "employee_id" => $request->employee_id,
-            "publication_id" => $request->publication_id,
-            "submission_date" => $request->submission_date,
-            "first_name" => $request->first_name,
-            "middle_name" => $request->middle_name,
-            "last_name" => $request->last_name,
-            "suffix" => $request->suffix,
-            "application_type" => $request->application_type,
-            "status" => 'New'
-        ]);
+        if ($request->suffix == "") {
+            array_pop($filters);
+        }
+
+        $employeeExist = Employee::where($filters)->exists();
+
+        if ($employeeExist) {
+            $data = Employee::where($filters)->latest()->first();
+
+            return $data;
+            $employee = Employee::find($data->id);
+            $employee->update([
+                "division_id" => $request->division_id,
+                "employee_id" => $request->employee_id,
+                "first_name" => $request->first_name,
+                "middle_name" => $request->middle_name,
+                "last_name" => $request->last_name,
+                "suffix" => $request->suffix,
+                "mobile_number" => $request->mobile_number,
+                "email_address" => $request->email_address,
+                "lgu_position_id" => $request->lgu_position_id,
+                "employment_status" => $request->employment_status,
+                "employee_status" => $request->employee_status,
+                "orientation_status" => "Completed"
+            ]);
+
+            $pds =  $employee->latestPersonalDataSheet;
+
+            // personal Information
+            $personalnformation = $pds->personalInformation->update(
+                [
+                    'birth_place' => $request->birth_place,
+                    'birth_date' => $request->birth_date,
+                    'age' => $request->age,
+                    'sex' => $request->sex,
+                    'height' => $request->height,
+                    'weight' => $request->weight,
+                    'citizenship' => $request->citizenship,
+                    'citizenship_type' => $request->citizenship_type,
+                    'country' => $request->country,
+                    'blood_type' => $request->blood_type,
+                    'civil_status' => $request->civil_status,
+                    'tin' => $request->tin,
+                    'gsis' => $request->gsis,
+                    'pagibig' => $request->pagibig,
+                    'philhealth' => $request->philhealth,
+                    'sss' => $request->sss,
+                    'residential_province' => $request->residential_province,
+                    'residential_municipality' => $request->residential_municipality,
+                    'residential_barangay' => $request->residential_barangay,
+                    'residential_house' => $request->residential_house,
+                    'residential_subdivision' => $request->residential_subdivision,
+                    'residential_street' => $request->residential_street,
+                    'residential_zipcode' => $request->residential_zipcode,
+                    'permanent_province' => $request->permanent_province,
+                    'permanent_municipality' => $request->permanent_municipality,
+                    'permanent_barangay' => $request->permanent_barangay,
+                    'permanent_house' => $request->permanent_house,
+                    'permanent_subdivision' => $request->permanent_subdivision,
+                    'permanent_street' => $request->permanent_street,
+                    'permanent_zipcode' => $request->permanent_zipcode,
+                    'telephone' => $request->telephone,
+                    'mobile_number' => $request->mobile_number,
+                    'email_address' => $request->email_address
+                ]
+            );
+
+            // Family background
+            $familyBackground = $pds->familyBackGround->update([
+                'spouse_first_name' => $request->spouse_first_name,
+                'spouse_middle_name' => $request->spouse_middle_name,
+                'spouse_last_name' => $request->spouse_last_name,
+                'spouse_suffix' => $request->spouse_suffix,
+                'spouse_occupation' => $request->spouse_occupation,
+                'spouse_employer' => $request->spouse_employer,
+                'spouse_employer_address' => $request->spouse_employer_address,
+                'spouse_employer_telephone' => $request->spouse_employer_telephone,
+                'father_first_name' => $request->father_first_name,
+                'father_middle_name' => $request->father_middle_name,
+                'father_last_name' => $request->father_last_name,
+                'father_suffix' => $request->father_suffix,
+                'mother_first_name' => $request->mother_first_name,
+                'mother_middle_name' => $request->mother_middle_name,
+                'mother_last_name' => $request->mother_last_name,
+                'mother_suffix' => $request->mother_suffix,
+            ]);
+
+            $familyBackground = $pds->familyBackGround;
+
+            //restructure and  insert children
+            $children = array_map(function ($item) use ($familyBackground) {
+                return ["number" => $item['number'], "name" => $item['name'], "birthday" => $item['birthday'], "family_background_id" => $familyBackground->id];
+            }, $request->children);
+
+            $pds->childrenInformations()->forceDelete();
+            $pds->childrenInformations()->createMany($children);
+
+
+
+            // educational background
+            $pds->educationalBackgrounds()->forceDelete();
+            $pds->educationalBackgrounds()->createMany($request->schools);
+
+
+            // eligibilities
+            $pds->civilServiceEligibilities()->forceDelete();
+            $pds->civilServiceEligibilities()->createMany(
+                $request->eligibilities
+            );
+
+            // work experiences
+            $pds->workExperiences()->forceDelete();
+            $pds->workExperiences()->createMany(
+                $request->workExperiences
+            );
+
+            // voluntary works
+            $pds->voluntaryWorks()->forceDelete();
+            $pds->voluntaryWorks()->createMany(
+                $request->voluntaryWorks
+            );
+
+            // trainings
+            $pds->trainingPrograms()->forceDelete();
+            $pds->trainingPrograms()->createMany(
+                $request->trainings
+            );
+
+            // specialskills
+            $pds->specialSkillHobies()->forceDelete();
+            $pds->specialSkillHobies()->createMany(
+                $request->skills
+            );
+
+            // recognitions
+            $pds->recognitions()->forceDelete();
+            $pds->recognitions()->createMany(
+                $request->recognitions
+            );
+
+            // membership
+            $pds->membershipAssociations()->forceDelete();
+            $pds->membershipAssociations()->createMany(
+                $request->memberships
+            );
+
+            // references
+            $pds->references()->forceDelete();
+            $pds->references()->createMany(
+                $request->characterReferences
+            );
+
+            // restructure and insert answers
+            $answers = array_map(function ($item) use ($familyBackground) {
+                return ["question_id" => $item['question_id'], "answer" => $item['answer'], "details" => $item['details']];
+            }, $request->answers);
+
+            $pds->answers()->forceDelete();
+            $pds->answers()->createMany(
+                $answers
+            );
+        } else {
+
+            // validate if applicant is already in the database
+            unset($filters[2]);
+            $applicantExist = Applicant::where($filters)->exists();
+
+            if ($applicantExist) {
+                // if applicant exist update
+
+    
+                $data = Applicant::where($filters)->latest()->first();
+
+                $applicant = Applicant::find($data->id);
+
+                $applicant->update([
+                    "first_name" => $request->first_name,
+                    "middle_name" => $request->middle_name,
+                    "last_name" => $request->last_name,
+                    "suffix" => $request->suffix,
+                    "mobile_number" => $request->mobile_number,
+                    "email_address" => $request->email_address,
+                ]);
+
+                $pds =  $applicant->latestPersonalDataSheet;
+
+                // personal Information
+                $personalnformation = $pds->personalInformation->update(
+                    [
+                        'birth_place' => $request->birth_place,
+                        'birth_date' => $request->birth_date,
+                        'age' => $request->age,
+                        'sex' => $request->sex,
+                        'height' => $request->height,
+                        'weight' => $request->weight,
+                        'citizenship' => $request->citizenship,
+                        'citizenship_type' => $request->citizenship_type,
+                        'country' => $request->country,
+                        'blood_type' => $request->blood_type,
+                        'civil_status' => $request->civil_status,
+                        'tin' => $request->tin,
+                        'gsis' => $request->gsis,
+                        'pagibig' => $request->pagibig,
+                        'philhealth' => $request->philhealth,
+                        'sss' => $request->sss,
+                        'residential_province' => $request->residential_province,
+                        'residential_municipality' => $request->residential_municipality,
+                        'residential_barangay' => $request->residential_barangay,
+                        'residential_house' => $request->residential_house,
+                        'residential_subdivision' => $request->residential_subdivision,
+                        'residential_street' => $request->residential_street,
+                        'residential_zipcode' => $request->residential_zipcode,
+                        'permanent_province' => $request->permanent_province,
+                        'permanent_municipality' => $request->permanent_municipality,
+                        'permanent_barangay' => $request->permanent_barangay,
+                        'permanent_house' => $request->permanent_house,
+                        'permanent_subdivision' => $request->permanent_subdivision,
+                        'permanent_street' => $request->permanent_street,
+                        'permanent_zipcode' => $request->permanent_zipcode,
+                        'telephone' => $request->telephone,
+                        'mobile_number' => $request->mobile_number,
+                        'email_address' => $request->email_address
+                    ]
+                );
+
+                // Family background
+                $familyBackground = $pds->familyBackGround->update([
+                    'spouse_first_name' => $request->spouse_first_name,
+                    'spouse_middle_name' => $request->spouse_middle_name,
+                    'spouse_last_name' => $request->spouse_last_name,
+                    'spouse_suffix' => $request->spouse_suffix,
+                    'spouse_occupation' => $request->spouse_occupation,
+                    'spouse_employer' => $request->spouse_employer,
+                    'spouse_employer_address' => $request->spouse_employer_address,
+                    'spouse_employer_telephone' => $request->spouse_employer_telephone,
+                    'father_first_name' => $request->father_first_name,
+                    'father_middle_name' => $request->father_middle_name,
+                    'father_last_name' => $request->father_last_name,
+                    'father_suffix' => $request->father_suffix,
+                    'mother_first_name' => $request->mother_first_name,
+                    'mother_middle_name' => $request->mother_middle_name,
+                    'mother_last_name' => $request->mother_last_name,
+                    'mother_suffix' => $request->mother_suffix,
+                ]);
+
+                $familyBackground = $pds->familyBackGround;
+
+                //restructure and  insert children
+                $children = array_map(function ($item) use ($familyBackground) {
+                    return ["number" => $item['number'], "name" => $item['name'], "birthday" => $item['birthday'], "family_background_id" => $familyBackground->id];
+                }, $request->children);
+
+                $pds->childrenInformations()->forceDelete();
+                $pds->childrenInformations()->createMany($children);
+
+
+
+                // educational background
+                $pds->educationalBackgrounds()->forceDelete();
+                $pds->educationalBackgrounds()->createMany($request->schools);
+
+
+                // eligibilities
+                $pds->civilServiceEligibilities()->forceDelete();
+                $pds->civilServiceEligibilities()->createMany(
+                    $request->eligibilities
+                );
+
+                // work experiences
+                $pds->workExperiences()->forceDelete();
+                $pds->workExperiences()->createMany(
+                    $request->workExperiences
+                );
+
+                // voluntary works
+                $pds->voluntaryWorks()->forceDelete();
+                $pds->voluntaryWorks()->createMany(
+                    $request->voluntaryWorks
+                );
+
+                // trainings
+                $pds->trainingPrograms()->forceDelete();
+                $pds->trainingPrograms()->createMany(
+                    $request->trainings
+                );
+
+                // specialskills
+                $pds->specialSkillHobies()->forceDelete();
+                $pds->specialSkillHobies()->createMany(
+                    $request->skills
+                );
+
+                // recognitions
+                $pds->recognitions()->forceDelete();
+                $pds->recognitions()->createMany(
+                    $request->recognitions
+                );
+
+                // membership
+                $pds->membershipAssociations()->forceDelete();
+                $pds->membershipAssociations()->createMany(
+                    $request->memberships
+                );
+
+                // references
+                $pds->references()->forceDelete();
+                $pds->references()->createMany(
+                    $request->characterReferences
+                );
+
+                // restructure and insert answers
+                $answers = array_map(function ($item) use ($familyBackground) {
+                    return ["question_id" => $item['question_id'], "answer" => $item['answer'], "details" => $item['details']];
+                }, $request->answers);
+
+                $pds->answers()->forceDelete();
+                $pds->answers()->createMany(
+                    $answers
+                );
+            } else {
+
+                // create applicant
+
+                $applicant = Applicant::create([
+                    "first_name" => $request->first_name,
+                    "middle_name" => $request->middle_name,
+                    "last_name" => $request->last_name,
+                    "suffix" => $request->suffix,
+                    "mobile_number" => $request->mobile_number,
+                    "email_address" => $request->email_address
+                ]);
+
+
+                $pds =  $applicant->personalDataSheets()->create(['pds_date' => date('Y-m-d')]);
+
+                // personal Information
+                $personalnformation = $pds->personalInformation()->create(
+                    [
+                        'birth_place' => $request->birth_place,
+                        'birth_date' => $request->birth_date,
+                        'age' => $request->age,
+                        'sex' => $request->sex,
+                        'height' => $request->height,
+                        'weight' => $request->weight,
+                        'citizenship' => $request->citizenship,
+                        'citizenship_type' => $request->citizenship_type,
+                        'country' => $request->country,
+                        'blood_type' => $request->blood_type,
+                        'civil_status' => $request->civil_status,
+                        'tin' => $request->tin,
+                        'gsis' => $request->gsis,
+                        'pagibig' => $request->pagibig,
+                        'philhealth' => $request->philhealth,
+                        'sss' => $request->sss,
+                        'residential_province' => $request->residential_province,
+                        'residential_municipality' => $request->residential_municipality,
+                        'residential_barangay' => $request->residential_barangay,
+                        'residential_house' => $request->residential_house,
+                        'residential_subdivision' => $request->residential_subdivision,
+                        'residential_street' => $request->residential_street,
+                        'residential_zipcode' => $request->residential_zipcode,
+                        'permanent_province' => $request->permanent_province,
+                        'permanent_municipality' => $request->permanent_municipality,
+                        'permanent_barangay' => $request->permanent_barangay,
+                        'permanent_house' => $request->permanent_house,
+                        'permanent_subdivision' => $request->permanent_subdivision,
+                        'permanent_street' => $request->permanent_street,
+                        'permanent_zipcode' => $request->permanent_zipcode,
+                        'telephone' => $request->telephone,
+                        'mobile_number' => $request->mobile_number,
+                        'email_address' => $request->email_address
+                    ]
+                );
+
+                // Family background
+                $familyBackground = $pds->familyBackGround()->create([
+                    'spouse_first_name' => $request->spouse_first_name,
+                    'spouse_middle_name' => $request->spouse_middle_name,
+                    'spouse_last_name' => $request->spouse_last_name,
+                    'spouse_suffix' => $request->spouse_suffix,
+                    'spouse_occupation' => $request->spouse_occupation,
+                    'spouse_employer' => $request->spouse_employer,
+                    'spouse_employer_address' => $request->spouse_employer_address,
+                    'spouse_employer_telephone' => $request->spouse_employer_telephone,
+                    'father_first_name' => $request->father_first_name,
+                    'father_middle_name' => $request->father_middle_name,
+                    'father_last_name' => $request->father_last_name,
+                    'father_suffix' => $request->father_suffix,
+                    'mother_first_name' => $request->mother_first_name,
+                    'mother_middle_name' => $request->mother_middle_name,
+                    'mother_last_name' => $request->mother_last_name,
+                    'mother_suffix' => $request->mother_suffix,
+                ]);
+
+
+                //restructure and  insert children
+                $children = array_map(function ($item) use ($familyBackground) {
+                    return ["number" => $item['number'], "name" => $item['name'], "birthday" => $item['birthday'], "family_background_id" => $familyBackground->id];
+                }, $request->children);
+
+                $pds->childrenInformations()->createMany($children);
+
+                // educational background
+                $pds->educationalBackgrounds()->createMany($request->schools);
+
+
+                // eligibilities
+                $pds->civilServiceEligibilities()->createMany(
+                    $request->eligibilities
+                );
+
+                // work experiences
+                $pds->workExperiences()->createMany(
+                    $request->workExperiences
+                );
+
+                // voluntary works
+                $pds->voluntaryWorks()->createMany(
+                    $request->voluntaryWorks
+                );
+
+                // trainings
+                $pds->trainingPrograms()->createMany(
+                    $request->trainings
+                );
+
+                // specialskills
+                $pds->specialSkillHobies()->createMany(
+                    $request->skills
+                );
+
+                // recognitions
+                $pds->recognitions()->createMany(
+                    $request->recognitions
+                );
+
+                // membership
+                $pds->membershipAssociations()->createMany(
+                    $request->memberships
+                );
+
+                // references
+                $pds->references()->createMany(
+                    $request->characterReferences
+                );
+
+                // restructure and insert answers
+                $answers = array_map(function ($item) use ($familyBackground) {
+                    return ["question_id" => $item['question_id'], "answer" => $item['answer'], "details" => $item['details']];
+                }, $request->answers);
+
+                $pds->answers()->createMany(
+                    $answers
+                );
+            }
+        }
+
+
+
+
 
         return $this->success('', 'Successfully Saved.', 200);
     }
