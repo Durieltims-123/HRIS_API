@@ -131,7 +131,7 @@ class StoreApplicationRequest extends FormRequest
             'characterReferences.*.name' =>  ['required', 'max:255'],
             'characterReferences.*.address' =>  ['required', 'max:255'],
             'characterReferences.*.number' =>  ['required', 'max:11'],
-
+            'date_submitted' =>  ['required'],
             'attachments' =>  ['required'],
             'vacancy' =>  ['required'],
 

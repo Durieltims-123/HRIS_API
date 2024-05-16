@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->morphs('individual');
             $table->foreignId('vacancy_id')->constrained();
-            $table->date('submission_date');
+            $table->date('date_submitted');
             $table->string('first_name');
             $table->string('middle_name');
             $table->string('last_name');

@@ -23,7 +23,7 @@ class ApplicationFactory extends Factory
         return [
             'applicant_id' => $number++,
             'publication_id' => $publications->random()->id,
-            'submission_date' => fake()->date('Y-m-d'),
+            'date_submitted' => fake()->date('Y-m-d'),
             'first_name' => fake()->firstName(),
             'middle_name' => fake()->lastName(),
             'last_name' => fake()->lastName(),

@@ -11,6 +11,8 @@ use App\Models\Employee;
 use App\Models\LguPosition;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ApplicationController extends Controller
 {
@@ -23,6 +25,79 @@ class ApplicationController extends Controller
         return ApplicationResource::collection(
             Application::all()
         );
+    }
+
+
+
+    public function search(Request $request)
+    {
+        $activePage = $request->activePage;
+        $status = $request->status;
+        $orderAscending = $request->orderAscending;
+        $orderBy = $request->orderBy;
+        $year = $request->year;
+        $filter = $request->filter;
+        $orderAscending  ? $orderAscending = "asc" : $orderAscending = "desc";
+
+        ($orderBy == null || $orderBy == "id") ? $orderBy = "applications.id" : $orderBy = $orderBy;
+        $filters = $request->filters;
+        if (!is_null($filters)) {
+            $filters =  array_map(function ($filter) {
+                if ($filter["column"] === "id") {
+                    return ["applications.id", "like", "%" . $filter["value"] . "%"];
+                } else if ($filter["column"] === "status") {
+                    return ["applications.status", "like", "%" . $filter["value"] . "%"];
+                } else {
+                    return [$filter["column"], "like", "%" . $filter["value"] . "%"];
+                }
+            }, $filters);
+        } else {
+            $filters = [["applications.id", "like", "%"]];
+        }
+
+
+        $data = ApplicationResource::collection(
+            Application::select(
+                "*",
+                "applications.id  as id",
+                "offices.office_name",
+                "divisions.division_name",
+                "first_name",
+                "middle_name",
+                "last_name",
+                "suffix",
+                "title",
+                "item_number",
+                "application_type",
+                "applications.status",
+            )
+                ->join("vacancies", "applications.vacancy_id", "vacancies.id")
+                ->join("lgu_positions", "lgu_positions.id", "vacancies.lgu_position_id")
+                ->join("positions", "positions.id", "lgu_positions.position_id")
+                ->join("divisions", "lgu_positions.division_id", "divisions.id")
+                ->join("offices", "offices.id", "divisions.office_id")
+                ->join("salary_grades", "positions.salary_grade_id", "salary_grades.id")
+                ->where($filters)
+                ->skip(($activePage - 1) * 10)
+                ->orderBy($orderBy, $orderAscending)
+                ->take(10)
+                ->get()
+        );
+
+        $pages =
+            Application::select(
+                "applications.id"
+            )
+            ->join("vacancies", "applications.vacancy_id", "vacancies.id")
+            ->join("lgu_positions", "lgu_positions.id", "vacancies.lgu_position_id")
+            ->join("positions", "positions.id", "lgu_positions.position_id")
+            ->join("divisions", "lgu_positions.division_id", "divisions.id")
+            ->join("offices", "offices.id", "divisions.office_id")
+            ->join("salary_grades", "positions.salary_grade_id", "salary_grades.id")
+            ->where($filters)
+            ->count();
+
+        return compact("pages", "data");
     }
 
     /**
@@ -56,8 +131,15 @@ class ApplicationController extends Controller
         if ($employeeExist) {
             $data = Employee::where($filters)->latest()->first();
 
-            return $data;
             $employee = Employee::find($data->id);
+            $individual = $employee;
+
+            if ($employee->employment_status === "permanent") {
+                $applicationtype = "Insider-Permanent";
+            } else {
+                $applicationtype = "Insider-Casual";
+            }
+
             $employee->update([
                 "division_id" => $request->division_id,
                 "employee_id" => $request->employee_id,
@@ -213,14 +295,14 @@ class ApplicationController extends Controller
             // validate if applicant is already in the database
             unset($filters[2]);
             $applicantExist = Applicant::where($filters)->exists();
-
+            $applicationtype = "Outsider";
             if ($applicantExist) {
                 // if applicant exist update
-
-    
                 $data = Applicant::where($filters)->latest()->first();
 
                 $applicant = Applicant::find($data->id);
+                $individual = $applicant;
+
 
                 $applicant->update([
                     "first_name" => $request->first_name,
@@ -379,6 +461,8 @@ class ApplicationController extends Controller
                     "email_address" => $request->email_address
                 ]);
 
+                $individual = $applicant;
+
 
                 $pds =  $applicant->personalDataSheets()->create(['pds_date' => date('Y-m-d')]);
 
@@ -504,9 +588,46 @@ class ApplicationController extends Controller
             }
         }
 
+        // check if application already exist
+        $applicationExist = Application::where([['individual_id', $pds->individual_id], ['individual_type', $pds->individual_type], ['vacancy_id', $request->vacancy_id]])->exists();
+
+        if ($applicationExist) {
+            return $this->success('', 'Duplicate Application', 200);
+        } else {
+            $application=$individual->application()->create([
+                'vacancy_id' => $request->vacancy_id,
+                'date_submitted' => $request->date_submitted,
+                'first_name' => $individual->first_name,
+                'middle_name' => $individual->middle_name,
+                'last_name' => $individual->last_name,
+                'suffix' => $individual->suffix,
+                'application_type' => $applicationtype,
+                'status' => 'Active'
+            ]);
 
 
+            $base64String = $request->attachments;
 
+            // Decode the base64 string
+            $fileData = base64_decode($base64String);
+
+            // Generate a unique file name
+            $fileName = Str::random(16) . '.pdf'; // Change extension based on your file type
+
+            // Specify the disk and path where you want to save the file
+            $disk = 'public';
+            $filePath = 'uploads/application_attachments/' . $fileName;
+
+            // Save the file using Laravel's storage facade
+            Storage::disk($disk)->put($filePath, $fileData);
+
+            // Get the URL of the stored file
+            $fileUrl = Storage::disk($disk)->url($filePath);
+
+             $application->attachments()->create([
+                "url"=>$fileUrl
+             ]);
+        }
 
         return $this->success('', 'Successfully Saved.', 200);
     }
@@ -532,7 +653,7 @@ class ApplicationController extends Controller
      */
     public function update(Request $request, Application $application)
     {
-        $application->submission_date = $request->submission_date;
+        $application->date_submitted = $request->date_submitted;
         $application->first_name = $request->first_name;
         $application->middle_name = $request->middle_name;
         $application->last_name = $request->last_name;
@@ -607,9 +728,9 @@ class ApplicationController extends Controller
             $division = Division::find($employee->division_id);
             $lguPositionData = LguPosition::find($employee->lgu_position_id);
             $lguPosition = $lguPositionData->position->title . '-' . $lguPositionData->item_number;
-        } else {
+        }
+        if ($request->employee_id == "" || $request->employee_id == null) {
             unset($filters[0]);
-
             $applicant = Applicant::where($filters)->latest()->first();
 
             if ($applicant != null) {

@@ -26,22 +26,23 @@ class Application extends Model
     {
         return $this->hasOne(Publication::class);
     }
-    public function belongsToApplicant(): BelongsTo
+    public function individual()
     {
-        return $this->belongsTo(Applicant::class);
+        return $this->morphTo();
     }
-    public function belongsToEmployee(): BelongsTo
+
+    public function attachments(): HasOne
     {
-        return $this->belongsTo(Employee::class);
+        return $this->hasOne(ApplicationAttachment::class);
     }
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'applicant_id',
-        'employee_id',
-        'publication_id',
-        'submission_date',
+        'individual_type',
+        'individual_id',
+        'vacancy_id',
+        'date_submitted',
         'first_name',
         'middle_name',
         'last_name',

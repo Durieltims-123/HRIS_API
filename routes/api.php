@@ -91,6 +91,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/publication', PublicationController::class);
     Route::resource('/application', ApplicationController::class);
     Route::post('/search-person', [ApplicationController::class, 'searchPerson']);
+    Route::post('/search-applications', [ApplicationController::class, 'search']);
 
     Route::resource('/disqualification', DisqualificationController::class);
     Route::get('/disqualification-reverse/{disqualification}', [DisqualificationController::class, 'reverseDisqualification']);

@@ -16,18 +16,17 @@ class ApplicationResource extends JsonResource
     {
         return [
             "id" => (string)$this->id,
-            "attributes"=>[
-                'applicant_id' => (string)$this->applicant_id,
-                'employee_id' => (string)$this->employee_id,
-                'publication_id' => (string)$this->publication_id,
-                "submission_date" => (string)$this->submission_date,
-                "first_name" => (string)$this->first_name,
-                "middle_name" => (string)$this->middle_name,
-                "last_name" => (string)$this->last_name,
-                "suffix" => (string)$this->suffix,
-                "application_type" => (string)$this->application_type,
-                "status" => (string)$this->status,
-                "notice" => new NoticeResource($this->whenLoaded('hasOneNotice')),
+            "attributes" => [
+                'office_name' => $this->office_name,
+                'division_name' => $this->division_name,
+                'first_name' => $this->first_name,
+                'middle_name' => $this->middle_name,
+                'last_name' => $this->last_name,
+                'suffix' => $this->suffix,
+                'title' => $this->title,
+                'item_number' => $this->item_number,
+                'application_type' => $this->application_type,
+                'status' => $this->status,
             ]
         ];
     }

@@ -16,7 +16,7 @@ class Employee extends Model
 
     public function application()
     {
-        return $this->hasMany(Application::class);
+        return $this->morphMany(Application::class, 'individual');
     }
 
 
