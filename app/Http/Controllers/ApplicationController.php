@@ -594,7 +594,7 @@ class ApplicationController extends Controller
         if ($applicationExist) {
             return $this->success('', 'Duplicate Application', 200);
         } else {
-            $application=$individual->application()->create([
+            $application = $individual->application()->create([
                 'vacancy_id' => $request->vacancy_id,
                 'date_submitted' => $request->date_submitted,
                 'first_name' => $individual->first_name,
@@ -624,9 +624,9 @@ class ApplicationController extends Controller
             // Get the URL of the stored file
             $fileUrl = Storage::disk($disk)->url($filePath);
 
-             $application->attachments()->create([
-                "url"=>$fileUrl
-             ]);
+            $application->attachments()->create([
+                "url" => $fileUrl
+            ]);
         }
 
         return $this->success('', 'Successfully Saved.', 200);
@@ -778,5 +778,32 @@ class ApplicationController extends Controller
         } else {
             return [];
         }
+    }
+
+    public function viewAttachments(Request $request)
+    {
+        $application = Application::find($request->id);
+    
+    
+        $disk = 'public';
+        $filePath = str_replace("http://localhost/storage/","",$application->attachments->url);
+
+        // Check if the file exists
+        if (!Storage::disk($disk)->exists($filePath)) {
+            return response()->json(['error' => 'File not found.'], 404);
+        }
+
+        // Get the file contents
+        $fileContents = Storage::disk($disk)->get($filePath);
+
+        // Encode the contents to base64
+         $base64 = base64_encode($fileContents);
+
+        // Optionally, you can include the mime type in the base64 string
+        // $mimeType = Storage::disk($disk)->mimeType($filePath);
+        // $base64WithMimeType = 'data:' . $mimeType . ';base64,' . $base64;
+
+        // Return the base64 string
+        return $base64;
     }
 }

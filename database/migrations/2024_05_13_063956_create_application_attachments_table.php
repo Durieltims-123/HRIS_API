@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('application_documents');
+        Schema::dropIfExists('application_attachments');
     }
 };
