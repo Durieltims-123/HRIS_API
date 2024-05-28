@@ -27,6 +27,7 @@ class ApplicationResource extends JsonResource
                 'item_number' => $this->item_number,
                 'application_type' => $this->application_type,
                 'status' => $this->status,
+                'date_submitted' => (string)$this->date_submitted,
             ]
         ];
     }

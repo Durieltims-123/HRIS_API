@@ -36,6 +36,12 @@ class Application extends Model
         return $this->hasOne(ApplicationAttachment::class);
     }
 
+    public function vacancy(): BelongsTo
+    {
+        return $this->belongsTo(Vacancy::class);
+    }
+
+
     protected $primaryKey = 'id';
 
     protected $fillable = [

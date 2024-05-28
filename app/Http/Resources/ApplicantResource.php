@@ -25,6 +25,7 @@ class ApplicantResource extends JsonResource
                     "suffix" => (string)$this->suffix,
                     "mobile_number" => (string)$this->mobile_number,
                     "email_address" => (string)$this->email_address,
+                   
                     // "first_name" => (string)$this->belongsToApplicant[0]->first_name,
                     // "middle_name" => (string)$this->belongsToApplicant[0]->middle_name,
                     // "last_name" => (string)$this->belongsToApplicant[0]->last_name,
