@@ -22,11 +22,5 @@ class Disqualification extends Model
         'application_id',
         'date_disqualified',
         'reason',
-
-        'member_id',
-        'training',
-        'performance',
-        'education',
-        'experience',
     ];
 }

@@ -22,13 +22,11 @@ return new class extends Migration
             $table->string('suffix')->nullable();
             $table->string('application_type');
             $table->string('status');
+            $table->boolean('shortlisted')->nullable();
+            $table->boolean('interview')->nullable();
+            $table->boolean('appointed')->nullable();
             $table->timestamps();
             $table->softDeletes();
-
-            // $table->foreign('applicant_id')->references('id')->on('applicants');
-            // $table->foreign('employee_id')->references('id')->on('employees');
-            // $table->foreign('publication_id')->references('id')->on('publications');
-            // $table->foreign('notice_id')->references('id')->on('notices');
         });
     }
 

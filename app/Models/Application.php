@@ -14,15 +14,20 @@ class Application extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function hasOneNotice(): HasOne
+    public function notice(): HasOne
     {
         return $this->hasOne(Notice::class);
     }
-    public function hasOneDisqualification(): HasOne
+
+    public function assessment(): HasOne
+    {
+        return $this->hasOne(Assessment::class);
+    }
+    public function disqualification(): HasOne
     {
         return $this->hasOne(Disqualification::class, 'application_id');
     }
-    public function hasOnePublication(): HasOne
+    public function publication(): HasOne
     {
         return $this->hasOne(Publication::class);
     }
@@ -54,6 +59,9 @@ class Application extends Model
         'last_name',
         'suffix',
         'application_type',
-        'status'
+        'status',
+        'shortlisted',
+        'interview',
+        'appointed'
     ];
 }

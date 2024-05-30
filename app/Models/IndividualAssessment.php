@@ -6,11 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Assessment extends Model
+class IndividualAssessment extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
+
+    public function belongsToPsbMember()
+    {
+        return $this->belongsTo(PsbMember::class);
+    }
     public function belongsToApplication()
     {
         return $this->belongsTo(Application::class);
@@ -20,15 +25,10 @@ class Assessment extends Model
 
     protected $fillable = [
         'application_id',
-        'training',
-        'performance',
-        'education',
-        'experience',
-        'psychological_attributes',
-        'potential',
-        'awards',
-        'total_remarks',
-        'additional_information',
-        'remarks',
+        'member_id',
+        'ia_psychological_attributes',
+        'ia_potential',
+        'ia_awards',
+        'ia_total',
     ];
 }

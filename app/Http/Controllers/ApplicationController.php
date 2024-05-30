@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreApplicationRequest;
 use App\Http\Requests\UpdateApplicationRequest;
 use App\Http\Resources\ApplicationResource;
+use App\Http\Requests\DisqualifyApplicationRequest;
+use App\Http\Requests\ShortlistApplicationRequest;
 use App\Models\Applicant;
 use App\Models\Application;
 use App\Models\Division;
@@ -641,6 +643,7 @@ class ApplicationController extends Controller
      */
     public function show(Application $application)
     {
+        $application->withoutRelations();
         $details = $application->individual;
         $pds = $application->individual->latestPersonalDataSheet;
         $personalInformation = $pds->personalInformation;
@@ -1380,5 +1383,46 @@ class ApplicationController extends Controller
         $base64 = base64_encode($fileContents);
 
         return $base64;
+    }
+
+
+
+    public function disqualify(DisqualifyApplicationRequest $request, Application $application)
+    {
+
+        // change status to disqualified
+
+        $application->status = "Disqualified";
+        $application->save();
+
+
+        // add to disqualification records
+        $application->disqualification()->create([
+            'date_disqualified' => date('Y-m-d'),
+            'reason' => $request->reason,
+        ]);
+
+        return $this->success('', 'Successfully Updated Status.', 200);
+    }
+
+    public function shortlist(ShortlistApplicationRequest $request, Application $application)
+    {
+
+        // change status to disqualified
+
+        $application->status = "Shortlisted";
+        $application->shortlisted = true;
+        $application->save();
+
+
+        // insert initial_assessment records
+        $application->assessment()->create([
+            'training' => $request->shortlist_trainings,
+            'performance' => $request->performance,
+            'education' => $request->education,
+            'experience' => $request->experience,
+        ]);
+
+        return $this->success('', 'Successfully Updated Status.', 200);
     }
 }

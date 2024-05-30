@@ -93,6 +93,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/search-person', [ApplicationController::class, 'searchPerson']);
     Route::post('/search-applications', [ApplicationController::class, 'search']);
     Route::post('/view-application-attachments', [ApplicationController::class, 'viewAttachments']);
+    Route::post('/disqualify-application/{application}', [ApplicationController::class, 'disqualify']);
+    Route::post('/shortlist-application/{application}', [ApplicationController::class, 'shortlist']);
+
 
     Route::resource('/disqualification', DisqualificationController::class);
     Route::get('/disqualification-reverse/{disqualification}', [DisqualificationController::class, 'reverseDisqualification']);
@@ -101,5 +104,4 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/appointment', AppointmentController::class);
     Route::resource('/oathtaking', OathTakingController::class);
     Route::resource('/report-of-appointment', ReportOfAppointmentController::class);
-    
 });

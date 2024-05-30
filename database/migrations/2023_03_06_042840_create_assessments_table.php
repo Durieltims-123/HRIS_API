@@ -13,19 +13,17 @@ return new class extends Migration
     {
         Schema::create('assessments', function (Blueprint $table) {
             $table->id();
-
             $table->foreignId('application_id')->constrained()->onDelete('cascade');
-            $table->foreignId('member_id')->constrained('psb_members');
-            $table->integer('training');
+            $table->string('training');
             $table->integer('performance');
             $table->integer('education');
             $table->integer('experience');
-            $table->integer('psychological_attribute')->nullable();
+            $table->integer('psychological_attributes')->nullable();
             $table->integer('potential')->nullable();
             $table->integer('awards')->nullable();
+            $table->integer('total_remarks')->default(0);
             $table->string('additional_information')->nullable();
             $table->string('remarks')->nullable();
-            $table->date('date_of_assessment');
             $table->timestamps();
             $table->softDeletes();
         });
