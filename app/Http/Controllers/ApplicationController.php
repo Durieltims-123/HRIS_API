@@ -12,10 +12,13 @@ use App\Models\Application;
 use App\Models\Division;
 use App\Models\Employee;
 use App\Models\LguPosition;
+use App\Models\Log;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+
 
 class ApplicationController extends Controller
 {
@@ -662,6 +665,8 @@ class ApplicationController extends Controller
         $vacancy = $application->vacancy->lguPosition;
         $position = $vacancy->position;
         $vacancy = $position->title . "-" . $vacancy->item_number;
+        $disqualification =  $application->disqualification;
+        $assessment =  $application->assessment;
 
 
         if ($details->employee_id) {
@@ -693,7 +698,10 @@ class ApplicationController extends Controller
             'recognitions',
             'memberships',
             'answers',
-            'characterReferences'
+            'characterReferences',
+            'disqualification',
+            'assessment',
+
         );
     }
 
@@ -1395,12 +1403,23 @@ class ApplicationController extends Controller
         $application->status = "Disqualified";
         $application->save();
 
+        // check if exist
+        if ($application->disqualification) {
+            // update
+            $disqualification = $application->disqualification;
+            $disqualification->update([
+                // 'date_disqualified' => date('Y-m-d'),
+                'reason' => $request->reason,
+            ]);
+        } else {
+            // add to disqualification records
+            $application->disqualification()->create([
+                'date_disqualified' => date('Y-m-d'),
+                'reason' => $request->reason,
+            ]);
+        }
 
-        // add to disqualification records
-        $application->disqualification()->create([
-            'date_disqualified' => date('Y-m-d'),
-            'reason' => $request->reason,
-        ]);
+
 
         return $this->success('', 'Successfully Updated Status.', 200);
     }
@@ -1415,14 +1434,53 @@ class ApplicationController extends Controller
         $application->save();
 
 
-        // insert initial_assessment records
-        $application->assessment()->create([
-            'training' => $request->shortlist_trainings,
-            'performance' => $request->performance,
-            'education' => $request->education,
-            'experience' => $request->experience,
-        ]);
+        if ($application->assessment) {
+            $application->assessment->update([
+                'training' => $request->shortlist_trainings,
+                'performance' => $request->performance,
+                'education' => $request->education,
+                'experience' => $request->experience,
+            ]);
+        } else {
+            // insert initial_assessment records
+            $application->assessment()->create([
+                'training' => $request->shortlist_trainings,
+                'performance' => $request->performance,
+                'education' => $request->education,
+                'experience' => $request->experience,
+            ]);
+        }
 
         return $this->success('', 'Successfully Updated Status.', 200);
+    }
+
+
+
+    public function revert(Request $request, Application $application)
+    {
+
+        // change status to Active
+        if ($application->status  === "Shortlisted") {
+            $application->assessment->delete();
+            Log::create([
+                'user_id' => Auth::user()->id,
+                'action' => "Reverted Disqualified Application with id " . $application->id . " to Active",
+                'remarks' => $request->remarks
+            ]);
+        }
+        if ($application->status  === "Disqualified") {
+            $application->disqualification->delete();
+            Log::create([
+                'user_id' => Auth::user()->id,
+                'action' => "Reverted Disqualified Application with id " . $application->id . " to Active",
+                'remarks' => $request->remarks
+            ]);
+        }
+
+        $application->status = "Active";
+        $application->shortlisted = false;
+        $application->save();
+
+        return $this->success('', 'Request was Successful.', 200);
     }
 }
