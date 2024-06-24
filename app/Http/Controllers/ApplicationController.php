@@ -18,6 +18,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use PhpOffice\PhpWord\TemplateProcessor;
+use PhpOffice\PhpWord\PhpWord;
+use PhpOffice\PhpWord\Settings;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 
 class ApplicationController extends Controller
@@ -1482,5 +1486,35 @@ class ApplicationController extends Controller
         $application->save();
 
         return $this->success('', 'Request was Successful.', 200);
+    }
+
+
+    public function downloadLetterOfDisqualification(Application $application)
+    {
+        $plantilla = $application->vacancy->lguPosition;
+        $position = $plantilla->position;
+        $filename = $application->first_name . " " . $application->last_name . " (" . $position->title . "-" . $plantilla->item_number . " ) - Letter of Disqualification ";
+        $filePath = public_path('\Word Results\\' . $filename . ".docx");
+
+
+
+        $templateProcessor = new TemplateProcessor(public_path() . "\Word Templates\Letter of Disqualification.docx");
+        // replace value in the template
+        $templateProcessor->setValue("date", date('F j, Y'));
+        $templateProcessor->setValue("name", $application->first_name . ' ' . strtoupper($application->middle_name[0]) . '.  ' . $application->last_name);
+        $templateProcessor->setValue("address","");
+        $templateProcessor->setValue("prefix", "");
+        $templateProcessor->setValue("last_name", "");
+        $templateProcessor->setValue("phone_number","");
+        $templateProcessor->setValue("position", "");
+        $templateProcessor->setValue("office", "");
+        $templateProcessor->setValue("reason", "");
+        $templateProcessor->setValue("governor", "");
+
+
+        $templateProcessor->saveAs($filePath);
+        $fileContents = file_get_contents($filePath);
+        $base64 = base64_encode($fileContents);
+        return $this->success(compact('base64', 'filename'), 'Successfully Retrieved.', 200);
     }
 }
