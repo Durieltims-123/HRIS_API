@@ -23,6 +23,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\SalaryGradeController;
 use App\Http\Controllers\DisqualificationController;
+use App\Http\Controllers\GovernorController;
 use App\Http\Controllers\OrientationController;
 use App\Http\Controllers\PersonalDataSheetController;
 use App\Http\Controllers\PositionDescriptionController;
@@ -47,8 +48,12 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::resource('/holidays', HolidaysController::class);
     Route::post('/search-holidays', [HolidaysController::class, 'search']);
+
     Route::resource('/users', UserController::class);
     Route::post('/search-users', [UserController::class, 'search']);
+
+    Route::resource('/governors', GovernorController::class);
+    Route::post('/search-governors', [GovernorController::class, 'search']);
 
 
 

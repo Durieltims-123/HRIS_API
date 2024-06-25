@@ -51,6 +51,7 @@ class DatabaseSeeder extends Seeder
         // ]);
         User::factory(100)->create();
         Holiday::factory(10)->create();
+
         // SalaryGrade::factory(33)->create();
         // Position::factory(33)->create();
         // QualificationStandard::factory(33)->create();
@@ -112,7 +113,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             // ReferenceSeeder::class,
             // AnswerSeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            GovernorSeeder::class
         ]);
     }
 }

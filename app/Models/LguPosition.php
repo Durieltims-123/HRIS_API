@@ -16,9 +16,9 @@ class LguPosition extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function division(): HasOne
+    public function division(): BelongsTo
     {
-        return $this->hasOne(Division::class);
+        return $this->belongsTo(Division::class);
     }
     public function position(): BelongsTo
     {

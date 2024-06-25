@@ -14,6 +14,8 @@ use App\Models\Employee;
 use App\Models\LguPosition;
 use App\Models\Log;
 use App\Traits\HttpResponses;
+use App\Models\Governor;
+use App\Http\Resources\GovernorResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -1495,21 +1497,29 @@ class ApplicationController extends Controller
         $position = $plantilla->position;
         $filename = $application->first_name . " " . $application->last_name . " (" . $position->title . "-" . $plantilla->item_number . " ) - Letter of Disqualification ";
         $filePath = public_path('\Word Results\\' . $filename . ".docx");
+        $personalinformation = $application->individual->latestPersonalDataSheet->personalInformation;
+        $address = $personalinformation->residential_house . "," . $personalinformation->residential_barangay . "," . ucwords(strtolower($personalinformation->residential_municipality)) . "," . ucwords(strtolower($personalinformation->residential_province));
+        $prefix = "Ms";
+        if ($personalinformation->sex === "Male") {
+            $prefix = "Mr.";
+        }
 
 
+        $governor = Governor::latest()->first();
+        $governor_name = $governor->prefix . " " . $governor->name . " " . $governor->suffix;
 
         $templateProcessor = new TemplateProcessor(public_path() . "\Word Templates\Letter of Disqualification.docx");
         // replace value in the template
         $templateProcessor->setValue("date", date('F j, Y'));
         $templateProcessor->setValue("name", $application->first_name . ' ' . strtoupper($application->middle_name[0]) . '.  ' . $application->last_name);
-        $templateProcessor->setValue("address","");
-        $templateProcessor->setValue("prefix", "");
-        $templateProcessor->setValue("last_name", "");
-        $templateProcessor->setValue("phone_number","");
-        $templateProcessor->setValue("position", "");
-        $templateProcessor->setValue("office", "");
-        $templateProcessor->setValue("reason", "");
-        $templateProcessor->setValue("governor", "");
+        $templateProcessor->setValue("address", $address);
+        $templateProcessor->setValue("prefix", $prefix);
+        $templateProcessor->setValue("last_name", $application->last_name);
+        $templateProcessor->setValue("phone_number", $personalinformation->mobile_number);
+        $templateProcessor->setValue("position", $position->title);
+        $templateProcessor->setValue("office", $plantilla->division->office->office_name);
+        $templateProcessor->setValue("reason", $application->disqualification->reason);
+        $templateProcessor->setValue("governor", $governor_name);
 
 
         $templateProcessor->saveAs($filePath);
