@@ -23,6 +23,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\SalaryGradeController;
 use App\Http\Controllers\DisqualificationController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\GovernorController;
 use App\Http\Controllers\OrientationController;
 use App\Http\Controllers\PersonalDataSheetController;
@@ -102,6 +103,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/shortlist-application/{application}', [ApplicationController::class, 'shortlist']);
     Route::post('/revert-application/{application}', [ApplicationController::class, 'revert']);
     Route::get('/download-disqualification-letter/{application}', [ApplicationController::class, 'downloadLetterOfDisqualification']);
+    Route::get('/send-disqualification-email/{application}', [EmailController::class, 'sendDisqualificationEmail']);
 
 
     Route::resource('/disqualification', DisqualificationController::class);
