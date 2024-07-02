@@ -92,6 +92,7 @@ class ApplicationController extends Controller
                 ->join("divisions", "lgu_positions.division_id", "divisions.id")
                 ->join("offices", "offices.id", "divisions.office_id")
                 ->join("salary_grades", "positions.salary_grade_id", "salary_grades.id")
+                ->leftJoin("disqualifications", "applications.id", "disqualifications.application_id")
                 ->where($filters)
                 ->skip(($activePage - 1) * 10)
                 ->orderBy($orderBy, $orderAscending)
