@@ -2,40 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\DemoMail;
-use App\Mail\LetterEmail;
+use App\Http\Requests\SendEmailRequest;
+use App\Mail\Email;
 use App\Models\Application;
+use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Http\Request;
 
 class EmailController extends Controller
 {
-    public function sendDisqualificationEmail(Application $application)
+    use HttpResponses;
+
+    public function sendDisqualificationEmail(Application $application, SendEmailRequest $request)
     {
         $mailData = [
-            'title' => 'Mail from ItSolutionStuff.com',
-            'body' => 'This is for testing email using smtp.'
+            'title' => $request->subject,
+            'body' => $request->body
         ];
 
-        Mail::to('durieltims@gmail.com')->send(new DemoMail($mailData));
+        $application->email_date = date('Y-m-d');
+        $application->save();
 
-
-        // return $this->success('', 'Successfully Sent Email.', 200);
-
-
-
-        // $name ="Test Name";
-        // $email = "durieltims@icloud.com";
-        // $sub = "Test Subject";
-        // $mess = "Test Message";
-        // $mailData = [
-        //     'url' => 'https://mywebsite.com/',
-        // ];
-        // $send_mail = "sahincseiu@gmail.com";
-        // Mail::to($send_mail)->send(new SendMail($name, $email, $sub, $mess));
-        // $senderMessage = "thanks for your message , we will reply you in later";
-        // Mail::to($email)->send(new
-        // SendMessageToEndUser($name, $senderMessage, $mailData));
+        Mail::to($request->recipient)->send(new Email($mailData));
+        return $this->success('', 'Email was Successfully sent!', 200);
     }
 }

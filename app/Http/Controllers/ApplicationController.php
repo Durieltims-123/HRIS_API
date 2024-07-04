@@ -65,8 +65,9 @@ class ApplicationController extends Controller
                     return [$filter["column"], "like", "%" . $filter["value"] . "%"];
                 }
             }, $filters);
+            array_push($filters, ["disqualifications.deleted_at", null]);
         } else {
-            $filters = [["applications.id", "like", "%"]];
+            $filters = [["applications.id", "like", "%"], ["disqualifications.deleted_at", null]];
         }
 
 
@@ -110,6 +111,7 @@ class ApplicationController extends Controller
             ->join("divisions", "lgu_positions.division_id", "divisions.id")
             ->join("offices", "offices.id", "divisions.office_id")
             ->join("salary_grades", "positions.salary_grade_id", "salary_grades.id")
+            ->leftJoin("disqualifications", "applications.id", "disqualifications.application_id")
             ->where($filters)
             ->count();
 
@@ -671,6 +673,7 @@ class ApplicationController extends Controller
         $characterReferences = $pds->references;
         $vacancy = $application->vacancy->lguPosition;
         $position = $vacancy->position;
+        $vacancy_office = $vacancy->division->office;
         $vacancy = $position->title . "-" . $vacancy->item_number;
         $disqualification =  $application->disqualification;
         $assessment =  $application->assessment;
@@ -708,7 +711,8 @@ class ApplicationController extends Controller
             'characterReferences',
             'disqualification',
             'assessment',
-
+            'disqualification',
+            'vacancy_office'
         );
     }
 

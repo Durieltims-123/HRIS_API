@@ -103,7 +103,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/shortlist-application/{application}', [ApplicationController::class, 'shortlist']);
     Route::post('/revert-application/{application}', [ApplicationController::class, 'revert']);
     Route::get('/download-disqualification-letter/{application}', [ApplicationController::class, 'downloadLetterOfDisqualification']);
-    Route::get('/send-disqualification-email/{application}', [EmailController::class, 'sendDisqualificationEmail']);
+    Route::post('/send-disqualification-email/{application}', [EmailController::class, 'sendDisqualificationEmail']);
 
 
     Route::resource('/disqualification', DisqualificationController::class);

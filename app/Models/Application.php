@@ -62,6 +62,7 @@ class Application extends Model
         'status',
         'shortlisted',
         'interview',
-        'appointed'
+        'appointed',
+        'email_date'
     ];
 }
