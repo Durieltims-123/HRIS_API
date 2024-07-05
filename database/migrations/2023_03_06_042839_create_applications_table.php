@@ -25,7 +25,6 @@ return new class extends Migration
             $table->boolean('shortlisted')->nullable();
             $table->boolean('interview')->nullable();
             $table->boolean('appointed')->nullable();
-            $table->date('email_date')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

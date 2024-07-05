@@ -11,7 +11,8 @@ class Notice extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function belongsToApplication(){
+    public function belongsToApplication()
+    {
         return $this->belongsTo(Application::class, 'application_id');
     }
 
@@ -20,7 +21,6 @@ class Notice extends Model
     protected $fillable = [
         'application_id',
         'notice_type',
-        'date_sent',
-        'date_received'
+        'email_date'
     ];
 }

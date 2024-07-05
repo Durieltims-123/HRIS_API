@@ -12,14 +12,14 @@ class Interview extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function publicationInterview() : HasMany{
-        return $this->hasMany(PublicationInterview::class,'interview_id');
+    public function vacancyInterview(): HasMany
+    {
+        return $this->hasMany(VacancyInterview::class, 'interview_id');
     }
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
-       'publication_id',
         'interview_date',
         'venue'
     ];

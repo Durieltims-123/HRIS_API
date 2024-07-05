@@ -29,6 +29,7 @@ class ApplicationResource extends JsonResource
                 'status' => $this->status,
                 'date_submitted' => (string)$this->date_submitted,
                 'reason' => $this->reason,
+                'email_date' => $this->email_date,
             ]
         ];
     }

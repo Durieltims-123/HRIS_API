@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('application_id')->constrained()->onDelete('cascade');
             $table->string('notice_type');
-            $table->date('date_sent');
-            $table->date('date_received')->nullable();
+            $table->date('email_date');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SendEmailRequest;
 use App\Mail\Email;
 use App\Models\Application;
+use App\Models\Notice;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Mail;
 
@@ -21,8 +22,10 @@ class EmailController extends Controller
             'body' => $request->body
         ];
 
-        $application->email_date = date('Y-m-d');
-        $application->save();
+        $application->notice()->create([
+            'notice_type' => "Notice of Disqualification",
+            'email_date' => date('Y-m-d')
+        ]);
 
         Mail::to($request->recipient)->send(new Email($mailData));
         return $this->success('', 'Email was Successfully sent!', 200);

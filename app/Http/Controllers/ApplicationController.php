@@ -66,8 +66,9 @@ class ApplicationController extends Controller
                 }
             }, $filters);
             array_push($filters, ["disqualifications.deleted_at", null]);
+            array_push($filters, ["notices.deleted_at", null]);
         } else {
-            $filters = [["applications.id", "like", "%"], ["disqualifications.deleted_at", null]];
+            $filters = [["applications.id", "like", "%"], ["disqualifications.deleted_at", null], ["notices.deleted_at", null]];
         }
 
 
@@ -94,6 +95,7 @@ class ApplicationController extends Controller
                 ->join("offices", "offices.id", "divisions.office_id")
                 ->join("salary_grades", "positions.salary_grade_id", "salary_grades.id")
                 ->leftJoin("disqualifications", "applications.id", "disqualifications.application_id")
+                ->leftJoin("notices", "applications.id", "notices.application_id")
                 ->where($filters)
                 ->skip(($activePage - 1) * 10)
                 ->orderBy($orderBy, $orderAscending)
@@ -112,6 +114,7 @@ class ApplicationController extends Controller
             ->join("offices", "offices.id", "divisions.office_id")
             ->join("salary_grades", "positions.salary_grade_id", "salary_grades.id")
             ->leftJoin("disqualifications", "applications.id", "disqualifications.application_id")
+            ->leftJoin("notices", "applications.id", "notices.application_id")
             ->where($filters)
             ->count();
 
