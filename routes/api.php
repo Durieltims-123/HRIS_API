@@ -33,7 +33,7 @@ use App\Http\Controllers\QualificationStandardController;
 use App\Http\Controllers\PersonnelSelectionBoardController;
 use App\Http\Controllers\ServiceRecordFormController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\VenueController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -49,18 +49,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::resource('/holidays', HolidaysController::class);
     Route::post('/search-holidays', [HolidaysController::class, 'search']);
-
+    Route::resource('/venues', VenueController::class);
+    Route::post('/search-venues', [VenueController::class, 'search']);
     Route::resource('/users', UserController::class);
     Route::post('/search-users', [UserController::class, 'search']);
-
     Route::resource('/governors', GovernorController::class);
     Route::post('/search-governors', [GovernorController::class, 'search']);
-
-
-
     Route::resource('/salary-grade', SalaryGradeController::class);
     Route::post('/search-salary-grade', [SalaryGradeController::class, 'search']);
-
     Route::resource('/position', PositionController::class);
     Route::post('/search-position', [PositionController::class, 'search']);
     Route::post('/search-office', [OfficeController::class, 'search']);
@@ -110,6 +106,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/disqualification-reverse/{disqualification}', [DisqualificationController::class, 'reverseDisqualification']);
     Route::resource('/notice', NoticeController::class);
     Route::resource('/interview', InterviewController::class);
+    Route::post('/search-interview', [InterviewController::class, 'search']);
     Route::resource('/appointment', AppointmentController::class);
     Route::resource('/oathtaking', OathTakingController::class);
     Route::resource('/report-of-appointment', ReportOfAppointmentController::class);

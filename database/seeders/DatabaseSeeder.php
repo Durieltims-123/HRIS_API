@@ -37,6 +37,7 @@ use App\Models\PersonnelSelectionBoard;
 use App\Models\PublicationInterview;
 use App\Models\TrainingProgramAttended;
 use App\Models\User;
+use App\Models\Venue;
 
 class DatabaseSeeder extends Seeder
 {
@@ -51,6 +52,7 @@ class DatabaseSeeder extends Seeder
         // ]);
         User::factory(100)->create();
         Holiday::factory(10)->create();
+        Venue::factory(11)->create();
 
         // SalaryGrade::factory(33)->create();
         // Position::factory(33)->create();
