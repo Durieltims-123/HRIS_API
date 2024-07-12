@@ -22,9 +22,10 @@ class StoreInterviewRequest extends FormRequest
     public function rules(): array
     {
         return [
-          
+
             'interview_date' => ['required', 'date'],
             'venue' => ['required', 'string', 'max:255'],
+            'positions' => ['required'],
         ];
     }
 }

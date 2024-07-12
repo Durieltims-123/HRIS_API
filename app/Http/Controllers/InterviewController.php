@@ -39,21 +39,19 @@ class InterviewController extends Controller
     {
         $request->validated($request->all());
 
-        // $interview = Interview::create([
-        //     'interview_date' => $request->interview_date,
-        //     'venue' => $request->venue,
-        // ]);
+        $interview = Interview::create([
+            'interview_date' => $request->interview_date,
+            'venue' => $request->venue,
+        ]);
 
-        // $publication_ids = $request->input('publication_id');
-        // foreach($publication_ids as $i => $publication_id){
-        //     PublicationInterview::create([
-        //         'publication_id' => $publication_id, //Accepts array of publication ID based on selected interviewees
-        //         'interview_id' => $interview->id
-        //     ]);
-        // }
-        
+        $vacancies_data = array_map(function ($item) {
+            return ["vacancy_id" => $item];
+        }, $request->positions);
 
-        return $this->success('','Successfully Saved', 200);
+
+        $interview->vacancyInterview()->createMany($vacancies_data);
+
+        return $this->success('', 'Successfully Saved', 200);
     }
 
     /**
@@ -91,6 +89,6 @@ class InterviewController extends Controller
     {
         $interview->delete();
 
-        return $this->success('','Successfully Deleted',200);
+        return $this->success('', 'Successfully Deleted', 200);
     }
 }

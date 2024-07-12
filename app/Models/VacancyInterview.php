@@ -12,8 +12,8 @@ class VacancyInterview extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function belongsToPublication() : BelongsTo{
-        return $this->belongsTo(Publication::class,'publication_id');
+    public function belongsToVacancy() : BelongsTo{
+        return $this->belongsTo(Vacancy::class,'vacancy_id');
     }
     public function belongsToInterview() : BelongsTo{
         return $this->belongsTo(Interview::class,'interview_id');
@@ -22,7 +22,7 @@ class VacancyInterview extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'publication_id',
+        'vacancy_id',
         'interview_id'
     ];
 }
