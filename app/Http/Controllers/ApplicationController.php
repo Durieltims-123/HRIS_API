@@ -676,7 +676,8 @@ class ApplicationController extends Controller
         $characterReferences = $pds->references;
         $vacancy = $application->vacancy->lguPosition;
         $position = $vacancy->position;
-        $vacancy_office = $vacancy->division->office;
+        $vacancyDivision = $vacancy->division;
+        $vacancyOffice = $vacancy->division->office;
         $vacancy = $position->title . "-" . $vacancy->item_number;
         $disqualification =  $application->disqualification;
         $assessment =  $application->assessment;
@@ -715,7 +716,8 @@ class ApplicationController extends Controller
             'disqualification',
             'assessment',
             'disqualification',
-            'vacancy_office'
+            'vacancyOffice',
+            'vacancyDivision'
         );
     }
 
