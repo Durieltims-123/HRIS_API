@@ -40,7 +40,7 @@ class InterviewController extends Controller
         $request->validated($request->all());
 
         $interview = Interview::create([
-            'interview_date' => $request->interview_date,
+            'meeting_date' => $request->meeting_date,
             'venue' => $request->venue,
         ]);
 
@@ -75,7 +75,7 @@ class InterviewController extends Controller
      */
     public function update(Request $request, Interview $interview)
     {
-        $interview->interview_date = $request->interview_date;
+        $interview->meeting_date = $request->meeting_date;
         $interview->venue = $request->venue;
         $interview->save();
 

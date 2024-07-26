@@ -23,7 +23,7 @@ class StoreInterviewRequest extends FormRequest
     {
         return [
 
-            'interview_date' => ['required', 'date'],
+            'meeting_date' => ['required', 'date'],
             'venue' => ['required', 'string', 'max:255'],
             'positions' => ['required'],
         ];

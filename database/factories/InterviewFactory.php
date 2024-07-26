@@ -19,7 +19,7 @@ class InterviewFactory extends Factory
     {
         
         return [
-            'interview_date' => fake()->date('Y-m-d'),
+            'meeting_date' => fake()->date('Y-m-d'),
             'venue' => fake()->sentence()
         ];
     }

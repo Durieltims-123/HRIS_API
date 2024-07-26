@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('interviews', function (Blueprint $table) {
             $table->id();
-            $table->date('interview_date');
+            $table->date('meeting_date');
             $table->string('venue');
             $table->timestamps();
             $table->softDeletes();

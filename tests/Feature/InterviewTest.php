@@ -34,12 +34,12 @@ class InterviewTest extends TestCase
     public function test_add_interview(): void
     {
         $formData = [
-            "interview_date" => "2023-03-05",
+            "meeting_date" => "2023-03-05",
             'venue' => "testVenue",
             "publication_id" => [1, 2],
         ];
         $interviewData = [
-            "interview_date" => "2023-03-05",
+            "meeting_date" => "2023-03-05",
             'venue' => "testVenue",
         ];
         $user = User::factory()->create();
@@ -55,15 +55,15 @@ class InterviewTest extends TestCase
     public function test_edit_interview(): void
     {
         $formData = [
-            "interview_date" => "2023-03-08",
+            "meeting_date" => "2023-03-08",
             'venue' => "testUpdatedVenue",
             "publication_id" => [1, 2],
         ];
         $interviewData = [
-            "interview_date" => "2023-03-08",
+            "meeting_date" => "2023-03-08",
             'venue' => "testUpdatedVenue",
         ];
-        $interview = Interview::where([['interview_date', '2023-03-05'], ['venue', 'testVenue']])->first();
+        $interview = Interview::where([['meeting_date', '2023-03-05'], ['venue', 'testVenue']])->first();
 
         $user = User::factory()->create();
         $this->assertCount(0, $user->tokens);
@@ -78,11 +78,11 @@ class InterviewTest extends TestCase
     public function test_delete_interview(): void
     {
         $interviewData = [
-            "interview_date" => "2023-03-08",
+            "meeting_date" => "2023-03-08",
             'venue' => "testUpdatedVenue",
             'deleted_at' => null
         ];
-        $dept = Interview::where([['interview_date', '2023-03-08'], ['venue', 'testUpdatedVenue']])->first();
+        $dept = Interview::where([['meeting_date', '2023-03-08'], ['venue', 'testUpdatedVenue']])->first();
         $user = User::factory()->create();
         $this->assertCount(0, $user->tokens);
         $this->actingAs($user);

@@ -19,7 +19,7 @@ class InterviewResource extends JsonResource
             "id" => (string)$this->id,
             "attributes"=>[
                 
-                "interview_date" => (string)$this->interview_date,
+                "meeting_date" => (string)$this->meeting_date,
                 "venue" => (string)$this->venue,
                 
                 "publicationInterview"=>  PublicationInterviewResource::collection($this->whenLoaded('publicationInterview')),

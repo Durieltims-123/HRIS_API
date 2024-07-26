@@ -27,7 +27,7 @@ class Interview extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'interview_date',
+        'meeting_date',
         'venue'
     ];
 }
