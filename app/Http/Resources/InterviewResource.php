@@ -17,15 +17,14 @@ class InterviewResource extends JsonResource
     {
         return [
             "id" => (string)$this->id,
-            "attributes"=>[
-                
+            "attributes" => [
                 "meeting_date" => (string)$this->meeting_date,
                 "venue" => (string)$this->venue,
-                
-                "publicationInterview"=>  PublicationInterviewResource::collection($this->whenLoaded('publicationInterview')),
+                "name" => (string)$this->name,
+                "publicationInterview" =>  PublicationInterviewResource::collection($this->whenLoaded('publicationInterview')),
                 // "application" => new ApplicationResource($this->whenLoaded('hasOneApplication')),
             ]
-            
+
         ];
     }
 }

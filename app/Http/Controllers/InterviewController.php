@@ -24,6 +24,52 @@ class InterviewController extends Controller
         );
     }
 
+
+    public function search(Request $request)
+    {
+        $activePage = $request->activePage;
+        $status = $request->status;
+        $orderAscending = $request->orderAscending;
+        $orderBy = $request->orderBy;
+        $year = $request->year;
+        $filter = $request->filter;
+        $orderAscending  ? $orderAscending = "asc" : $orderAscending = "desc";
+
+        ($orderBy == null || $orderBy == "id") ? $orderBy = "interviews.id" : $orderBy = $orderBy;
+        $filters = $request->filters;
+        if (!is_null($filters)) {
+            $filters =  array_map(function ($filter) {
+                if ($filter["column"] === "id") {
+                    return ["interviews.id", "like", "%" . $filter["value"] . "%"];
+                } else {
+                    return [$filter["column"], "like", "%" . $filter["value"] . "%"];
+                }
+            }, $filters);
+        } else {
+            $filters = [["interviews.id", "like", "%"]];
+        }
+
+        $data = InterviewResource::collection(
+            Interview::select("interviews.*", "venues.name")
+                ->where($filters)
+                ->join('venues', 'venues.id', 'interviews.venue')
+                ->skip(($activePage - 1) * 10)
+                ->orderBy($orderBy, $orderAscending)
+                ->take(10)
+                ->get()
+        );
+
+        $pages =
+            Interview::select(
+                "applicants.id"
+            )
+            ->join('venues', 'venues.id', 'interviews.venue')
+            ->where($filters)
+            ->count();
+
+        return compact("pages", "data");
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -59,7 +105,11 @@ class InterviewController extends Controller
      */
     public function show(Interview $interview)
     {
-        return new InterviewResource($interview->loadMissing(['publicationInterview.belongsToPublication.hasOneApplication']));
+        $positions = $interview->vacancyInterview;
+        return compact(
+            'interview',
+            'positions'
+        );
     }
 
     /**

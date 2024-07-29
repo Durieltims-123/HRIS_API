@@ -106,7 +106,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/disqualification-reverse/{disqualification}', [DisqualificationController::class, 'reverseDisqualification']);
     Route::resource('/notice', NoticeController::class);
     Route::resource('/interview', InterviewController::class);
-    Route::post('/search-interview', [InterviewController::class, 'search']);
+    Route::post('/search-interviews', [InterviewController::class, 'search']);
     Route::resource('/appointment', AppointmentController::class);
     Route::resource('/oathtaking', OathTakingController::class);
     Route::resource('/report-of-appointment', ReportOfAppointmentController::class);

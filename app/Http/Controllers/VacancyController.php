@@ -183,7 +183,7 @@ class VacancyController extends Controller
     public function destroy(Vacancy $vacancy)
     {
         $publicationExists = Publication::where('vacancy_id', $vacancy->id)->exists();
-        
+
         if ($publicationExists) {
             return $this->error('', 'You cannot delete Vacancy with Publication.', 400);
         } else {
@@ -212,6 +212,10 @@ class VacancyController extends Controller
             }, $filters);
         } else {
             $filters = [['vacancies.id', 'like', '%']];
+        }
+
+        if ($request->positionStatus) {
+            array_push($filters, ['lgu_positions.position_status', 'like', $request->positionStatus]);
         }
 
         $orderAscending  ? $orderAscending = 'asc' : $orderAscending = 'desc';
