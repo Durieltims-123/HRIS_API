@@ -85,19 +85,26 @@ class InterviewController extends Controller
     {
         $request->validated($request->all());
 
-        $interview = Interview::create([
-            'meeting_date' => $request->meeting_date,
-            'venue' => $request->venue,
-        ]);
+        $interviewExist = Interview::where('meeting_date' , $request->meeting_date)->exists();
 
-        $vacancies_data = array_map(function ($item) {
-            return ["vacancy_id" => $item];
-        }, $request->positions);
+        if ($interviewExist) {
+            return $this->error("", "Duplicate Entry", 400);
+        } else {
+
+            $interview = Interview::create([
+                'meeting_date' => $request->meeting_date,
+                'venue' => $request->venue,
+            ]);
+
+            $vacancies_data = array_map(function ($item) {
+                return ["vacancy_id" => $item];
+            }, $request->positions);
 
 
-        $interview->vacancyInterview()->createMany($vacancies_data);
+            $interview->vacancyInterview()->createMany($vacancies_data);
 
-        return $this->success('', 'Successfully Saved', 200);
+            return $this->success('', 'Successfully Saved', 200);
+        }
     }
 
     /**
@@ -123,13 +130,33 @@ class InterviewController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Interview $interview)
+    public function update(StoreInterviewRequest $request, Interview $interview)
     {
-        $interview->meeting_date = $request->meeting_date;
-        $interview->venue = $request->venue;
-        $interview->save();
+        $request->validated($request->all());
 
-        return new InterviewResource($interview);
+
+        $interviewExist = Interview::where([['meeting_date',$request->meeting_date],["id","<>",$interview->id]])->exists();
+
+        if ($interviewExist) {
+            return $this->error("", "Duplicate Entry", 400);
+        } else {
+
+            $interview->update([
+                'meeting_date' => $request->meeting_date,
+                'venue' => $request->venue,
+            ]);
+
+            $vacancies_data = array_map(function ($item) {
+                return ["vacancy_id" => $item];
+            }, $request->positions);
+
+            $interview->vacancyInterview()->forceDelete();
+            $interview->vacancyInterview()->createMany(
+                $vacancies_data
+            );
+
+            return $this->success('', 'Successfully Saved', 200);
+        }
     }
 
     /**

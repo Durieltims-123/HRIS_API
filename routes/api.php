@@ -31,6 +31,7 @@ use App\Http\Controllers\PositionDescriptionController;
 use App\Http\Controllers\ReportOfAppointmentController;
 use App\Http\Controllers\QualificationStandardController;
 use App\Http\Controllers\PersonnelSelectionBoardController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ServiceRecordFormController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VenueController;
@@ -110,4 +111,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/appointment', AppointmentController::class);
     Route::resource('/oathtaking', OathTakingController::class);
     Route::resource('/report-of-appointment', ReportOfAppointmentController::class);
+
+
+    // Reports
+    Route::get('/generate-initial-caf-per-meeting/{interview}', [ReportController::class, 'generateInitialComparativeAssessementFormPerMeeting']);
 });

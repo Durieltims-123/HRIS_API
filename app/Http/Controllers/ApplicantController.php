@@ -86,10 +86,6 @@ class ApplicantController extends Controller
 
         // validate attachments
 
-
-        return "hello";
-
-
         $applicantExist = Applicant::where([["first_name", $request->first_name], ["middle_name", $request->middle_name], ["last_name", $request->last_name]])->exists();
 
         if ($applicantExist) {
