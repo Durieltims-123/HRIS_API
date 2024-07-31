@@ -3,12 +3,55 @@
 namespace App\Http\Controllers;
 
 use App\Models\Interview;
-use Illuminate\Http\Request;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use ZipArchive;
+
 
 class ReportController extends Controller
 {
     public function generateInitialComparativeAssessementFormPerMeeting(Interview $interview)
     {
+        $zipFileName = 'PSB ' . $interview->meeting_date . '.zip';
+        $zipFilePath = public_path("/zips/" . $zipFileName); // Save to public directory
+        $filesToZip = [
+            public_path() . "\Excel Templates\CAF.xlsx", // Path to file 1
+            public_path() . "\Excel Templates\CAF.xlsx", // Path to file 1
+        ];
+
+        $zip = new ZipArchive;
+        if ($zip->open($zipFilePath, ZipArchive::CREATE) === TRUE) {
+
+
+            foreach ($interview->vacancyInterview as $vacancy) {
+                return $vacancy;
+            }
+
+
+            // foreach ($filesToZip as $file) {
+            //     $zip->addFile($file, basename($file));
+            // }
+            // $zip->close();
+        }
+
+        // $zip_file = public_path() . '\\' . 'zips/PSB-' . $interview->meeting_date . '.zip';
+        // $zip = new \ZipArchive();
+        // $zip->open($zip_file, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
+        // // foreach ($file_names as $key => $file_name) {
+        // $zip->addFile(public_path() . "\Excel Templates\CAF.xlsx");
+        // // }
+        // $zip->close();
+
+
+
+        // $worksheet = $spreadsheet->setActiveSheetIndexByName("Sheet1");
+        // $worksheet->getCell('A1')->setValue(strtoupper(strtolower(date("F j, Y", strtotime($date_opened)) . " OPENING")));
+        // $worksheet->getCell('L1')->setValue($due);
+
+
+
+        return $interview->vacancyInterview;
         // $plantilla = $application->vacancy->lguPosition;
         // $position = $plantilla->position;
         // $filename = $application->first_name . " " . $application->last_name . " (" . $position->title . "-" . $plantilla->item_number . " ) - Letter of Disqualification ";
