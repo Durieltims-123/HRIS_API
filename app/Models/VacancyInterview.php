@@ -12,10 +12,10 @@ class VacancyInterview extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function belongsToVacancy() : BelongsTo{
+    public function vacancy() : BelongsTo{
         return $this->belongsTo(Vacancy::class,'vacancy_id');
     }
-    public function belongsToInterview() : BelongsTo{
+    public function interview() : BelongsTo{
         return $this->belongsTo(Interview::class,'interview_id');
     }
 

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\SalaryGrade;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Position extends Model
@@ -18,9 +19,9 @@ class Position extends Model
     {
         return $this->belongsTo(SalaryGrade::class,'salary_grade_id');
     }
-    public function qualificationStandards (): HasMany
+    public function qualificationStandards (): HasOne
     {
-        return $this->hasMany(QualificationStandard::class);
+        return $this->hasOne(QualificationStandard::class);
     }
     public function hasManyLguPosition (): HasMany
     {

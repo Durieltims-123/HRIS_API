@@ -23,6 +23,11 @@ class Vacancy extends Model
         return $this->hasMany(Publication::class, 'vacancy_id');
     }
 
+    public function hasManyApplications(): HasMany
+    {
+        return $this->hasMany(Application::class, 'vacancy_id');
+    }
+
     public function hasVacancyInterview(): HasMany
     {
         return $this->hasMany(VacancyInterview::class, 'vacancy_id');

@@ -15,77 +15,131 @@ class ReportController extends Controller
     {
         $zipFileName = 'PSB ' . $interview->meeting_date . '.zip';
         $zipFilePath = public_path("/zips/" . $zipFileName); // Save to public directory
-        $filesToZip = [
-            public_path() . "\Excel Templates\CAF.xlsx", // Path to file 1
-            public_path() . "\Excel Templates\CAF.xlsx", // Path to file 1
-        ];
 
         $zip = new ZipArchive;
         if ($zip->open($zipFilePath, ZipArchive::CREATE) === TRUE) {
 
+            $templatePath = public_path('/Excel Templates/CAF.xlsx');
 
-            foreach ($interview->vacancyInterview as $vacancy) {
-                return $vacancy;
+            foreach ($interview->vacancyInterview as $vacancyInterview) {
+                $spreadsheet = IOFactory::load($templatePath);
+
+                $vacancy = $vacancyInterview->vacancy;
+                $lgu_position = $vacancyInterview->vacancy->lguPosition;
+                $position = $lgu_position->position;
+                $qualification_standard = $position->qualificationStandards;
+                $division = $lgu_position->division;
+                $office = $division->office;
+
+                $permanents = $vacancy->hasManyApplications->where('application_type', 'Insider-Permanent')->whereIn('status', ['Shortlisted', 'Interviewed']);
+                $casuals = $vacancy->hasManyApplications->where('application_type', 'Insider-Casual')->whereIn('status', ['Shortlisted', 'Interviewed']);
+                $outsiders = $vacancy->hasManyApplications->where('application_type', 'Outsider')->whereIn('status', ['Shortlisted', 'Interviewed']);
+
+
+                //  Fill Permanent Applicants
+                $worksheet = $spreadsheet->setActiveSheetIndexByName("Permanent");
+
+                if (count($permanents) > 0) {
+                    // fill position details
+                    $worksheet->setCellValue("G3", $position->title . " - " . $lgu_position->item_number);
+                    $worksheet->setCellValue("M3", $position->salaryGrade->amount);
+                    $worksheet->setCellValue("M4", $position->salaryGrade->number);
+                    $worksheet->setCellValue("O3", $office->office_name);
+                    $worksheet->setCellValue("O4", $division->division_name);
+                    $worksheet->setCellValue("F6", $qualification_standard->education);
+                    $worksheet->setCellValue("M6", $qualification_standard->training);
+                    $worksheet->setCellValue("F7", $qualification_standard->experience);
+                    $worksheet->setCellValue("M7", $qualification_standard->eligibility);
+
+
+                    // Duplicate  rows if count of applicants is greater than 1
+                    if (count($permanents) > 1) {
+                        // Define the range of rows to copy (e.g., rows 1 to 10)
+                        $startRow = 10;
+                        $endRow = 14;
+
+                        // Define how many times to duplicate the rows
+                        $duplicateCount = count($permanents) - 1;
+
+                        // Calculate the number of rows to duplicate
+                        $rowsToDuplicate = $endRow - $startRow + 1;
+
+                        // Calculate the total number of rows to insert
+                        $totalRowsToInsert = $rowsToDuplicate * $duplicateCount;
+
+                        // Insert the required number of rows at the end of the range
+                        $insertPosition = $endRow + 1;
+                        $worksheet->insertNewRowBefore($insertPosition, $totalRowsToInsert);
+
+                        // Get the merged cell ranges
+                        $mergedCells = $worksheet->getMergeCells();
+                        sort($mergedCells);
+                        $mg = [];
+
+                        // Iterate over the range to duplicate the rows multiple times
+
+
+                        for ($i = 0; $i < $duplicateCount; $i++) {
+                            for ($row = $startRow; $row <= $endRow; $row++) {
+                                // Read the row
+                                $rowData = $worksheet->rangeToArray("A$row:" . $worksheet->getHighestColumn() . $row, NULL, TRUE, TRUE, TRUE);
+
+                                // Determine the target row for duplication
+                                $targetRow = $insertPosition + $i * $rowsToDuplicate + ($row - $startRow);
+
+                                // Write the row data to the new target row
+                                $worksheet->fromArray($rowData[$row], NULL, "A$targetRow");
+
+
+                             
+                            }
+
+                            // Copy merged cells
+                            // foreach ($mergedCells as $mergedCell) {
+                            //     $mergedRange = explode(':', $mergedCell);
+                            //     $startCell = $mergedRange[0];
+                            //     $endCell = $mergedRange[1];
+
+                            //     preg_match('/([A-Z]+)(\d+)/', $startCell, $startCellParts);
+                            //     preg_match('/([A-Z]+)(\d+)/', $endCell, $endCellParts);
+
+
+                            //     $startColumn = $startCellParts[1];
+                            //     $startRowNumber = $startCellParts[2];
+                            //     $endColumn = $endCellParts[1];
+                            //     $endRowNumber = $endCellParts[2];
+
+
+                            //     if ($startRowNumber >= $startRow && $endRowNumber <= $endRow) {
+                            //         // array_push($mg, [$startRowNumber, $startRow, $endRowNumber, $endRow]);
+                            //         $newStartRow = $targetRow + ($startRowNumber - $startRow);
+                            //         $newEndRow = $targetRow + ($endRowNumber - $startRow);
+                            //         $newMergedRange = $startColumn . $newStartRow . ':' . $endColumn . $newEndRow;
+                            //         if (!in_array($newMergedRange, $mg)) {
+                            //             array_push($mg, $newMergedRange);
+                            //         }
+                            //         //     $worksheet->mergeCells($newMergedRange);
+                            //     }
+                            // }
+                        }
+                    }
+                } else {
+                    $activeSheetIndex = $spreadsheet->getActiveSheetIndex();
+                    $spreadsheet->removeSheetByIndex($activeSheetIndex);
+                }
+                $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+                $writer->save(public_path("/Excel Results/" . $position->title . "-" . $lgu_position->item_number . ".xlsx"));
+
+                return compact('mg');
+
+                $zip->addFile(public_path("/Excel Results/" . $position->title . "-" . $lgu_position->item_number . ".xlsx"));
             }
 
-
-            // foreach ($filesToZip as $file) {
-            //     $zip->addFile($file, basename($file));
-            // }
-            // $zip->close();
+            $zip->close();
         }
 
-        // $zip_file = public_path() . '\\' . 'zips/PSB-' . $interview->meeting_date . '.zip';
-        // $zip = new \ZipArchive();
-        // $zip->open($zip_file, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
-        // // foreach ($file_names as $key => $file_name) {
-        // $zip->addFile(public_path() . "\Excel Templates\CAF.xlsx");
-        // // }
-        // $zip->close();
 
 
-
-        // $worksheet = $spreadsheet->setActiveSheetIndexByName("Sheet1");
-        // $worksheet->getCell('A1')->setValue(strtoupper(strtolower(date("F j, Y", strtotime($date_opened)) . " OPENING")));
-        // $worksheet->getCell('L1')->setValue($due);
-
-
-
-        return $interview->vacancyInterview;
-        // $plantilla = $application->vacancy->lguPosition;
-        // $position = $plantilla->position;
-        // $filename = $application->first_name . " " . $application->last_name . " (" . $position->title . "-" . $plantilla->item_number . " ) - Letter of Disqualification ";
-        // $filePath = public_path('\Word Results\\' . $filename . ".docx");
-        // $personalinformation = $application->individual->latestPersonalDataSheet->personalInformation;
-        // $address = $personalinformation->residential_house . "," . $personalinformation->residential_barangay . "," . ucwords(strtolower($personalinformation->residential_municipality)) . "," . ucwords(strtolower($personalinformation->residential_province));
-        // $prefix = "Ms";
-        // if ($personalinformation->sex === "Male") {
-        //     $prefix = "Mr.";
-        // }
-
-
-        // $governor = Governor::latest()->first();
-        // $governor_name = $governor->prefix . " " . $governor->name . " " . $governor->suffix;
-
-        // $templateProcessor = new TemplateProcessor(public_path() . "\Word Templates\Letter of Disqualification.docx");
-        // // replace value in the template
-        // $templateProcessor->setValue("date", date('F j, Y'));
-        // $templateProcessor->setValue("name", $application->first_name . ' ' . strtoupper($application->middle_name[0]) . '.  ' . $application->last_name);
-        // $templateProcessor->setValue("address", $address);
-        // $templateProcessor->setValue("prefix", $prefix);
-        // $templateProcessor->setValue("last_name", $application->last_name);
-        // $templateProcessor->setValue("phone_number", $personalinformation->mobile_number);
-        // $templateProcessor->setValue("position", $position->title);
-        // $templateProcessor->setValue("office", $plantilla->division->office->office_name);
-        // $templateProcessor->setValue("reason", $application->disqualification->reason);
-        // $templateProcessor->setValue("governor", $governor_name);
-
-
-        // $templateProcessor->saveAs($filePath);
-        // $fileContents = file_get_contents($filePath);
-        // $base64 = base64_encode($fileContents);
-
-
-        // return $this->success(compact('base64', 'filename'), 'Successfully Retrieved.', 200);
+        return "SUCCESSFUL";
     }
 }
