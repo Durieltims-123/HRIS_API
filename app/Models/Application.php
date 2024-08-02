@@ -46,6 +46,15 @@ class Application extends Model
         return $this->belongsTo(Vacancy::class);
     }
 
+    public function fullname()
+    {
+        if ($this->middle_name != "") {
+            return $this->first_name . " " . $this->middle_name[0] . ". " . $this->last_name;
+        } else {
+            return $this->first_name . " " . $this->last_name;
+        }
+    }
+
 
     protected $primaryKey = 'id';
 

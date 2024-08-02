@@ -51,15 +51,16 @@ class ReportController extends Controller
                     $worksheet->setCellValue("F7", $qualification_standard->experience);
                     $worksheet->setCellValue("M7", $qualification_standard->eligibility);
 
+                    // Define the range of rows to copy (e.g., rows 1 to 10)
+                    $startRow = 10;
+                    $endRow = 14;
+
+                    // Define how many times to duplicate the rows
+                    $duplicateCount = count($permanents) - 1;
+
 
                     // Duplicate  rows if count of applicants is greater than 1
                     if (count($permanents) > 1) {
-                        // Define the range of rows to copy (e.g., rows 1 to 10)
-                        $startRow = 10;
-                        $endRow = 14;
-
-                        // Define how many times to duplicate the rows
-                        $duplicateCount = count($permanents) - 1;
 
                         // Calculate the number of rows to duplicate
                         $rowsToDuplicate = $endRow - $startRow + 1;
@@ -73,13 +74,29 @@ class ReportController extends Controller
 
                         // Get the merged cell ranges
                         $mergedCells = $worksheet->getMergeCells();
+
+
+                        //filter merged cell on specific selected rows
+                        $mergedCells = array_filter($mergedCells, function ($mergedCell) use ($startRow, $endRow) {
+                            $mergedRange = explode(':', $mergedCell);
+                            $startCell = $mergedRange[0];
+                            $endCell = $mergedRange[1];
+                            preg_match('/([A-Z]+)(\d+)/', $startCell, $startCellParts);
+                            preg_match('/([A-Z]+)(\d+)/', $endCell, $endCellParts);
+                            $startRowNumber = $startCellParts[2];
+                            $endRowNumber = $endCellParts[2];
+
+                            if ($startRowNumber >= $startRow && $endRowNumber <= $endRow) {
+                                return $mergedCell;
+                            }
+                        });
                         sort($mergedCells);
                         $mg = [];
 
                         // Iterate over the range to duplicate the rows multiple times
-
-
                         for ($i = 0; $i < $duplicateCount; $i++) {
+
+                            // duplicate multiple rows
                             for ($row = $startRow; $row <= $endRow; $row++) {
                                 // Read the row
                                 $rowData = $worksheet->rangeToArray("A$row:" . $worksheet->getHighestColumn() . $row, NULL, TRUE, TRUE, TRUE);
@@ -91,36 +108,50 @@ class ReportController extends Controller
                                 $worksheet->fromArray($rowData[$row], NULL, "A$targetRow");
 
 
-                             
+                                // copy merged cells to duplicated rows
+                                foreach ($mergedCells as $mergedCell) {
+                                    $mergedRange = explode(':', $mergedCell);
+                                    $startCell = $mergedRange[0];
+                                    $endCell = $mergedRange[1];
+
+                                    preg_match('/([A-Z]+)(\d+)/', $startCell, $startCellParts);
+                                    preg_match('/([A-Z]+)(\d+)/', $endCell, $endCellParts);
+
+                                    $startColumn = $startCellParts[1];
+                                    $startRowNumber = $startCellParts[2];
+                                    $endColumn = $endCellParts[1];
+                                    $endRowNumber = $endCellParts[2];
+
+                                    if ($targetRow - (($i + 1) * $rowsToDuplicate) == $startRowNumber && $targetRow - (($i + 1) * $rowsToDuplicate) == $endRowNumber) {
+                                        $newMergedRange = $startColumn . $targetRow . ':' . $endColumn . $targetRow;
+                                        $worksheet->mergeCells($newMergedRange);
+                                    }
+
+                                    $worksheet->setCellValue("G3", $position->title . " - " . $lgu_position->item_number);
+                                }
                             }
-
-                            // Copy merged cells
-                            // foreach ($mergedCells as $mergedCell) {
-                            //     $mergedRange = explode(':', $mergedCell);
-                            //     $startCell = $mergedRange[0];
-                            //     $endCell = $mergedRange[1];
-
-                            //     preg_match('/([A-Z]+)(\d+)/', $startCell, $startCellParts);
-                            //     preg_match('/([A-Z]+)(\d+)/', $endCell, $endCellParts);
+                        }
 
 
-                            //     $startColumn = $startCellParts[1];
-                            //     $startRowNumber = $startCellParts[2];
-                            //     $endColumn = $endCellParts[1];
-                            //     $endRowNumber = $endCellParts[2];
+                        // Insert Application Details
+                        $counter = 0;
+                        foreach ($permanents as $index => $permanent) {
+                            $row = $startRow + ($counter * $rowsToDuplicate);
+                            $worksheet->setCellValue("A" . $row, ($counter + 1));
+                          
+                            // Employee Details
+                            $middle_initial = ($permanent->middle_name != '') ? $permanent->middle_name[0] . ". " : " ";
+                            $worksheet->setCellValue("C" . $row, strtoupper(strtolower($permanent->first_name . $middle_initial . $permanent->last_name)));
+                            // $worksheet->setCellValue("F" . $row + 1, ($counter + 1));
+                            // $worksheet->setCellValue("F" . $row + 2, ($counter + 1));
+                            // $worksheet->setCellValue("F" . $row + 3, ($counter + 1));
 
-
-                            //     if ($startRowNumber >= $startRow && $endRowNumber <= $endRow) {
-                            //         // array_push($mg, [$startRowNumber, $startRow, $endRowNumber, $endRow]);
-                            //         $newStartRow = $targetRow + ($startRowNumber - $startRow);
-                            //         $newEndRow = $targetRow + ($endRowNumber - $startRow);
-                            //         $newMergedRange = $startColumn . $newStartRow . ':' . $endColumn . $newEndRow;
-                            //         if (!in_array($newMergedRange, $mg)) {
-                            //             array_push($mg, $newMergedRange);
-                            //         }
-                            //         //     $worksheet->mergeCells($newMergedRange);
-                            //     }
-                            // }
+                            // // assessment
+                            // $worksheet->setCellValue("J" . $row, $permanent->assessment->training);
+                            // $worksheet->setCellValue("K" . $row, $permanent->assessment->performance);
+                            // $worksheet->setCellValue("L" . $row, $permanent->assessment->education);
+                            // $worksheet->setCellValue("M" . $row, $permanent->assessment->experience);
+                            $counter++;
                         }
                     }
                 } else {
