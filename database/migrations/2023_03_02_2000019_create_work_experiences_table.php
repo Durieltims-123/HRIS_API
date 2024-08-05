@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('status_of_appointment');
             $table->string('government_service');
             $table->date('date_from');
-            $table->date('date_to');
+            $table->date('date_to')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

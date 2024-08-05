@@ -29,7 +29,7 @@ class Email extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: '',
+            subject: 'Application Update',
         );
     }
 

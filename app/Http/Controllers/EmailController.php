@@ -18,7 +18,7 @@ class EmailController extends Controller
     public function sendDisqualificationEmail(Application $application, SendEmailRequest $request)
     {
         $mailData = [
-            'title' => $request->subject,
+            'subject' => $request->subject,
             'body' => $request->body
         ];
 

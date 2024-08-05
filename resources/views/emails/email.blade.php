@@ -4,7 +4,8 @@
     <title>Application Update</title>
 </head>
 <body>
-    <h3>{{ $mailData['title'] }}</h3>
+    <h3>{{ $mailData['subject'] }}</h3>
+
     {!!$mailData['body'] !!}
 </body>
 </html>

@@ -112,7 +112,7 @@ class StoreEmployeeRequest extends FormRequest
             'eligibilities.*.license_date_validity' => ['nullable', 'max:255'],
 
             'workExperiences.*.date_from' => ['required', 'max:255'],
-            'workExperiences.*.date_to' => ['required', 'max:255', 'after:workExperiences.*.date_from'],
+            'workExperiences.*.date_to' => ['nullable', 'max:255', 'after:workExperiences.*.date_from'],
             'workExperiences.*.position_title' => ['required', 'max:255'],
             'workExperiences.*.office_company' => ['required', 'max:255'],
             'workExperiences.*.monthly_salary' => ['required', 'max:255'],
