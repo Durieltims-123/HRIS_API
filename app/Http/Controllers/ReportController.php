@@ -4,17 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Interview;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use Illuminate\Support\Facades\File;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Style\Style;
+use Illuminate\Support\Facades\Storage;
+use App\Traits\HttpResponses;
+
 use ZipArchive;
 
 
 class ReportController extends Controller
 {
+
+    use HttpResponses;
+
     public function generateInitialComparativeAssessementFormPerMeeting(Interview $interview)
     {
-        $zipFileName = 'PSB ' . $interview->meeting_date . '.zip';
-        $zipFilePath = public_path("/zips/" . $zipFileName); // Save to public directory
+        $files=[];
+        $filename = 'PSB ' . $interview->meeting_date . '.zip';
+        $zipFilePath = public_path("/zips/" . $filename); // Save to public directory
 
         $zip = new ZipArchive;
         if ($zip->open($zipFilePath, ZipArchive::CREATE) === TRUE) {
@@ -61,11 +69,11 @@ class ReportController extends Controller
                     $duplicateCount = count($permanents) - 1;
 
 
+                    // Calculate the number of rows to duplicate
+                    $rowsToDuplicate = $endRow - $startRow + 1;
+
                     // Duplicate  rows if count of applicants is greater than 1
                     if (count($permanents) > 1) {
-
-                        // Calculate the number of rows to duplicate
-                        $rowsToDuplicate = $endRow - $startRow + 1;
 
                         // Calculate the total number of rows to insert
                         $totalRowsToInsert = $rowsToDuplicate * $duplicateCount;
@@ -156,16 +164,6 @@ class ReportController extends Controller
                         $worksheet->setCellValue("A" . $row, ($counter + 1));
 
                         $personalInformation = $permanent->individual->latestPersonalDataSheet->personalInformation;
-                        $eligibilities = (array) $permanent->individual->latestPersonalDataSheet->civilServiceEligibilities->toArray();
-
-                        // Map the array using an anonymous function
-                        $eligibilities = array_map(function ($item) {
-                            return $item["eligibility_title"];
-                        }, $eligibilities);
-
-                        sort($eligibilities);
-                        // Concatenate the elements into a string
-                        $resultString = implode("\n", $eligibilities);
 
                         $address = $personalInformation->permanent_barangay . "," . ucwords(strtolower($personalInformation->permanent_municipality)) . "," . ucwords(strtolower($personalInformation->permanent_province));
                         $age_civil_status = $personalInformation->age . "/" . $personalInformation->civil_status;
@@ -176,7 +174,7 @@ class ReportController extends Controller
                         $worksheet->setCellValue("F" . $row + 1, $permanent->individual->lguPosition->position->title);
                         $worksheet->setCellValue("F" . $row + 2, $address);
                         $worksheet->setCellValue("F" . $row + 3, $age_civil_status);
-                        $worksheet->setCellValue("I" . $row, $resultString);
+                        $worksheet->setCellValue("I" . $row, $permanent->assessment->appropriate_eligibility);
                         $worksheet->getStyle("I" . $row)->getAlignment()->setWrapText(true);
                         $worksheet->getStyle("F" . $row . ":F" . $row + 3)->getAlignment()->setWrapText(true);
 
@@ -216,12 +214,10 @@ class ReportController extends Controller
                     // Define how many times to duplicate the rows
                     $duplicateCount = count($casuals) - 1;
 
-
+                    // Calculate the number of rows to duplicate
+                    $rowsToDuplicate = $endRow - $startRow + 1;
 
                     if (count($casuals) > 1) {
-
-                        // Calculate the number of rows to duplicate
-                        $rowsToDuplicate = $endRow - $startRow + 1;
 
                         // Calculate the total number of rows to insert
                         $totalRowsToInsert = $rowsToDuplicate * $duplicateCount;
@@ -313,16 +309,6 @@ class ReportController extends Controller
                         $worksheet->setCellValue("A" . $row, ($counter + 1));
 
                         $personalInformation = $casual->individual->latestPersonalDataSheet->personalInformation;
-                        $eligibilities = (array) $casual->individual->latestPersonalDataSheet->civilServiceEligibilities->toArray();
-
-                        // Map the array using an anonymous function
-                        $eligibilities = array_map(function ($item) {
-                            return $item["eligibility_title"];
-                        }, $eligibilities);
-
-                        sort($eligibilities);
-                        // Concatenate the elements into a string
-                        $resultString = implode("\n", $eligibilities);
 
                         $address = $personalInformation->casual_barangay . "," . ucwords(strtolower($personalInformation->casual_municipality)) . "," . ucwords(strtolower($personalInformation->casual_province));
                         $age_civil_status = $personalInformation->age . "/" . $personalInformation->civil_status;
@@ -333,7 +319,7 @@ class ReportController extends Controller
                         $worksheet->setCellValue("F" . $row + 1, $casual->individual->lguPosition->position->title);
                         $worksheet->setCellValue("F" . $row + 2, $address);
                         $worksheet->setCellValue("F" . $row + 3, $age_civil_status);
-                        $worksheet->setCellValue("I" . $row, $resultString);
+                        $worksheet->setCellValue("I" . $row, $casual->assessment->appropriate_eligibility);
                         $worksheet->getStyle("I" . $row)->getAlignment()->setWrapText(true);
                         $worksheet->getStyle("F" . $row . ":F" . $row + 3)->getAlignment()->setWrapText(true);
 
@@ -374,12 +360,11 @@ class ReportController extends Controller
                     // Define how many times to duplicate the rows
                     $duplicateCount = count($outsiders) - 1;
 
+                    // Calculate the number of rows to duplicate
+                    $rowsToDuplicate = $endRow - $startRow + 1;
 
                     // Duplicate  rows if count of applicants is greater than 1
                     if (count($outsiders) > 1) {
-
-                        // Calculate the number of rows to duplicate
-                        $rowsToDuplicate = $endRow - $startRow + 1;
 
                         // Calculate the total number of rows to insert
                         $totalRowsToInsert = $rowsToDuplicate * $duplicateCount;
@@ -470,17 +455,6 @@ class ReportController extends Controller
                         $worksheet->setCellValue("A" . $row, ($counter + 1));
                         $work = $outsider->individual->latestPersonalDataSheet->workExperiences->whereNull('date_to')->sortBy('date_from');
                         $personalInformation = $outsider->individual->latestPersonalDataSheet->personalInformation;
-                        $eligibilities = (array) $outsider->individual->latestPersonalDataSheet->civilServiceEligibilities->toArray();
-
-                        // Map the array using an anonymous function
-                        $eligibilities = array_map(function ($item) {
-                            return $item["eligibility_title"];
-                        }, $eligibilities);
-
-                        sort($eligibilities);
-                        // Concatenate the elements into a string
-                        $resultString = implode("\n", $eligibilities);
-
                         $address = $personalInformation->outsider_barangay . "," . ucwords(strtolower($personalInformation->outsider_municipality)) . "," . ucwords(strtolower($personalInformation->outsider_province));
                         $age_civil_status = $personalInformation->age . "/" . $personalInformation->civil_status;
 
@@ -494,7 +468,7 @@ class ReportController extends Controller
 
                         $worksheet->setCellValue("F" . $row + 2, $address);
                         $worksheet->setCellValue("F" . $row + 3, $age_civil_status);
-                        $worksheet->setCellValue("I" . $row, $resultString);
+                        $worksheet->setCellValue("I" . $row, $outsider->assessment->appropriate_eligibility);
                         $worksheet->getStyle("I" . $row)->getAlignment()->setWrapText(true);
                         $worksheet->getStyle("F" . $row . ":F" . $row + 3)->getAlignment()->setWrapText(true);
 
@@ -512,15 +486,26 @@ class ReportController extends Controller
                 }
 
                 $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
-                $writer->save(public_path("/Excel Results/" . $position->title . "-" . $lgu_position->item_number . ".xlsx"));
-                $zip->addFile(public_path("/Excel Results/" . $position->title . "-" . $lgu_position->item_number . ".xlsx"));
-            }
+                $path = public_path("/Excel Results/" . $position->title . "-" . $lgu_position->item_number . ".xlsx");
+                $writer->save($path);
 
+                $zip->addFile($path, basename($path));
+            }
             $zip->close();
         }
 
+        foreach($files as $file){
+            if (File::exists($file)) {
+                File::delete($file);
+            }
+        }
 
+        $fileContents = file_get_contents($zipFilePath);
+        $base64 = base64_encode($fileContents);
 
-        return "SUCCESSFUL";
+        if (File::exists($zipFilePath)) {
+            File::delete($zipFilePath);
+        }
+        return $this->success(compact('base64', 'filename'), 'Successfully Retrieved.', 200);
     }
 }

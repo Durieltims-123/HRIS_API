@@ -20,6 +20,7 @@ class Assessment extends Model
 
     protected $fillable = [
         'application_id',
+        'appropriate_eligibility',
         'training',
         'performance',
         'education',

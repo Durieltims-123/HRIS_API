@@ -24,6 +24,7 @@ use PhpOffice\PhpWord\TemplateProcessor;
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\Settings;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use Illuminate\Support\Facades\File;
 
 
 class ApplicationController extends Controller
@@ -1452,6 +1453,7 @@ class ApplicationController extends Controller
 
         if ($application->assessment) {
             $application->assessment->update([
+                'appropriate_eligibility' => $request->appropriate_eligibility,
                 'training' => $request->shortlist_trainings,
                 'performance' => $request->performance,
                 'education' => $request->education,
@@ -1460,6 +1462,7 @@ class ApplicationController extends Controller
         } else {
             // insert initial_assessment records
             $application->assessment()->create([
+                'appropriate_eligibility' => $request->appropriate_eligibility,
                 'training' => $request->shortlist_trainings,
                 'performance' => $request->performance,
                 'education' => $request->education,
@@ -1477,7 +1480,7 @@ class ApplicationController extends Controller
 
         // change status to Active
         if ($application->status  === "Shortlisted") {
-            $application->assessment->delete();
+            $application->assessment->forceDelete();
             Log::create([
                 'user_id' => Auth::user()->id,
                 'action' => "Reverted Disqualified Application with id " . $application->id . " to Active",
@@ -1485,7 +1488,7 @@ class ApplicationController extends Controller
             ]);
         }
         if ($application->status  === "Disqualified") {
-            $application->disqualification->delete();
+            $application->disqualification->forceDelete();
             Log::create([
                 'user_id' => Auth::user()->id,
                 'action' => "Reverted Disqualified Application with id " . $application->id . " to Active",
@@ -1535,6 +1538,10 @@ class ApplicationController extends Controller
         $templateProcessor->saveAs($filePath);
         $fileContents = file_get_contents($filePath);
         $base64 = base64_encode($fileContents);
+
+        if (File::exists($filePath)) {
+            File::delete($filePath);
+        }
         return $this->success(compact('base64', 'filename'), 'Successfully Retrieved.', 200);
     }
 }
