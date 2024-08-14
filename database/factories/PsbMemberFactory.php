@@ -18,10 +18,8 @@ class PsbMemberFactory extends Factory
     public function definition(): array
     {
         return [
-            
-            'employee_id' => fake()->randomDigit(),
-            'member_name' => fake()->name(),
-            'member_position' => fake()->word(),
+            'name' => fake()->name(),
+            'position' => fake()->word(),
             'personnel_selection_board_id' => function () {
                 return PersonnelSelectionBoard::factory()->create()->id;
             },

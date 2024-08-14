@@ -14,32 +14,26 @@ class PsbMember extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function hasManyAssessment():HasMany{
+    public function hasManyAssessment(): HasMany
+    {
         return $this->hasMany(Assessment::class);
     }
 
-    public function belongsToPSB():BelongsTo{
+    public function belongsToPSB(): BelongsTo
+    {
         return $this->belongsTo(PersonnelSelectionBoard::class);
     }
 
-    public function belongsToManyInterview():BelongsToMany{
-        return $this->belongsToMany(Interview::class);
-    }
+    // public function belongsToManyInterview(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(Interview::class);
+    // }
 
     protected $primaryKey = 'id';
 
-    // protected $casts = [
-    //     'employee_id'=> 'array',
-    //     'member_name' => 'array',
-    //     'member_position'=> 'array'
-    // ];
-
     protected $fillable = [
         'personnel_selection_board_id',
-        'employee_id',
-        'member_name' ,
-        'member_position'
+        'name',
+        'position'
     ];
-
-    
 }

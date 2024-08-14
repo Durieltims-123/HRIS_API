@@ -18,24 +18,15 @@ class PersonnelSelectionBoardResource extends JsonResource
         // dd($this->member_name);
         return [
             "id" => (string)$this->id,
-            "attributes"=>[
-                "start_date" => (string)$this->start_date,
-                "end_date" => (string)$this->end_date,
-                "chairman" => (string)$this->chairman,
-                "position" => (string)$this->position,
-                "status" => (string)$this->status,
-                // 'members' => $this->hasManyMembers->map(function ($member_name) {
-                //     return [
-                //         'employee_id' => $member_name->employee_id,
-                //         'member_name' => $member_name->member_name,
-                //         'member_position' => $member_name->member_position,
-                //     ];
-                // }),
+            "attributes" => [
+                "date_of_effectivity" => (string)$this->date_of_effectivity,
+                "end_of_effectivity" => (string)$this->end_of_effectivity,
+                "presiding_officer" => (string)$this->presiding_officer,
+                "presiding_officer_position" => (string)$this->presiding_officer_position,
                 "members" => PsbMemberResource::collection($this->whenLoaded('psbMembers'))
-
             ],
-            
-           
+
+
         ];
     }
 }

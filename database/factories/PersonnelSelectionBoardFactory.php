@@ -22,11 +22,10 @@ class PersonnelSelectionBoardFactory extends Factory
         
 
         return [
-            'start_date' => fake()->date('Y-m-d'),
-            'end_date' => fake()->date('Y-m-d'),
-            'chairman' => fake()->name(),
-            'position' => fake()->word(),
-            'status' => fake()->word()
+            'date_of_effectivity' => fake()->date('Y-m-d'),
+            'end_of_effectivity' => fake()->date('Y-m-d'),
+            'presiding_officer' => fake()->name(),
+            'presiding_officer_position' => fake()->word(),
         ];
     }
 }

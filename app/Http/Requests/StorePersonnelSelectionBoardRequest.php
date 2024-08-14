@@ -22,14 +22,12 @@ class StorePersonnelSelectionBoardRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'start_date' => ['required', 'date'],
-            'end_date' => ['required', 'date'],
-            'chairman' => ['required', 'string', 'max:255'],
-            'position' => ['required', 'string', 'max:255'],
-            'status' => ['required', 'string', 'max:255'],
-            'member_name' => ['required', 'max:255'],
-            'member_position' => ['required', 'max:255'],
-            
+            'date_of_effectivity' => ['required', 'date'],
+            'end_of_effectivity' => ['nullable', 'date', 'after:date_of_effectivity'],
+            'presiding_officer' => ['required', 'string', 'max:255'],
+            'presiding_officer_position' => ['required', 'string', 'max:255'],
+            'members.*.name' => ['required', 'max:255'],
+            'members.*.position' => ['required', 'max:255'],
         ];
     }
 }

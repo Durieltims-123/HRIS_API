@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('personnel_selection_boards', function (Blueprint $table) {
             $table->id();
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->string('chairman');
-            $table->string('position');
-            $table->string('status');
+            $table->date('date_of_effectivity');
+            $table->date('end_of_effectivity');
+            $table->string('presiding_officer');
+            $table->string('presiding_officer_position');
             $table->timestamps();
             $table->softDeletes();
         });

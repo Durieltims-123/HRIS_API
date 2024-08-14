@@ -10,9 +10,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class PersonnelSelectionBoard extends Model
 {
     use HasFactory;
-    USE SoftDeletes;
+    use SoftDeletes;
 
-    public function psbMembers():HasMany
+    public function psbMembers(): HasMany
     {
         return $this->hasMany(PsbMember::class);
     }
@@ -20,10 +20,9 @@ class PersonnelSelectionBoard extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'start_date',
-        'end_date',
-        'chairman',
-        'position',
-        'status',
+        'date_of_effectivity',
+        'end_of_effectivity',
+        'presiding_officer',
+        'presiding_officer_position'
     ];
 }

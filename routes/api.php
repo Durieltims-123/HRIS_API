@@ -75,14 +75,18 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/employee-validation', [EmployeeController::class, 'validation']);
 
 
+    Route::resource('/personnel-selection-board', PersonnelSelectionBoardController::class);
+    Route::post('/search-psbs', [PersonnelSelectionBoardController::class, 'search']);
+
+    Route::resource('/psb-member', PsbMemberController::class);
+
+
     Route::post('/search-cos', [EmployeeController::class, 'searchCos']);
     Route::resource('/question', QuestionController::class);
     Route::resource('/service-record-form', ServiceRecordFormController::class);
     Route::resource('/orientation', OrientationController::class);
 
-    //Qnan
-    Route::resource('/personnel-selection-board', PersonnelSelectionBoardController::class);
-    Route::resource('/psb-member', PsbMemberController::class);
+ 
     Route::resource('/assessment', AssessmentController::class);
     Route::resource('/vacancy', VacancyController::class);
     Route::post('/search-vacancy', [VacancyController::class, 'search']);
