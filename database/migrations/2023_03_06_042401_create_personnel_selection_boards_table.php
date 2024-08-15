@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->date('date_of_effectivity');
             $table->date('end_of_effectivity');
+            $table->string('presiding_officer_prefix');
             $table->string('presiding_officer');
             $table->string('presiding_officer_position');
+            $table->string('presiding_officer_office');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -16,16 +16,18 @@ class PersonnelSelectionBoardFactory extends Factory
      * @return array<string, mixed>
      */
     protected $model = PersonnelSelectionBoard::class;
-    
+
     public function definition(): array
     {
-        
+
 
         return [
             'date_of_effectivity' => fake()->date('Y-m-d'),
             'end_of_effectivity' => fake()->date('Y-m-d'),
+            'presiding_officer_prefix' => "Mr.",
             'presiding_officer' => fake()->name(),
             'presiding_officer_position' => fake()->word(),
+            'presiding_officer_office' => fake()->address(),
         ];
     }
 }

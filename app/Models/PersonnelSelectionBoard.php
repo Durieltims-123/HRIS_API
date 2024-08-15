@@ -12,9 +12,9 @@ class PersonnelSelectionBoard extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function psbMembers(): HasMany
+    public function psbPersonnels(): HasMany
     {
-        return $this->hasMany(PsbMember::class);
+        return $this->hasMany(PsbPersonnel::class);
     }
 
     protected $primaryKey = 'id';
@@ -22,7 +22,9 @@ class PersonnelSelectionBoard extends Model
     protected $fillable = [
         'date_of_effectivity',
         'end_of_effectivity',
+        'presiding_officer_prefix',
         'presiding_officer',
-        'presiding_officer_position'
+        'presiding_officer_position',
+        'presiding_officer_office',
     ];
 }

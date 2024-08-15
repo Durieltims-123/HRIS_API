@@ -21,7 +21,7 @@ class PersonnelSelectionBoardController extends Controller
     public function index()
     {
         return PersonnelSelectionBoardResource::collection(
-            PersonnelSelectionBoard::with('psbMembers')->get()
+            PersonnelSelectionBoard::with('psbPersonnels')->get()
         );
     }
 
@@ -46,8 +46,10 @@ class PersonnelSelectionBoardController extends Controller
         $PsbExists = PersonnelSelectionBoard::where([
             ['date_of_effectivity', $psbRequest->date_of_effectivity],
             ['end_of_effectivity', $psbRequest->end_of_effectivity],
+            ['presiding_officer_prefix', $psbRequest->presiding_officer_prefix],
             ['presiding_officer', $psbRequest->presiding_officer],
             ['presiding_officer_position', $psbRequest->presiding_officer_position],
+            ['presiding_officer_office', $psbRequest->presiding_officer_office],
         ])->exists();
 
         if ($PsbExists) {
@@ -59,11 +61,15 @@ class PersonnelSelectionBoardController extends Controller
             "date_of_effectivity" => $psbRequest->date_of_effectivity,
             "end_of_effectivity" => $psbRequest->end_of_effectivity,
             "presiding_officer" => $psbRequest->presiding_officer,
-            "presiding_officer_position" => $psbRequest->presiding_officer_position
+            "presiding_officer_prefix" => $psbRequest->presiding_officer_prefix,
+            "presiding_officer_position" => $psbRequest->presiding_officer_position,
+            "presiding_officer_office" => $psbRequest->presiding_officer_office,
         ]);
 
 
-        $psb->psbMembers()->createMany($psbRequest->members);
+        $psb->psbPersonnels()->createMany($psbRequest->members);
+
+        $psb->psbPersonnels()->createMany($psbRequest->secretariats);
 
         // return message
         return $this->success('', 'Successfully Saved', 200);
@@ -74,9 +80,8 @@ class PersonnelSelectionBoardController extends Controller
      */
     public function show(PersonnelSelectionBoard $personnelSelectionBoard)
     {
-        $members = $personnelSelectionBoard->psbMembers->select("name", "position");
-
-        return compact('personnelSelectionBoard', 'members');
+        $personnels =  $personnelSelectionBoard->psbPersonnels->select("prefix", "name", "position", 'office', 'role');
+        return compact('personnelSelectionBoard', 'personnels');
     }
 
     /**
@@ -102,8 +107,10 @@ class PersonnelSelectionBoardController extends Controller
             ['id', '<>', $personnelSelectionBoard->id],
             ['date_of_effectivity', $psbRequest->date_of_effectivity],
             ['end_of_effectivity', $psbRequest->end_of_effectivity],
+            ['presiding_officer_prefix', $psbRequest->presiding_officer_prefix],
             ['presiding_officer', $psbRequest->presiding_officer],
             ['presiding_officer_position', $psbRequest->presiding_officer_position],
+            ['presiding_officer_office', $psbRequest->presiding_officer_office],
         ])->exists();
 
         if ($PsbExists) {
@@ -112,13 +119,16 @@ class PersonnelSelectionBoardController extends Controller
 
         $personnelSelectionBoard->date_of_effectivity = $psbRequest->date_of_effectivity;
         $personnelSelectionBoard->end_of_effectivity = $psbRequest->end_of_effectivity;
+        $personnelSelectionBoard->presiding_officer_prefix = $psbRequest->presiding_officer_prefix;
         $personnelSelectionBoard->presiding_officer = $psbRequest->presiding_officer;
         $personnelSelectionBoard->presiding_officer_position = $psbRequest->presiding_officer_position;
+        $personnelSelectionBoard->presiding_officer_office = $psbRequest->presiding_officer_office;
 
 
-        $personnelSelectionBoard->psbMembers()->forceDelete();
+        $personnelSelectionBoard->psbPersonnels()->forceDelete();
 
-        $personnelSelectionBoard->psbMembers()->createMany($psbRequest->members);
+        $personnelSelectionBoard->psbPersonnels()->createMany($psbRequest->members);
+        $personnelSelectionBoard->psbPersonnels()->createMany($psbRequest->secretariats);
 
         $personnelSelectionBoard->save();
 
@@ -162,7 +172,7 @@ class PersonnelSelectionBoardController extends Controller
         $data = PersonnelSelectionBoardResource::collection(
             PersonnelSelectionBoard::skip(($activePage - 1) * 10)
                 ->orderBy($orderBy, $orderAscending)
-                ->with('psbMembers')
+                ->with('psbPersonnels')
                 ->where($filters)
                 ->take(10)
                 ->get()

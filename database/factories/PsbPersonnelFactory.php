@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PsbMember>
  */
-class PsbMemberFactory extends Factory
+class PsbPersonnelFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,11 +18,14 @@ class PsbMemberFactory extends Factory
     public function definition(): array
     {
         return [
+            'prefix' => fake()->word(),
             'name' => fake()->name(),
             'position' => fake()->word(),
+            'office' => fake()->address(),
             'personnel_selection_board_id' => function () {
                 return PersonnelSelectionBoard::factory()->create()->id;
             },
+            'role' => $this->faker->randomElement(['member', 'secretariat']),
         ];
     }
 }

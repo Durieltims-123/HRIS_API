@@ -34,6 +34,7 @@ use App\Models\CivilServiceEligibility;
 use App\Models\Disqualification;
 use App\Models\LguPosition;
 use App\Models\PersonnelSelectionBoard;
+use App\Models\PsbPersonnel;
 use App\Models\PublicationInterview;
 use App\Models\TrainingProgramAttended;
 use App\Models\User;
@@ -63,7 +64,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         PersonnelSelectionBoard::factory(5)
-            ->has(PsbMember::factory()->count(5))
+            ->has(PsbPersonnel::factory()->count(5))
             ->create();
 
         // Applicant::factory(5)->create();

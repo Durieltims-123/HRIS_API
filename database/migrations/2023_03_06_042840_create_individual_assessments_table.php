@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('individual_assessments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('application_id')->constrained()->onDelete('cascade');
-            $table->foreignId('member_id')->constrained('psb_members');
+            $table->foreignId('personnel_id')->constrained('psb_personnels');
             $table->integer('ia_psychological_attributes')->nullable();
             $table->integer('ia_potential')->nullable();
             $table->integer('ia_awards')->nullable();

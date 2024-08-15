@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('psb_members', function (Blueprint $table) {
+        Schema::create('psb_personnels', function (Blueprint $table) {
             $table->id();
             $table->foreignId('personnel_selection_board_id')->constrained()->onDelete('cascade');
+            $table->string('prefix');
             $table->string('name');
             $table->string('position');
+            $table->string('office');
+            $table->string('role');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PsbMember extends Model
+class PsbPersonnel extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -33,7 +33,10 @@ class PsbMember extends Model
 
     protected $fillable = [
         'personnel_selection_board_id',
+        'prefix',
         'name',
-        'position'
+        'position',
+        'office',
+        'role'
     ];
 }
