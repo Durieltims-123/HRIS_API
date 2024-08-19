@@ -19,15 +19,16 @@ class Interview extends Model
         return $this->hasMany(VacancyInterview::class, 'interview_id');
     }
 
-       public function venue(): BelongsTo
+    public function venue(): BelongsTo
     {
-        return $this->BelongsTo(Venue::class, '');
+        return $this->BelongsTo(Venue::class, 'venue_id');
     }
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'date_created',
         'meeting_date',
-        'venue'
+        'venue_id'
     ];
 }

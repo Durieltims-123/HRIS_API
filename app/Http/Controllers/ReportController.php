@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Governor;
 use App\Models\Interview;
+use App\Models\Vacancy;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use Illuminate\Support\Facades\File;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Style\Style;
 use Illuminate\Support\Facades\Storage;
 use App\Traits\HttpResponses;
-
+use PhpOffice\PhpSpreadsheet\RichText\RichText;
+use PhpOffice\PhpWord\TemplateProcessor;
 use ZipArchive;
+use Illuminate\Support\Facades\DB;
 
 
 class ReportController extends Controller
@@ -20,7 +24,7 @@ class ReportController extends Controller
 
     public function generateInitialComparativeAssessementFormPerMeeting(Interview $interview)
     {
-        $files=[];
+        $files = [];
         $filename = 'PSB ' . $interview->meeting_date . '.zip';
         $zipFilePath = public_path("/zips/" . $filename); // Save to public directory
 
@@ -28,9 +32,9 @@ class ReportController extends Controller
         if ($zip->open($zipFilePath, ZipArchive::CREATE) === TRUE) {
 
             $templatePath = public_path('/Excel Templates/CAF.xlsx');
+            $templatePath2 = public_path('/Excel Templates/CAF-DH.xlsx');
 
             foreach ($interview->vacancyInterview as $vacancyInterview) {
-                $spreadsheet = IOFactory::load($templatePath);
 
                 $vacancy = $vacancyInterview->vacancy;
                 $lgu_position = $vacancyInterview->vacancy->lguPosition;
@@ -38,6 +42,25 @@ class ReportController extends Controller
                 $qualification_standard = $position->qualificationStandards;
                 $division = $lgu_position->division;
                 $office = $division->office;
+                $head = false;
+
+                // $spreadsheet = IOFactory::load($templatePath);
+                if (strpos($position->code, "PGDH") === false) {
+                    $spreadsheet = IOFactory::load($templatePath);
+                    $head = false;
+                } else {
+                    $spreadsheet = IOFactory::load($templatePath2);
+                    $head = true;
+                }
+
+
+                if ($head) {
+                    $division_name = "";
+                } else {
+                    $division_name = $division->division_name;
+                }
+
+
 
                 $permanents = $vacancy->hasManyApplications->where('application_type', 'Insider-Permanent')->whereIn('status', ['Shortlisted', 'Interviewed'])->sortBy('last_name');
                 $casuals = $vacancy->hasManyApplications->where('application_type', 'Insider-Casual')->whereIn('status', ['Shortlisted', 'Interviewed'])->sortBy('last_name');
@@ -47,27 +70,38 @@ class ReportController extends Controller
                 //  Fill Permanent Applicants
                 $worksheet = $spreadsheet->setActiveSheetIndexByName("Permanent");
 
+                $richText = new Richtext();
+                $richText->createText('standards of the position of ');
+
+                // Add bold text
+                $boldText = $richText->createTextRun($position->title);
+                $boldText->getFont()->setBold(true);
+
+                // Continue with normal text
+                $richText->createText('.');
+
+
+
                 if (count($permanents) > 0) {
                     // fill position details
                     $worksheet->setCellValue("G3", $position->title . " - " . $lgu_position->item_number);
                     $worksheet->setCellValue("M3", $position->salaryGrade->amount);
                     $worksheet->setCellValue("M4", $position->salaryGrade->number);
                     $worksheet->setCellValue("O3", $office->office_name);
-                    $worksheet->setCellValue("O4", $division->division_name);
+                    $worksheet->setCellValue("O4", $division_name);
                     $worksheet->setCellValue("F6", $qualification_standard->education);
                     $worksheet->setCellValue("M6", $qualification_standard->training);
                     $worksheet->setCellValue("F7", $qualification_standard->experience);
                     $worksheet->setCellValue("M7", $qualification_standard->eligibility);
-                    $worksheet->setCellValue("A18", "standards of the position of $position->title.");
+                    $worksheet->setCellValue("A20", $richText);
 
 
                     // Define the range of rows to copy (e.g., rows 1 to 10)
-                    $startRow = 10;
-                    $endRow = 14;
+                    $startRow = 12;
+                    $endRow = 16;
 
                     // Define how many times to duplicate the rows
                     $duplicateCount = count($permanents) - 1;
-
 
                     // Calculate the number of rows to duplicate
                     $rowsToDuplicate = $endRow - $startRow + 1;
@@ -84,7 +118,6 @@ class ReportController extends Controller
 
                         // Get the merged cell ranges
                         $mergedCells = $worksheet->getMergeCells();
-
 
                         //filter merged cell on specific selected rows
                         $mergedCells = array_filter($mergedCells, function ($mergedCell) use ($startRow, $endRow) {
@@ -115,7 +148,6 @@ class ReportController extends Controller
 
                                 // Write the row data to the new target row
                                 $worksheet->fromArray($rowData[$row], NULL, "A$targetRow");
-
 
 
                                 // copy merged cells to duplicated rows
@@ -200,16 +232,16 @@ class ReportController extends Controller
                     $worksheet->setCellValue("M3", $position->salaryGrade->amount);
                     $worksheet->setCellValue("M4", $position->salaryGrade->number);
                     $worksheet->setCellValue("O3", $office->office_name);
-                    $worksheet->setCellValue("O4", $division->division_name);
+                    $worksheet->setCellValue("O4", $division_name);
                     $worksheet->setCellValue("F6", $qualification_standard->education);
                     $worksheet->setCellValue("M6", $qualification_standard->training);
                     $worksheet->setCellValue("F7", $qualification_standard->experience);
                     $worksheet->setCellValue("M7", $qualification_standard->eligibility);
-                    $worksheet->setCellValue("A18", "standards of the position of $position->title.");
+                    $worksheet->setCellValue("A20", $richText);
 
                     // Define the range of rows to copy (e.g., rows 1 to 10)
-                    $startRow = 10;
-                    $endRow = 14;
+                    $startRow = 12;
+                    $endRow = 16;
 
                     // Define how many times to duplicate the rows
                     $duplicateCount = count($casuals) - 1;
@@ -345,17 +377,17 @@ class ReportController extends Controller
                     $worksheet->setCellValue("M3", $position->salaryGrade->amount);
                     $worksheet->setCellValue("M4", $position->salaryGrade->number);
                     $worksheet->setCellValue("O3", $office->office_name);
-                    $worksheet->setCellValue("O4", $division->division_name);
+                    $worksheet->setCellValue("O4", $division_name);
                     $worksheet->setCellValue("F6", $qualification_standard->education);
                     $worksheet->setCellValue("M6", $qualification_standard->training);
                     $worksheet->setCellValue("F7", $qualification_standard->experience);
                     $worksheet->setCellValue("M7", $qualification_standard->eligibility);
-                    $worksheet->setCellValue("A18", "standards of the position of $position->title.");
+                    $worksheet->setCellValue("A20", $richText);
 
 
                     // Define the range of rows to copy (e.g., rows 1 to 10)
-                    $startRow = 10;
-                    $endRow = 14;
+                    $startRow = 12;
+                    $endRow = 16;
 
                     // Define how many times to duplicate the rows
                     $duplicateCount = count($outsiders) - 1;
@@ -494,7 +526,7 @@ class ReportController extends Controller
             $zip->close();
         }
 
-        foreach($files as $file){
+        foreach ($files as $file) {
             if (File::exists($file)) {
                 File::delete($file);
             }
@@ -505,6 +537,63 @@ class ReportController extends Controller
 
         if (File::exists($zipFilePath)) {
             File::delete($zipFilePath);
+        }
+        return $this->success(compact('base64', 'filename'), 'Successfully Retrieved.', 200);
+    }
+
+    public function generateNoticeOfMeeting(Interview $interview)
+    {
+        $filename =  "Notice of Meeting - $interview->meeting_date ";
+        $filePath = public_path('\Word Results\\' . $filename . ".docx");
+
+        $governor = Governor::latest()->first();
+        $governor_name = $governor->prefix . " " . $governor->name . " " . $governor->suffix;
+
+
+
+        // Group By Position Type and Per Office
+
+        $positions = DB::table('vacancy_interviews')
+            ->select('positions.title', 'salary_grades.number', 'offices.office_code', 'divisions.division_code', DB::raw('count(*) as count'))
+            ->where('vacancy_interviews.interview_id', $interview->id)
+            ->leftJoin('vacancies', 'vacancies.id', 'vacancy_interviews.vacancy_id')
+            ->leftJoin('lgu_positions', 'lgu_positions.id', 'vacancies.lgu_position_id')
+            ->leftJoin('positions', 'positions.id', 'lgu_positions.position_id')
+            ->leftJoin('salary_grades', 'salary_grades.id', 'positions.salary_grade_id')
+            ->leftJoin('divisions', 'divisions.id', 'lgu_positions.division_id')
+            ->leftJoin('offices', "offices.id", 'divisions.office_id')
+            ->groupBy('positions.title', 'salary_grades.number', 'offices.office_code', 'divisions.division_code')
+            ->get();
+
+        $templateProcessor = new TemplateProcessor(public_path() . "\Word Templates\Meeting.docx");
+        // replace value in the template
+        $templateProcessor->setValue("date_created", date('F j, Y', strtotime($interview->date_created)));
+        $templateProcessor->setValue("meeting_date", date('F j, Y', strtotime($interview->meeting_date)));
+        $templateProcessor->setValue("venue", $interview->venue->name);
+        $templateProcessor->setValue("governor", $governor_name);
+
+
+        $templateProcessor->cloneRow("no", count($positions));
+
+        foreach ($positions as $key => $value) {
+            $i = $key + 1;
+            // $count="";
+            // if($value->count>1){
+            $count = "($value->count)";
+            // }
+            $templateProcessor->setValue("no#$i", $i);
+            $templateProcessor->setValue("position#$i", "$value->title $count");
+            $templateProcessor->setValue("salary_grade#$i", "$value->number");
+            $templateProcessor->setValue("office#$i", $value->office_code);
+        }
+
+
+        $templateProcessor->saveAs($filePath);
+        $fileContents = file_get_contents($filePath);
+        $base64 = base64_encode($fileContents);
+
+        if (File::exists($filePath)) {
+            File::delete($filePath);
         }
         return $this->success(compact('base64', 'filename'), 'Successfully Retrieved.', 200);
     }

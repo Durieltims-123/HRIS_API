@@ -6,7 +6,7 @@ use App\Models\PsbMember;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 use App\Http\Requests\StorePsbMemberRequest;
-
+use App\Models\PsbPersonnel;
 
 class PsbMemberController extends Controller
 {
@@ -34,7 +34,7 @@ class PsbMemberController extends Controller
     {
         $request->validated($request->all());
         // dd("hey");
-        $PsbMemberExists = PsbMember::where([
+        $PsbMemberExists = PsbPersonnel::where([
             ['member_name', $request->member_name], 
             ['member_position', $request->member_position],
             ])->exists();
@@ -42,7 +42,7 @@ class PsbMemberController extends Controller
                 return $this->error('', 'Duplicate Entry', 400);
             }
 
-        PsbMember::create([
+        PsbPersonnel::create([
             "perselbo_id" => $request->perselbo_id,
             "member_name" => $request->member_name,
             "member_position" => $request->member_position

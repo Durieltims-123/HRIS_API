@@ -21,6 +21,9 @@ return new class extends Migration
             $table->integer('psychological_attributes')->nullable();
             $table->string('appropriate_eligibility')->nullable();
             $table->integer('potential')->nullable();
+            $table->integer('administrative')->nullable();
+            $table->integer('technical')->nullable();
+            $table->integer('leadership')->nullable();
             $table->integer('awards')->nullable();
             $table->integer('total_remarks')->default(0);
             $table->string('additional_information')->nullable();

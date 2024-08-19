@@ -14,13 +14,15 @@ class Publication extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function hasManyPublicationInterview() : HasMany{
-        return $this->hasMany(PublicationInterview::class, 'interview_id');
-    }
-    public function belongsToVacancy() : BelongsTo{
+    // public function hasManyPublicationInterview() : HasMany{
+    //     return $this->hasMany(PublicationInterview::class, 'interview_id');
+    // }
+    public function belongsToVacancy(): BelongsTo
+    {
         return $this->belongsTo(Vacancy::class, 'vacancy_id');
     }
-    public function hasOneApplication() : HasOne{
+    public function hasOneApplication(): HasOne
+    {
         return $this->hasOne(Application::class);
     }
 

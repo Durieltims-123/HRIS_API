@@ -52,7 +52,7 @@ class InterviewController extends Controller
         $data = InterviewResource::collection(
             Interview::select("interviews.*", "venues.name")
                 ->where($filters)
-                ->join('venues', 'venues.id', 'interviews.venue')
+                ->join('venues', 'venues.id', 'interviews.venue_id')
                 ->skip(($activePage - 1) * 10)
                 ->orderBy($orderBy, $orderAscending)
                 ->take(10)
@@ -63,7 +63,7 @@ class InterviewController extends Controller
             Interview::select(
                 "applicants.id"
             )
-            ->join('venues', 'venues.id', 'interviews.venue')
+            ->join('venues', 'venues.id', 'interviews.venue_id')
             ->where($filters)
             ->count();
 
@@ -85,15 +85,16 @@ class InterviewController extends Controller
     {
         $request->validated($request->all());
 
-        $interviewExist = Interview::where('meeting_date' , $request->meeting_date)->exists();
+        $interviewExist = Interview::where('meeting_date', $request->meeting_date)->exists();
 
         if ($interviewExist) {
             return $this->error("", "Duplicate Entry", 400);
         } else {
 
             $interview = Interview::create([
+                'date_created' => $request->date_created,
                 'meeting_date' => $request->meeting_date,
-                'venue' => $request->venue,
+                'venue_id' => $request->venue,
             ]);
 
             $vacancies_data = array_map(function ($item) {
@@ -135,15 +136,16 @@ class InterviewController extends Controller
         $request->validated($request->all());
 
 
-        $interviewExist = Interview::where([['meeting_date',$request->meeting_date],["id","<>",$interview->id]])->exists();
+        $interviewExist = Interview::where([['meeting_date', $request->meeting_date], ["id", "<>", $interview->id]])->exists();
 
         if ($interviewExist) {
             return $this->error("", "Duplicate Entry", 400);
         } else {
 
             $interview->update([
+                'date_created' => $request->date_created,
                 'meeting_date' => $request->meeting_date,
-                'venue' => $request->venue,
+                'venue_id' => $request->venue,
             ]);
 
             $vacancies_data = array_map(function ($item) {

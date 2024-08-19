@@ -24,7 +24,8 @@ class ShortlistApplicationRequest extends FormRequest
     {
         return [
             'shortlist_trainings' => ['required', 'string', 'max:255'],
-            'performance' => ['required', 'numeric', 'min:0', 'max:20'],
+            'appropriate_eligibility' => ['required', 'string', 'max:255'],
+            'performance' => ['required', 'numeric', 'min:0', 'max:25'],
             'education' => ['required', 'numeric', 'min:0', 'max:20'],
             'experience' => ['required', 'numeric', 'min:0', 'max:25'],
         ];

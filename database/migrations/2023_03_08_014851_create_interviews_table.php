@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('interviews', function (Blueprint $table) {
             $table->id();
+            $table->date('date_created');
             $table->date('meeting_date');
-            $table->string('venue');
+            $table->foreignId('venue_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
