@@ -14,11 +14,11 @@ class Vacancy extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function lguPosition (): BelongsTo
+    public function lguPosition(): BelongsTo
     {
         return $this->belongsTo(LguPosition::class, 'lgu_position_id');
     }
-    public function hasManyPublication (): HasMany
+    public function hasManyPublication(): HasMany
     {
         return $this->hasMany(Publication::class, 'vacancy_id');
     }
@@ -28,13 +28,18 @@ class Vacancy extends Model
         return $this->hasMany(Application::class, 'vacancy_id');
     }
 
-    public function hasVacancyInterview(): HasMany
+    public function vacancyInterview(): HasMany
     {
         return $this->hasMany(VacancyInterview::class, 'vacancy_id');
     }
 
+    // public function latestVacancyInterview(): HasMany
+    // {
+    //     return $this->hasMany(VacancyInterview::class, 'vacancy_id');
+    // }
+
     protected $primaryKey = 'id';
-    
+
 
     protected $fillable = [
         'date_submitted',

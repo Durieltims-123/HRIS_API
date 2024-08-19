@@ -1,0 +1,189 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\StoreDivisionRequest;
+use App\Http\Resources\DivisionResource;
+use App\Models\Employee;
+use App\Models\Division;
+use App\Models\Vacancy;
+use App\Traits\HttpResponses;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+class PSBResultController extends Controller
+{
+    use HttpResponses;
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        return DivisionResource::collection(
+            Division::with('office')
+                ->join('offices', 'offices.id', 'divisions.office_id')
+                ->orderBy('office_name', 'asc')
+                ->get()
+        )->toJson();
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(StoreDivisionRequest $request)
+    {
+        $request->validated($request->all());
+
+        $divisionExist = Division::where('division_code', $request->code)->orWhere([["division_name", $request->name], ["office_id", $request->office_id]])->exists();
+        if ($divisionExist) {
+            return $this->error('', 'Duplicate Entry', 400);
+        } else {
+            Division::create([
+                "division_code" => $request->code,
+                "division_name" => $request->name,
+                "office_id" => $request->office_id,
+                "division_type" => $request->type,
+            ]);
+
+            return $this->success('', 'Successfully Saved', 200);
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Vacancy $psbResult)
+    {
+        $division = $psbResult->lguPosition->division;
+        $office = $division->office;
+        $lguPosition = $psbResult->lguPosition;
+        $position = $psbResult->lguPosition->position;
+        $applications = DB::table('applications')
+            ->where('applications.vacancy_id', $psbResult->id)
+            ->leftJoin('assessments', 'assessments.application_id', 'applications.id')->get();
+
+        return compact(
+            "division",
+            "office",
+            "lguPosition",
+            "position",
+            "applications"
+        );
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(StoreDivisionRequest $request, Division $division)
+    {
+        $division->division_code = $request->code;
+        $division->division_name = $request->name;
+        $division->office_id = $request->office_id;
+        $division->division_type = $request->type;
+        $division->save();
+
+        return new DivisionResource(
+            Division::where('divisions.id', $division->id)->join('offices', 'offices.id', 'divisions.office_id')->first()
+        );
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Division $division)
+    {
+        $employeesExists = Employee::where('division_id', $division->id)->exists();
+        if ($employeesExists) {
+            return $this->error('', 'You cannot delete Division with existing employees.', 400);
+        } else {
+            $division->delete();
+            return $this->success('', 'Successfully Deleted', 200);
+        }
+    }
+
+    public function search(Request $request)
+    {
+
+        $activePage = $request->activePage;
+        $orderAscending = $request->orderAscending;
+        $orderBy = $request->orderBy;
+        $orderAscending  ? $orderAscending = "asc" : $orderAscending = "desc";
+        $orderBy == null ? $orderBy = "divisions.id" : $orderBy = $orderBy;
+        $filters = $request->filters;
+
+
+        if (!is_null($request->multiFilter)) {
+            $value = $filters[0]['value'];
+            $data = DivisionResource::collection(
+                Division::select('divisions.id', 'division_code', 'division_name', 'office_name', 'divisions.division_type')
+                    ->where('divisions.division_code', 'like', '%' . $value . '%')
+                    ->orWhere('divisions.division_name', 'like', '%' . $value . '%')
+                    ->orWhere('office_name', 'like', '%' . $value . '%')
+                    ->orWhere('office_code', 'like', '%' . $value . '%')
+                    ->skip(($activePage - 1) * 10)
+                    ->orderBy($orderBy, $orderAscending)
+                    ->join('offices', 'offices.id', 'divisions.office_id')
+                    ->take(10)
+                    ->get()
+            );
+
+
+            $pages = Division::select('divisions.id', 'division_code', 'division_name', 'office_name')
+                ->where('divisions.division_code', 'like', '%' . $value . '%')
+                ->orWhere('divisions.division_name', 'like', '%' . $value . '%')
+                ->orWhere('office_name', 'like', '%' . $value . '%')
+                ->orWhere('office_code', 'like', '%' . $value . '%')
+                ->join('offices', 'offices.id', 'divisions.office_id')
+                ->orderBy($orderBy, $orderAscending)
+                ->count();
+        } else {
+            if (!is_null($filters)) {
+                $filters =  array_map(function ($filter) {
+                    if ($filter['column'] === "id") {
+                        return ['divisions.id', 'like', '%' . $filter['value'] . '%'];
+                    } else {
+                        return [$filter['column'], 'like', '%' . $filter['value'] . '%'];
+                    }
+                }, $filters);
+            } else {
+                $filters = [['divisions.id', 'like', '%']];
+            }
+
+            $data = DivisionResource::collection(
+                Division::select('divisions.id', 'division_code', 'division_name', 'office_name', 'divisions.division_type')
+                    ->where($filters)
+                    ->skip(($activePage - 1) * 10)
+                    ->orderBy($orderBy, $orderAscending)
+                    ->join('offices', 'offices.id', 'divisions.office_id')
+                    ->take(10)
+                    ->get()
+            );
+
+            $pages = Division::select('divisions.id', 'division_code', 'division_name', 'office_name')
+                ->where($filters)
+                ->join('offices', 'offices.id', 'divisions.office_id')
+                ->orderBy($orderBy, $orderAscending)
+                ->count();
+        }
+
+
+
+        return compact('pages', 'data');
+    }
+}
