@@ -67,6 +67,7 @@ class PSBResultController extends Controller
         $lguPosition = $psbResult->lguPosition;
         $position = $psbResult->lguPosition->position;
         $applications = DB::table('applications')
+            ->select("*")
             ->where('applications.vacancy_id', $psbResult->id)
             ->leftJoin('assessments', 'assessments.application_id', 'applications.id')->get();
 
