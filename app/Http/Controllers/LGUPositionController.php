@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vacancy;
 use App\Models\LguPosition;
+use App\Models\Division;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\DB;
@@ -43,9 +44,15 @@ class LguPositionController extends Controller
     {
         // $request->validated($request->all());
 
-        $lguPositionExist = LguPosition::where([['item_number', $request->item_number], ['position_status', $request->position_status]])->exists();
+        $office = Division::find($request->division_id)->office;
+
+
+        $lguPositionExist = LguPosition::where([['item_number', $request->item_number], ['position_status', $request->position_status], ['offices.id', $office->id]])
+            ->leftJoin('divisions', 'divisions.id', 'lgu_positions.division_id')
+            ->leftJoin('offices', 'offices.id', 'divisions.office_id')->exists();
+
         if ($lguPositionExist) {
-            return $this->error('', 'Duplicate Item Number Entry', 400);
+            return $this->error('', 'Duplicate Item Number in the same office', 400);
         }
 
         $lguPosition = LguPosition::create([
@@ -121,10 +128,15 @@ class LguPositionController extends Controller
      */
     public function update(StoreLguPositionRequest $request, LguPosition $lguPosition)
     {
-        $lguPositionExist = LguPosition::where([['item_number', $request->item_number], ['position_status', $request->position_status], ['id', '!=', $lguPosition->id]])->exists();
+        $office = Division::find($request->division_id)->office;
+        $lguPositionExist = LguPosition::where([['item_number', $request->item_number], ['position_status', $request->position_status], ['offices.id', $office->id], ['lgu_positions.id', '!=', $lguPosition->id]])
+            ->leftJoin('divisions', 'divisions.id', 'lgu_positions.division_id')
+            ->leftJoin('offices', 'offices.id', 'divisions.office_id')->exists();
+
         if ($lguPositionExist) {
-            return $this->error('', 'Duplicate Item Number Entry', 400);
+            return $this->error('', 'Duplicate Item Number in the same office', 400);
         }
+
 
         $lguPosition->division_id = $request->division_id;
         $lguPosition->position_id = $request->position_id;
@@ -168,38 +180,77 @@ class LguPositionController extends Controller
             $filters = [['lgu_positions.id', 'like', '%']];
         }
 
-        $rawData = LguPosition::select(
-            'division_name',
-            'office_name',
-            'lgu_positions.division_id',
-            'lgu_positions.position_id',
-            'year',
-            'title',
-            'number',
-            'amount',
-            'item_number',
-            'education',
-            'training',
-            'experience',
-            'eligibility',
-            'competency',
-            'status',
-            'description',
-            'place_of_assignment',
-            'position_status',
-            'lgu_positions.id'
-        )
-            ->join('positions', 'positions.id', 'lgu_positions.position_id')
-            ->join('divisions', 'lgu_positions.division_id', 'divisions.id')
-            ->join('offices', 'offices.id', 'divisions.office_id')
-            ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
-            ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
-            ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
-            ->where($filters)
-            ->whereIn('position_status', $positionStatus)
-            ->orderBy($orderBy, $orderAscending);
-
-
+        $vacant = $request->vacant;
+        if ($vacant == 1) {
+            $rawData = LguPosition::select(
+                'employees.employee_status',
+                'division_name',
+                'office_name',
+                'lgu_positions.division_id',
+                'lgu_positions.position_id',
+                'year',
+                'title',
+                'number',
+                'amount',
+                'item_number',
+                'education',
+                'training',
+                'experience',
+                'eligibility',
+                'competency',
+                'status',
+                'description',
+                'place_of_assignment',
+                'position_status',
+                'lgu_positions.id'
+            )
+                ->join('positions', 'positions.id', 'lgu_positions.position_id')
+                ->join('divisions', 'lgu_positions.division_id', 'divisions.id')
+                ->join('offices', 'offices.id', 'divisions.office_id')
+                ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
+                ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
+                ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
+                ->leftJoin('employees', 'lgu_positions.id', 'employees.lgu_position_id')
+                ->where(function ($rawData) use ($filters, $positionStatus) {
+                    $rawData->where($filters)->whereIn('position_status', $positionStatus)->where('employees.employee_status', '<>', 'Active');
+                })
+                ->orWhere(function ($rawData) use ($filters, $positionStatus) {
+                    $rawData->where($filters)->whereIn('position_status', $positionStatus)->whereNull('employees.employee_status');
+                })
+                // ->distinct('lgu_positions.id')
+                ->orderBy($orderBy, $orderAscending);
+        } else {
+            $rawData = LguPosition::select(
+                'division_name',
+                'office_name',
+                'lgu_positions.division_id',
+                'lgu_positions.position_id',
+                'year',
+                'title',
+                'number',
+                'amount',
+                'item_number',
+                'education',
+                'training',
+                'experience',
+                'eligibility',
+                'competency',
+                'status',
+                'description',
+                'place_of_assignment',
+                'position_status',
+                'lgu_positions.id'
+            )
+                ->join('positions', 'positions.id', 'lgu_positions.position_id')
+                ->join('divisions', 'lgu_positions.division_id', 'divisions.id')
+                ->join('offices', 'offices.id', 'divisions.office_id')
+                ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
+                ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
+                ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
+                ->where($filters)
+                ->whereIn('position_status', $positionStatus)
+                ->orderBy($orderBy, $orderAscending);
+        }
 
         if ($viewAll) {
             $rawData = $rawData->get();
