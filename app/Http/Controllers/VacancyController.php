@@ -142,7 +142,7 @@ class VacancyController extends Controller
                 if ($publication->publication_status === "Closed") {
                     return $this->error('', 'Sorry! You cannot Reactivate Vacancy when publication is already closed', 400);
                 } else {
-                    Publication::where('vacancy_id', $vacancy->id)->orderBy('id', 'desc')->delete();
+                    Publication::where('vacancy_id', $vacancy->id)->orderBy('id', 'desc')->forceDelete();
                 }
             }
             $vacancy->date_queued = null;
