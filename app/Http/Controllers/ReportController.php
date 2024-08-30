@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Models\Governor;
 use App\Models\Interview;
 use App\Models\LguPosition;
+use App\Models\Office;
 use App\Models\Vacancy;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use Illuminate\Support\Facades\File;
@@ -618,7 +619,7 @@ class ReportController extends Controller
             ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
             ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
             ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
-            ->where('position_status', 'Permanent')
+            ->where([['position_status', 'Permanent'], ['lgu_positions.status', 'Active']])
             ->count();
 
         $vacant_permanent_positions = LguPosition::select('lgu_positions.id')
@@ -630,10 +631,10 @@ class ReportController extends Controller
             ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
             ->leftJoin('employees', 'lgu_positions.id', 'employees.lgu_position_id')
             ->where(function ($vacant_positions) {
-                $vacant_positions->whereIn('position_status', ['permanent'])->where('employees.employee_status', '<>', 'Active');
+                $vacant_positions->whereIn('position_status', ['permanent'])->where([['employees.employee_status', '<>', 'Active'], ['lgu_positions.status', 'Active']]);
             })
             ->orWhere(function ($vacant_positions) {
-                $vacant_positions->whereIn('position_status', ['permanent'])->whereNull('employees.employee_status');
+                $vacant_positions->whereIn('position_status', ['permanent'])->whereNull('employees.employee_status')->where([['lgu_positions.status', 'Active']]);
             })
             ->distinct('lgu_positions.id')
             ->count();
@@ -671,5 +672,72 @@ class ReportController extends Controller
             'vacant_permanent_positions',
             'received_applications'
         );
+    }
+
+
+    public function getPersonnelPerOffice()
+    {
+
+        $offices = Office::select('office_code')->get()->toArray();
+        $data = [];
+        $rawData = Employee::select("offices.office_code", DB::raw("COUNT(employees.id) as count"))
+            ->whereIn('employee_status', ['Active', 'On-leave'])
+            ->join("divisions", "employees.division_id", "divisions.id")
+            ->join("offices", "offices.id", "divisions.office_id")
+            ->groupBy("offices.office_code")
+            ->get();
+
+        //restructure and  insert data
+        $office_array = array_map(function ($item) use ($data) {
+            array_push($data, 0);
+            return $item["office_code"];
+        }, $offices);
+
+        foreach ($offices as $item) {
+            array_push($data, 0);
+        }
+
+        foreach ($rawData as $item) {
+            $key = array_search($item->office_code, $office_array);
+            $data[$key] = $item->count;
+        }
+
+        return compact('office_array', 'data');
+    }
+
+
+    public function getApplicantsPerMonth()
+    {
+
+        $months=[];
+        
+
+
+
+        $offices = Office::select('office_code')->get()->toArray();
+        $data = [];
+        $rawData = Employee::select("offices.office_code", DB::raw("COUNT(employees.id) as count"))
+        ->whereIn('employee_status', ['Active', 'On-leave'])
+        ->join("divisions", "employees.division_id", "divisions.id")
+        ->join("offices", "offices.id", "divisions.office_id")
+        ->groupBy("offices.office_code")
+        ->get();
+
+        //restructure and  insert data
+        $office_array = array_map(function ($item) use ($data) {
+            array_push($data, 0);
+            return $item["office_code"];
+        }, $offices);
+
+        foreach ($offices as $item) {
+            array_push($data, 0);
+        }
+
+        foreach ($rawData as $item) {
+            $key = array_search($item->office_code, $office_array);
+            $data[$key] = $item->count;
+        }
+
+        return compact('office_array', 'data');
     }
 }
