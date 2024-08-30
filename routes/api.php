@@ -124,4 +124,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // Reports
     Route::get('/generate-initial-caf-per-meeting/{interview}', [ReportController::class, 'generateInitialComparativeAssessementFormPerMeeting']);
     Route::get('/download-notice-of-meeting/{interview}', [ReportController::class, 'generateNoticeOfMeeting']);
+    Route::get('/get-card-data', [ReportController::class, 'getCardData']);
 });

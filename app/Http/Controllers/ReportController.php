@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Application;
+use App\Models\Employee;
 use App\Models\Governor;
 use App\Models\Interview;
+use App\Models\LguPosition;
 use App\Models\Vacancy;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use Illuminate\Support\Facades\File;
@@ -596,5 +599,77 @@ class ReportController extends Controller
             File::delete($filePath);
         }
         return $this->success(compact('base64', 'filename'), 'Successfully Retrieved.', 200);
+    }
+
+
+    public function getCardData()
+    {
+
+        $year = date('Y');
+
+        $total_employees = Employee::select("employees.id")
+            ->whereIn('employee_status', ['Active', 'On-leave'])
+            ->count();
+
+        $total_permanent_plantillas = LguPosition::select('lgu_positions.id')
+            ->join('positions', 'positions.id', 'lgu_positions.position_id')
+            ->join('divisions', 'lgu_positions.division_id', 'divisions.id')
+            ->join('offices', 'offices.id', 'divisions.office_id')
+            ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
+            ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
+            ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
+            ->where('position_status', 'Permanent')
+            ->count();
+
+        $vacant_permanent_positions = LguPosition::select('lgu_positions.id')
+            ->join('positions', 'positions.id', 'lgu_positions.position_id')
+            ->join('divisions', 'lgu_positions.division_id', 'divisions.id')
+            ->join('offices', 'offices.id', 'divisions.office_id')
+            ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
+            ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
+            ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
+            ->leftJoin('employees', 'lgu_positions.id', 'employees.lgu_position_id')
+            ->where(function ($vacant_positions) {
+                $vacant_positions->whereIn('position_status', ['permanent'])->where('employees.employee_status', '<>', 'Active');
+            })
+            ->orWhere(function ($vacant_positions) {
+                $vacant_positions->whereIn('position_status', ['permanent'])->whereNull('employees.employee_status');
+            })
+            ->distinct('lgu_positions.id')
+            ->count();
+
+        $received_applications =
+            Application::select(
+                "*",
+                "applications.id  as id",
+                "offices.office_name",
+                "divisions.division_name",
+                "first_name",
+                "middle_name",
+                "last_name",
+                "suffix",
+                "title",
+                "item_number",
+                "application_type",
+                "applications.status",
+                "applications.date_submitted",
+            )
+            ->join("vacancies", "applications.vacancy_id", "vacancies.id")
+            ->join("lgu_positions", "lgu_positions.id", "vacancies.lgu_position_id")
+            ->join("positions", "positions.id", "lgu_positions.position_id")
+            ->join("divisions", "lgu_positions.division_id", "divisions.id")
+            ->join("offices", "offices.id", "divisions.office_id")
+            ->join("salary_grades", "positions.salary_grade_id", "salary_grades.id")
+            ->leftJoin("disqualifications", "applications.id", "disqualifications.application_id")
+            ->leftJoin("notices", "applications.id", "notices.application_id")
+            ->where("applications.date_submitted", "like", "%" . $year . "%")
+            ->count();
+
+        return compact(
+            'total_employees',
+            'total_permanent_plantillas',
+            'vacant_permanent_positions',
+            'received_applications'
+        );
     }
 }
