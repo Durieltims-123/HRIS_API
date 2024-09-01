@@ -200,7 +200,7 @@ class EmployeeController extends Controller
 
             //restructure and  insert children
             $children = array_map(function ($item) use ($familyBackground) {
-                return ["number" => $item['number'], "name" => $item['name'], "birthday" => $item['birthday'], "family_background_id" => $familyBackground->id];
+                return ["number" => $item['number'], "name" => $item['name'], "birthday" => $item['birthday'], "pds_family_background_id" => $familyBackground->id];
             }, $request->children);
 
             $pds->childrenInformations()->createMany($children);
@@ -406,7 +406,7 @@ class EmployeeController extends Controller
 
         //restructure and  insert children
         $children = array_map(function ($item) use ($familyBackground) {
-            return ["number" => $item['number'], "name" => $item['name'], "birthday" => $item['birthday'], "family_background_id" => $familyBackground->id];
+            return ["number" => $item['number'], "name" => $item['name'], "birthday" => $item['birthday'], "pds_family_background_id" => $familyBackground->id];
         }, $request->children);
 
         $pds->childrenInformations()->forceDelete();

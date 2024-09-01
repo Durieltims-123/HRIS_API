@@ -10,35 +10,35 @@ use App\Models\Question;
 use App\Models\Applicant;
 use App\Models\Interview;
 use App\Models\PsbMember;
-use App\Models\Reference;
 use App\Models\Assessment;
 use App\Models\Application;
 use App\Models\Appointment;
 use App\Models\Publication;
-use App\Models\Recognition;
 use App\Models\SalaryGrade;
-use App\Models\VoluntaryWork;
-use App\Models\WorkExperience;
 use Illuminate\Database\Seeder;
-use App\Models\FamilyBackground;
 use App\Models\PersonalDataSheet;
-use App\Models\SpecialSkillHobby;
-use Database\Seeders\AnswerSeeder;
-use App\Models\ChildrenInformation;
-use App\Models\PersonalInformation;
-use App\Models\EducationalBackground;
-use App\Models\MembershipAssociation;
 use App\Models\QualificationStandard;
 use Database\Seeders\LguPositionSeeder;
-use App\Models\CivilServiceEligibility;
 use App\Models\Disqualification;
 use App\Models\LguPosition;
 use App\Models\PersonnelSelectionBoard;
 use App\Models\PsbPersonnel;
 use App\Models\PublicationInterview;
-use App\Models\TrainingProgramAttended;
 use App\Models\User;
 use App\Models\Venue;
+use App\Models\PDSReference;
+use App\Models\PDSRecognition;
+Use App\Models\PDSVoluntaryWork;
+use App\Models\PDSWorkExperience;
+use App\Models\PDSFamilyBackground;
+use App\Models\PDSSpecialSkillHobby;
+use Database\Seeders\PDSAnswerSeeder;
+use App\Models\PDSChildrenInformation;
+use App\Models\PDSPersonalInformation;
+use App\Models\PDSEducationalBackground;
+use App\Models\PDSMembershipAssociation;
+use App\Models\PDSCivilServiceEligibility;
+use App\Models\PDSTrainingProgramAttended;
 
 class DatabaseSeeder extends Seeder
 {
@@ -100,18 +100,18 @@ class DatabaseSeeder extends Seeder
         // Appointment::factory(5)->create();
 
         PersonalDataSheet::factory(11)->create();
-        PersonalInformation::factory(11)->create();
-        FamilyBackground::factory(11)->create();
-        ChildrenInformation::factory(11)->create();
-        EducationalBackground::factory(11)->create();
-        CivilServiceEligibility::factory(11)->create();
-        WorkExperience::factory(11)->create();
-        VoluntaryWork::factory(11)->create();
-        TrainingProgramAttended::factory(11)->create();
-        SpecialSkillHobby::factory(11)->create();
-        Recognition::factory(11)->create();
-        MembershipAssociation::factory(11)->create();
-        Reference::factory(11)->create();
+        PDSPersonalInformation::factory(11)->create();
+        PDSFamilyBackground::factory(11)->create();
+        PDSChildrenInformation::factory(11)->create();
+        PDSEducationalBackground::factory(11)->create();
+        PDSCivilServiceEligibility::factory(11)->create();
+        PDSWorkExperience::factory(11)->create();
+        PDSVoluntaryWork::factory(11)->create();
+        PDSTrainingProgramAttended::factory(11)->create();
+        PDSSpecialSkillHobby::factory(11)->create();
+        PDSRecognition::factory(11)->create();
+        PDSMembershipAssociation::factory(11)->create();
+        PDSReference::factory(11)->create();
 
         $this->call([
             // ReferenceSeeder::class,

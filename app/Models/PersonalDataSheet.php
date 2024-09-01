@@ -12,71 +12,71 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class PersonalDataSheet extends Model
 {
     use HasFactory;
-    USE SoftDeletes;
+    use SoftDeletes;
 
     public function personalInformation(): HasOne
     {
-        return $this->hasOne(PersonalInformation::class);
+        return $this->hasOne(PDSPersonalInformation::class);
     }
 
     public function familyBackGround(): HasOne
     {
-        return $this->hasOne(FamilyBackground::class);
+        return $this->hasOne(PDSFamilyBackground::class);
     }
 
     public function childrenInformations(): HasMany
     {
-        return $this->hasMany(ChildrenInformation::class);
+        return $this->hasMany(PDSChildrenInformation::class);
     }
 
     public function educationalBackgrounds(): HasMany
     {
-        return $this->hasMany(EducationalBackground::class);
+        return $this->hasMany(PDSEducationalBackground::class);
     }
 
     public function civilServiceEligibilities(): HasMany
     {
-        return $this->hasMany(CivilServiceEligibility::class);
+        return $this->hasMany(PDSCivilServiceEligibility::class);
     }
 
     public function workExperiences(): HasMany
     {
-        return $this->hasMany(WorkExperience::class);
+        return $this->hasMany(PDSWorkExperience::class);
     }
 
     public function voluntaryWorks(): HasMany
     {
-        return $this->hasMany(VoluntaryWork::class);
+        return $this->hasMany(PDSVoluntaryWork::class);
     }
 
     public function trainingPrograms(): HasMany
     {
-        return $this->hasMany(TrainingProgramAttended::class);
+        return $this->hasMany(PDSTrainingProgramAttended::class);
     }
 
     public function specialSkillHobies(): HasMany
     {
-        return $this->hasMany(SpecialSkillHobby::class);
+        return $this->hasMany(PDSSpecialSkillHobby::class);
     }
 
     public function recognitions(): HasMany
     {
-        return $this->hasMany(Recognition::class);
+        return $this->hasMany(PDSRecognition::class);
     }
 
     public function membershipAssociations(): HasMany
     {
-        return $this->hasMany(MembershipAssociation::class);
+        return $this->hasMany(PDSMembershipAssociation::class);
     }
 
     public function answers(): HasMany
     {
-        return $this->hasMany(Answer::class);
+        return $this->hasMany(PDSAnswer::class);
     }
-    
+
     public function references(): HasMany
     {
-        return $this->hasMany(Reference::class);
+        return $this->hasMany(PDSReference::class);
     }
 
     public function individual()

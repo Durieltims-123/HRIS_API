@@ -3,30 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Models\Applicant;
-use App\Models\Recognition;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponses;
-use App\Models\FamilyBackground;
 use App\Models\PersonalDataSheet;
-use App\Models\ChildrenInformation;
-use App\Models\PersonalInformation;
 use App\Http\Requests\StorePersonalDataSheetRequest;
 use App\Http\Requests\StorePersonalInformationRequest;
 use App\Http\Resources\ApplicantResource;
 use App\Http\Resources\PersonalDataSheetResource;
-use App\Http\Resources\PersonalInformationResource;
-use App\Http\Resources\TraningProgramAttendedResource;
-use App\Models\Answer;
 use App\Models\Application;
-use App\Models\CivilServiceEligibility;
-use App\Models\EducationalBackground;
 use App\Models\Employee;
-use App\Models\MembershipAssociation;
-use App\Models\Reference;
-use App\Models\SpecialSkillHobby;
-use App\Models\TrainingProgramAttended;
-use App\Models\VoluntaryWork;
-use App\Models\WorkExperience;
+use App\Models\PDSRecognition;
+use App\Models\PDSFamilyBackground;
+use App\Models\PDSChildrenInformation;
+use App\Models\PDSPersonalInformation;
+use App\Http\Resources\PDSPersonalInformationResource;
+use App\Http\Resources\PDSTraningProgramAttendedResource;
+use App\Models\PDSAnswer;
+use App\Models\PDSCivilServiceEligibility;
+use App\Models\PDSEducationalBackground;
+use App\Models\PDSMembershipAssociation;
+use App\Models\PDSReference;
+use App\Models\PDSSpecialSkillHobby;
+use App\Models\PDSTrainingProgramAttended;
+use App\Models\PDSVoluntaryWork;
+use App\Models\PDSWorkExperience;
+
 
 class PersonalDataSheetController extends Controller
 {
@@ -99,10 +100,10 @@ class PersonalDataSheetController extends Controller
             'applicant_id' => $request->id,
             'employee_id' => $request->id,
         ]);
-        
+
         // dd($request->barangay_id);
         //personal information
-        PersonalInformation::create([
+        PDSPersonalInformation::create([
             "personal_data_sheet_id" => $personalDataSheet->id,
             "mobile_number" => $request->mobile_number,
             "telephone_number" => $request->telephone_number,
@@ -138,7 +139,7 @@ class PersonalDataSheetController extends Controller
 
 
         //family background
-        $famBack = FamilyBackground::create([
+        $famBack = PDSFamilyBackground::create([
             "personal_data_sheet_id" => $personalDataSheet->id,
             "spouse_surname" => $request->spouse_surname,
             "spouse_first_name" => $request->spouse_first_name,
@@ -162,7 +163,7 @@ class PersonalDataSheetController extends Controller
         $dates = $request->input('children_birthdate');
 
         foreach ($names as $i => $name) {
-            ChildrenInformation::create([
+            PDSChildrenInformation::create([
                 "personal_data_sheet_id" => $personalDataSheet->id,
                 "family_background_id" => $famBack->id,
                 "children_name" => $name,
@@ -171,7 +172,7 @@ class PersonalDataSheetController extends Controller
         }
 
         //educational background
-        EducationalBackground::create([
+        PDSEducationalBackground::create([
             "personal_data_sheet_id" => $personalDataSheet->id,
             "level" => $request->level,
             "school_name" => $request->school_name,
@@ -192,7 +193,7 @@ class PersonalDataSheetController extends Controller
         $vdates = $request->input('date_validity');
 
         foreach ($ratings as $a => $rating) {
-            CivilServiceEligibility::create([
+            PDSCivilServiceEligibility::create([
                 "personal_data_sheet_id" => $personalDataSheet->id,
                 "career_service" => $careers[$a],
                 "rating" => $rating,
@@ -214,7 +215,7 @@ class PersonalDataSheetController extends Controller
         $inclusiveTos = $request->input('inclusive_dates_to');
 
         foreach ($offices as $b => $office) {
-            WorkExperience::create([
+            PDSWorkExperience::create([
                 "personal_data_sheet_id" => $personalDataSheet->id,
                 "position_title" => $positionTitles[$b],
                 "office" => $office,
@@ -236,7 +237,7 @@ class PersonalDataSheetController extends Controller
         $vwInclusiveTo = $request->input('vw_inclusive_dates_to');
 
         foreach ($organizationNames as $c => $organizationName) {
-            VoluntaryWork::create([
+            PDSVoluntaryWork::create([
                 "personal_data_sheet_id" => $personalDataSheet->id,
                 "organization_address" => $organizationAddress[$c],
                 "organization_name" => $organizationName,
@@ -256,7 +257,7 @@ class PersonalDataSheetController extends Controller
         $tpInclusiveTo = $request->input('tp_inclusive_dates_to');
 
         foreach ($programTitles as $d => $programTitle) {
-            TrainingProgramAttended::create([
+            PDSTrainingProgramAttended::create([
                 "personal_data_sheet_id" => $personalDataSheet->id,
                 "hours" => $hours[$d],
                 "program_title" => $programTitle,
@@ -271,7 +272,7 @@ class PersonalDataSheetController extends Controller
         $specialSkills = $request->input('special_skills');
 
         foreach ($specialSkills as $e => $specialSkill) {
-            SpecialSkillHobby::create([
+            PDSSpecialSkillHobby::create([
                 "personal_data_sheet_id" => $personalDataSheet->id,
                 "special_skills" => $specialSkill,
             ]);
@@ -281,7 +282,7 @@ class PersonalDataSheetController extends Controller
         $recognitionTitles = $request->input('recognition_title');
 
         foreach ($recognitionTitles as $f => $recognitionTitle) {
-            Recognition::create([
+            PDSRecognition::create([
                 "personal_data_sheet_id" => $personalDataSheet->id,
                 "recognition_title" => $recognitionTitle,
             ]);
@@ -291,7 +292,7 @@ class PersonalDataSheetController extends Controller
         $membershipAssociations = $request->input('membership_association');
 
         foreach ($membershipAssociations as $f => $membershipAssociation) {
-            MembershipAssociation::create([
+            PDSMembershipAssociation::create([
                 "personal_data_sheet_id" => $personalDataSheet->id,
                 "membership_association" => $membershipAssociation,
             ]);
@@ -308,7 +309,7 @@ class PersonalDataSheetController extends Controller
             $question_id = $last_question_id + 1; // Set question_id to last_question_id + 1
             $last_question_id = $question_id; // Update last_question_id to the current question_id
 
-            Answer::create([
+            PDSAnswer::create([
                 "personal_data_sheet_id" => $personalDataSheet->id,
                 "question_id" => $question_id,
                 "details" => $detailss[$g],
@@ -319,7 +320,7 @@ class PersonalDataSheetController extends Controller
         }
 
         //references
-        Reference::create([
+        PDSReference::create([
             "personal_data_sheet_id" => $personalDataSheet->id,
             "name" => $request->name,
             "address" => $request->address,
@@ -375,7 +376,7 @@ class PersonalDataSheetController extends Controller
     public function update(Request $request, PersonalDataSheet $personalDataSheet)
     {
         //PERSONAL INFORMATION
-        PersonalInformation::where("personal_data_sheet_id", $personalDataSheet->id)
+        PDSPersonalInformation::where("personal_data_sheet_id", $personalDataSheet->id)
             ->update([
                 'personal_data_sheet_id' =>  $personalDataSheet->id,
                 'mobile_number' => $request->mobile_number,
@@ -413,7 +414,7 @@ class PersonalDataSheetController extends Controller
             ]);
 
         //FAMILY BACKGROUND
-        FamilyBackground::where('personal_data_sheet_id', $personalDataSheet->id)
+        PDSFamilyBackground::where('personal_data_sheet_id', $personalDataSheet->id)
             ->update([
                 'personal_data_sheet_id' => $personalDataSheet->id,
                 'spouse_surname' => $request->spouse_surname,
@@ -438,20 +439,20 @@ class PersonalDataSheetController extends Controller
         $childrenBirthdates = $request->input('children_birthdate');
 
         foreach ($childrenNames as $i => $childrenName) {
-            $memberExists = ChildrenInformation::where([
+            $memberExists = PDSChildrenInformation::where([
                 ['children_name', $childrenName],
                 ['personal_data_sheet_id', $personalDataSheet->id]
             ])->exists();
             //check if exist
             if ($memberExists) {
-                ChildrenInformation::where([['children_name', $childrenName], ['personal_data_sheet_id', $personalDataSheet->id]])
+                PDSChildrenInformation::where([['children_name', $childrenName], ['personal_data_sheet_id', $personalDataSheet->id]])
                     ->update([
                         "personal_data_sheet_id" => $personalDataSheet->id,
                         "children_name" => $childrenNames[$i],
                         "children_birthdate" => $childrenBirthdates[$i],
                     ]);
             } else {
-                ChildrenInformation::create([
+                PDSChildrenInformation::create([
                     "personal_data_sheet_id" => $personalDataSheet->id,
                     "family_background_id" => $request->family_background_id,
                     "children_name" => $childrenName,
@@ -459,12 +460,12 @@ class PersonalDataSheetController extends Controller
                 ]);
             }
         }
-        $delete = ChildrenInformation::where('personal_data_sheet_id', $personalDataSheet->id)
+        $delete = PDSChildrenInformation::where('personal_data_sheet_id', $personalDataSheet->id)
             ->whereNotIn('children_name', $childrenNames)
             ->delete();
 
         //EDUCATIONAL BACKGROUND
-        EducationalBackground::where('personal_data_sheet_id', $personalDataSheet->id)
+        PDSEducationalBackground::where('personal_data_sheet_id', $personalDataSheet->id)
             ->update([
                 'personal_data_sheet_id' => $personalDataSheet->id,
                 'level' => $request->level,
@@ -486,12 +487,12 @@ class PersonalDataSheetController extends Controller
         $dateValidities = $request->input('date_validity');
 
         foreach ($careerServices as $a => $careerService) {
-            $memberExists = CivilServiceEligibility::where([
+            $memberExists = PDSCivilServiceEligibility::where([
                 ['career_service', $careerServices],
                 ['personal_data_sheet_id', $personalDataSheet->id]
             ])->exists();
             if ($memberExists) {
-                CivilServiceEligibility::where([['career_service', $careerService], ['personal_data_sheet_id', $personalDataSheet->id]])
+                PDSCivilServiceEligibility::where([['career_service', $careerService], ['personal_data_sheet_id', $personalDataSheet->id]])
                     ->update([
                         "personal_data_sheet_id" => $personalDataSheet->id,
                         "career_service" => $careerServices[$a],
@@ -502,7 +503,7 @@ class PersonalDataSheetController extends Controller
                         "date_validity" => $dateValidities[$a],
                     ]);
             } else {
-                CivilServiceEligibility::create([
+                PDSCivilServiceEligibility::create([
                     "personal_data_sheet_id" => $personalDataSheet->id,
                     "career_service" => $careerService,
                     "rating" => $ratings[$a],
@@ -513,7 +514,7 @@ class PersonalDataSheetController extends Controller
                 ]);
             }
         }
-        $delete = CivilServiceEligibility::where('personal_data_sheet_id', $personalDataSheet->id)
+        $delete = PDSCivilServiceEligibility::where('personal_data_sheet_id', $personalDataSheet->id)
             ->whereNotIn('career_service', $careerServices)
             ->delete();
 
@@ -528,12 +529,12 @@ class PersonalDataSheetController extends Controller
         $inclusiveTos = $request->input('inclusive_dates_to');
 
         foreach ($positionTitles as $b => $positionTitle) {
-            $memberExists = WorkExperience::where([
+            $memberExists = PDSWorkExperience::where([
                 ['position_title', $positionTitle],
                 ['personal_data_sheet_id', $personalDataSheet->id]
             ])->exists();
             if ($memberExists) {
-                WorkExperience::where([['personal_data_sheet_id', $personalDataSheet->id], ['position_title', $positionTitle]])
+                PDSWorkExperience::where([['personal_data_sheet_id', $personalDataSheet->id], ['position_title', $positionTitle]])
                     ->update([
                         "personal_data_sheet_id" => $personalDataSheet->id,
                         "position_title" => $positionTitles[$b],
@@ -547,7 +548,7 @@ class PersonalDataSheetController extends Controller
 
                     ]);
             } else {
-                WorkExperience::create([
+                PDSWorkExperience::create([
                     "personal_data_sheet_id" => $personalDataSheet->id,
                     "position_title" => $positionTitle,
                     "office" => $offices[$b],
@@ -560,7 +561,7 @@ class PersonalDataSheetController extends Controller
                 ]);
             }
         }
-        $delete = WorkExperience::where('personal_data_sheet_id', $personalDataSheet->id)
+        $delete = PDSWorkExperience::where('personal_data_sheet_id', $personalDataSheet->id)
             ->whereNotIn('position_title', $positionTitles)
             ->delete();
 
@@ -573,13 +574,13 @@ class PersonalDataSheetController extends Controller
         $vwInclusiveTo = $request->input('vw_inclusive_dates_to');
 
         foreach ($organizationNames as $c => $organizationName) {
-            $memberExists = VoluntaryWork::where([
+            $memberExists = PDSVoluntaryWork::where([
                 ['organization_name', $organizationName],
                 ['personal_data_sheet_id', $personalDataSheet->id]
             ])->exists();
 
             if ($memberExists) {
-                VoluntaryWork::where([['personal_data_sheet_id', $personalDataSheet->id], ['organization_name', $organizationName]])
+                PDSVoluntaryWork::where([['personal_data_sheet_id', $personalDataSheet->id], ['organization_name', $organizationName]])
                     ->update([
                         "personal_data_sheet_id" => $personalDataSheet->id,
                         "organization_name" => $organizationNames[$c],
@@ -590,7 +591,7 @@ class PersonalDataSheetController extends Controller
                         "vw_inclusive_dates_to" => $vwInclusiveTo[$c],
                     ]);
             } else {
-                VoluntaryWork::create([
+                PDSVoluntaryWork::create([
                     "personal_data_sheet_id" => $personalDataSheet->id,
                     "organization_address" => $organizationAddress[$c],
                     "organization_name" => $organizationName,
@@ -601,7 +602,7 @@ class PersonalDataSheetController extends Controller
                 ]);
             }
         }
-        $delete = VoluntaryWork::where('personal_data_sheet_id', $personalDataSheet->id)
+        $delete = PDSVoluntaryWork::where('personal_data_sheet_id', $personalDataSheet->id)
             ->whereNotIn('organization_name', $organizationNames)
             ->delete();
 
@@ -614,12 +615,12 @@ class PersonalDataSheetController extends Controller
         $tpInclusiveTo = $request->input('tp_inclusive_dates_to');
 
         foreach ($programTitles as $d => $programTitle) {
-            $memberExists = TrainingProgramAttended::where([
+            $memberExists = PDSTrainingProgramAttended::where([
                 ['program_title', $programTitle],
                 ['personal_data_sheet_id', $personalDataSheet->id]
             ])->exists();
             if ($memberExists) {
-                TrainingProgramAttended::where([['personal_data_sheet_id', $personalDataSheet->id], ['program_title', $programTitle]])
+                PDSTrainingProgramAttended::where([['personal_data_sheet_id', $personalDataSheet->id], ['program_title', $programTitle]])
                     ->update([
                         "personal_data_sheet_id" => $personalDataSheet->id,
                         "program_title" => $programTitles[$d],
@@ -630,7 +631,7 @@ class PersonalDataSheetController extends Controller
                         "tp_inclusive_dates_to" => $tpInclusiveTo[$d],
                     ]);
             } else {
-                TrainingProgramAttended::create([
+                PDSTrainingProgramAttended::create([
                     "personal_data_sheet_id" => $personalDataSheet->id,
                     "hours" => $hours[$d],
                     "program_title" => $programTitle,
@@ -641,7 +642,7 @@ class PersonalDataSheetController extends Controller
                 ]);
             }
         }
-        $delete = TrainingProgramAttended::where('personal_data_sheet_id', $personalDataSheet->id)
+        $delete = PDSTrainingProgramAttended::where('personal_data_sheet_id', $personalDataSheet->id)
             ->whereNotIn('program_title', $programTitles)
             ->delete();
 
@@ -649,25 +650,25 @@ class PersonalDataSheetController extends Controller
         $specialSkills = $request->input('special_skills');
 
         foreach ($specialSkills as $e => $specialSkill) {
-            $memberExists = SpecialSkillHobby::where([
+            $memberExists = PDSSpecialSkillHobby::where([
                 ['special_skills', $specialSkill],
                 ['personal_data_sheet_id', $personalDataSheet->id]
             ])->exists();
             //    check if exist
             if ($memberExists) {
-                SpecialSkillHobby::where([['personal_data_sheet_id', $personalDataSheet->id], ['special_skills', $specialSkill]])
+                PDSSpecialSkillHobby::where([['personal_data_sheet_id', $personalDataSheet->id], ['special_skills', $specialSkill]])
                     ->update([
                         "personal_data_sheet_id" => $personalDataSheet->id,
                         "special_skills" => $specialSkills[$e],
                     ]);
             } else {
-                SpecialSkillHobby::create([
+                PDSSpecialSkillHobby::create([
                     "personal_data_sheet_id" => $personalDataSheet->id,
                     "special_skills" => $specialSkill,
                 ]);
             }
         }
-        $delete = SpecialSkillHobby::where('personal_data_sheet_id', $personalDataSheet->id)
+        $delete = PDSSpecialSkillHobby::where('personal_data_sheet_id', $personalDataSheet->id)
             ->whereNotIn('special_skills', $specialSkills)
             ->delete();
 
@@ -675,25 +676,25 @@ class PersonalDataSheetController extends Controller
         $recognitionTitles = $request->input('recognition_title');
 
         foreach ($recognitionTitles as $f => $recognitionTitle) {
-            $memberExists = Recognition::where([
+            $memberExists = PDSRecognition::where([
                 ['recognition_title', $recognitionTitle],
                 ['personal_data_sheet_id', $personalDataSheet->id]
             ])->exists();
             //    check if exist
             if ($memberExists) {
-                Recognition::where([['personal_data_sheet_id', $personalDataSheet->id], ['recognition_title', $recognitionTitle]])
+                PDSRecognition::where([['personal_data_sheet_id', $personalDataSheet->id], ['recognition_title', $recognitionTitle]])
                     ->update([
                         "personal_data_sheet_id" => $personalDataSheet->id,
                         "recognition_title" => $recognitionTitles[$f],
                     ]);
             } else {
-                Recognition::create([
+                PDSRecognition::create([
                     "personal_data_sheet_id" => $personalDataSheet->id,
                     "recognition_title" => $recognitionTitle,
                 ]);
             }
         }
-        $delete = Recognition::where('personal_data_sheet_id', $personalDataSheet->id)
+        $delete = PDSRecognition::where('personal_data_sheet_id', $personalDataSheet->id)
             ->whereNotIn('recognition_title', $recognitionTitles)
             ->delete();
 
@@ -701,25 +702,25 @@ class PersonalDataSheetController extends Controller
         $membershipAssociations = $request->input('membership_association');
 
         foreach ($membershipAssociations as $g => $membershipAssociation) {
-            $memberExists = MembershipAssociation::where([
+            $memberExists = PDSMembershipAssociation::where([
                 ['membership_association', $membershipAssociation],
                 ['personal_data_sheet_id', $personalDataSheet->id]
             ])->exists();
             //    check if exist
             if ($memberExists) {
-                MembershipAssociation::where([['personal_data_sheet_id', $personalDataSheet->id], ['membership_association', $membershipAssociation]])
+                PDSMembershipAssociation::where([['personal_data_sheet_id', $personalDataSheet->id], ['membership_association', $membershipAssociation]])
                     ->update([
                         "personal_data_sheet_id" => $personalDataSheet->id,
                         "membership_association" => $membershipAssociations[$g],
                     ]);
             } else {
-                MembershipAssociation::create([
+                PDSMembershipAssociation::create([
                     "personal_data_sheet_id" => $personalDataSheet->id,
                     "membership_association" => $membershipAssociation,
                 ]);
             }
         }
-        $delete = MembershipAssociation::where('personal_data_sheet_id', $personalDataSheet->id)
+        $delete = PDSMembershipAssociation::where('personal_data_sheet_id', $personalDataSheet->id)
             ->whereNotIn('membership_association', $membershipAssociations)
             ->delete();
 
@@ -733,8 +734,8 @@ class PersonalDataSheetController extends Controller
         foreach ($choices as $g => $choice) {
             $question_id = $last_question_id + 1; // Set question_id to last_question_id + 1
             $last_question_id = $question_id; // Update last_question_id to the current question_id
-    
-            Answer::where('personal_data_sheet_id', $personalDataSheet->id)
+
+            PDSAnswer::where('personal_data_sheet_id', $personalDataSheet->id)
                 ->where('question_id', $question_id)
                 ->update([
                     "details" => $detailss[$g],
@@ -745,7 +746,7 @@ class PersonalDataSheetController extends Controller
         }
 
         //REFERENCES
-        Reference::where('personal_data_sheet_id', $personalDataSheet->id)
+        PDSReference::where('personal_data_sheet_id', $personalDataSheet->id)
             ->update([
                 'personal_data_sheet_id' => $personalDataSheet->id,
                 'name' => $request->name,

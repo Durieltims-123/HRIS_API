@@ -126,4 +126,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/download-notice-of-meeting/{interview}', [ReportController::class, 'generateNoticeOfMeeting']);
     Route::get('/get-card-data', [ReportController::class, 'getCardData']);
     Route::get('/get-personnel-per-office', [ReportController::class, 'getPersonnelPerOffice']);
+    Route::get('/get-personnel', [ReportController::class, 'getPersonnel']);
+    Route::get('/get-applications-per-month', [ReportController::class, 'getApplicantionsPerMonth']);
 });

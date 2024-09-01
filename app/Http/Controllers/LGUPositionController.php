@@ -181,9 +181,9 @@ class LguPositionController extends Controller
         }
 
         $vacant = $request->vacant;
+
         if ($vacant == 1) {
             $rawData = LguPosition::select(
-                'employees.employee_status',
                 'division_name',
                 'office_name',
                 'lgu_positions.division_id',
@@ -212,12 +212,32 @@ class LguPositionController extends Controller
                 ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
                 ->leftJoin('employees', 'lgu_positions.id', 'employees.lgu_position_id')
                 ->where(function ($rawData) use ($filters, $positionStatus) {
-                    $rawData->where($filters)->whereIn('position_status', $positionStatus)->where('employees.employee_status', '<>', 'Active');
+                    $rawData->where('lgu_positions.status', 'Active')->where($filters)->whereIn('position_status', $positionStatus)->whereNotIn('employees.employee_status', ['Active', 'On-leave', 'Suspended']);
                 })
                 ->orWhere(function ($rawData) use ($filters, $positionStatus) {
-                    $rawData->where($filters)->whereIn('position_status', $positionStatus)->whereNull('employees.employee_status');
+                    $rawData->where('lgu_positions.status', 'Active')->where($filters)->whereIn('position_status', $positionStatus)->whereNull('employees.employee_status');
                 })
-                // ->distinct('lgu_positions.id')
+                ->distinct(
+                    'division_name',
+                    'office_name',
+                    'lgu_positions.division_id',
+                    'lgu_positions.position_id',
+                    'year',
+                    'title',
+                    'number',
+                    'amount',
+                    'item_number',
+                    'education',
+                    'training',
+                    'experience',
+                    'eligibility',
+                    'competency',
+                    'status',
+                    'description',
+                    'place_of_assignment',
+                    'position_status',
+                    'lgu_positions.id'
+                )
                 ->orderBy($orderBy, $orderAscending);
         } else {
             $rawData = LguPosition::select(
@@ -249,6 +269,27 @@ class LguPositionController extends Controller
                 ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
                 ->where($filters)
                 ->whereIn('position_status', $positionStatus)
+                ->distinct(
+                    'division_name',
+                    'office_name',
+                    'lgu_positions.division_id',
+                    'lgu_positions.position_id',
+                    'year',
+                    'title',
+                    'number',
+                    'amount',
+                    'item_number',
+                    'education',
+                    'training',
+                    'experience',
+                    'eligibility',
+                    'competency',
+                    'status',
+                    'description',
+                    'place_of_assignment',
+                    'position_status',
+                    'lgu_positions.id'
+                )
                 ->orderBy($orderBy, $orderAscending);
         }
 
@@ -259,16 +300,35 @@ class LguPositionController extends Controller
         }
 
         $data = LguPositionResource::collection($rawData);
-        $pages = LguPosition::select('lgu_positions.id')
-            ->join('positions', 'positions.id', 'lgu_positions.position_id')
-            ->join('divisions', 'lgu_positions.division_id', 'divisions.id')
-            ->join('offices', 'offices.id', 'divisions.office_id')
-            ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
-            ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
-            ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
-            ->where($filters)
-            ->whereIn('position_status', $positionStatus)
-            ->count();
+        if ($vacant == 1) {
+            $pages = LguPosition::select('lgu_positions.id')
+                ->join('positions', 'positions.id', 'lgu_positions.position_id')
+                ->join('divisions', 'lgu_positions.division_id', 'divisions.id')
+                ->join('offices', 'offices.id', 'divisions.office_id')
+                ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
+                ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
+                ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
+                ->leftJoin('employees', 'lgu_positions.id', 'employees.lgu_position_id')
+                ->where(function ($pages) use ($filters, $positionStatus) {
+                    $pages->where('lgu_positions.status', 'Active')->where($filters)->whereIn('position_status', $positionStatus)->whereNotIn('employees.employee_status', ['Active', 'On-leave', 'Suspended']);
+                })
+                ->orWhere(function ($pages) use ($filters, $positionStatus) {
+                    $pages->where('lgu_positions.status', 'Active')->where($filters)->whereIn('position_status', $positionStatus)->whereNull('employees.employee_status');
+                })
+                ->distinct('lgu_positions.id')->count();
+        } else {
+            $pages = LguPosition::select('lgu_positions.id')
+                ->join('positions', 'positions.id', 'lgu_positions.position_id')
+                ->join('divisions', 'lgu_positions.division_id', 'divisions.id')
+                ->join('offices', 'offices.id', 'divisions.office_id')
+                ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
+                ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
+                ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
+                ->where($filters)
+                ->whereIn('position_status', $positionStatus)
+                ->distinct('lgu_positions.id')->count();
+        }
+
 
         return compact('pages', 'data');
     }

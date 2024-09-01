@@ -19,6 +19,7 @@ use PhpOffice\PhpSpreadsheet\RichText\RichText;
 use PhpOffice\PhpWord\TemplateProcessor;
 use ZipArchive;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 
 class ReportController extends Controller
@@ -609,7 +610,7 @@ class ReportController extends Controller
         $year = date('Y');
 
         $total_employees = Employee::select("employees.id")
-            ->whereIn('employee_status', ['Active', 'On-leave'])
+            ->whereIn('employee_status', ['Active', 'On-leave', 'Suspended'])
             ->count();
 
         $total_permanent_plantillas = LguPosition::select('lgu_positions.id')
@@ -681,14 +682,14 @@ class ReportController extends Controller
         $offices = Office::select('office_code')->get()->toArray();
         $data = [];
         $rawData = Employee::select("offices.office_code", DB::raw("COUNT(employees.id) as count"))
-            ->whereIn('employee_status', ['Active', 'On-leave'])
+            ->whereIn('employee_status', ['Active', 'On-leave', 'Suspended'])
             ->join("divisions", "employees.division_id", "divisions.id")
             ->join("offices", "offices.id", "divisions.office_id")
             ->groupBy("offices.office_code")
             ->get();
 
         //restructure and  insert data
-        $office_array = array_map(function ($item) use ($data) {
+        $label = array_map(function ($item) use ($data) {
             array_push($data, 0);
             return $item["office_code"];
         }, $offices);
@@ -698,46 +699,57 @@ class ReportController extends Controller
         }
 
         foreach ($rawData as $item) {
-            $key = array_search($item->office_code, $office_array);
+            $key = array_search($item->office_code, $label);
             $data[$key] = $item->count;
         }
 
-        return compact('office_array', 'data');
+        return compact('label', 'data');
     }
 
 
-    public function getApplicantsPerMonth()
+    public function getApplicantionsPerMonth()
     {
-
-        $months=[];
-        
-
-
-
-        $offices = Office::select('office_code')->get()->toArray();
+        $label = [];
         $data = [];
-        $rawData = Employee::select("offices.office_code", DB::raw("COUNT(employees.id) as count"))
-        ->whereIn('employee_status', ['Active', 'On-leave'])
-        ->join("divisions", "employees.division_id", "divisions.id")
-        ->join("offices", "offices.id", "divisions.office_id")
-        ->groupBy("offices.office_code")
-        ->get();
+        $year = date('Y');
+        $month = (int)date('m');
 
-        //restructure and  insert data
-        $office_array = array_map(function ($item) use ($data) {
-            array_push($data, 0);
-            return $item["office_code"];
-        }, $offices);
-
-        foreach ($offices as $item) {
+        for ($i = 1; $i <= $month; $i++) {
+            array_push($label,  Carbon::create()->month($i)->format('F'));
             array_push($data, 0);
         }
 
+        $rawData = Application::selectRaw('MONTH(date_submitted) as month, COUNT(*) as count')
+            ->where("date_submitted", "like", "%" . $year . "%")
+            ->groupBy('month')
+            ->get();
+
         foreach ($rawData as $item) {
-            $key = array_search($item->office_code, $office_array);
+            $key = array_search(Carbon::create()->month($item->month)->format('F'), $label);
             $data[$key] = $item->count;
         }
 
-        return compact('office_array', 'data');
+
+        return compact('label', 'data');
+    }
+
+
+
+    function getPersonnel()
+    {
+        $label = [];
+        $data = [];
+        $rows = Employee::select("employees.employment_status", DB::raw("COUNT(employees.id) as count"))
+            ->whereIn('employee_status', ['Active', 'On-leave', 'Suspended'])
+            ->groupBy("employees.employment_status")
+            ->get();
+
+
+        foreach ($rows as $item) {
+            array_push($label, $item->employment_status);
+            array_push($data, $item->count);
+        }
+
+        return compact('label', 'data');
     }
 }
