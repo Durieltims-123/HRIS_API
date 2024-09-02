@@ -35,7 +35,7 @@ class StoreEmployeeRequest extends FormRequest
             'first_name' =>  ['required', 'string', 'max:255'],
             'middle_name' =>  ['max:255'],
             'last_name' =>  ['required', 'string', 'max:255'],
-            'suffix' =>  ['nullable','string', 'max:255'],
+            'suffix' =>  ['nullable', 'string', 'max:255'],
             'birth_place' =>  ['required', 'string', 'max:255'],
             'birth_date' =>  ['required', 'max:255'],
             'age' =>  ['required', 'gt:0', 'digits_between:2,65'],
@@ -105,7 +105,7 @@ class StoreEmployeeRequest extends FormRequest
             'schools.*.scholarship_academic_awards' => ['nullable', 'max:255'],
 
             'eligibilities.*.eligibility_title' => ['required', 'max:255'],
-            'eligibilities.*.rating' => ['required', 'max:255', 'gte:75','lte:100'],
+            'eligibilities.*.rating' => ['required', 'max:255', 'gte:75', 'lte:100'],
             'eligibilities.*.date_of_examination_conferment' => ['required', 'max:255'],
             'eligibilities.*.place_of_examination_conferment' => ['required', 'max:255'],
             'eligibilities.*.license_number' => ['nullable', 'max:255'],
@@ -129,7 +129,7 @@ class StoreEmployeeRequest extends FormRequest
 
             'trainings.*.training_title' => ['required', 'max:255'],
             'trainings.*.attendance_from' => ['required', 'max:255'],
-            'trainings.*.attendance_to' => ['required', 'max:255', 'after:trainings.*.attendance_from'],
+            'trainings.*.attendance_to' => ['required', 'max:255', 'after_or_equal:trainings.*.attendance_from'],
             'trainings.*.number_of_hours' => ['required', 'max:255', 'lt:1000'],
             'trainings.*.training_type' => ['required', 'max:255'],
             'trainings.*.conducted_sponsored_by' => ['required', 'max:255'],

@@ -119,7 +119,7 @@ class StoreApplicantRequest extends FormRequest
 
             'trainings.*.training_title' => ['required', 'max:255'],
             'trainings.*.attendance_from' => ['required', 'max:255'],
-            'trainings.*.attendance_to' => ['required', 'max:255', 'after:trainings.*.attendance_from'],
+            'trainings.*.attendance_to' => ['required', 'max:255', 'after_or_equal:trainings.*.attendance_from'],
             'trainings.*.number_of_hours' => ['required', 'max:255', 'lt:1000'],
             'trainings.*.training_type' => ['required', 'max:255'],
             'trainings.*.conducted_sponsored_by' => ['required', 'max:255'],

@@ -700,11 +700,11 @@ class ApplicationController extends Controller
             'details',
             'pds',
             'division',
-            'lguPosition',
             'personalInformation',
             'familyBackground',
             'children',
             'schools',
+            'lguPosition',
             'eligibilities',
             'workExperiences',
             'voluntaryWorks',
@@ -1219,8 +1219,10 @@ class ApplicationController extends Controller
 
             // update values
             $application->update([
-                'individual_id', $pds->individual_id,
-                'individual_type', $pds->individual_type,
+                'individual_id',
+                $pds->individual_id,
+                'individual_type',
+                $pds->individual_type,
                 'vacancy_id' => $request->vacancy_id,
                 'date_submitted' => $request->date_submitted,
                 'first_name' => $individual->first_name,
