@@ -28,9 +28,9 @@ class Vacancy extends Model
         return $this->hasMany(Application::class, 'vacancy_id');
     }
 
-    public function vacancyInterview(): HasMany
+    public function vacancyInterview(): HasOne
     {
-        return $this->hasMany(VacancyInterview::class, 'vacancy_id');
+        return $this->hasOne(VacancyInterview::class, 'vacancy_id');
     }
 
     // public function latestVacancyInterview(): HasMany

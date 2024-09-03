@@ -166,6 +166,7 @@ class InterviewController extends Controller
      */
     public function destroy(Interview $interview)
     {
+        $interview->vacancyInterview()->forceDelete();
         $interview->delete();
 
         return $this->success('', 'Successfully Deleted', 200);

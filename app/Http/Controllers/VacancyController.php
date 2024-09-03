@@ -279,4 +279,102 @@ class VacancyController extends Controller
 
         return compact('pages', 'data');
     }
+
+
+    public function searchTable(Request $request)
+    {
+        $activePage = $request->activePage;
+        $status = $request->status;
+        $id = $request->id;
+        // initial test
+        $orderAscending = $request->orderAscending;
+        $orderBy = $request->orderBy;
+        $year = $request->year;
+        $filters = $request->filters;
+        if (!is_null($filters)) {
+            $filters =  array_map(function ($filter) {
+                if ($filter['column'] === "id") {
+                    return ['vacancies.id', 'like', '%' . $filter['value'] . '%'];
+                } else {
+                    return [$filter['column'], 'like', '%' . $filter['value'] . '%'];
+                }
+            }, $filters);
+        } else {
+            $filters = [['vacancies.id', 'like', '%']];
+        }
+
+        if ($request->positionStatus) {
+            array_push($filters, ['lgu_positions.position_status', 'like', $request->positionStatus]);
+        }
+
+        $orderAscending  ? $orderAscending = 'asc' : $orderAscending = 'desc';
+        ($orderBy == null || $orderBy == 'id') ? $orderBy = 'vacancies.id' : $orderBy = $orderBy;
+
+        $data = VacancyResource::collection(
+            Vacancy::select(
+                'lgu_positions.id as lgu_position_id',
+                'vacancies.id',
+                'date_submitted',
+                'date_queued',
+                'date_approved',
+                'posting_date',
+                'closing_date',
+                'division_name',
+                'office_name',
+                'division_id',
+                'positions.id as position_id',
+                'year',
+                'title',
+                'number',
+                'amount',
+                'item_number',
+                'education',
+                'training',
+                'experience',
+                'eligibility',
+                'competency',
+                'vacancies.status',
+                'description',
+                'place_of_assignment',
+                'position_status',
+                'publication_status'
+            )
+                ->leftJoin('publications', 'publications.vacancy_id', 'vacancies.id')
+                ->join('lgu_positions', 'lgu_positions.id', 'vacancies.lgu_position_id')
+                ->join('positions', 'positions.id', 'lgu_positions.position_id')
+                ->join('divisions', 'lgu_positions.division_id', 'divisions.id')
+                ->join('offices', 'offices.id', 'divisions.office_id')
+                ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
+                ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
+                ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
+                ->leftJoin('vacancy_interviews', 'vacancy_interviews.vacancy_id', 'vacancies.id')
+                ->where(function ($data) use ($id, $filters) {
+                    $data->where($filters)->where('vacancy_interviews.interview_id', $id);
+                })
+                ->orWhere(function ($data) use ($filters) {
+                    $data->where($filters)->whereNull('vacancy_interviews.id');
+                })
+
+                ->skip(($activePage - 1) * 10)
+                ->orderBy($orderBy, $orderAscending)
+                ->take(10)
+                ->get()
+        );
+        $pages =
+            Vacancy::select('vacancy.id')
+            ->leftJoin('publications', 'publications.vacancy_id', 'vacancies.id')
+            ->join('lgu_positions', 'lgu_positions.id', 'vacancies.lgu_position_id')
+            ->leftJoin('positions', 'positions.id', 'lgu_positions.position_id')
+            ->join('divisions', 'lgu_positions.division_id', 'divisions.id')
+            ->join('offices', 'offices.id', 'divisions.office_id')
+            ->join('salary_grades', 'positions.salary_grade_id', 'salary_grades.id')
+            ->join('qualification_standards', 'positions.id', 'qualification_standards.position_id')
+            ->leftJoin('position_descriptions', 'lgu_positions.id', 'position_descriptions.lgu_position_id')
+            ->leftJoin('vacancy_interviews', 'vacancy_interviews.vacancy_id', 'vacancies.id')
+            ->where($filters)->whereNull('vacancy_interviews.id')
+            ->where($filters)
+            ->count();
+
+        return compact('pages', 'data');
+    }
 }

@@ -25,6 +25,7 @@ use App\Http\Controllers\SalaryGradeController;
 use App\Http\Controllers\DisqualificationController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\GovernorController;
+use App\Http\Controllers\NoticeToApplicantController;
 use App\Http\Controllers\OrientationController;
 use App\Http\Controllers\PersonalDataSheetController;
 use App\Http\Controllers\PositionDescriptionController;
@@ -91,6 +92,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/assessment', AssessmentController::class);
     Route::resource('/vacancy', VacancyController::class);
     Route::post('/search-vacancy', [VacancyController::class, 'search']);
+    Route::post('/search-vacancy-meeting', [VacancyController::class, 'searchTable']);
 
     Route::post('/search-closing-date', [PublicationController::class, 'searchClosingDate']);
     Route::post('/search-lgu-position', [LguPositionController::class, 'search']);
@@ -119,6 +121,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
     Route::resource('/psb-result', PSBResultController::class);
+
+    // Notices
+    Route::post('/search-notices', [NoticeToApplicantController::class, 'search']);
+    Route::get('/download-notice-to-applicants/{vacancy}', [NoticeToApplicantController::class, 'generateNoticeToApplicants']);
+    Route::get('/download-notice-individual/{vacancy}', [NoticeToApplicantController::class, 'generateNoticeToIndividuals']);
 
 
     // Reports
