@@ -23,7 +23,7 @@ class AssessmentResource extends JsonResource
                 "performance" => (string)$this->performance,
                 "education" => (string)$this->education,
                 "experience" => (string)$this->experience,
-                "psychological_attribute" => (string)$this->psychological_attribute,
+                "psychosocial_attribute" => (string)$this->psychosocial_attribute,
                 "potential" => (string)$this->potential,
                 "awards" => (string)$this->awards,
                 "additional_information" => (string)$this->additional_information,

@@ -384,7 +384,8 @@ class NoticeToApplicantController extends Controller
 
         for ($x = 0; $x < $iteration; $x++) {
 
-            $i = "";
+            $i = $x + 1;
+            $i1 = "";
             $i2 = "";
             $i3 = "";
 
@@ -394,17 +395,7 @@ class NoticeToApplicantController extends Controller
 
             if ($x < $permanent_count) {
                 $permanent = $permanents[$x];
-                $i = $x + 1;
-                if ($permanent->middle_name != null) {
-                    $permanent_name = "$permanent->first_name " . strtoupper(strtolower($permanent->middle_name[0])) . ". $permanent->last_name";
-                } else {
-                    $permanent_name = "$permanent->first_name $permanent->last_name";
-                }
-            }
-
-            if ($x < $permanent_count) {
-                $permanent = $permanents[$x];
-                $i = $x + 1;
+                $i1 = ($x + 1) . ".";
                 if ($permanent->middle_name != null) {
                     $permanent_name = "$permanent->first_name " . strtoupper(strtolower($permanent->middle_name[0])) . ". $permanent->last_name";
                 } else {
@@ -414,7 +405,7 @@ class NoticeToApplicantController extends Controller
 
             if ($x < $casual_count) {
                 $casual = $casuals[$x];
-                $i2 = $x + 1;
+                $i2 = ($x + 1) . ".";
                 if ($casual->middle_name != null) {
                     $casual_name = "$casual->first_name " . strtoupper(strtolower($casual->middle_name[0])) . ". $casual->last_name";
                 } else {
@@ -424,7 +415,7 @@ class NoticeToApplicantController extends Controller
 
             if ($x < $outsider_count) {
                 $outsider = $outsiders[$x];
-                $i3 = $x + 1;
+                $i3 = ($x + 1) . ".";
                 if ($outsider->middle_name != null) {
                     $outsider_name = "$outsider->first_name " . strtoupper(strtolower($outsider->middle_name[0])) . ". $outsider->last_name";
                 } else {
@@ -432,11 +423,11 @@ class NoticeToApplicantController extends Controller
                 }
             }
 
-            $templateProcessor->setValue("pn#$i", "$i.");
+            $templateProcessor->setValue("pn#$i", "$i1");
             $templateProcessor->setValue("permanent_name#$i", $permanent_name);
-            $templateProcessor->setValue("cn#$i", "$i2.");
+            $templateProcessor->setValue("cn#$i", "$i2");
             $templateProcessor->setValue("casual_name#$i", $casual_name);
-            $templateProcessor->setValue("on#$i", "$i3.");
+            $templateProcessor->setValue("on#$i", "$i3");
             $templateProcessor->setValue("outsider_name#$i", $outsider_name);
         }
 
@@ -494,7 +485,8 @@ class NoticeToApplicantController extends Controller
 
         for ($x = 0; $x < $iteration; $x++) {
 
-            $i = "";
+            $i = $x + 1;
+            $i1 = "";
             $i2 = "";
             $i3 = "";
 
@@ -504,17 +496,7 @@ class NoticeToApplicantController extends Controller
 
             if ($x < $permanent_count) {
                 $permanent = $permanents[$x];
-                $i = $x + 1;
-                if ($permanent->middle_name != null) {
-                    $permanent_name = "$permanent->first_name " . strtoupper(strtolower($permanent->middle_name[0])) . ". $permanent->last_name";
-                } else {
-                    $permanent_name = "$permanent->first_name $permanent->last_name";
-                }
-            }
-
-            if ($x < $permanent_count) {
-                $permanent = $permanents[$x];
-                $i = $x + 1;
+                $i1 = ($x + 1) . ".";
                 if ($permanent->middle_name != null) {
                     $permanent_name = "$permanent->first_name " . strtoupper(strtolower($permanent->middle_name[0])) . ". $permanent->last_name";
                 } else {
@@ -524,7 +506,7 @@ class NoticeToApplicantController extends Controller
 
             if ($x < $casual_count) {
                 $casual = $casuals[$x];
-                $i2 = $x + 1;
+                $i2 = ($x + 1) . ".";
                 if ($casual->middle_name != null) {
                     $casual_name = "$casual->first_name " . strtoupper(strtolower($casual->middle_name[0])) . ". $casual->last_name";
                 } else {
@@ -534,7 +516,7 @@ class NoticeToApplicantController extends Controller
 
             if ($x < $outsider_count) {
                 $outsider = $outsiders[$x];
-                $i3 = $x + 1;
+                $i3 = ($x + 1) . ".";
                 if ($outsider->middle_name != null) {
                     $outsider_name = "$outsider->first_name " . strtoupper(strtolower($outsider->middle_name[0])) . ". $outsider->last_name";
                 } else {
@@ -542,11 +524,11 @@ class NoticeToApplicantController extends Controller
                 }
             }
 
-            $templateProcessor->setValue("pn#$i", "$i.");
+            $templateProcessor->setValue("pn#$i", "$i1");
             $templateProcessor->setValue("permanent_name#$i", $permanent_name);
-            $templateProcessor->setValue("cn#$i", "$i2.");
+            $templateProcessor->setValue("cn#$i", "$i2");
             $templateProcessor->setValue("casual_name#$i", $casual_name);
-            $templateProcessor->setValue("on#$i", "$i3.");
+            $templateProcessor->setValue("on#$i", "$i3");
             $templateProcessor->setValue("outsider_name#$i", $outsider_name);
         }
 

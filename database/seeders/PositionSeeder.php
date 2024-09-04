@@ -3755,8 +3755,8 @@ class PositionSeeder extends Seeder
                 "title" => "Psychologist II",
                 "salary_grade_id" => "15",
                 "education" => "Master's Degree in Psychologist",
-                "experience" => "1 years of relevant experience Involving the Delivery of Psychological Services",
-                "training" => "8 hours of relevant training on the delivery of psychological services which include Psychological Interventions, Psychological Assessment and Psychological Programs",
+                "experience" => "1 years of relevant experience Involving the Delivery of psychosocial Services",
+                "training" => "8 hours of relevant training on the delivery of psychosocial services which include psychosocial Interventions, psychosocial Assessment and psychosocial Programs",
                 "eligibility" => "R.A. No. 10029 (Psyologist)",
                 "competency" => "None required"
             ],

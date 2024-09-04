@@ -27,7 +27,7 @@ class AssessmentFactory extends Factory
             'performance' => fake()->randomDigit(),
             'education' => fake()->randomDigit(),
             'experience' => fake()->randomDigit(),
-            'psychological_attribute' => fake()->randomDigit(),
+            'psychosocial_attribute' => fake()->randomDigit(),
             'potential' => fake()->randomDigit(),
             'awards' => fake()->randomDigit(),
             'additional_information' => fake()->sentence(),

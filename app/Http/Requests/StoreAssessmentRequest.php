@@ -28,7 +28,7 @@ class StoreAssessmentRequest extends FormRequest
             'performance' => ['required'],
             'education' => ['required'],
             'experience' => ['required'],
-            'psychological_attribute' => ['nullable'],
+            'psychosocial_attribute' => ['nullable'],
             'potential' => ['nullable'],
             'awards' => ['nullable'],
             'additional_information' => ['nullable'],

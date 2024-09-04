@@ -4112,7 +4112,7 @@
           "value": "7"
         },
         {
-          "name": "psychological_attribute[]",
+          "name": "psychosocial_attribute[]",
           "value": "7"
         },
         {
@@ -4156,7 +4156,7 @@
           "value": "8"
         },
         {
-          "name": "psychological_attribute[]",
+          "name": "psychosocial_attribute[]",
           "value": "8"
         },
         {
@@ -4490,7 +4490,7 @@
           "value": "3"
         },
         {
-          "name": "psychological_attribute[]",
+          "name": "psychosocial_attribute[]",
           "value": "3"
         },
         {
@@ -4534,7 +4534,7 @@
           "value": "2"
         },
         {
-          "name": "psychological_attribute[]",
+          "name": "psychosocial_attribute[]",
           "value": "2"
         },
         {

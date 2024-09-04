@@ -46,7 +46,7 @@ class AssessmentController extends Controller
         $performances = $request->input('performance');
         $educations = $request->input('education');
         $experiences = $request->input('experience'); 
-        $psychological_attributes = $request->input('psychological_attribute');
+        $psychosocial_attributes = $request->input('psychosocial_attribute');
         $potentials = $request->input('potential');
         $awards = $request->input('awards');
         $additional_informations = $request->input('additional_information');
@@ -61,7 +61,7 @@ class AssessmentController extends Controller
                 "performance" => $performances[$i],
                 "education" => $educations[$i],
                 "experience" => $experiences[$i],
-                "psychological_attribute" => $psychological_attributes[$i],
+                "psychosocial_attribute" => $psychosocial_attributes[$i],
                 "potential" => $potentials[$i],
                 "awards" => $awards[$i],
                 "additional_information" => $additional_informations[$i],
@@ -102,7 +102,7 @@ class AssessmentController extends Controller
         $performances = $request->input('performance');
         $educations = $request->input('education');
         $experiences = $request->input('experience'); 
-        $psychological_attributes = $request->input('psychological_attribute');
+        $psychosocial_attributes = $request->input('psychosocial_attribute');
         $potentials = $request->input('potential');
         $awards = $request->input('awards');
         $additional_informations = $request->input('additional_information');
@@ -121,7 +121,7 @@ class AssessmentController extends Controller
                 'performance' => $performances[$i],
                 'education' => $educations[$i],
                 'experience' => $experiences[$i],
-                'psychological_attribute' => $psychological_attributes[$i],
+                'psychosocial_attribute' => $psychosocial_attributes[$i],
                 'potential' => $potentials[$i],
                 'awards' => $awards[$i],
                 'additional_information' => $additional_informations[$i],

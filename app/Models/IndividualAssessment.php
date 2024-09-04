@@ -26,7 +26,7 @@ class IndividualAssessment extends Model
     protected $fillable = [
         'application_id',
         'member_id',
-        'ia_psychological_attributes',
+        'ia_psychosocial_attributes',
         'ia_potential',
         'ia_awards',
         'ia_total',

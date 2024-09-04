@@ -25,7 +25,7 @@ class Assessment extends Model
         'performance',
         'education',
         'experience',
-        'psychological_attributes',
+        'psychosocial_attributes',
         'potential',
         'administrative',
         'technical',

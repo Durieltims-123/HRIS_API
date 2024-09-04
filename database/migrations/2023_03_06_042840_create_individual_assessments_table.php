@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('application_id')->constrained()->onDelete('cascade');
             $table->foreignId('personnel_id')->constrained('psb_personnels');
-            $table->integer('ia_psychological_attributes')->nullable();
+            $table->integer('ia_psychosocial_attributes')->nullable();
             $table->integer('ia_potential')->nullable();
             $table->integer('ia_awards')->nullable();
             $table->integer('ia_total')->default(0);
