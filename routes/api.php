@@ -126,6 +126,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/search-notices', [NoticeToApplicantController::class, 'search']);
     Route::get('/download-notice-to-applicants/{vacancy}', [NoticeToApplicantController::class, 'generateNoticeToApplicants']);
     Route::get('/download-notice-individual/{vacancy}', [NoticeToApplicantController::class, 'generateNoticeToIndividuals']);
+    Route::get('/download-final-caf/{vacancy}', [PSBResultController::class, 'generateComparativeAssessementForm']);
 
 
     // Reports

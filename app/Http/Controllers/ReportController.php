@@ -220,7 +220,7 @@ class ReportController extends Controller
                         $worksheet->setCellValue("K" . $row, $permanent->assessment->performance);
                         $worksheet->setCellValue("L" . $row, $permanent->assessment->education);
                         $worksheet->setCellValue("M" . $row, $permanent->assessment->experience);
-                        $worksheet->setCellValue("R" . $row, '=SUM(K' . $row . ':Q' . $row . ')');
+                        // $worksheet->setCellValue("S" . $row, '=SUM(K' . $row . ':R' . $row . ')');
                         $counter++;
                     }
                 } else {
@@ -365,7 +365,7 @@ class ReportController extends Controller
                         $worksheet->setCellValue("K" . $row, $casual->assessment->performance);
                         $worksheet->setCellValue("L" . $row, $casual->assessment->education);
                         $worksheet->setCellValue("M" . $row, $casual->assessment->experience);
-                        $worksheet->setCellValue("R" . $row, '=SUM(K' . $row . ':Q' . $row . ')');
+                        // $worksheet->setCellValue("S" . $row, '=SUM(K' . $row . ':R' . $row . ')');
                         $counter++;
                     }
                 } else {
@@ -514,7 +514,7 @@ class ReportController extends Controller
                         $worksheet->setCellValue("K" . $row, $outsider->assessment->performance);
                         $worksheet->setCellValue("L" . $row, $outsider->assessment->education);
                         $worksheet->setCellValue("M" . $row, $outsider->assessment->experience);
-                        $worksheet->setCellValue("R" . $row, '=SUM(K' . $row . ':Q' . $row . ')');
+                        // $worksheet->setCellValue("S" . $row, '=SUM(K' . $row . ':R' . $row . ')');
                         $counter++;
                     }
                 } else {
