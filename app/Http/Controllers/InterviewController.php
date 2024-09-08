@@ -92,8 +92,8 @@ class InterviewController extends Controller
         } else {
 
             $interview = Interview::create([
-                'date_created' => $request->date_created,
-                'meeting_date' => $request->meeting_date,
+                'date_created' => Date("Y-m-d", strtotime($request->date_created)),
+                'meeting_date' =>  Date("Y-m-d", strtotime($request->meeting_date)),
                 'venue_id' => $request->venue,
             ]);
 
@@ -143,8 +143,8 @@ class InterviewController extends Controller
         } else {
 
             $interview->update([
-                'date_created' => $request->date_created,
-                'meeting_date' => $request->meeting_date,
+                'date_created' => Date("Y-m-d", strtotime($request->date_created)),
+                'meeting_date' =>  Date("Y-m-d", strtotime($request->meeting_date)),
                 'venue_id' => $request->venue,
             ]);
 

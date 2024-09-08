@@ -183,7 +183,7 @@ class ApplicationController extends Controller
             $personalnformation = $pds->personalInformation->update(
                 [
                     'birth_place' => $request->birth_place,
-                    'birth_date' => $request->birth_date,
+                    'birth_date' => Date('Y-m-d', strtotime($request->birth_date)),
                     'age' => $request->age,
                     'sex' => $request->sex,
                     'height' => $request->height,
@@ -242,8 +242,55 @@ class ApplicationController extends Controller
 
             //restructure and  insert children
             $children = array_map(function ($item) use ($familyBackground) {
-                return ["number" => $item['number'], "name" => $item['name'], "birthday" => $item['birthday'], "pds_family_background_id" => $familyBackground->id];
+                return ["number" => $item['number'], "name" => $item['name'], "birthday" => Date('Y-m-d', strtotime($item['birthday'])), "pds_family_background_id" => $familyBackground->id];
             }, $request->children);
+
+
+            $eligibilities = array_map(function ($item) {
+                return [
+                    "date_of_examination_conferment" => Date('Y-m-d', strtotime($item["date_of_examination_conferment"])),
+                    "eligibility_title" => $item["eligibility_title"],
+                    "license_date_validity" => Date('Y-m-d', strtotime($item["license_date_validity"])),
+                    "license_number" => $item["license_number"],
+                    "place_of_examination_conferment" => $item["place_of_examination_conferment"],
+                    "rating" => $item["rating"],
+                ];
+            }, $request->eligibilities);
+
+            $workExperiences = array_map(function ($item) {
+                return [
+                    "date_from" => Date('Y-m-d', strtotime($item["date_from"])),
+                    "date_to" => Date('Y-m-d', strtotime($item["date_to"])),
+                    "government_service" => $item["government_service"],
+                    "monthly_salary" => $item["monthly_salary"],
+                    "office_company" => $item["office_company"],
+                    "position_title" => $item["position_title"],
+                    "salary_grade" => $item["salary_grade"],
+                    "status_of_appointment" => $item["status_of_appointment"],
+                ];
+            }, $request->workExperiences);
+
+            $voluntaryWorks = array_map(function ($item) {
+                return [
+                    "date_from" => Date('Y-m-d', strtotime($item["date_from"])),
+                    "date_to" => Date('Y-m-d', strtotime($item["date_to"])),
+                    "number_of_hours" => $item["number_of_hours"],
+                    "organization_address" => $item["organization_address"],
+                    "organization_name" => $item["organization_name"],
+                    "position_nature_of_work" => $item["position_nature_of_work"]
+                ];
+            }, $request->voluntaryWorks);
+
+            $trainings = array_map(function ($item) {
+                return [
+                    "attendance_from" => Date('Y-m-d', strtotime($item["attendance_from"])),
+                    "attendance_to" => Date('Y-m-d', strtotime($item["attendance_to"])),
+                    "conducted_sponsored_by" => $item["conducted_sponsored_by"],
+                    "number_of_hours" => $item["number_of_hours"],
+                    "training_title" => $item["training_title"],
+                    "training_type" => $item["training_type"]
+                ];
+            }, $request->trainings);
 
             $pds->childrenInformations()->forceDelete();
             $pds->childrenInformations()->createMany($children);
@@ -258,25 +305,25 @@ class ApplicationController extends Controller
             // eligibilities
             $pds->civilServiceEligibilities()->forceDelete();
             $pds->civilServiceEligibilities()->createMany(
-                $request->eligibilities
+                $eligibilities
             );
 
             // work experiences
             $pds->workExperiences()->forceDelete();
             $pds->workExperiences()->createMany(
-                $request->workExperiences
+                $workExperiences
             );
 
             // voluntary works
             $pds->voluntaryWorks()->forceDelete();
             $pds->voluntaryWorks()->createMany(
-                $request->voluntaryWorks
+                $voluntaryWorks
             );
 
             // trainings
             $pds->trainingPrograms()->forceDelete();
             $pds->trainingPrograms()->createMany(
-                $request->trainings
+                $trainings
             );
 
             // specialskills
@@ -341,7 +388,7 @@ class ApplicationController extends Controller
                 $personalnformation = $pds->personalInformation->update(
                     [
                         'birth_place' => $request->birth_place,
-                        'birth_date' => $request->birth_date,
+                        'birth_date' => Date('Y-m-d', strtotime($request->birth_date)),
                         'age' => $request->age,
                         'sex' => $request->sex,
                         'height' => $request->height,
@@ -400,8 +447,55 @@ class ApplicationController extends Controller
 
                 //restructure and  insert children
                 $children = array_map(function ($item) use ($familyBackground) {
-                    return ["number" => $item['number'], "name" => $item['name'], "birthday" => $item['birthday'], "pds_family_background_id" => $familyBackground->id];
+                    return ["number" => $item['number'], "name" => $item['name'], "birthday" => Date('Y-m-d', strtotime($item['birthday'])), "pds_family_background_id" => $familyBackground->id];
                 }, $request->children);
+
+
+                $eligibilities = array_map(function ($item) {
+                    return [
+                        "date_of_examination_conferment" => Date('Y-m-d', strtotime($item["date_of_examination_conferment"])),
+                        "eligibility_title" => $item["eligibility_title"],
+                        "license_date_validity" => Date('Y-m-d', strtotime($item["license_date_validity"])),
+                        "license_number" => $item["license_number"],
+                        "place_of_examination_conferment" => $item["place_of_examination_conferment"],
+                        "rating" => $item["rating"],
+                    ];
+                }, $request->eligibilities);
+
+                $workExperiences = array_map(function ($item) {
+                    return [
+                        "date_from" => Date('Y-m-d', strtotime($item["date_from"])),
+                        "date_to" => Date('Y-m-d', strtotime($item["date_to"])),
+                        "government_service" => $item["government_service"],
+                        "monthly_salary" => $item["monthly_salary"],
+                        "office_company" => $item["office_company"],
+                        "position_title" => $item["position_title"],
+                        "salary_grade" => $item["salary_grade"],
+                        "status_of_appointment" => $item["status_of_appointment"],
+                    ];
+                }, $request->workExperiences);
+
+                $voluntaryWorks = array_map(function ($item) {
+                    return [
+                        "date_from" => Date('Y-m-d', strtotime($item["date_from"])),
+                        "date_to" => Date('Y-m-d', strtotime($item["date_to"])),
+                        "number_of_hours" => $item["number_of_hours"],
+                        "organization_address" => $item["organization_address"],
+                        "organization_name" => $item["organization_name"],
+                        "position_nature_of_work" => $item["position_nature_of_work"]
+                    ];
+                }, $request->voluntaryWorks);
+
+                $trainings = array_map(function ($item) {
+                    return [
+                        "attendance_from" => Date('Y-m-d', strtotime($item["attendance_from"])),
+                        "attendance_to" => Date('Y-m-d', strtotime($item["attendance_to"])),
+                        "conducted_sponsored_by" => $item["conducted_sponsored_by"],
+                        "number_of_hours" => $item["number_of_hours"],
+                        "training_title" => $item["training_title"],
+                        "training_type" => $item["training_type"]
+                    ];
+                }, $request->trainings);
 
                 $pds->childrenInformations()->forceDelete();
                 $pds->childrenInformations()->createMany($children);
@@ -416,25 +510,25 @@ class ApplicationController extends Controller
                 // eligibilities
                 $pds->civilServiceEligibilities()->forceDelete();
                 $pds->civilServiceEligibilities()->createMany(
-                    $request->eligibilities
+                    $eligibilities
                 );
 
                 // work experiences
                 $pds->workExperiences()->forceDelete();
                 $pds->workExperiences()->createMany(
-                    $request->workExperiences
+                    $workExperiences
                 );
 
                 // voluntary works
                 $pds->voluntaryWorks()->forceDelete();
                 $pds->voluntaryWorks()->createMany(
-                    $request->voluntaryWorks
+                    $voluntaryWorks
                 );
 
                 // trainings
                 $pds->trainingPrograms()->forceDelete();
                 $pds->trainingPrograms()->createMany(
-                    $request->trainings
+                    $trainings
                 );
 
                 // specialskills
@@ -492,7 +586,7 @@ class ApplicationController extends Controller
                 $personalnformation = $pds->personalInformation()->create(
                     [
                         'birth_place' => $request->birth_place,
-                        'birth_date' => $request->birth_date,
+                        'birth_date' => Date('Y-m-d', strtotime($request->birth_date)),
                         'age' => $request->age,
                         'sex' => $request->sex,
                         'height' => $request->height,
@@ -550,8 +644,55 @@ class ApplicationController extends Controller
 
                 //restructure and  insert children
                 $children = array_map(function ($item) use ($familyBackground) {
-                    return ["number" => $item['number'], "name" => $item['name'], "birthday" => $item['birthday'], "pds_family_background_id" => $familyBackground->id];
+                    return ["number" => $item['number'], "name" => $item['name'], "birthday" => Date('Y-m-d', strtotime($item['birthday'])), "pds_family_background_id" => $familyBackground->id];
                 }, $request->children);
+
+
+                $eligibilities = array_map(function ($item) {
+                    return [
+                        "date_of_examination_conferment" => Date('Y-m-d', strtotime($item["date_of_examination_conferment"])),
+                        "eligibility_title" => $item["eligibility_title"],
+                        "license_date_validity" => Date('Y-m-d', strtotime($item["license_date_validity"])),
+                        "license_number" => $item["license_number"],
+                        "place_of_examination_conferment" => $item["place_of_examination_conferment"],
+                        "rating" => $item["rating"],
+                    ];
+                }, $request->eligibilities);
+
+                $workExperiences = array_map(function ($item) {
+                    return [
+                        "date_from" => Date('Y-m-d', strtotime($item["date_from"])),
+                        "date_to" => Date('Y-m-d', strtotime($item["date_to"])),
+                        "government_service" => $item["government_service"],
+                        "monthly_salary" => $item["monthly_salary"],
+                        "office_company" => $item["office_company"],
+                        "position_title" => $item["position_title"],
+                        "salary_grade" => $item["salary_grade"],
+                        "status_of_appointment" => $item["status_of_appointment"],
+                    ];
+                }, $request->workExperiences);
+
+                $voluntaryWorks = array_map(function ($item) {
+                    return [
+                        "date_from" => Date('Y-m-d', strtotime($item["date_from"])),
+                        "date_to" => Date('Y-m-d', strtotime($item["date_to"])),
+                        "number_of_hours" => $item["number_of_hours"],
+                        "organization_address" => $item["organization_address"],
+                        "organization_name" => $item["organization_name"],
+                        "position_nature_of_work" => $item["position_nature_of_work"]
+                    ];
+                }, $request->voluntaryWorks);
+
+                $trainings = array_map(function ($item) {
+                    return [
+                        "attendance_from" => Date('Y-m-d', strtotime($item["attendance_from"])),
+                        "attendance_to" => Date('Y-m-d', strtotime($item["attendance_to"])),
+                        "conducted_sponsored_by" => $item["conducted_sponsored_by"],
+                        "number_of_hours" => $item["number_of_hours"],
+                        "training_title" => $item["training_title"],
+                        "training_type" => $item["training_type"]
+                    ];
+                }, $request->trainings);
 
                 $pds->childrenInformations()->createMany($children);
 
@@ -561,22 +702,22 @@ class ApplicationController extends Controller
 
                 // eligibilities
                 $pds->civilServiceEligibilities()->createMany(
-                    $request->eligibilities
+                    $eligibilities
                 );
 
                 // work experiences
                 $pds->workExperiences()->createMany(
-                    $request->workExperiences
+                    $workExperiences
                 );
 
                 // voluntary works
                 $pds->voluntaryWorks()->createMany(
-                    $request->voluntaryWorks
+                    $voluntaryWorks
                 );
 
                 // trainings
                 $pds->trainingPrograms()->createMany(
-                    $request->trainings
+                    $trainings
                 );
 
                 // specialskills
@@ -618,7 +759,7 @@ class ApplicationController extends Controller
         } else {
             $application = $individual->application()->create([
                 'vacancy_id' => $request->vacancy_id,
-                'date_submitted' => $request->date_submitted,
+                'date_submitted' => Date('Y-m-d', strtotime($request->date_submitted)),
                 'first_name' => $individual->first_name,
                 'middle_name' => $individual->middle_name,
                 'last_name' => $individual->last_name,
@@ -783,7 +924,7 @@ class ApplicationController extends Controller
             $personalnformation = $pds->personalInformation->update(
                 [
                     'birth_place' => $request->birth_place,
-                    'birth_date' => $request->birth_date,
+                    'birth_date' => Date('Y-m-d', strtotime($request->birth_date)),
                     'age' => $request->age,
                     'sex' => $request->sex,
                     'height' => $request->height,
@@ -842,8 +983,55 @@ class ApplicationController extends Controller
 
             //restructure and  insert children
             $children = array_map(function ($item) use ($familyBackground) {
-                return ["number" => $item['number'], "name" => $item['name'], "birthday" => $item['birthday'], "pds_family_background_id" => $familyBackground->id];
+                return ["number" => $item['number'], "name" => $item['name'], "birthday" => Date('Y-m-d', strtotime($item['birthday'])), "pds_family_background_id" => $familyBackground->id];
             }, $request->children);
+
+
+            $eligibilities = array_map(function ($item) {
+                return [
+                    "date_of_examination_conferment" => Date('Y-m-d', strtotime($item["date_of_examination_conferment"])),
+                    "eligibility_title" => $item["eligibility_title"],
+                    "license_date_validity" => Date('Y-m-d', strtotime($item["license_date_validity"])),
+                    "license_number" => $item["license_number"],
+                    "place_of_examination_conferment" => $item["place_of_examination_conferment"],
+                    "rating" => $item["rating"],
+                ];
+            }, $request->eligibilities);
+
+            $workExperiences = array_map(function ($item) {
+                return [
+                    "date_from" => Date('Y-m-d', strtotime($item["date_from"])),
+                    "date_to" => Date('Y-m-d', strtotime($item["date_to"])),
+                    "government_service" => $item["government_service"],
+                    "monthly_salary" => $item["monthly_salary"],
+                    "office_company" => $item["office_company"],
+                    "position_title" => $item["position_title"],
+                    "salary_grade" => $item["salary_grade"],
+                    "status_of_appointment" => $item["status_of_appointment"],
+                ];
+            }, $request->workExperiences);
+
+            $voluntaryWorks = array_map(function ($item) {
+                return [
+                    "date_from" => Date('Y-m-d', strtotime($item["date_from"])),
+                    "date_to" => Date('Y-m-d', strtotime($item["date_to"])),
+                    "number_of_hours" => $item["number_of_hours"],
+                    "organization_address" => $item["organization_address"],
+                    "organization_name" => $item["organization_name"],
+                    "position_nature_of_work" => $item["position_nature_of_work"]
+                ];
+            }, $request->voluntaryWorks);
+
+            $trainings = array_map(function ($item) {
+                return [
+                    "attendance_from" => Date('Y-m-d', strtotime($item["attendance_from"])),
+                    "attendance_to" => Date('Y-m-d', strtotime($item["attendance_to"])),
+                    "conducted_sponsored_by" => $item["conducted_sponsored_by"],
+                    "number_of_hours" => $item["number_of_hours"],
+                    "training_title" => $item["training_title"],
+                    "training_type" => $item["training_type"]
+                ];
+            }, $request->trainings);
 
             $pds->childrenInformations()->forceDelete();
             $pds->childrenInformations()->createMany($children);
@@ -858,25 +1046,25 @@ class ApplicationController extends Controller
             // eligibilities
             $pds->civilServiceEligibilities()->forceDelete();
             $pds->civilServiceEligibilities()->createMany(
-                $request->eligibilities
+                $eligibilities
             );
 
             // work experiences
             $pds->workExperiences()->forceDelete();
             $pds->workExperiences()->createMany(
-                $request->workExperiences
+                $workExperiences
             );
 
             // voluntary works
             $pds->voluntaryWorks()->forceDelete();
             $pds->voluntaryWorks()->createMany(
-                $request->voluntaryWorks
+                $voluntaryWorks
             );
 
             // trainings
             $pds->trainingPrograms()->forceDelete();
             $pds->trainingPrograms()->createMany(
-                $request->trainings
+                $trainings
             );
 
             // specialskills
@@ -940,7 +1128,7 @@ class ApplicationController extends Controller
                 $personalnformation = $pds->personalInformation->update(
                     [
                         'birth_place' => $request->birth_place,
-                        'birth_date' => $request->birth_date,
+                        'birth_date' => Date('Y-m-d', strtotime($request->birth_date)),
                         'age' => $request->age,
                         'sex' => $request->sex,
                         'height' => $request->height,
@@ -999,8 +1187,55 @@ class ApplicationController extends Controller
 
                 //restructure and  insert children
                 $children = array_map(function ($item) use ($familyBackground) {
-                    return ["number" => $item['number'], "name" => $item['name'], "birthday" => $item['birthday'], "pds_family_background_id" => $familyBackground->id];
+                    return ["number" => $item['number'], "name" => $item['name'], "birthday" => Date('Y-m-d', strtotime($item['birthday'])), "pds_family_background_id" => $familyBackground->id];
                 }, $request->children);
+
+
+                $eligibilities = array_map(function ($item) {
+                    return [
+                        "date_of_examination_conferment" => Date('Y-m-d', strtotime($item["date_of_examination_conferment"])),
+                        "eligibility_title" => $item["eligibility_title"],
+                        "license_date_validity" => Date('Y-m-d', strtotime($item["license_date_validity"])),
+                        "license_number" => $item["license_number"],
+                        "place_of_examination_conferment" => $item["place_of_examination_conferment"],
+                        "rating" => $item["rating"],
+                    ];
+                }, $request->eligibilities);
+
+                $workExperiences = array_map(function ($item) {
+                    return [
+                        "date_from" => Date('Y-m-d', strtotime($item["date_from"])),
+                        "date_to" => Date('Y-m-d', strtotime($item["date_to"])),
+                        "government_service" => $item["government_service"],
+                        "monthly_salary" => $item["monthly_salary"],
+                        "office_company" => $item["office_company"],
+                        "position_title" => $item["position_title"],
+                        "salary_grade" => $item["salary_grade"],
+                        "status_of_appointment" => $item["status_of_appointment"],
+                    ];
+                }, $request->workExperiences);
+
+                $voluntaryWorks = array_map(function ($item) {
+                    return [
+                        "date_from" => Date('Y-m-d', strtotime($item["date_from"])),
+                        "date_to" => Date('Y-m-d', strtotime($item["date_to"])),
+                        "number_of_hours" => $item["number_of_hours"],
+                        "organization_address" => $item["organization_address"],
+                        "organization_name" => $item["organization_name"],
+                        "position_nature_of_work" => $item["position_nature_of_work"]
+                    ];
+                }, $request->voluntaryWorks);
+
+                $trainings = array_map(function ($item) {
+                    return [
+                        "attendance_from" => Date('Y-m-d', strtotime($item["attendance_from"])),
+                        "attendance_to" => Date('Y-m-d', strtotime($item["attendance_to"])),
+                        "conducted_sponsored_by" => $item["conducted_sponsored_by"],
+                        "number_of_hours" => $item["number_of_hours"],
+                        "training_title" => $item["training_title"],
+                        "training_type" => $item["training_type"]
+                    ];
+                }, $request->trainings);
 
                 $pds->childrenInformations()->forceDelete();
                 $pds->childrenInformations()->createMany($children);
@@ -1015,25 +1250,25 @@ class ApplicationController extends Controller
                 // eligibilities
                 $pds->civilServiceEligibilities()->forceDelete();
                 $pds->civilServiceEligibilities()->createMany(
-                    $request->eligibilities
+                    $eligibilities
                 );
 
                 // work experiences
                 $pds->workExperiences()->forceDelete();
                 $pds->workExperiences()->createMany(
-                    $request->workExperiences
+                    $workExperiences
                 );
 
                 // voluntary works
                 $pds->voluntaryWorks()->forceDelete();
                 $pds->voluntaryWorks()->createMany(
-                    $request->voluntaryWorks
+                    $voluntaryWorks
                 );
 
                 // trainings
                 $pds->trainingPrograms()->forceDelete();
                 $pds->trainingPrograms()->createMany(
-                    $request->trainings
+                    $trainings
                 );
 
                 // specialskills
@@ -1090,7 +1325,7 @@ class ApplicationController extends Controller
                 $personalnformation = $pds->personalInformation()->create(
                     [
                         'birth_place' => $request->birth_place,
-                        'birth_date' => $request->birth_date,
+                        'birth_date' => Date('Y-m-d', strtotime($request->birth_date)),
                         'age' => $request->age,
                         'sex' => $request->sex,
                         'height' => $request->height,
@@ -1148,8 +1383,61 @@ class ApplicationController extends Controller
 
                 //restructure and  insert children
                 $children = array_map(function ($item) use ($familyBackground) {
-                    return ["number" => $item['number'], "name" => $item['name'], "birthday" => $item['birthday'], "pds_family_background_id" => $familyBackground->id];
+                    return ["number" => $item['number'], "name" => $item['name'], "birthday" => Date('Y-m-d', strtotime($item['birthday'])), "pds_family_background_id" => $familyBackground->id];
                 }, $request->children);
+
+
+                $eligibilities = array_map(function ($item) {
+                    return [
+                        "date_of_examination_conferment" => Date('Y-m-d', strtotime($item["date_of_examination_conferment"])),
+                        "eligibility_title" => $item["eligibility_title"],
+                        "license_date_validity" => Date('Y-m-d', strtotime($item["license_date_validity"])),
+                        "license_number" => $item["license_number"],
+                        "place_of_examination_conferment" => $item["place_of_examination_conferment"],
+                        "rating" => $item["rating"],
+                    ];
+                }, $request->eligibilities);
+
+                $workExperiences = array_map(function ($item) {
+                    return [
+                        "date_from" => Date('Y-m-d', strtotime($item["date_from"])),
+                        "date_to" => Date(
+                            'Y-m-d',
+                            strtotime($item["date_to"])
+                        ),
+                        "government_service" => $item["government_service"],
+                        "monthly_salary" => $item["monthly_salary"],
+                        "office_company" => $item["office_company"],
+                        "position_title" => $item["position_title"],
+                        "salary_grade" => $item["salary_grade"],
+                        "status_of_appointment" => $item["status_of_appointment"],
+                    ];
+                }, $request->workExperiences);
+
+                $voluntaryWorks = array_map(function ($item) {
+                    return [
+                        "date_from" => Date('Y-m-d', strtotime($item["date_from"])),
+                        "date_to" => Date(
+                            'Y-m-d',
+                            strtotime($item["date_to"])
+                        ),
+                        "number_of_hours" => $item["number_of_hours"],
+                        "organization_address" => $item["organization_address"],
+                        "organization_name" => $item["organization_name"],
+                        "position_nature_of_work" => $item["position_nature_of_work"]
+                    ];
+                }, $request->voluntaryWorks);
+
+                $trainings = array_map(function ($item) {
+                    return [
+                        "attendance_from" => Date('Y-m-d', strtotime($item["attendance_from"])),
+                        "attendance_to" => Date('Y-m-d', strtotime($item["attendance_to"])),
+                        "conducted_sponsored_by" => $item["conducted_sponsored_by"],
+                        "number_of_hours" => $item["number_of_hours"],
+                        "training_title" => $item["training_title"],
+                        "training_type" => $item["training_type"]
+                    ];
+                }, $request->trainings);
 
                 $pds->childrenInformations()->createMany($children);
 
@@ -1159,22 +1447,22 @@ class ApplicationController extends Controller
 
                 // eligibilities
                 $pds->civilServiceEligibilities()->createMany(
-                    $request->eligibilities
+                    $eligibilities
                 );
 
                 // work experiences
                 $pds->workExperiences()->createMany(
-                    $request->workExperiences
+                    $workExperiences
                 );
 
                 // voluntary works
                 $pds->voluntaryWorks()->createMany(
-                    $request->voluntaryWorks
+                    $voluntaryWorks
                 );
 
                 // trainings
                 $pds->trainingPrograms()->createMany(
-                    $request->trainings
+                    $trainings
                 );
 
                 // specialskills
@@ -1224,7 +1512,7 @@ class ApplicationController extends Controller
                 'individual_type',
                 $pds->individual_type,
                 'vacancy_id' => $request->vacancy_id,
-                'date_submitted' => $request->date_submitted,
+                'date_submitted' => Date('Y-m-d', strtotime($request->date_submitted)),
                 'first_name' => $individual->first_name,
                 'middle_name' => $individual->middle_name,
                 'last_name' => $individual->last_name,

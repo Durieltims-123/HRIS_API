@@ -22,9 +22,13 @@ class PersonnelSelectionBoard extends Model
     protected $fillable = [
         'date_of_effectivity',
         'end_of_effectivity',
-        'presiding_officer_prefix',
-        'presiding_officer',
-        'presiding_officer_position',
-        'presiding_officer_office',
+        'chairman_prefix',
+        'chairman',
+        'chairman_position',
+        'chairman_office',
+        'vice_chairman_prefix',
+        'vice_chairman',
+        'vice_chairman_position',
+        'vice_chairman_office',
     ];
 }

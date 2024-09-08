@@ -9,6 +9,7 @@ use App\Traits\HttpResponses;
 use App\Http\Resources\VacancyResource;
 use App\Http\Requests\StoreVacancyRequest;
 use App\Models\Publication;
+use App\Models\Holiday;
 use Illuminate\Contracts\Validation\Validator;
 
 class VacancyController extends Controller
@@ -376,5 +377,32 @@ class VacancyController extends Controller
             ->count();
 
         return compact('pages', 'data');
+    }
+
+
+
+    function getClosingDate(Request $request)
+    {
+
+        $foundWeekday = false;
+        // Check if the given date is a weekday
+        $closing_date = strtotime('+15 days', strtotime($request->posting_date));
+        while ($foundWeekday === false) {
+            $dayOfWeek = date('N', $closing_date); // N gives 1 (Monday) to 7 (Sunday)
+            if ($dayOfWeek >= 6) {
+                $closing_date = strtotime('next Monday', $closing_date);
+            } else {
+                $find_holiday = Holiday::where('date', Date('Y-m-d', $closing_date))->exists();
+                if ($find_holiday) {
+                    $closing_date = strtotime('+1 day', $closing_date);
+                } else {
+                    $foundWeekday = true;
+                }
+            }
+        }
+
+        $data = date('m/d/Y', $closing_date);
+
+        return compact('data');
     }
 }

@@ -20,6 +20,7 @@ use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\OathTakingController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\DepartmentHeadController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\SalaryGradeController;
 use App\Http\Controllers\DisqualificationController;
@@ -63,6 +64,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/position', PositionController::class);
     Route::post('/search-position', [PositionController::class, 'search']);
     Route::post('/search-office', [OfficeController::class, 'search']);
+    Route::post('/search-department-heads', [DepartmentHeadController::class, 'search']);
+    Route::resource('/department-head', DepartmentHeadController::class);
     Route::post('/search-division', [DivisionController::class, 'search']);
     Route::resource('/division', DivisionController::class);
     Route::resource('/position-description', PositionDescriptionController::class);
@@ -93,8 +96,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/vacancy', VacancyController::class);
     Route::post('/search-vacancy', [VacancyController::class, 'search']);
     Route::post('/search-vacancy-meeting', [VacancyController::class, 'searchTable']);
-
+    Route::post('/get-closing-date', [VacancyController::class, 'getClosingDate']);
     Route::post('/search-closing-date', [PublicationController::class, 'searchClosingDate']);
+
     Route::post('/search-lgu-position', [LguPositionController::class, 'search']);
     Route::resource('/lgu-position', LguPositionController::class);
     Route::resource('/office', OfficeController::class);

@@ -21,8 +21,10 @@ class PersonnelSelectionBoardResource extends JsonResource
             "attributes" => [
                 "date_of_effectivity" => (string)$this->date_of_effectivity,
                 "end_of_effectivity" => (string)$this->end_of_effectivity,
-                "presiding_officer" => (string)$this->presiding_officer,
-                "presiding_officer_position" => (string)$this->presiding_officer_position,
+                "chairman" => (string)$this->chairman,
+                "chairman_position" => (string)$this->chairman_position,
+                "vice_chairman" => (string)$this->vice_chairman,
+                "vice_chairman_position" => (string)$this->vice_chairman_position,
                 "members" => PsbMemberResource::collection($this->whenLoaded('psbPersonnels'))
             ],
 

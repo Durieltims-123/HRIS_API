@@ -15,10 +15,14 @@ return new class extends Migration
             $table->id();
             $table->date('date_of_effectivity');
             $table->date('end_of_effectivity')->nullable();
-            $table->string('presiding_officer_prefix');
-            $table->string('presiding_officer');
-            $table->string('presiding_officer_position');
-            $table->string('presiding_officer_office');
+            $table->string('chairman_prefix')->nullable();
+            $table->string('chairman')->nullable();
+            $table->string('chairman_position')->nullable();
+            $table->string('chairman_office')->nullable();
+            $table->string('vice_chairman_prefix')->nullable();
+            $table->string('vice_chairman')->nullable();
+            $table->string('vice_chairman_position')->nullable();
+            $table->string('vice_chairman_office')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

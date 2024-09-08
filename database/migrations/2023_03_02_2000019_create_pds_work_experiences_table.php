@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('position_title');
             $table->string('office_company');
             $table->string('monthly_salary');
-            $table->string('salary_grade');
+            $table->string('salary_grade')->nullable();
             $table->string('status_of_appointment');
             $table->string('government_service');
             $table->date('date_from');

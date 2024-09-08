@@ -46,10 +46,14 @@ class PersonnelSelectionBoardController extends Controller
         $PsbExists = PersonnelSelectionBoard::where([
             ['date_of_effectivity', $psbRequest->date_of_effectivity],
             ['end_of_effectivity', $psbRequest->end_of_effectivity],
-            ['presiding_officer_prefix', $psbRequest->presiding_officer_prefix],
-            ['presiding_officer', $psbRequest->presiding_officer],
-            ['presiding_officer_position', $psbRequest->presiding_officer_position],
-            ['presiding_officer_office', $psbRequest->presiding_officer_office],
+            ['chairman_prefix', $psbRequest->chairman_prefix],
+            ['chairman', $psbRequest->chairman],
+            ['chairman_position', $psbRequest->chairman_position],
+            ['chairman_office', $psbRequest->chairman_office],
+            ['vice_chairman_prefix', $psbRequest->vice_chairman_prefix],
+            ['vice_chairman', $psbRequest->vice_chairman],
+            ['vice_chairman_position', $psbRequest->vice_chairman_position],
+            ['vice_chairman_office', $psbRequest->vice_chairman_office],
         ])->exists();
 
         if ($PsbExists) {
@@ -60,10 +64,14 @@ class PersonnelSelectionBoardController extends Controller
         $psb = PersonnelSelectionBoard::create([
             "date_of_effectivity" => $psbRequest->date_of_effectivity,
             "end_of_effectivity" => $psbRequest->end_of_effectivity,
-            "presiding_officer" => $psbRequest->presiding_officer,
-            "presiding_officer_prefix" => $psbRequest->presiding_officer_prefix,
-            "presiding_officer_position" => $psbRequest->presiding_officer_position,
-            "presiding_officer_office" => $psbRequest->presiding_officer_office,
+            "chairman" => $psbRequest->chairman,
+            "chairman_prefix" => $psbRequest->chairman_prefix,
+            "chairman_position" => $psbRequest->chairman_position,
+            "chairman_office" => $psbRequest->chairman_office,
+            "vice_chairman" => $psbRequest->vice_chairman,
+            "vice_chairman_prefix" => $psbRequest->vice_chairman_prefix,
+            "vice_chairman_position" => $psbRequest->vice_chairman_position,
+            "vice_chairman_office" => $psbRequest->vice_chairman_office,
         ]);
 
 
@@ -107,10 +115,14 @@ class PersonnelSelectionBoardController extends Controller
             ['id', '<>', $personnelSelectionBoard->id],
             ['date_of_effectivity', $psbRequest->date_of_effectivity],
             ['end_of_effectivity', $psbRequest->end_of_effectivity],
-            ['presiding_officer_prefix', $psbRequest->presiding_officer_prefix],
-            ['presiding_officer', $psbRequest->presiding_officer],
-            ['presiding_officer_position', $psbRequest->presiding_officer_position],
-            ['presiding_officer_office', $psbRequest->presiding_officer_office],
+            ['chairman_prefix', $psbRequest->chairman_prefix],
+            ['chairman', $psbRequest->chairman],
+            ['chairman_position', $psbRequest->chairman_position],
+            ['chairman_office', $psbRequest->chairman_office],
+            ['vice_chairman_prefix', $psbRequest->vice_chairman_prefix],
+            ['vice_chairman', $psbRequest->vice_chairman],
+            ['vice_chairman_position', $psbRequest->vice_chairman_position],
+            ['vice_chairman_office', $psbRequest->vice_chairman_office],
         ])->exists();
 
         if ($PsbExists) {
@@ -119,10 +131,15 @@ class PersonnelSelectionBoardController extends Controller
 
         $personnelSelectionBoard->date_of_effectivity = $psbRequest->date_of_effectivity;
         $personnelSelectionBoard->end_of_effectivity = $psbRequest->end_of_effectivity;
-        $personnelSelectionBoard->presiding_officer_prefix = $psbRequest->presiding_officer_prefix;
-        $personnelSelectionBoard->presiding_officer = $psbRequest->presiding_officer;
-        $personnelSelectionBoard->presiding_officer_position = $psbRequest->presiding_officer_position;
-        $personnelSelectionBoard->presiding_officer_office = $psbRequest->presiding_officer_office;
+        $personnelSelectionBoard->chairman_prefix = $psbRequest->chairman_prefix;
+        $personnelSelectionBoard->chairman = $psbRequest->chairman;
+        $personnelSelectionBoard->chairman_position = $psbRequest->chairman_position;
+        $personnelSelectionBoard->chairman_office = $psbRequest->chairman_office;
+
+        $personnelSelectionBoard->vice_chairman_prefix = $psbRequest->vice_chairman_prefix;
+        $personnelSelectionBoard->vice_chairman = $psbRequest->vice_chairman;
+        $personnelSelectionBoard->vice_chairman_position = $psbRequest->vice_chairman_position;
+        $personnelSelectionBoard->vice_chairman_office = $psbRequest->vice_chairman_office;
 
 
         $personnelSelectionBoard->psbPersonnels()->forceDelete();
