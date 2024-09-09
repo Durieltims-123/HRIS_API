@@ -44,8 +44,8 @@ class PersonnelSelectionBoardController extends Controller
 
         // validate user from database
         $PsbExists = PersonnelSelectionBoard::where([
-            ['date_of_effectivity', $psbRequest->date_of_effectivity],
-            ['end_of_effectivity', $psbRequest->end_of_effectivity],
+            ['date_of_effectivity', Date("Y-m-d", strtotime($psbRequest->date_of_effectivity))],
+            ['end_of_effectivity', Date("Y-m-d", strtotime($psbRequest->end_of_effectivity))],
             ['chairman_prefix', $psbRequest->chairman_prefix],
             ['chairman', $psbRequest->chairman],
             ['chairman_position', $psbRequest->chairman_position],
@@ -62,8 +62,8 @@ class PersonnelSelectionBoardController extends Controller
 
 
         $psb = PersonnelSelectionBoard::create([
-            "date_of_effectivity" => $psbRequest->date_of_effectivity,
-            "end_of_effectivity" => $psbRequest->end_of_effectivity,
+            "date_of_effectivity" =>  Date("Y-m-d", strtotime($psbRequest->date_of_effectivity)),
+            "end_of_effectivity" => Date("Y-m-d", strtotime($psbRequest->end_of_effectivity)),
             "chairman" => $psbRequest->chairman,
             "chairman_prefix" => $psbRequest->chairman_prefix,
             "chairman_position" => $psbRequest->chairman_position,
