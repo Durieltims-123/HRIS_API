@@ -96,6 +96,42 @@ class EmployeeController extends Controller
         return compact("pages", "data");
     }
 
+    public function searchForAppointment(Request $request)
+    {
+        $keyword = $request->keyword;
+        $data = Employee::select(
+            "*",
+            "employees.id  as id",
+            "first_name",
+            "middle_name",
+            "last_name",
+            "suffix",
+            "mobile_number",
+            "email_address",
+            "employee_status"
+        )
+            ->where([["first_name", "like", "%$keyword%"], ["employee_status", "Active"], ["employment_status", "<>", "permanent"]])
+            ->orWhere([["middle_name", "like", "%$keyword%"], ["employee_status", "Active"], ["employment_status", "<>", "permanent"]])
+            ->orWhere([["last_name", "like", "%$keyword%"], ["employee_status", "Active"], ["employment_status", "<>", "permanent"]])
+            ->orWhere([["suffix", "like", "%$keyword%"], ["employee_status", "Active"], ["employment_status", "<>", "permanent"]])
+            ->take(20)
+            ->get()
+            ->toArray();
+
+
+        $data = array_map(function ($item) {
+            if ($item['middle_name'] != null) {
+                $label = $item['first_name'] . " " . strtoupper(strtolower($item['middle_name'][0])) . ". " . $item['last_name'] . " " . $item['suffix'];
+            } else {
+                $label = $item['first_name'] . " " . $item['last_name'] . " " . $item['suffix'];
+            }
+            return ["id" => $item['id'], "label" => $label];
+        }, $data);
+
+
+        return compact("data");
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -251,7 +287,7 @@ class EmployeeController extends Controller
                 ];
             }, $request->trainings);
 
-         
+
 
             $pds->childrenInformations()->createMany($children);
 
@@ -503,7 +539,7 @@ class EmployeeController extends Controller
             ];
         }, $request->trainings);
 
-      
+
         $pds->childrenInformations()->forceDelete();
         $pds->childrenInformations()->createMany($children);
 

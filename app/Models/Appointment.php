@@ -21,6 +21,11 @@ class Appointment extends Model
     {
         return $this->belongsTo(ReportOfAppointment::class, 'roa_id');
     }
+
+    public function appointee()
+    {
+        return $this->morphTo();
+    }
     // public function hasManyOathTaker():HasMany{
     //     return $this->hasMany(OathTakers::class);
     // }
@@ -28,9 +33,14 @@ class Appointment extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'application_id',
-        'roa_id',
-        'appointment_date',
-        'reports'
+        'nature_of_appointment',
+        'vice',
+        'vice_reason',
+        'date_of_signing',
+        'page_no',
+        'date_received',
+        'appointee_type',
+        'appointee_id'
+
     ];
 }

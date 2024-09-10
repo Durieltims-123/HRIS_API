@@ -22,8 +22,17 @@ class StoreAppointmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "application_id" => ['required'],
-            "appointment_date" => ['required','date'],
+
+            "employment_status" => ['required'],
+            'nature_of_appointment' => ['required'],
+            'division' => ['required'],
+            'vice' => ['required'],
+            'vice_reason' => ['required'],
+            'date_of_signing' => ['required'],
+            'page_no' => ['required'],
+            'date_received' => ['required', 'after_or_equal:date_of_signing'],
+            'application' => ['required_if:employment_status,permanent'],
+            'employee' => ['required_if:employment_status,!=,permanent'],
         ];
     }
 }

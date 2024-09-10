@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("application_id")->constrained()->nullable();
-            $table->foreignId("employee_id")->constrained()->nullable();
+            $table->morphs('appointee');
             $table->string("nature_of_appointment");
             $table->string("vice")->nullable();
             $table->string("vice_reason")->nullable();

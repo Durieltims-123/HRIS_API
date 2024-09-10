@@ -18,7 +18,7 @@ class PositionSeeder extends Seeder
 
         $data = [
             [
-                "code" => "***",
+                "code" => "ACCI",
                 "title" => "Accountant I",
                 "salary_grade_id" => 12,
                 "education" => "BS Accountancy, BS Commerce or Business Administration major in Accounting",
@@ -27,7 +27,7 @@ class PositionSeeder extends Seeder
                 "eligibility" => "RA 1080 (Accountant)"
             ],
             [
-                "code" => "***",
+                "code" => "ACCII",
                 "title" => "Accountant II",
                 "salary_grade_id" => 16,
                 "education" => "BS Accountancy, BS Commerce or Business Administration major in Accounting",
@@ -36,7 +36,7 @@ class PositionSeeder extends Seeder
                 "eligibility" => "RA 1080 (Accountant)"
             ],
             [
-                "code" => "***",
+                "code" => "ACCIII",
                 "title" => "Accountant III",
                 "salary_grade_id" => 19,
                 "education" => "BS Accountancy, BS Commerce or Business Administration major in Accounting",
@@ -45,7 +45,7 @@ class PositionSeeder extends Seeder
                 "eligibility" => "RA 1080 (Accountant)"
             ],
             [
-                "code" => "***",
+                "code" => "ACCIV",
                 "title" => "Accountant IV",
                 "salary_grade_id" => 22,
                 "education" => "BS Accountancy, BS Commerce or Business Administration major in Accounting",
@@ -54,7 +54,7 @@ class PositionSeeder extends Seeder
                 "eligibility" => "RA 1080 (Accountant)"
             ],
             [
-                "code" => "***",
+                "code" => "AAI",
                 "title" => "Administrative Aide I (Utility Worker I)",
                 "salary_grade_id" => 1,
                 "education" => "Must be able to read and write",
@@ -63,7 +63,7 @@ class PositionSeeder extends Seeder
                 "eligibility" => "None Required"
             ],
             [
-                "code" => "***",
+                "code" => "AAII",
                 "title" => "Administrative Aide II (Messenger)",
                 "salary_grade_id" => 2,
                 "education" => "Elementary School Graduate",
@@ -72,7 +72,7 @@ class PositionSeeder extends Seeder
                 "eligibility" => "None Required"
             ],
             [
-                "code" => "***",
+                "code" => "AAIII",
                 "title" => "Administrative Aide III (Utility Worker II)",
                 "salary_grade_id" => 3,
                 "education" => "Elementary  School Graduate",
@@ -81,7 +81,7 @@ class PositionSeeder extends Seeder
                 "eligibility" => "None Required"
             ],
             [
-                "code" => "***",
+                "code" => "AAAIII",
                 "title" => "Administrative Aide III (Plumber I)",
                 "salary_grade_id" => 3,
                 "education" => "Elementary  School Graduate",
@@ -2136,29 +2136,20 @@ class PositionSeeder extends Seeder
 
         foreach ($data as $row) {
             $row = (object) $row;
-            $position = Position::where("title", $row->title)->first();
-            if ($position != null) {
-                // echo ("Hello");
-                // $position = Position::where('id',$position->id);
-                // $position->salary_grade = $row['salary_grade'];
-                // $position->save();
-            }
 
+            $position = Position::create([
+                "code" => $row->code,
+                "title" => $row->title,
+                "salary_grade_id" => $row->salary_grade_id
+            ]);
 
-            // $position = Position::create([
-            //     "code" => $row->code,
-            //     "title" => $row->title,
-            //     "salary_grade_id" => $row->salary_grade_id
-            // ]);
-
-            // $position->qualificationStandards()->create([
-            //     "position_id" => $position->id,
-            //     "education" => "Bachelor's degree relevant to the job",
-            //     "training" => "None required",
-            //     "experience" => "None required",
-            //     "eligibility" => "RA 1080/CSC",
-            //     'competency' => 'None required',
-            // ]);
+            $position->qualificationStandards()->create([
+                "education" => "Bachelor's degree relevant to the job",
+                "training" => "None required",
+                "experience" => "None required",
+                "eligibility" => "RA 1080/CSC",
+                'competency' => 'None required',
+            ]);
         }
     }
 }

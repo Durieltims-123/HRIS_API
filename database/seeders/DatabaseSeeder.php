@@ -47,44 +47,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-        // User::factory(100)->create();
-        // Holiday::factory(10)->create();
-        // Venue::factory(11)->create();
 
-        // SalaryGrade::factory(33)->create();
-        // Position::factory(33)->create();
-        // QualificationStandard::factory(33)->create();
+
         $this->call([
-            // SalaryGradeSeeder::class,
+            SalaryGradeSeeder::class,
             PositionSeeder::class,
+            OfficeSeeder::class,
+            DivisionSeeder::class,
         ]);
 
-        // PersonnelSelectionBoard::factory(5)
-        //     ->has(PsbPersonnel::factory()->count(5))
-        //     ->create();
-
-        // Applicant::factory(5)->create();
-        //
-
-
-        // Reference::factory(10)
-
-        // $this->call([
-        //     OfficeSeeder::class,
-        //     DivisionSeeder::class,
-        //     ProvinceSeeder::class,
-        //     MunicipalitySeeder::class,
-        //     BarangaySeeder::class,
-        //     QuestionSeeder::class,
-        // ]);
-
-        // LguPosition::factory(11)->create();
-        // $this->call([PositionDescriptionSeeder::class]);
-        // Employee::factory(11)->create();
+        LguPosition::factory(11)->create();
+        $this->call([PositionDescriptionSeeder::class]);
+        Employee::factory(11)->create();
         // Vacancy::factory(2)->create();
         // Publication::factory(2)->create();
         // Applicant::factory(10)->create();
@@ -99,25 +73,25 @@ class DatabaseSeeder extends Seeder
         // Disqualification::factory(5)->create();
         // Appointment::factory(5)->create();
 
-        // PersonalDataSheet::factory(11)->create();
-        // PDSPersonalInformation::factory(11)->create();
-        // PDSFamilyBackground::factory(11)->create();
-        // PDSChildrenInformation::factory(11)->create();
-        // PDSEducationalBackground::factory(11)->create();
-        // PDSCivilServiceEligibility::factory(11)->create();
-        // PDSWorkExperience::factory(11)->create();
-        // PDSVoluntaryWork::factory(11)->create();
-        // PDSTrainingProgramAttended::factory(11)->create();
-        // PDSSpecialSkillHobby::factory(11)->create();
-        // PDSRecognition::factory(11)->create();
-        // PDSMembershipAssociation::factory(11)->create();
-        // PDSReference::factory(11)->create();
+        PersonalDataSheet::factory(11)->create();
+        PDSPersonalInformation::factory(11)->create();
+        PDSFamilyBackground::factory(11)->create();
+        PDSChildrenInformation::factory(11)->create();
+        PDSEducationalBackground::factory(11)->create();
+        PDSCivilServiceEligibility::factory(11)->create();
+        PDSWorkExperience::factory(11)->create();
+        PDSVoluntaryWork::factory(11)->create();
+        PDSTrainingProgramAttended::factory(11)->create();
+        PDSSpecialSkillHobby::factory(11)->create();
+        PDSRecognition::factory(11)->create();
+        PDSMembershipAssociation::factory(11)->create();
+        PDSReference::factory(11)->create();
 
-        // $this->call([
-        //     // ReferenceSeeder::class,
-        //     // AnswerSeeder::class,
-        //     UserSeeder::class,
-        //     GovernorSeeder::class
-        // ]);
+        $this->call([
+            // ReferenceSeeder::class,
+            // AnswerSeeder::class,
+            UserSeeder::class,
+            GovernorSeeder::class
+        ]);
     }
 }

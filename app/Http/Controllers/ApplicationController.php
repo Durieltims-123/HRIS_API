@@ -1834,4 +1834,37 @@ class ApplicationController extends Controller
         }
         return $this->success(compact('base64', 'filename'), 'Successfully Retrieved.', 200);
     }
+
+
+    public function searchApplicationForAppointment(Request $request)
+    {
+        $keyword = $request->keyword;
+        $data = Application::select(
+            "id",
+            "first_name",
+            "middle_name",
+            "last_name",
+            "suffix",
+        )
+            ->where([["first_name", "like", "%$keyword%"], ["shortlisted", "1"]])
+            ->orWhere([["middle_name", "like", "%$keyword%"], ["shortlisted", "1"]])
+            ->orWhere([["last_name", "like", "%$keyword%"], ["shortlisted", "1"]])
+            ->orWhere([["suffix", "like", "%$keyword%"], ["shortlisted", "1"]])
+            ->take(20)
+            ->get()
+            ->toArray();
+
+
+        $data = array_map(function ($item) {
+            if ($item['middle_name'] != null) {
+                $label = $item['first_name'] . " " . strtoupper(strtolower($item['middle_name'][0])) . ". " . $item['last_name'] . " " . $item['suffix'];
+            } else {
+                $label = $item['first_name'] . " " . $item['last_name'] . " " . $item['suffix'];
+            }
+            return ["id" => $item['id'], "label" => $label];
+        }, $data);
+
+
+        return compact("data");
+    }
 }

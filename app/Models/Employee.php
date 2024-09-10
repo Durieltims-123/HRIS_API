@@ -19,6 +19,12 @@ class Employee extends Model
         return $this->morphMany(Application::class, 'individual');
     }
 
+    public function appointment()
+    {
+        return $this->morphMany(Appointment::class, 'appointee');
+    }
+
+
 
     public function personalDataSheets(): MorphMany
     {

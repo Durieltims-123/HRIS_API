@@ -78,6 +78,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/employee', EmployeeController::class);
     Route::post('/search-employee', [EmployeeController::class, 'search']);
     Route::post('/employee-validation', [EmployeeController::class, 'validation']);
+    Route::post('/search-employee-for-appointment', [EmployeeController::class, 'searchForAppointment']);
 
 
     Route::resource('/personnel-selection-board', PersonnelSelectionBoardController::class);
@@ -111,6 +112,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/shortlist-application/{application}', [ApplicationController::class, 'shortlist']);
     Route::post('/revert-application/{application}', [ApplicationController::class, 'revert']);
     Route::get('/download-disqualification-letter/{application}', [ApplicationController::class, 'downloadLetterOfDisqualification']);
+    Route::post('/search-application-for-appointment', [ApplicationController::class, 'searchApplicationForAppointment']);
     Route::post('/send-disqualification-email/{application}', [EmailController::class, 'sendDisqualificationEmail']);
 
 

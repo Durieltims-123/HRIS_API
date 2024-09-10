@@ -36,6 +36,11 @@ class Application extends Model
         return $this->morphTo();
     }
 
+    public function appointment()
+    {
+        return $this->morphMany(Appointment::class, 'individual');
+    }
+
     public function attachments(): HasOne
     {
         return $this->hasOne(ApplicationAttachment::class);

@@ -72,24 +72,29 @@ class ReportController extends Controller
                 $members = [];
                 $names = [];
                 $psb = PersonnelSelectionBoard::orderBy('id', 'desc')->first();
-                $psb_members = $psb->psbPersonnels()->where('role', 'Member')->orderBy('id', 'asc')->get();
                 // array_push($members, "$psb->chairman_prefix $psb->chairman, $psb->chairman_position, Chairman");
                 // array_push($names, "$psb->chairman_prefix $psb->chairman");
-                array_push($members, [
-                    "name" => strtoupper(strtolower("$psb->vice_chairman")),
-                    "position" => $psb->vice_chairman_position,
-                    "role" => "Vice Chairman"
-                ]);
-                array_push($names, "$psb->vice_chairman");
 
-                foreach ($psb_members as $member) {
+                if ($psb != null) {
+
+                    $psb_members = $psb->psbPersonnels()->where('role', 'Member')->orderBy('id', 'asc')->get();
                     array_push($members, [
-                        "name" => strtoupper(strtolower("$member->name")),
-                        "position" => $member->position,
-                        "role" => "Member"
+                        "name" => strtoupper(strtolower("$psb->vice_chairman")),
+                        "position" => $psb->vice_chairman_position,
+                        "role" => "Vice Chairman"
                     ]);
-                    array_push($names, "$member->name");
+                    array_push($names, "$psb->vice_chairman");
+
+                    foreach ($psb_members as $member) {
+                        array_push($members, [
+                            "name" => strtoupper(strtolower("$member->name")),
+                            "position" => $member->position,
+                            "role" => "Member"
+                        ]);
+                        array_push($names, "$member->name");
+                    }
                 }
+
 
                 $department_head = DB::table('vacancy_interviews')
                     ->select('department_heads.prefix', 'department_heads.name',  'department_heads.position', 'offices.office_name', DB::raw('count(*) as count'))
@@ -102,13 +107,16 @@ class ReportController extends Controller
                     ->groupBy('department_heads.prefix', 'department_heads.name', 'department_heads.position', 'offices.office_name')
                     ->first();
 
-                if (!in_array("$department_head->prefix $department_head->name", $names)) {
-                    array_push($members, [
-                        "name" => strtoupper(strtolower("$department_head->name")),
-                        "position" => $department_head->position,
-                        "role" => "member"
-                    ]);
-                    array_push($names, "$department_head->name");
+                if ($department_head != null) {
+
+                    if (!in_array("$department_head->prefix $department_head->name", $names)) {
+                        array_push($members, [
+                            "name" => strtoupper(strtolower("$department_head->name")),
+                            "position" => $department_head->position,
+                            "role" => "member"
+                        ]);
+                        array_push($names, "$department_head->name");
+                    }
                 }
 
                 $governor = Governor::latest()->first();
@@ -754,15 +762,17 @@ class ReportController extends Controller
         $names = [];
 
         $psb = PersonnelSelectionBoard::orderBy('id', 'desc')->first();
-        $psb_members = $psb->psbPersonnels()->orderBy('role', 'asc')->orderBy('id', 'asc')->get();
-        // array_push($members, "$psb->chairman_prefix $psb->chairman, $psb->chairman_position, Chairman");
-        // array_push($names, "$psb->chairman_prefix $psb->chairman");
-        array_push($members, "$psb->vice_chairman_prefix $psb->vice_chairman, $psb->vice_chairman_position, Vice Chairman");
-        array_push($names, "$psb->vice_chairman_prefix $psb->vice_chairman");
+        if ($psb != null) {
+            $psb_members = $psb->psbPersonnels()->orderBy('role', 'asc')->orderBy('id', 'asc')->get();
+            // array_push($members, "$psb->chairman_prefix $psb->chairman, $psb->chairman_position, Chairman");
+            // array_push($names, "$psb->chairman_prefix $psb->chairman");
+            array_push($members, "$psb->vice_chairman_prefix $psb->vice_chairman, $psb->vice_chairman_position, Vice Chairman");
+            array_push($names, "$psb->vice_chairman_prefix $psb->vice_chairman");
 
-        foreach ($psb_members as $member) {
-            array_push($members, "$member->prefix $member->name, $member->position, Member");
-            array_push($names, "$member->prefix $member->name");
+            foreach ($psb_members as $member) {
+                array_push($members, "$member->prefix $member->name, $member->position, Member");
+                array_push($names, "$member->prefix $member->name");
+            }
         }
 
 
